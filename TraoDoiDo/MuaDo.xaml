@@ -1,0 +1,464 @@
+﻿<Page
+    x:Class="TraoDoiDo.MuaDo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TraoDoiDo"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DangDo"
+    Width="1200"
+    Height="736"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
+
+    <Grid Loaded="Grid_Loaded">
+        <TabControl
+            Width="Auto"
+            materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
+            materialDesign:ColorZoneAssist.Mode="Custom">
+            <TabItem Header="Mua sắm">
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox
+                                    Width="120"
+                                    MinWidth="72"
+                                    Margin="20,10,20,0"
+                                    materialDesign:HintAssist.FloatingOffset="0, -18"
+                                    materialDesign:HintAssist.FloatingScale="0.7"
+                                    materialDesign:HintAssist.Hint="Loại"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBoxItem Content="Đồ gia dụng" />
+                                    <ComboBoxItem Content="Thiết bị di động" />
+                                    <ComboBoxItem Content="Đồ dùng học tập" />
+                                    <ComboBoxItem Content="Tất cả" />
+                                </ComboBox>
+
+                                <ComboBox
+                                    Width="120"
+                                    MinWidth="72"
+                                    Margin="20,10,20,0"
+                                    materialDesign:HintAssist.FloatingOffset="0, -18"
+                                    materialDesign:HintAssist.FloatingScale="0.7"
+                                    materialDesign:HintAssist.Hint="Giá"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBoxItem Content="Dưới 100.000đ" />
+                                    <ComboBoxItem Content="Từ 100.000 - 200.000đ" />
+                                    <ComboBoxItem Content="Từ 200.000 - 500.000đ" />
+                                    <ComboBoxItem Content="Trên 500.000đ" />
+                                    <ComboBoxItem Content="Tất cả" />
+                                </ComboBox>
+
+                                <ComboBox
+                                    Width="120"
+                                    MinWidth="72"
+                                    Margin="20,10,20,0"
+                                    materialDesign:HintAssist.FloatingOffset="0, -18"
+                                    materialDesign:HintAssist.FloatingScale="0.7"
+                                    materialDesign:HintAssist.Hint="Số sao"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBoxItem Content="0 sao" />
+                                    <ComboBoxItem Content="1 sao" />
+                                    <ComboBoxItem Content="2 sao" />
+                                    <ComboBoxItem Content="3 sao" />
+                                    <ComboBoxItem Content="4 sao" />
+                                    <ComboBoxItem Content="5 sao" />
+                                    <ComboBoxItem Content="Tất cả" />
+                                </ComboBox>
+                            </StackPanel>
+                            <TextBox
+                                Width="230"
+                                Height="47"
+                                Margin="0,0,15,0"
+                                HorizontalAlignment="Right"
+                                materialDesign:HintAssist.Hint="Tìm kiếm"
+                                AcceptsReturn="True"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextWrapping="Wrap" />
+
+                        </Grid>
+
+                        <ScrollViewer
+                            Grid.Row="1"
+                            Margin="16"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto">
+                            <WrapPanel
+                                x:Name="wpnlHienThi"
+                                Width="Auto"
+                                Height="Auto">
+                                <!--  Các phần tử bên trong WrapPanel  -->
+                            </WrapPanel>
+                        </ScrollViewer>
+
+                    </Grid>
+                    <Button
+                        Grid.Column="1"
+                        Margin="750,726,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Button" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Giỏ hàng">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer
+                        Grid.Row="0"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto">
+
+                        <ListView x:Name="lsvList">
+                            <ListView.View>
+                                <GridView>
+                                    <!--  Cột checkbox để chọn tất cả  -->
+                                    <GridViewColumn Header="">
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Click="SelectAllCheckBox_Click" />
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <!--  Các cột khác  -->
+                                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="STT" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên đồ" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Gia}" Header="Giá" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding PhiShip}" Header="Phí Ship" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Quantity}" Header="Số lượng" />
+
+                                    <!--  Cột "Xóa"  -->
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Xóa" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+
+
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="18,16,-18,0"
+                            VerticalAlignment="Top"
+                            FontSize="20"
+                            Text="Tổng tiền: 400.000 VNĐ" />
+                        <StackPanel Grid.Row="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    x:Name="btnThanhToan"
+                                    Width="135"
+                                    Margin="18,5,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Click="btnThanhToan_Click"
+                                    Content="Thanh Toán" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Trạng thái đơn hàng">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1043*" />
+                        <ColumnDefinition Width="157*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Expander
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Margin="10,5,10,5"
+                        Background="#e3f2fd"
+                        ExpandDirection="Down"
+                        Foreground="#0d47a1">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="#0d47a1"
+                                    Kind="HeadSyncOutline" />
+                                <!--  Badged tạo ra thông báo số lượng ở góc trên bên phải  -->
+                                <materialDesign:Badged
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Badge="{Binding ElementName=dgNeedApprove, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
+                                    BadgeBackground="#42a5f5"
+                                    BadgeForeground="White">
+                                    <TextBlock
+                                        Margin="5"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="Chờ người bán xác nhận" />
+                                </materialDesign:Badged>
+                            </StackPanel>
+                        </Expander.Header>
+                        <DataGrid
+                            Name="dgChoNguoiBanXacNhan"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            AutoGenerateColumns="False"
+                            Background="White"
+                            CanUserAddRows="False"
+                            ItemsSource="{Binding UnapprovedLeaveRequests}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn
+                                    Width="auto"
+                                    CanUserResize="False"
+                                    Header="Cột này chưa btnHuyDat"
+                                    IsReadOnly="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Width="30"
+                                                Height="30"
+                                                Margin="5,0"
+                                                Command="{Binding DataContext.DenyLeaveCommand, ElementName=approveLeaveRequestListUC}"
+                                                CommandParameter="{Binding}"
+                                                Foreground="#bf360c"
+                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                ToolTip="Hủy đặt hàng">
+                                                <materialDesign:PackIcon
+                                                    Width="15"
+                                                    Height="15"
+                                                    Kind="Close" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding STT}"
+                                    Header="STT"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Name}"
+                                    Header="Tên đồ"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Reason}"
+                                    Header="Giá"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Reason}"
+                                    Header="Số lượng"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Start, StringFormat='dd/MM/yyyy HH:ss tt'}"
+                                    Header="Ngày đặt hàng"
+                                    IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Expander>
+                    <Expander
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="10,5,10,5"
+                        Background="LightGreen"
+                        ExpandDirection="Down"
+                        Foreground="#0d47a1">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="#0d47a1"
+                                    Kind="TruckCheckOutline" />
+                                <!--  Badged tạo ra thông báo số lượng ở góc trên bên phải  -->
+                                <materialDesign:Badged
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Badge="{Binding ElementName=dgNeedApprove, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
+                                    BadgeBackground="#42a5f5"
+                                    BadgeForeground="White">
+                                    <TextBlock
+                                        Margin="5"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="Chờ nhận hàng" />
+                                </materialDesign:Badged>
+                            </StackPanel>
+                        </Expander.Header>
+                        <DataGrid
+                            Name="dgChoGiaoHang"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            AutoGenerateColumns="False"
+                            Background="White"
+                            CanUserAddRows="False"
+                            ItemsSource="{Binding UnapprovedLeaveRequests}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn
+                                    Width="auto"
+                                    CanUserResize="False"
+                                    Header="Cột này chưa btn de xac nhận đã nhận hàng "
+                                    IsReadOnly="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Width="30"
+                                                Height="30"
+                                                Margin="5,0"
+                                                Command="{Binding DataContext.DenyLeaveCommand, ElementName=approveLeaveRequestListUC}"
+                                                CommandParameter="{Binding}"
+                                                Foreground="#bf360c"
+                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                ToolTip="Hủy đặt hàng">
+                                                <materialDesign:PackIcon
+                                                    Width="15"
+                                                    Height="15"
+                                                    Kind="Close" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding STT}"
+                                    Header="STT"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Name}"
+                                    Header="Tên đồ"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Reason}"
+                                    Header="Giá"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Reason}"
+                                    Header="Số lượng"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Start, StringFormat='dd/MM/yyyy HH:ss tt'}"
+                                    Header="Ngày dự kiến nhận"
+                                    IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Expander>
+                    <Expander
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Margin="10,5,10,5"
+                        Background="LightPink"
+                        ExpandDirection="Down"
+                        Foreground="#0d47a1">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="#0d47a1"
+                                    Kind="ClipboardCheckOutline" />
+                                <!--  Badged tạo ra thông báo số lượng ở góc trên bên phải  -->
+                                <materialDesign:Badged
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    Badge="{Binding ElementName=dgNeedApprove, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
+                                    BadgeBackground="#42a5f5"
+                                    BadgeForeground="White">
+                                    <TextBlock
+                                        Margin="5"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="Đã nhận" />
+                                </materialDesign:Badged>
+                            </StackPanel>
+                        </Expander.Header>
+                        <DataGrid
+                            Name="dgDaNhan"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            AutoGenerateColumns="False"
+                            Background="White"
+                            CanUserAddRows="False"
+                            ItemsSource="{Binding UnapprovedLeaveRequests}">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding STT}"
+                                    Header="STT"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Name}"
+                                    Header="Tên đồ"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Reason}"
+                                    Header="Giá"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Reason}"
+                                    Header="Số lượng"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Start, StringFormat='dd/MM/yyyy HH:ss tt'}"
+                                    Header="Ngày nhận"
+                                    IsReadOnly="True" />
+                                <!--  Đáng giá theo số sao  -->
+                                <DataGridTextColumn
+                                    Width="120"
+                                    Binding="{Binding Notes}"
+                                    Header="Đáng giá"
+                                    IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Expander>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Page>

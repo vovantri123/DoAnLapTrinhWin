@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="TraoDoiDo.QuanLy"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TraoDoiDo"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="QuanLy"
+    Width="1200"
+    Height="736"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
+
+    <Grid>
+        <TabControl
+            Width="Auto"
+            materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
+            materialDesign:ColorZoneAssist.Mode="Custom">
+            <TabItem Header="Quản lý sản phẩm">
+                <TextBlock Margin="8" Text="Custom Tab 1" />
+            </TabItem>
+            <TabItem Header="Duyệt sản phẩm cho người đăng">
+                <TextBlock Margin="8" Text="Custom Tab 2" />
+            </TabItem>
+            <TabItem Header="Quản lý tài khoản">
+                <TextBlock Margin="8" Text="Custom Tab 3" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

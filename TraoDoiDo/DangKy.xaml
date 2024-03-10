@@ -1,0 +1,48 @@
+﻿<Window x:Class="TraoDoiDo.DangKy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TraoDoiDo"
+        mc:Ignorable="d"
+        Title="DangKy" Height="530" Width="850">
+    <Grid Width="850">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone 
+            Grid.Row="0"
+            Padding="16"
+            Mode="PrimaryMid">
+        </materialDesign:ColorZone>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon 
+        Width="40" 
+        Height="40" 
+        Margin="12,5,0,0" 
+        Grid.Column="0" 
+        Kind="AccountAdd">
+            </materialDesign:PackIcon>
+            <TextBlock 
+        Grid.Column="1"
+        Text="Đăng kí" 
+        FontSize="30" 
+        Margin="20,0,0,0"
+        TextAlignment="Justify"
+        Style="{StaticResource MaterialDesignCaptionTextBlock}"
+        Foreground="BlueViolet">
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="2">
+            <local:DangKyUC></local:DangKyUC>
+            <Button Margin="460,352,250,10" Content="Đăng kí"></Button>
+        </Grid>
+    </Grid>
+</Window>
