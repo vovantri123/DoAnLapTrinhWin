@@ -85,10 +85,10 @@
                 <StackPanel Grid.Row="0">
                     <TextBlock
                         Margin="10,10,10,0"
-                        FontSize="27"
+                        FontSize="40"
                         Text="Laptop Lenovo" />
 
-                    <Grid Margin="10,20,10,0">
+                    <Grid Margin="10,5,10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
@@ -97,36 +97,61 @@
                             Grid.Column="0"
                             Margin="0,0,10,0"
                             VerticalAlignment="Bottom"
-                            FontSize="20"
+                            FontSize="18"
                             Text="70.000đ"
                             TextDecorations="Strikethrough" />
                         <TextBlock
                             Grid.Column="1"
-                            FontSize="27"
+                            FontSize="25"
                             Text="70.000đ" />
-
-
                     </Grid>
 
-                    <Grid Width="300" HorizontalAlignment="Left">
+                    <Grid Width="Auto" HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Số lượng" />
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="10,0,10,0"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            Text="Số lượng" />
                         <Button
                             Grid.Column="1"
                             Width="40"
-                            Content="-" />
-                        <TextBlock Grid.Column="2" Text="5" />
+                            Height="30">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="30"
+                                Foreground="White"
+                                Text="-" />
+                        </Button>
+                        <TextBlock
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            FontSize="30"
+                            Text="5" />
                         <Button
                             Grid.Column="3"
                             Width="40"
-                            Content="+" />
-                        <TextBlock Grid.Column="4" Text="15 sản phẩm" />
+                            Height="30">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="17"
+                                Foreground="White"
+                                Text="+" />
+                        </Button>
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="22"
+                            Text="15 sản phẩm" />
                     </Grid>
                     <TextBox
                         Height="50"
@@ -210,19 +235,19 @@
         </Grid>
         <Grid Grid.Row="1">
             <TextBox
-                    Height="100"
-                    VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Mô tả"
-                    Text="Một mẫu laptop gaming hot mang mức giá tầm trung và sở hữu những thông số đủ mạnh cho các anh em chiến thoải mái với những con game thịnh hành, phục vụ giải trí hay công việc đầy đủ. Laptop Lenovo Ideapad Gaming 3 15ACH6 R5 5500H (82K2027PVN) chắc chắn sẽ không khiến bạn thất vọng với giá trị bỏ ra."
-                    Margin="10,10,10,0"
-                    FontSize="15"
-                    Foreground="Black"
-                    IsReadOnly="True"
-                    AcceptsReturn="True"
-                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto" />
+                Height="100"
+                Margin="10,10,10,0"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Mô tả"
+                AcceptsReturn="True"
+                FontSize="15"
+                Foreground="Black"
+                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                IsReadOnly="True"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                Text="Một mẫu laptop gaming hot mang mức giá tầm trung và sở hữu những thông số đủ mạnh cho các anh em chiến thoải mái với những con game thịnh hành, phục vụ giải trí hay công việc đầy đủ. Laptop Lenovo Ideapad Gaming 3 15ACH6 R5 5500H (82K2027PVN) chắc chắn sẽ không khiến bạn thất vọng với giá trị bỏ ra."
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
         </Grid>
 
     </Grid>

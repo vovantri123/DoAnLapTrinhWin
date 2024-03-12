@@ -39,6 +39,7 @@
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
+                                    IsEditable="True"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBoxItem Content="Đồ gia dụng" />
                                     <ComboBoxItem Content="Thiết bị di động" />
@@ -53,6 +54,7 @@
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Giá"
+                                    IsEditable="True"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBoxItem Content="Dưới 100.000đ" />
                                     <ComboBoxItem Content="Từ 100.000 - 200.000đ" />
@@ -68,6 +70,7 @@
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Số sao"
+                                    IsEditable="True"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBoxItem Content="0 sao" />
                                     <ComboBoxItem Content="1 sao" />
