@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="ThongTinChiTietSanPham"
     Width="900"
-    Height="600"
+    Height="650"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -16,7 +16,8 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -27,222 +28,246 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="430" />
+                <ColumnDefinition Width="420" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Height="400">
-                <Image Source="/HinhCuaToi/lenovo.png" />
-                <Button
-                    Width="80"
-                    Height="80"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    BorderThickness="0">
-                    <Button.Clip>
-                        <RectangleGeometry
-                            RadiusX="50"
-                            RadiusY="50"
-                            Rect="0,0,80,80" />
-                    </Button.Clip>
-                    <materialDesign:PackIcon
-                        Width="50"
-                        Height="50"
-                        Foreground="Black"
-                        Kind="ChevronLeftCircleOutline"
-                        Opacity="0.7" />
-                </Button>
-                <Button
-                    Width="80"
-                    Height="80"
-                    Margin="0,0,20,0"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    BorderThickness="0">
-                    <Button.Clip>
-                        <RectangleGeometry
-                            RadiusX="50"
-                            RadiusY="50"
-                            Rect="0,0,80,80" />
-                    </Button.Clip>
-                    <materialDesign:PackIcon
-                        Width="50"
-                        Height="50"
-                        Foreground="Black"
-                        Kind="ChevronRightCircleOutline"
-                        Opacity="0.7" />
-                </Button>
-
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
-                    <TextBlock
-                        Margin="10,10,10,0"
-                        FontSize="40"
-                        Text="Laptop Lenovo" />
-
-                    <Grid Margin="10,5,10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            Margin="0,0,10,0"
-                            VerticalAlignment="Bottom"
-                            FontSize="18"
-                            Text="70.000đ"
-                            TextDecorations="Strikethrough" />
-                        <TextBlock
-                            Grid.Column="1"
-                            FontSize="25"
-                            Text="70.000đ" />
-                    </Grid>
-
-                    <Grid Width="Auto" HorizontalAlignment="Left">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            Margin="10,0,10,0"
-                            VerticalAlignment="Center"
-                            FontSize="25"
-                            Text="Số lượng" />
-                        <Button
-                            Grid.Column="1"
-                            Width="40"
-                            Height="30">
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontSize="30"
-                                Foreground="White"
-                                Text="-" />
-                        </Button>
-                        <TextBlock
-                            Grid.Column="2"
-                            HorizontalAlignment="Center"
-                            FontSize="30"
-                            Text="5" />
-                        <Button
-                            Grid.Column="3"
-                            Width="40"
-                            Height="30">
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontSize="17"
-                                Foreground="White"
-                                Text="+" />
-                        </Button>
-                        <TextBlock
-                            Grid.Column="4"
-                            Margin="10,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="22"
-                            Text="15 sản phẩm" />
-                    </Grid>
-                    <TextBox
-                        Height="50"
-                        Margin="10"
-                        materialDesign:HintAssist.Hint="Địa chỉ người nhận"
-                        materialDesign:TextFieldAssist.HasClearButton="True"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="Hà Nội" />
+            <Border
+                Margin="12,10,5,0"
+                Background="LightGray"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="5">
+                <Grid Grid.Column="0" Height="400">
+                    <Image Source="/HinhCuaToi/lenovo.png" />
                     <Button
-                        Width="200"
-                        Height="35"
-                        Margin="2,0"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                        materialDesign:ButtonProgressAssist.Value="-1"
-                        Content="Thêm vào giỏ hàng"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                        Width="80"
+                        Height="80" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0">
+                        <Button.Clip>
+                            <RectangleGeometry
+                                RadiusX="50"
+                                RadiusY="50"
+                                Rect="0,0,80,80" />
+                        </Button.Clip>
+                        <materialDesign:PackIcon
+                            Width="50"
+                            Height="50"
+                            Foreground="Black"
+                            Kind="ChevronLeftCircleOutline"
+                            Opacity="0.7" />
+                    </Button>
+                    <Button
+                        Width="80"
+                        Height="80" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0">
+                        <Button.Clip>
+                            <RectangleGeometry
+                                RadiusX="50"
+                                RadiusY="50"
+                                Rect="0,0,80,80" />
+                        </Button.Clip>
+                        <materialDesign:PackIcon
+                            Width="50"
+                            Height="50"
+                            Foreground="Black"
+                            Kind="ChevronRightCircleOutline"
+                            Opacity="0.7" />
+                    </Button>
 
-                </StackPanel>
+                </Grid>
 
-                <StackPanel Grid.Row="1">
-                    <Grid Margin="10,10,10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+            </Border>
+
+
+            <materialDesign:Card
+                Grid.Column="1"
+                Margin="6,10,12,0"
+                UniformCornerRadius="5">
+                <materialDesign:Card.Effect>
+                    <DropShadowEffect
+                        BlurRadius="10"
+                        Direction="320"
+                        Opacity="0.08"
+                        ShadowDepth="2"
+                        Color="Black" />
+                </materialDesign:Card.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
                         <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            FontSize="27"
-                            Text="Tình trạng" />
-                        <TextBlock
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            FontSize="20"
-                            Text="Mới" />
+                            Margin="10,10,10,0"
+                            FontSize="40"
+                            Text="Laptop Lenovo" />
 
-                    </Grid>
-                    <Grid Margin="10,10,10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            FontSize="27"
-                            Text="Phí vận chuyển" />
-                        <TextBlock
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            FontSize="20"
-                            Text="20.000đ" />
+                        <Grid Margin="10,5,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="17"
+                                Text="100.000đ"
+                                TextDecorations="Strikethrough" />
+                            <TextBlock
+                                Grid.Column="1"
+                                FontSize="25"
+                                Text="70.000đ" />
+                        </Grid>
 
-                    </Grid>
+                        <Grid Width="Auto" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="10,0,10,0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                Text="Số lượng" />
+                            <Button
+                                Grid.Column="1"
+                                Width="40"
+                                Height="30"
+                                Background="White"
+                                BorderBrush="Black">
 
-                    <Grid Margin="10,10,10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            FontSize="27"
-                            Text="Loại" />
-                        <TextBlock
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            FontSize="20"
-                            Text="Thiết bị điện tử" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="30"
+                                    Foreground="Black"
+                                    Text="-" />
+                            </Button>
 
-                    </Grid>
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                FontSize="29"
+                                Text="5" />
+                            <Button
+                                Grid.Column="3"
+                                Width="40"
+                                Height="30"
+                                Background="White"
+                                BorderBrush="Black">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="17"
+                                    Foreground="Black"
+                                    Text="+" />
+                            </Button>
+                            <TextBlock
+                                Grid.Column="4"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                Text="15 sản phẩm" />
+                        </Grid>
+                        <TextBox
+                            Height="50"
+                            Margin="10"
+                            materialDesign:HintAssist.Hint="Địa chỉ người nhận"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            Text="Hà Nội" />
+                        <Button
+                            Width="250"
+                            Height="50"
+                            Margin="2,12,2,18"
+                            materialDesign:ButtonAssist.CornerRadius="4"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            Content="Thêm vào giỏ hàng"
+                            FontSize="25" />
 
-                </StackPanel>
+                    </StackPanel>
 
-            </Grid>
+                    <StackPanel Grid.Row="1">
+                        <Grid Margin="10,10,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                Text="Tình trạng" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Text="Mới" />
+
+                        </Grid>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                Text="Phí vận chuyển" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Text="20.000đ" />
+
+                        </Grid>
+
+                        <Grid Margin="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                Text="Loại" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Text="Thiết bị điện tử" />
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+            </materialDesign:Card>
 
         </Grid>
         <Grid Grid.Row="1">
             <TextBox
-                Height="100"
+                Height="160"
                 Margin="10,10,10,0"
                 VerticalAlignment="Top"
                 materialDesign:HintAssist.Hint="Mô tả"
                 AcceptsReturn="True"
-                FontSize="15"
+                FontSize="20"
                 Foreground="Black"
-                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
                 IsReadOnly="True"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 Text="Một mẫu laptop gaming hot mang mức giá tầm trung và sở hữu những thông số đủ mạnh cho các anh em chiến thoải mái với những con game thịnh hành, phục vụ giải trí hay công việc đầy đủ. Laptop Lenovo Ideapad Gaming 3 15ACH6 R5 5500H (82K2027PVN) chắc chắn sẽ không khiến bạn thất vọng với giá trị bỏ ra."
