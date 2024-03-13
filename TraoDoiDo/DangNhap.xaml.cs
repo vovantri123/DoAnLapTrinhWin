@@ -40,5 +40,10 @@ namespace TraoDoiDo
         {
 
         }
+        private void txtQuenMatKhau_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            QuenMatKhau quenMK = new QuenMatKhau();
+            quenMK.Show();
+        }
     }
 }

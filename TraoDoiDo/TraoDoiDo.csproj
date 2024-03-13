@@ -102,6 +102,12 @@
     <Compile Include="QuanLy.xaml.cs">
       <DependentUpon>QuanLy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuenMatKhau.xaml.cs">
+      <DependentUpon>QuenMatKhau.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UCNapTien.xaml.cs">
+      <DependentUpon>UCNapTien.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UCThemAnhKhiDang.xaml.cs">
       <DependentUpon>UCThemAnhKhiDang.xaml</DependentUpon>
     </Compile>
@@ -178,6 +184,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuanLy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuenMatKhau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UCNapTien.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -279,6 +293,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HinhCuaToi\them.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HinhCuaToi\acb.png" />
+    <Resource Include="HinhCuaToi\agribank.png" />
+    <Resource Include="HinhCuaToi\AvartarNoBackground.png" />
+    <Resource Include="HinhCuaToi\baoviet.png" />
+    <Resource Include="HinhCuaToi\bidv %281%29.png" />
+    <Resource Include="HinhCuaToi\sacombank.png" />
+    <Resource Include="HinhCuaToi\techcombank.png" />
+    <Resource Include="HinhCuaToi\tienphong.png" />
+    <Resource Include="HinhCuaToi\vib.png" />
+    <Resource Include="HinhCuaToi\vieta.png" />
+    <Resource Include="HinhCuaToi\vietcombank.png" />
+    <Resource Include="HinhCuaToi\vietinbank.png" />
+    <Resource Include="HinhCuaToi\visa.png" />
+    <Resource Include="HinhCuaToi\vpb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

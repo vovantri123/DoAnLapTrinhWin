@@ -18,7 +18,262 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
 
-    <Grid Background="Aqua">
-        <TextBlock FontSize="150">Ví tiền</TextBlock>
+    <Grid>
+        <TabControl
+    Width="1195"
+    materialDesign:ColorZoneAssist.Foreground="BlueViolet"
+    materialDesign:ColorZoneAssist.Mode="Custom">
+            <TabItem Header="Phương thức chuyển khoản">
+                <Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="350" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border
+                        Grid.Row="0"
+                        Margin="5,5,5,5"
+                        Background="#006b68"
+                        CornerRadius="50">
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="65" />
+                                        <RowDefinition Height="220" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <materialDesign:PackIcon
+                                    Grid.Column="0"
+                                    Width="100"
+                                    Height="50"
+                                    Margin="10,10,10,10"
+                                    Kind="Bank" />
+                                        <TextBlock
+                                    Grid.ColumnSpan="2"
+                                    Margin="80,10,150,9"
+                                    FontSize="45"
+                                    Foreground="WhiteSmoke"
+                                    Text="TÀI KHOẢN"
+                                    TextAlignment="Left" />
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image
+                                    Grid.Column="1"
+                                    Margin="10,10,10,10"
+                                    Panel.ZIndex="3"
+                                    Source="HinhCuaToi\AvartarNoBackground.png" />
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+
+                                        <TextBlock
+                                    Margin="27,5,340,0"
+                                    FontSize="40"
+                                    Foreground="WhiteSmoke"
+                                    Text="SỐ DƯ:"
+                                    TextAlignment="Left" />
+                                        <TextBlock
+                                    Margin="150,0,100,0"
+                                    FontSize="45"
+                                    Foreground="WhiteSmoke"
+                                    Text="1.200.000"
+                                    TextAlignment="Right" />
+                                    </Grid>
+                                </Grid>
+
+                            </Border>
+                        </Grid>
+
+                        <Grid
+                    Grid.Column="1"
+                    Width="550"
+                    Margin="80,0,0,0"
+                    HorizontalAlignment="Left">
+                            <Border
+                        Margin="5"
+                        BorderBrush="Blue"
+                        BorderThickness="2"
+                        CornerRadius="40">
+                                <Grid Margin="10,11,10,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                Grid.Row="0"
+                                Margin="5,5,5,5"
+                                Background="CadetBlue"
+                                CornerRadius="40">
+                                        <TextBlock
+                                    Grid.Row="0"
+                                    Margin="5,5,5,5"
+                                    FontSize="30"
+                                    Text="Nạp tiền"
+                                    TextAlignment="Center" />
+                                    </Border>
+                                    <local:UCNapTien/>
+
+                                    <DatePicker
+                                Grid.Row="1"
+                                Width="500"
+                                Height="90"
+                                Margin="5,10,5,10"
+                                Background="DeepSkyBlue"
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+
+
+                                </Grid>
+                            </Border>
+
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Lịch sử giao dịch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                        <Border BorderBrush="BlueViolet" BorderThickness="0,0,2,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border
+                            Grid.Row="0"
+                            Width="250"
+                            Height="250"
+                            Margin="0,0,0,0"
+                            Background="White"
+                            BorderBrush="BlueViolet"
+                            BorderThickness="2"
+                            CornerRadius="10">
+                                    <Grid>
+                                        <Image Source="HinhCuaToi\Avatar1.png" />
+                                    </Grid>
+                                </Border>
+                                <Grid Grid.Row="1">
+                                    <Border
+                                Margin="10"
+                                BorderBrush="BlueViolet"
+                                BorderThickness="4"
+                                CornerRadius="10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="95" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                        Grid.Column="0"
+                                        Margin="10,10,10,10"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="25"
+                                        Text="SỐ DƯ" />
+                                            <TextBlock
+                                        Grid.Column="1"
+                                        Margin="0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="25"
+                                        Text="1.200.000 VND" />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ScrollViewer>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <materialDesign:ColorZone
+                        Padding="25"
+                        Foreground="White"
+                        Mode="PrimaryMid">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Margin="330,0,0,0"
+                                FontSize="20"
+                                Foreground="White"
+                                Text="LỊCH SỬ GIAO DỊCH" />
+                                </StackPanel>
+                            </materialDesign:ColorZone>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <ListView HorizontalAlignment="Center">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn
+                                        Width="Auto"
+                                        DisplayMemberBinding="{Binding STT}"
+                                        Header="Số thứ tự" />
+                                            <GridViewColumn
+                                        Width="Auto"
+                                        DisplayMemberBinding="{Binding soTien}"
+                                        Header="Số tiền" />
+                                            <GridViewColumn
+                                        Width="Auto"
+                                        DisplayMemberBinding="{Binding phuongThuc}"
+                                        Header="Phương thức thanh toán" />
+                                            <GridViewColumn
+                                        Width="Auto"
+                                        DisplayMemberBinding="{Binding ngayThanhToan}"
+                                        Header="Ngày thanh toán" />
+
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="Sửa" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="Xóa" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </ScrollViewer>
+
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>
