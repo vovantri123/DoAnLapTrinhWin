@@ -99,8 +99,8 @@
     <Compile Include="QuanLy.xaml.cs">
       <DependentUpon>QuanLy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThemAnhKhiDang.xaml.cs">
-      <DependentUpon>ThemAnhKhiDang.xaml</DependentUpon>
+    <Compile Include="UCThemAnhKhiDang.xaml.cs">
+      <DependentUpon>UCThemAnhKhiDang.xaml</DependentUpon>
     </Compile>
     <Compile Include="Thoat.xaml.cs">
       <DependentUpon>Thoat.xaml</DependentUpon>
@@ -174,7 +174,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThemAnhKhiDang.xaml">
+    <Page Include="UCThemAnhKhiDang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,6 +266,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HinhCuaToi\laptopAI.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HinhCuaToi\no_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HinhCuaToi\them.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

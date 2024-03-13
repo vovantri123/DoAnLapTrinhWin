@@ -144,7 +144,7 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Margin="5">
-                    <local:ThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <local:UCThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontSize="20"
@@ -155,7 +155,7 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="5">
-                    <local:ThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <local:UCThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontSize="20"
@@ -166,23 +166,24 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Margin="5">
-                    <local:ThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <local:UCThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontSize="20"
                         Text="Ảnh 2" />
                 </StackPanel>
 
-                <StackPanel
+                <Grid
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="5">
-                    <local:ThemAnhKhiDang HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        FontSize="20"
-                        Text="Ảnh 3" />
-                </StackPanel>
+                    <Button Height="70"
+                            Width="70"
+                            Background="WhiteSmoke" Margin="62,54,63,111">
+                        <Image Source="/HinhCuaToi/them.png" Width="70" Height="70" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+                        
+                    </Button>
+                </Grid>
 
             </Grid>
 

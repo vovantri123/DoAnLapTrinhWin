@@ -528,8 +528,8 @@
                         </ListViewItem>
 
 
-                        <!--  // Quản lý //  -->
-                        <ListViewItem
+                        <!--  // Quản lý // (Visibility="Collapsed" nếu không đăng nhập với vai trò admin)  -->
+                        <ListViewItem  
                             HorizontalAlignment="Left"
                             MouseEnter="ListViewItem_MouseEnter"
                             MouseLeftButtonUp="QuanLy_Click">
@@ -568,7 +568,7 @@
 
                         <!--  // Sign Out //  -->
 
-                        <ListViewItem
+                        <ListViewItem 
                             HorizontalAlignment="Left"
                             MouseEnter="ListViewItem_MouseEnter"
                             MouseLeftButtonUp="Thoat_Click">

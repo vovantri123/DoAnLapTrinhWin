@@ -97,6 +97,8 @@ namespace TraoDoiDo
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public string Anh { get; set; }
+
             public string Type { get; set; }
             public int Quantity { get; set; }
             public int DaBan { get; set; }
@@ -111,9 +113,9 @@ namespace TraoDoiDo
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             List<Product> products = new List<Product>();
-            products.Add(new Product { Id = 1, Name = "Product 1", Type = "Type 1", Quantity = 10, DaBan=0, Price = 100, Promotion = "Promotion 1", ShippingFee = 5 , SoSao="5", TrangThai="Đã được duyệt"});
-            products.Add(new Product { Id = 2, Name = "Product 2", Type = "Type 2", Quantity = 15, DaBan = 0, Price = 150, Promotion = "Promotion 2", ShippingFee = 7, SoSao = "0", TrangThai = "Chờ duyệt" });
-            products.Add(new Product { Id = 3, Name = "Product 3", Type = "Type 3", Quantity = 12, DaBan = 0, Price = 120, Promotion = "Promotion 3", ShippingFee = 9, SoSao = "0", TrangThai = "Chờ duyệt" });
+            products.Add(new Product { Id = 1, Name = "Product 1",Anh= "/HinhCuaToi/Lenovo.png" ,Type = "Type 1", Quantity = 10, DaBan=0, Price = 100, Promotion = "10%", ShippingFee = 5 , SoSao="5", TrangThai="Đã được duyệt"});
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 2", Quantity = 15, DaBan = 0, Price = 150, Promotion = "20%", ShippingFee = 7, SoSao = "0", TrangThai = "Chờ duyệt" });
+            products.Add(new Product { Id = 3, Name = "Product 3", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 3", Quantity = 12, DaBan = 0, Price = 120, Promotion = "50%", ShippingFee = 9, SoSao = "0", TrangThai = "Chờ duyệt" });
 
             lsvList.ItemsSource = products;
         }
