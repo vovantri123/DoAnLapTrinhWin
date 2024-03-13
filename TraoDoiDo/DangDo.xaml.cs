@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using LiveCharts.Defaults;
 using Microsoft.Win32;
 using System.Windows.Media.Imaging;
+using static TraoDoiDo.MuaDo;
 
 namespace TraoDoiDo
 {
@@ -118,6 +119,15 @@ namespace TraoDoiDo
             products.Add(new Product { Id = 3, Name = "Product 3", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 3", Quantity = 12, DaBan = 0, Price = 120, Promotion = "50%", ShippingFee = 9, SoSao = "0", TrangThai = "Chờ duyệt" });
 
             lsvList.ItemsSource = products;
+
+
+
+
+
+            //Tab QLy Đơn hàng
+            List<SPTabQuanLyDonHang> sp = new List<SPTabQuanLyDonHang>();
+            sp.Add(new SPTabQuanLyDonHang { Id = 1, Name = "Product 1", Anh = "/HinhCuaToi/Lenovo.png", Quantity = "20", Price = "1.0000", ShippingFee = "10.000", TongTien = "200.000" });
+            lsvQuanLyDonHang.ItemsSource = sp;
         }
 
 
@@ -135,6 +145,44 @@ namespace TraoDoiDo
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Bạn có chắc là muốn xóa sản phầm này?","Thông báo",MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+        }
+
+
+
+        //Tab QL đơn hàng
+        public class SPTabQuanLyDonHang
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Anh { get; set; }
+            public string Quantity { get; set; }
+            public string Price { get; set; }
+            public string ShippingFee { get; set; }
+            public string TongTien { get; set; }
+            public int Ngay { get; set; }
+        }
+
+        private void btnDiaChiGuiHang_Click(object sender, RoutedEventArgs e)
+        {
+            DiaChi f = new DiaChi(); 
+            f.cboHinhThucThanhToan.IsEnabled = false;
+            f.txtHoTen.IsReadOnly = true;
+            f.txtDiaChi.IsReadOnly = true;
+            f.txtSoDienThoai.IsReadOnly = true;
+            f.txtEmail.IsReadOnly = true;
+
+            f.btnXacNhanThanhToan.Visibility = Visibility.Collapsed;
+            f.txtbTieuDe.Text = "Địa chỉ khách hàng";
+
+            f.cboHinhThucThanhToan.Text = "Chuyển khoản";
+            f.txtHoTen.Text = "Võ Văn Tri";
+            f.txtSoDienThoai.Text = "0326123123";
+            f.txtEmail.Text = "tri@gmail.com";
+            f.txtDiaChi.Text = "Số 1 VVN";
+
+
+
+            f.ShowDialog();
         }
     }
 

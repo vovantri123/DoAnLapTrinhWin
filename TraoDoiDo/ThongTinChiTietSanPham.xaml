@@ -213,6 +213,7 @@
 
                     </StackPanel>
                     <Button
+                        x:Name="btnThemVaoGioHang"
                         Grid.Row="1"
                         Width="250"
                         Height="52"
@@ -222,7 +223,7 @@
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.Value="-1"
                         Content="Thêm vào giỏ hàng"
-                        FontSize="25" />
+                        FontSize="25" Click="btnThemVaoGioHang_Click" />
 
                     <StackPanel Grid.Row="2">
                         <Grid Margin="10,10,10,2">

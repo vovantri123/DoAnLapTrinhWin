@@ -23,5 +23,10 @@ namespace TraoDoiDo
         {
             InitializeComponent();
         }
+
+        private void btnThemVaoGioHang_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Thêm vào giỏ hàng thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

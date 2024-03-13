@@ -169,7 +169,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="673*" />
-                        <RowDefinition Height="86*"/>
+                        <RowDefinition Height="86*" />
                     </Grid.RowDefinitions>
 
                     <Grid
@@ -209,7 +209,8 @@
                     <Frame
                         x:Name="frameMain"
                         Grid.Row="1"
-                        NavigationUIVisibility="Hidden" Grid.RowSpan="2" />
+                        Grid.RowSpan="2"
+                        NavigationUIVisibility="Hidden" />
                 </Grid>
 
                 <Grid
@@ -520,6 +521,7 @@
 
                                 <ToolTip
                                     x:Name="tt_settings"
+                                    Width="180"
                                     Content="Thông tin cá nhân"
                                     Style="{StaticResource tt_style}" />
 
@@ -529,7 +531,7 @@
 
 
                         <!--  // Quản lý // (Visibility="Collapsed" nếu không đăng nhập với vai trò admin)  -->
-                        <ListViewItem  
+                        <ListViewItem
                             HorizontalAlignment="Left"
                             MouseEnter="ListViewItem_MouseEnter"
                             MouseLeftButtonUp="QuanLy_Click">
@@ -568,7 +570,7 @@
 
                         <!--  // Sign Out //  -->
 
-                        <ListViewItem 
+                        <ListViewItem
                             HorizontalAlignment="Left"
                             MouseEnter="ListViewItem_MouseEnter"
                             MouseLeftButtonUp="Thoat_Click">

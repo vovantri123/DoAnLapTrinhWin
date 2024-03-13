@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="335"
-    d:DesignWidth="220"
+    d:DesignHeight="350"
+    d:DesignWidth="240"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -17,11 +17,18 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
     <materialDesign:Card Padding="5">
+        <materialDesign:Card.Effect>
+            <DropShadowEffect
+                BlurRadius="5"
+                Direction="40"
+                Opacity="0.2"
+                ShadowDepth="5"
+                Color="Black" />
+        </materialDesign:Card.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="180" />
                 <RowDefinition />
-                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Image
@@ -29,13 +36,58 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Source="/HinhCuaToi/laptopAi.jpg" />
+                <Button
+                    x:Name="btnThemVaoGioHang"
+                    Grid.Row="0"
+                    Margin="0,0,13,-10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Click="btnThongTin_Click"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}"
+                    ToolTip="Thêm vào giỏ hàng"
+                    Background="#FF673AB7">
+                    
+                    <materialDesign:PackIcon  Kind="CartArrowDown" Foreground="White" Width="22" Height="24"/>
+                </Button>
+
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel>
 
-                    <TextBlock FontSize="20" Text="Laptop Lenovo" />
-                    <TextBlock FontSize="25" Text="50.000 VNĐ" />
+                    <TextBlock
+                        Margin="0,12,0,0"
+                        FontSize="18"
+                        Text="GỌN NHẸ Máy tính bảng Windows 2 in 1..."
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        Margin="0,5,10,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="15"
+                        Text="100.000.000đ"
+                        TextDecorations="Strikethrough" />
+
+
                     <StackPanel Orientation="Horizontal">
+
+                        <TextBlock
+                            FontSize="18"
+                            Foreground="#FF673AB7"
+                            Text="70.000.000đ" />
+                        <TextBlock
+                            Width="65"
+                            Margin="10,0,0,0"
+                            Padding="3"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="#FF673AB7"
+                            FontSize="13"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="Giảm 30%" />
+
+
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
                         <materialDesign:RatingBar
                             x:Name="ReadOnlyRatingBar"
                             IsReadOnly="True"
@@ -43,32 +95,36 @@
                         <TextBlock
                             Margin="10,0,0,0"
                             VerticalAlignment="Center"
+                            FontSize="12"
                             Text="Đã bán 7.6k" />
                     </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock
+                                Margin="0,5,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="15"
+                                Text="Hà Nội" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+
+                            <!--<Border Margin="6" CornerRadius="10">
+                                <Button
+                                    x:Name="btnThemVaoGioHang"
+                                    Click="btnThongTin_Click"
+                                    Content="{materialDesign:PackIcon CartArrowDown}"
+                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    ToolTip="Icon" />
+                                </Border>-->
+                        </Grid>
+                    </Grid>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        FontSize="16"
-                        Text="Hà Nội" />
-                </Grid>
-                <Grid Grid.Column="1">
-                    <Border Margin="6" CornerRadius="10">
-                        <Button
-                            x:Name="btnThemVaoGioHang"
-                            Click="btnThongTin_Click"
-                            Content="{materialDesign:PackIcon CartArrowDown}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            ToolTip="Icon" />
-                    </Border>
-                </Grid>
-            </Grid>
+
         </Grid>
     </materialDesign:Card>
 </UserControl>

@@ -24,9 +24,9 @@ namespace TraoDoiDo
         private void themDeTestForm()
         {
             UCSanPham uc = new UCSanPham();
-            uc.Width = 220; // Thiết lập chiều rộng mong muốn
-            uc.Height = 335; // Thiết lập chiều cao mong muốn
-            uc.Margin = new Thickness(5);
+            uc.Width = 215; // Thiết lập chiều rộng mong muốn
+            uc.Height = 350; // Thiết lập chiều cao mong muốn
+            uc.Margin = new Thickness(8);
 
             wpnlHienThi.Children.Add(uc);
         }
@@ -45,30 +45,60 @@ namespace TraoDoiDo
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public string Anh { get; set; }
             public string Gia { get; set; }
             public string PhiShip { get; set; }
 
             public int Quantity { get; set; }
         }
-        
 
-       
+        public class SPTabTrangThaiDonHang
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Anh { get; set; }
+            public string Quantity { get; set; }
+            public string Price { get; set; }
+            public string ShippingFee { get; set; }
+            public string TongTien { get; set; }
+            public int Ngay { get; set; }
+        }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            //Tab giỏ hàng
             List<Product> products = new List<Product>();
-            products.Add(new Product { Id = 1, Name = "Product 1", Gia="200.000",PhiShip="10.000",Quantity = 10 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-
+            products.Add(new Product { Id = 1, Name = "Product 1",Anh="/HinhCuaToi/Lenovo.png" ,Gia="200.000",PhiShip="10.000",Quantity = 10 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
+            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
 
             lsvList.ItemsSource = products;
+
+
+            //Tab trạng thái đon hàng
+            List<SPTabTrangThaiDonHang> sp = new List<SPTabTrangThaiDonHang>();
+            sp.Add(new SPTabTrangThaiDonHang { Id = 1, Name = "Product 1", Anh = "/HinhCuaToi/Lenovo.png", Quantity = "20", Price = "1.0000", ShippingFee = "10.000", TongTien= "200.000"  });
+            lsvChoNguoiBanXacNhan.ItemsSource = sp;
+            lsvChoNhanHang.ItemsSource = sp;
+            lsvDaNhan.ItemsSource = sp;
+        
         }
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            HoaDon f = new HoaDon();
+            DiaChi f = new DiaChi();
             f.ShowDialog();
         }
+
 
         private void SelectAllCheckBox_Click(object sender, RoutedEventArgs e)
         {
@@ -109,6 +139,21 @@ namespace TraoDoiDo
                 }
             }
             return null;
+        }
+
+        //Tab trạng thái đơn hàng
+        private void btnHuyDatHang_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Bạn có chắc là muốn hủy đặt hàng 0_o\nĐơn hàng mà bạn hủy sẽ được hoàn tiền", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+        }
+        private void btnDaNhanHang_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Bạn có chắc là đã nhận được hàng 0_o", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+        }
+        private void btnDanhGia_Click(object sender, RoutedEventArgs e)
+        {
+            DanhGia f = new DanhGia();
+            f.ShowDialog();
         }
     }
 }

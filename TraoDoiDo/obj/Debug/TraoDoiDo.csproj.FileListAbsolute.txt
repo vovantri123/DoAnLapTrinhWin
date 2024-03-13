@@ -312,7 +312,6 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKy.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKyUC.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangNhap.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\HoaDon.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MainWindow.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MuaDo.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\NguoiDung.g.cs
@@ -334,7 +333,6 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKy.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKyUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangNhap.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\HoaDon.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MainWindow.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MuaDo.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\NguoiDung.baml
@@ -423,3 +421,7 @@ C:\Users\vovan\OneDrive\Documents\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\DoAnLapTr
 C:\Users\vovan\OneDrive\Documents\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\UCThemAnhKhiDang.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\UCThemAnhKhiDang.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DanhGia.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DanhGia.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DiaChi.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DiaChi.baml

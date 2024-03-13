@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="QuanLy"
     Width="1200"
     Height="736"
@@ -24,13 +25,342 @@
             materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
             materialDesign:ColorZoneAssist.Mode="Custom">
             <TabItem Header="Quản lý sản phẩm">
-                <TextBlock Margin="8" Text="Custom Tab 1" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Loại"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="Đồ gia dụng" />
+                                <ComboBoxItem Content="Thiết bị di động" />
+                                <ComboBoxItem Content="Đồ dùng học tập" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Giá"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="Dưới 100.000đ" />
+                                <ComboBoxItem Content="Từ 100.000 - 200.000đ" />
+                                <ComboBoxItem Content="Từ 200.000 - 500.000đ" />
+                                <ComboBoxItem Content="Trên 500.000đ" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Trạng thái"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="Chưa duyệt" />
+                                <ComboBoxItem Content="Đã duyệt" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Số sao"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="0 sao" />
+                                <ComboBoxItem Content="1 sao" />
+                                <ComboBoxItem Content="2 sao" />
+                                <ComboBoxItem Content="3 sao" />
+                                <ComboBoxItem Content="4 sao" />
+                                <ComboBoxItem Content="5 sao" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+                        </StackPanel>
+                        <TextBox
+                            Grid.Column="1"
+                            Width="230"
+                            Height="47"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            materialDesign:HintAssist.Hint="Tìm kiếm theo Id"
+                            AcceptsReturn="True"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="585"
+                        Margin="16,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="#F2F1F1">
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ListView x:Name="lsvQuanLySanPham" ItemsSource="{Binding}">
+                                <ListView.Resources>
+                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.ColumnHeaderContainerStyle>
+                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                <Setter Property="Background" Value="LightBlue" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="FontWeight" Value="Bold" />
+                                            </Style>
+                                        </GridView.ColumnHeaderContainerStyle>
+                                        <GridViewColumn
+                                            Width="45"
+                                            DisplayMemberBinding="{Binding Id}"
+                                            Header="Id đồ" />
+                                        <GridViewColumn
+                                            Width="130"
+                                            DisplayMemberBinding="{Binding Name}"
+                                            Header="Tên đồ" />
+                                        <GridViewColumn Width="100" Header="Ảnh">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image Source="{Binding Anh}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn
+                                            Width="120"
+                                            DisplayMemberBinding="{Binding Type}"
+                                            Header="Loại" />
+                                        <GridViewColumn
+                                            Width="90"
+                                            DisplayMemberBinding="{Binding Quantity}"
+                                            Header="Số lượng" />
+                                        <GridViewColumn
+                                            Width="95"
+                                            DisplayMemberBinding="{Binding DaBan}"
+                                            Header="Đã bán" />
+                                        <GridViewColumn
+                                            Width="120"
+                                            DisplayMemberBinding="{Binding Price}"
+                                            Header="Giá" />
+                                        <GridViewColumn
+                                            Width="90"
+                                            DisplayMemberBinding="{Binding Promotion}"
+                                            Header="Khuyến mãi" />
+                                        <GridViewColumn
+                                            Width="120"
+                                            DisplayMemberBinding="{Binding ShippingFee}"
+                                            Header="Phí ship" />
+                                        <GridViewColumn
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding SoSao}"
+                                            Header="Số sao" />
+                                        <GridViewColumn Width="105" Header="Trạng thái">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox Width="80" SelectedIndex="{Binding TrangThai}">
+                                                        <ComboBoxItem Content="Chưa duyệt" />
+                                                        <ComboBoxItem Content="Đã duyệt" />
+                                                    </ComboBox>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" Header="Xóa">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="Xóa" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                    </Grid>
+
+                </Grid>
             </TabItem>
-            <TabItem Header="Duyệt sản phẩm cho người đăng">
-                <TextBlock Margin="8" Text="Custom Tab 2" />
-            </TabItem>
-            <TabItem Header="Quản lý tài khoản">
-                <TextBlock Margin="8" Text="Custom Tab 3" />
+            <TabItem Header="Quản lý người dùng">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Loại"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="Đồ gia dụng" />
+                                <ComboBoxItem Content="Thiết bị di động" />
+                                <ComboBoxItem Content="Đồ dùng học tập" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Giá"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="Dưới 100.000đ" />
+                                <ComboBoxItem Content="Từ 100.000 - 200.000đ" />
+                                <ComboBoxItem Content="Từ 200.000 - 500.000đ" />
+                                <ComboBoxItem Content="Trên 500.000đ" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Trạng thái"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="Chưa duyệt" />
+                                <ComboBoxItem Content="Đã duyệt" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+
+                            <ComboBox
+                                MinWidth="72"
+                                Margin="20,10,20,0"
+                                materialDesign:HintAssist.FloatingOffset="0, -18"
+                                materialDesign:HintAssist.FloatingScale="0.7"
+                                materialDesign:HintAssist.Hint="Số sao"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Content="0 sao" />
+                                <ComboBoxItem Content="1 sao" />
+                                <ComboBoxItem Content="2 sao" />
+                                <ComboBoxItem Content="3 sao" />
+                                <ComboBoxItem Content="4 sao" />
+                                <ComboBoxItem Content="5 sao" />
+                                <ComboBoxItem Content="Tất cả" />
+                            </ComboBox>
+                        </StackPanel>
+                        <TextBox
+                            Grid.Column="1"
+                            Width="230"
+                            Height="47"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            materialDesign:HintAssist.Hint="Tìm kiếm theo Id"
+                            AcceptsReturn="True"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="585"
+                        Margin="16,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="#F2F1F1">
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ListView x:Name="lsvQuanLyNguoiDung" ItemsSource="{Binding}">
+                                <ListView.Resources>
+                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.ColumnHeaderContainerStyle>
+                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                <Setter Property="Background" Value="LightBlue" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="FontWeight" Value="Bold" />
+                                            </Style>
+                                        </GridView.ColumnHeaderContainerStyle>
+                                        <GridViewColumn
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding UserId}"
+                                            Header="Id người dùng" />
+                                        <GridViewColumn
+                                            Width="140"
+                                            DisplayMemberBinding="{Binding FullName}"
+                                            Header="Họ và tên" />
+                                         
+                                        <GridViewColumn
+                                            Width="120"
+                                            DisplayMemberBinding="{Binding Identification}"
+                                            Header="CMND/CCCD" />
+                                        <GridViewColumn
+                                            Width="90"
+                                            DisplayMemberBinding="{Binding Gender}"
+                                            Header="Giới tính" />
+                                        <GridViewColumn
+                                            Width="95"
+                                            DisplayMemberBinding="{Binding PhoneNumber}"
+                                            Header="Số điện thoại" />
+                                        <GridViewColumn
+                                            Width="110"
+                                            DisplayMemberBinding="{Binding DateOfBirth}"
+                                            Header="Ngày sinh" />
+                                        <GridViewColumn
+                                            Width="155"
+                                            DisplayMemberBinding="{Binding Address}"
+                                            Header="Địa chỉ" />
+                                        <GridViewColumn
+                                            Width="155"
+                                            DisplayMemberBinding="{Binding Email}"
+                                            Header="Email" />
+                                        <GridViewColumn Width="95" Header="Sửa">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        x:Name="btnSua"
+                                                        Click="btnSua_Click"
+                                                        Content="Sửa" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="95" Header="Xóa">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        x:Name="btnXoa"
+                                                        Click="btnXoa_Click"
+                                                        Content="Xóa" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+
+                    </Grid>
+
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

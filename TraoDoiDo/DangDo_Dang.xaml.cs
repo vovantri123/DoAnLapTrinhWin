@@ -23,5 +23,10 @@ namespace TraoDoiDo
         {
             InitializeComponent();
         }
+
+        private void btnDang_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Đăng thành công\nĐơn hàng đang chờ Admin duyệt", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

@@ -125,7 +125,7 @@
                             materialDesign:ButtonProgressAssist.Value="-1"
                             Content="Đăng"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedButton}" />
+                            Style="{StaticResource MaterialDesignRaisedButton}" Click="btnDang_Click" />
                     </Grid>
                 </Grid>
             </materialDesign:Card>
