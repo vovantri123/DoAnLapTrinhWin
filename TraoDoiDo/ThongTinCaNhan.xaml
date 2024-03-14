@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="ThongTinCaNhan1"
     Title="ThongTinCaNhan"
-    Width="1205"
-    Height="673"
+    Width="1200"
+    Height="736"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -19,26 +19,8 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
 
-    <Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Border Background="BlueViolet">
-                <TextBlock
-                    Margin="0,3,10,10"
-                    FontSize="30"
-                    Foreground="WhiteSmoke"
-                    Text="Thông tin cá nhân"
-                    TextAlignment="Center" />
-            </Border>
-        </Grid>
-
-        <Grid Grid.Row="1" Background="WhiteSmoke">
-            <local:ThongTinCaNhanUC Grid.ColumnSpan="2" Loaded="ThongTinCaNhanUC_Loaded" />
-        </Grid>
-
+    <Grid Margin="-5,-40,0,0">
+        <local:ThongTinCaNhanUC Grid.ColumnSpan="2" Loaded="ThongTinCaNhanUC_Loaded" />
     </Grid>
+
 </Page>
