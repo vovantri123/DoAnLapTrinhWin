@@ -23,22 +23,62 @@ namespace TraoDoiDo
 
         private void themDeTestForm()
         {
-            UCSanPham uc = new UCSanPham();
-            uc.Width = 215; // Thiết lập chiều rộng mong muốn
-            uc.Height = 350; // Thiết lập chiều cao mong muốn
-            uc.Margin = new Thickness(8);
+            //UCSanPham uc = new UCSanPham();
+            //uc.Width = 215; // Thiết lập chiều rộng mong muốn
+            //uc.Height = 350; // Thiết lập chiều cao mong muốn
+            //uc.Margin = new Thickness(8);
 
-            wpnlHienThi.Children.Add(uc);
+
+            //// Tạo một BitmapImage
+            //BitmapImage bitmap = new BitmapImage();
+            //bitmap.BeginInit();
+            //bitmap.UriSource = new Uri(""); // Thay thế path_to_your_image_folder với đường dẫn thực sự đến thư mục chứa hình ảnh của bạn
+            //bitmap.EndInit();
+
+            //// Gán BitmapImage tới Source của Image control
+            //uc.imgSP.Source = bitmap;
+
+
+            //wpnlHienThi.Children.Add(uc);
         }
 
 
 
         public MuaDo()
         {
+            string[] Links = new string[10];
+            Links[0] = "pack://application:,,,/HinhCuaToi/Lenovo.png";
+            Links[1] = "pack://application:,,,/HinhCuaToi/MayAnhNikon.jpg";
+            Links[2] = "pack://application:,,,/HinhCuaToi/TiviLGSmart.jpg";
+            Links[3] = "pack://application:,,,/HinhCuaToi/SacDuPhong.jpg";
+            Links[4] = "pack://application:,,,/HinhCuaToi/TaiNgheOladance.jpg";
+            Links[5] = "pack://application:,,,/HinhCuaToi/routerWifi.jpg";
+            Links[6] = "pack://application:,,,/HinhCuaToi/vietcombank.png";
+            Links[7] = "pack://application:,,,/HinhCuaToi/LoaPinoer.jpg";
+            Links[8] = "pack://application:,,,/HinhCuaToi/ThungMayPC.jpg";
             InitializeComponent();
-            for (int i = 0; i <18;i++)
+            for (int i = 0; i <3; i++)
             {
-                themDeTestForm();
+                for (int j=0;j<8;j++)
+                {
+                    UCSanPham uc = new UCSanPham();
+                    uc.Width = 215; // Thiết lập chiều rộng mong muốn
+                    uc.Height = 350; // Thiết lập chiều cao mong muốn
+                    uc.Margin = new Thickness(8);
+
+
+                    // Tạo một BitmapImage
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(Links[j]); // Thay thế path_to_your_image_folder với đường dẫn thực sự đến thư mục chứa hình ảnh của bạn
+                    bitmap.EndInit();
+
+                    // Gán BitmapImage tới Source của Image control
+                    uc.imgSP.Source = bitmap;
+
+
+                    wpnlHienThi.Children.Add(uc);
+                }    
             }
         }
         public class Product

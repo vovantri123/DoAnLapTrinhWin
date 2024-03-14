@@ -133,7 +133,8 @@
                                         Height="90"
                                         Margin="5,10,5,10"
                                         Background="DeepSkyBlue"
-                                        FontSize="20"
+                                        Text="14/3/2024"
+                                        FontSize="30"
                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     <Grid Grid.Row="2">
                                         <Grid.ColumnDefinitions>

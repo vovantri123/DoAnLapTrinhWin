@@ -38,13 +38,15 @@
                 BorderThickness="1"
                 CornerRadius="5">
                 <Grid Grid.Column="0" Height="400">
-                    <Image Source="/HinhCuaToi/lenovo.png" />
+                    <Image x:Name="imgAnhSP" Source="/HinhCuaToi/lenovo.png" />
                     <Button
+                        x:Name="btnAnhTruoc"
                         Width="80"
                         Height="80"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Background="Transparent"
+                        Click="btnAnhTruoc_Click"
                         BorderThickness="0">
                         <Button.Clip>
                             <RectangleGeometry
@@ -60,11 +62,13 @@
                             Opacity="0.7" />
                     </Button>
                     <Button
+                        x:Name="btnAnhSau"
                         Width="80"
                         Height="80"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Background="Transparent"
+                        Click="btnAnhSau_Click"
                         BorderThickness="0">
                         <Button.Clip>
                             <RectangleGeometry
@@ -106,9 +110,9 @@
                     <StackPanel Grid.Row="0">
                         <TextBlock
                             Margin="10,10,10,5"
-                            FontSize="40"
-                            Text="Laptop Lenovo" />
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                            FontSize="32"
+                            Text="Ipad Gen 6 32Gb 4G+ Wifi Zin " />
+                        <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
                             <TextBlock
                                 Margin="10,0,5,0"
                                 VerticalAlignment="Center"
@@ -136,12 +140,12 @@
                                 Margin="0,0,10,0"
                                 VerticalAlignment="Bottom"
                                 FontSize="17"
-                                Text="100.000đ"
+                                Text="9.990.000đ"
                                 TextDecorations="Strikethrough" />
                             <TextBlock
                                 FontSize="25"
                                 Foreground="#FF673AB7"
-                                Text="70.000đ" />
+                                Text="4.990.000 đ" />
                             <TextBlock
                                 Margin="10,0,0,0"
                                 Padding="3"
@@ -150,7 +154,7 @@
                                 FontSize="15"
                                 FontWeight="Bold"
                                 Foreground="White"
-                                Text="Giảm 30%" />
+                                Text="Giảm 50%" />
                         </StackPanel>
 
                         <Grid
@@ -222,13 +226,14 @@
                         materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.Value="-1"
+                        Click="btnThemVaoGioHang_Click"
                         Content="Thêm vào giỏ hàng"
-                        FontSize="25" Click="btnThemVaoGioHang_Click" />
+                        FontSize="25" />
 
                     <StackPanel Grid.Row="2">
                         <Grid Margin="10,10,10,2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="180" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock
@@ -240,12 +245,12 @@
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontSize="20"
-                                Text="Mới" />
+                                Text="Máy Zin Full chức năng " />
 
                         </Grid>
                         <Grid Margin="10,0,10,2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="180"/>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock
@@ -263,7 +268,7 @@
 
                         <Grid Margin="10,0,10,2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="180" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock
@@ -275,7 +280,7 @@
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontSize="20"
-                                Text="Thiết bị điện tử" />
+                                Text="Thiết bị di động" />
 
                         </Grid>
 
@@ -296,7 +301,7 @@
                 Foreground="Black"
                 IsReadOnly="True"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="Một mẫu laptop gaming hot mang mức giá tầm trung và sở hữu những thông số đủ mạnh cho các anh em chiến thoải mái với những con game thịnh hành, phục vụ giải trí hay công việc đầy đủ. Laptop Lenovo Ideapad Gaming 3 15ACH6 R5 5500H (82K2027PVN) chắc chắn sẽ không khiến bạn thất vọng với giá trị bỏ ra."
+                Text="Samsung Galaxy Tab A9+ WiFi đã chính thức có mặt trên thị trường Việt Nam từ tháng 10/2023, và nhanh chóng trở thành tâm điểm của sự quan tâm. Với sự kết hợp độc đáo của thiết kế thời trang, màn hình lớn và trang bị chip Snapdragon 695, cùng viên pin dung lượng 7040 mAh, máy tính bảng này hứa hẹn mang đến cho người dùng một trải nghiệm độc đáo và thú vị."
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Auto" />
         </Grid>

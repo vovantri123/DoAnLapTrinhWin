@@ -33,7 +33,7 @@ namespace TraoDoiDo
             {
                 // Khởi động timer cho slideshow
                 timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(2.5); // Thay đổi khoảng thời gian theo ý muốn
+                timer.Interval = TimeSpan.FromSeconds(2); // Thay đổi khoảng thời gian theo ý muốn
                 timer.Tick += Timer_Tick;
                 timer.Start();
 
