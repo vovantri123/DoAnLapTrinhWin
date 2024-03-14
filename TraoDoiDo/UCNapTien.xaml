@@ -24,8 +24,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.Row="0"
-            Margin="5,5,5,5"
+            Grid.Row="0">
+            <!--Margin="5,5,5,5"
             Background="CadetBlue"
             CornerRadius="40">
             <TextBlock
@@ -33,7 +33,7 @@
                 Margin="5,5,5,5"
                 FontSize="30"
                 Text="Nạp tiền"
-                TextAlignment="Center" />
+                TextAlignment="Center" />-->
         </Border>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -74,19 +74,20 @@
                                             Margin="5"
                                             FontSize="30"
                                             FontWeight="Bold"
-                                            Text="Các gói nạp" />
+                                            Text="Mệnh giá" />
                                     </materialDesign:Badged>
                                 </StackPanel>
                             </Expander.Header>
                             <Grid>
+
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
 
                                 </Grid.RowDefinitions>
                                 <StackPanel
@@ -107,13 +108,18 @@
                                             Grid.Column="0"
                                             Width="20"
                                             Height="20"
-                                            Margin="80,20,0,0"
+                                            Margin="80,0,0,0"
                                             HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
+                                            VerticalAlignment="Center"
                                             Background="BlueViolet"
+                                            Content=" "
                                             FontSize="20"
                                             Foreground="Black"
-                                            Style="{StaticResource MaterialDesignDarkRadioButton}" />
+                                            Style="{StaticResource MaterialDesignDarkRadioButton}">
+                                            <RadioButton.LayoutTransform>
+                                                <ScaleTransform ScaleX="2" ScaleY="2" />
+                                            </RadioButton.LayoutTransform>
+                                        </RadioButton>
                                         <TextBlock
                                             Grid.Column="1"
                                             Margin="100,0,0,0"
@@ -144,14 +150,18 @@
                                                 Grid.Column="0"
                                                 Width="20"
                                                 Height="20"
-                                                Margin="80,20,0,0"
+                                                Margin="80,0,0,0"
                                                 HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
+                                                VerticalAlignment="Center"
                                                 Background="BlueViolet"
+                                                Content=" "
                                                 FontSize="20"
                                                 Foreground="Black"
-                                                Style="{StaticResource MaterialDesignDarkRadioButton}"
-                                                Tag="True" />
+                                                Style="{StaticResource MaterialDesignDarkRadioButton}">
+                                                <RadioButton.LayoutTransform>
+                                                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                                                </RadioButton.LayoutTransform>
+                                            </RadioButton>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="100,0,0,0"
@@ -183,14 +193,18 @@
                                                 Grid.Column="0"
                                                 Width="20"
                                                 Height="20"
-                                                Margin="80,20,0,0"
+                                                Margin="80,0,0,0"
                                                 HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
+                                                VerticalAlignment="Center"
                                                 Background="BlueViolet"
+                                                Content=" "
                                                 FontSize="20"
                                                 Foreground="Black"
-                                                Style="{StaticResource MaterialDesignDarkRadioButton}"
-                                                Tag="True" />
+                                                Style="{StaticResource MaterialDesignDarkRadioButton}">
+                                                <RadioButton.LayoutTransform>
+                                                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                                                </RadioButton.LayoutTransform>
+                                            </RadioButton>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="100,0,0,0"
@@ -218,18 +232,24 @@
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
+
                                             <RadioButton
                                                 Grid.Column="0"
                                                 Width="20"
                                                 Height="20"
-                                                Margin="80,20,0,0"
+                                                Margin="80,0,0,0"
                                                 HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
+                                                VerticalAlignment="Center"
                                                 Background="BlueViolet"
+                                                Content=" "
                                                 FontSize="20"
                                                 Foreground="Black"
                                                 Style="{StaticResource MaterialDesignDarkRadioButton}"
-                                                Tag="True" />
+                                                Tag="True">
+                                                <RadioButton.LayoutTransform>
+                                                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                                                </RadioButton.LayoutTransform>
+                                            </RadioButton>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="100,0,0,0"
@@ -261,14 +281,18 @@
                                                 Grid.Column="0"
                                                 Width="20"
                                                 Height="20"
-                                                Margin="80,20,0,0"
+                                                Margin="80,0,0,0"
                                                 HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
+                                                VerticalAlignment="Center"
                                                 Background="BlueViolet"
+                                                Content=" "
                                                 FontSize="20"
                                                 Foreground="Black"
-                                                Style="{StaticResource MaterialDesignDarkRadioButton}"
-                                                Tag="True" />
+                                                Style="{StaticResource MaterialDesignDarkRadioButton}">
+                                                <RadioButton.LayoutTransform>
+                                                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                                                </RadioButton.LayoutTransform>
+                                            </RadioButton>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="100,0,0,0"
@@ -300,14 +324,18 @@
                                                 Grid.Column="0"
                                                 Width="20"
                                                 Height="20"
-                                                Margin="80,20,0,0"
+                                                Margin="80,0,0,0"
                                                 HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
+                                                VerticalAlignment="Center"
                                                 Background="BlueViolet"
+                                                Content=" "
                                                 FontSize="20"
                                                 Foreground="Black"
-                                                Style="{StaticResource MaterialDesignDarkRadioButton}"
-                                                Tag="True" />
+                                                Style="{StaticResource MaterialDesignDarkRadioButton}">
+                                                <RadioButton.LayoutTransform>
+                                                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                                                </RadioButton.LayoutTransform>
+                                            </RadioButton>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="100,0,0,0"
@@ -339,14 +367,18 @@
                                                 Grid.Column="0"
                                                 Width="20"
                                                 Height="20"
-                                                Margin="80,20,0,0"
+                                                Margin="80,0,0,0"
                                                 HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
+                                                VerticalAlignment="Center"
                                                 Background="BlueViolet"
+                                                Content=" "
                                                 FontSize="20"
                                                 Foreground="Black"
-                                                Style="{StaticResource MaterialDesignDarkRadioButton}"
-                                                Tag="True" />
+                                                Style="{StaticResource MaterialDesignDarkRadioButton}">
+                                                <RadioButton.LayoutTransform>
+                                                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                                                </RadioButton.LayoutTransform>
+                                            </RadioButton>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="100,0,0,0"
@@ -396,7 +428,7 @@
                                         Margin="5"
                                         FontSize="30"
                                         FontWeight="Bold"
-                                        Text="Phương thức nạp" />
+                                        Text="Ngân hàng giao dịch" />
                                 </materialDesign:Badged>
                             </StackPanel>
                         </Expander.Header>
@@ -421,7 +453,7 @@
                                                     Margin="5"
                                                     FontSize="30"
                                                     FontWeight="Bold"
-                                                    Text="Nạp bằng ngân hàng" />
+                                                    Text="Giao dịch nội địa" />
                                             </materialDesign:Badged>
                                         </StackPanel>
                                     </Expander.Header>
@@ -605,7 +637,7 @@
                                                     Margin="5"
                                                     FontSize="30"
                                                     FontWeight="Bold"
-                                                    Text="Nạp thẻ quốc tế" />
+                                                    Text="Giao dịch quốc tế" />
                                             </materialDesign:Badged>
                                         </StackPanel>
                                     </Expander.Header>

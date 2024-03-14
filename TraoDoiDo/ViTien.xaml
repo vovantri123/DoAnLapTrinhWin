@@ -23,7 +23,7 @@
             Width="1195"
             materialDesign:ColorZoneAssist.Foreground="BlueViolet"
             materialDesign:ColorZoneAssist.Mode="Custom">
-            <TabItem Header="Phương thức chuyển khoản">
+            <TabItem Header="Ví điện tử">
                 <Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -63,7 +63,7 @@
                                             Margin="80,10,150,9"
                                             FontSize="45"
                                             Foreground="WhiteSmoke"
-                                            Text="TÀI KHOẢN"
+                                            Text="Tài khoản"
                                             TextAlignment="Left" />
                                     </Grid>
                                     <Grid Grid.Row="1">
@@ -133,27 +133,48 @@
                                         Height="90"
                                         Margin="5,10,5,10"
                                         Background="DeepSkyBlue"
-                                        Text="14/3/2024"
                                         FontSize="30"
-                                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                        Text="14/3/2024" />
                                     <Grid Grid.Row="2">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <Button 
-                                            Grid.Column="1" 
-                                            Margin="5,50,5,150" 
-                                            Height="150" 
-                                            Content="Thanh toán" 
-                                            FontSize="25" 
-                                            Background="DeepSkyBlue"
+                                        <Button
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Height="90"
+                                            Margin="5,50,5,150"
                                             VerticalAlignment="Center"
+                                            materialDesign:ButtonAssist.CornerRadius="10"
                                             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                             materialDesign:ButtonProgressAssist.Value="-1"
-                                            materialDesign:ButtonAssist.CornerRadius="10"/>
+                                            Background="DeepSkyBlue"
+                                            FontSize="25">
+                                            <TextBlock
+                                                Text="Nạp tiền vào ví điện tử"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                        <Button
+                                            Grid.Column="1"
+                                            Width="200"
+                                            Height="90"
+                                            Margin="5,50,5,150"
+                                            VerticalAlignment="Center"
+                                            materialDesign:ButtonAssist.CornerRadius="10"
+                                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                            materialDesign:ButtonProgressAssist.Value="-1"
+                                            Background="DeepSkyBlue"
+                                            FontSize="25">
+                                            <TextBlock
+                                                Text="Rút tiền về ngân hàng"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Border>

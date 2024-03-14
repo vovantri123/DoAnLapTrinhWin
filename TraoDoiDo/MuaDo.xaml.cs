@@ -49,7 +49,7 @@ namespace TraoDoiDo
             string[] Links = new string[10];
             Links[0] = "pack://application:,,,/HinhCuaToi/Lenovo.png";
             Links[1] = "pack://application:,,,/HinhCuaToi/MayAnhNikon.jpg";
-            Links[2] = "pack://application:,,,/HinhCuaToi/TiviLGSmart.jpg";
+            Links[2] = "pack://application:,,,/HinhCuaToi/tiviThung.jpg";
             Links[3] = "pack://application:,,,/HinhCuaToi/SacDuPhong.jpg";
             Links[4] = "pack://application:,,,/HinhCuaToi/TaiNgheOladance.jpg";
             Links[5] = "pack://application:,,,/HinhCuaToi/routerWifi.jpg";

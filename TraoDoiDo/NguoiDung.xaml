@@ -184,7 +184,7 @@
                         <materialDesign:Chip
                             Grid.Column="1"
                             HorizontalAlignment="Center"
-                            Style="{StaticResource MaterialDesignOutlineChip}">
+                            Style="{StaticResource MaterialDesignOutlineChip}" Click="ThongTinCaNhan_Click">
                             <materialDesign:Chip.Icon>
                                 <Image Source="/HinhCuaToi/Avatar1.png" />
                             </materialDesign:Chip.Icon>
