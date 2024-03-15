@@ -61,9 +61,7 @@ namespace TraoDoiDo
             {
                 for (int j=0;j<8;j++)
                 {
-                    UCSanPham uc = new UCSanPham();
-                    uc.Width = 215; // Thiết lập chiều rộng mong muốn
-                    uc.Height = 350; // Thiết lập chiều cao mong muốn
+                    UCSanPham uc = new UCSanPham(); 
                     uc.Margin = new Thickness(8);
 
 

@@ -99,6 +99,9 @@
     <Compile Include="NguoiDung.xaml.cs">
       <DependentUpon>NguoiDung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Nhap.xaml.cs">
+      <DependentUpon>Nhap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuanLy.xaml.cs">
       <DependentUpon>QuanLy.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NguoiDung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Nhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

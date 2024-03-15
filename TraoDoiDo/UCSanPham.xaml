@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="350"
-    d:DesignWidth="240"
+     Height="300"
+    Width="200"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -79,54 +79,21 @@
                             Foreground="#FF673AB7"
                             Text="70.000.000đ" />
                         <TextBlock
-                            Width="65"
+                            Width="Auto"
                             Margin="10,0,0,0"
-                            Padding="3"
+                            Padding="5,2,5,2"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Background="#FF673AB7"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="White"
-                            Text="Giảm 30%" />
+                            Text="Hà Nội" />
 
 
                     </StackPanel>
-                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                        <materialDesign:RatingBar
-                            x:Name="ReadOnlyRatingBar"
-                            IsReadOnly="True"
-                            Value="4" />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="12"
-                            Text="Đã bán 7.6k" />
-                    </StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBlock
-                                Margin="0,5,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                Text="Hà Nội" />
-                        </Grid>
-                        <Grid Grid.Column="1">
-
-                            <!--<Border Margin="6" CornerRadius="10">
-                                <Button
-                                    x:Name="btnThemVaoGioHang"
-                                    Click="btnThongTin_Click"
-                                    Content="{materialDesign:PackIcon CartArrowDown}"
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                    ToolTip="Icon" />
-                                </Border>-->
-                        </Grid>
-                    </Grid>
+                    
+                    
                 </StackPanel>
             </Grid>
 

@@ -6,9 +6,10 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="ThongTinChiTietSanPham"
-    Width="900"
-    Height="650"
+    Width="1000"
+    Height="800"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -19,445 +20,345 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Border
-                Margin="12,10,5,0"
-                Background="LightGray"
-                BorderBrush="Black"
-                BorderThickness="1"
-                CornerRadius="5">
-                <Grid Grid.Column="0" Height="400">
-                    <Image x:Name="imgAnhSP" Source="/HinhCuaToi/lenovo.png" />
-                    <Button
-                        x:Name="btnAnhTruoc"
-                        Width="80"
-                        Height="80"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Click="btnAnhTruoc_Click">
-                        <Button.Clip>
-                            <RectangleGeometry
-                                RadiusX="50"
-                                RadiusY="50"
-                                Rect="0,0,80,80" />
-                        </Button.Clip>
-                        <materialDesign:PackIcon
-                            Width="50"
-                            Height="50"
-                            Foreground="Black"
-                            Kind="ChevronLeftCircleOutline"
-                            Opacity="0.7" />
-                    </Button>
-                    <Button
-                        x:Name="btnAnhSau"
-                        Width="80"
-                        Height="80"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Click="btnAnhSau_Click">
-                        <Button.Clip>
-                            <RectangleGeometry
-                                RadiusX="50"
-                                RadiusY="50"
-                                Rect="0,0,80,80" />
-                        </Button.Clip>
-                        <materialDesign:PackIcon
-                            Width="50"
-                            Height="50"
-                            Foreground="Black"
-                            Kind="ChevronRightCircleOutline"
-                            Opacity="0.7" />
-                    </Button>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="420" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border
+                    Margin="12,10,5,0"
+                    Background="LightGray"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="5">
+                    <Grid Grid.Column="0" Height="400">
+                        <Image x:Name="imgAnhSP" Source="/HinhCuaToi/lenovo.png" />
+                        <Button
+                            x:Name="btnAnhTruoc"
+                            Width="80"
+                            Height="80"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="btnAnhTruoc_Click">
+                            <Button.Clip>
+                                <RectangleGeometry
+                                    RadiusX="50"
+                                    RadiusY="50"
+                                    Rect="0,0,80,80" />
+                            </Button.Clip>
+                            <materialDesign:PackIcon
+                                Width="50"
+                                Height="50"
+                                Foreground="Black"
+                                Kind="ChevronLeftCircleOutline"
+                                Opacity="0.7" />
+                        </Button>
+                        <Button
+                            x:Name="btnAnhSau"
+                            Width="80"
+                            Height="80"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="btnAnhSau_Click">
+                            <Button.Clip>
+                                <RectangleGeometry
+                                    RadiusX="50"
+                                    RadiusY="50"
+                                    Rect="0,0,80,80" />
+                            </Button.Clip>
+                            <materialDesign:PackIcon
+                                Width="50"
+                                Height="50"
+                                Foreground="Black"
+                                Kind="ChevronRightCircleOutline"
+                                Opacity="0.7" />
+                        </Button>
 
-                </Grid>
+                    </Grid>
 
-            </Border>
+                </Border>
 
 
-            <materialDesign:Card
-                Grid.Column="1"
-                Margin="6,10,12,0"
-                UniformCornerRadius="5">
-                <materialDesign:Card.Effect>
-                    <DropShadowEffect
-                        BlurRadius="10"
-                        Direction="320"
-                        Opacity="0.08"
-                        ShadowDepth="2"
-                        Color="Black" />
-                </materialDesign:Card.Effect>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <TextBlock
-                            Margin="10,10,10,5"
-                            FontSize="32"
-                            Text="Ipad Gen 6 32Gb 4G+ Wifi Zin " />
-                        <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
+                <materialDesign:Card
+                    Grid.Column="1"
+                    Margin="6,10,12,0"
+                    UniformCornerRadius="5">
+                    <materialDesign:Card.Effect>
+                        <DropShadowEffect
+                            BlurRadius="10"
+                            Direction="320"
+                            Opacity="0.08"
+                            ShadowDepth="2"
+                            Color="Black" />
+                    </materialDesign:Card.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
                             <TextBlock
-                                Margin="10,0,5,0"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                Foreground="#FF673AB7">
-                                <Underline>4.8</Underline>
-                            </TextBlock>
-                            <materialDesign:RatingBar
-                                x:Name="ReadOnlyRatingBar"
-                                IsReadOnly="True"
-                                Value="4.8" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="20"
-                                Text="|" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="22"
-                                Text="Đã bán 512" />
-                        </StackPanel>
-                        <StackPanel Margin="10,3,10,3" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,10,0"
-                                VerticalAlignment="Bottom"
-                                FontSize="17"
-                                Text="9.990.000đ"
-                                TextDecorations="Strikethrough" />
-                            <TextBlock
-                                FontSize="25"
-                                Foreground="#FF673AB7"
-                                Text="4.990.000 đ" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                Padding="3"
-                                VerticalAlignment="Center"
-                                Background="#FF673AB7"
-                                FontSize="15"
-                                FontWeight="Bold"
-                                Foreground="White"
-                                Text="Giảm 50%" />
-                        </StackPanel>
+                                Margin="10,10,10,5"
+                                FontSize="32"
+                                Text="Ipad Gen 6 32Gb 4G+ Wifi Zin " />
 
-                        <Grid
-                            Width="Auto"
-                            Margin="10,0,10,2"
-                            HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock
-                                Grid.Column="0"
-                                Margin="0,0,10,0"
-                                VerticalAlignment="Center"
-                                FontSize="25"
-                                Text="Số lượng" />
-                            <Button
-                                Grid.Column="1"
-                                Width="40"
-                                Height="30"
-                                Background="White"
-                                BorderBrush="Black">
-
+                            <StackPanel Margin="10,3,10,3">
                                 <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="30"
-                                    Foreground="Black"
-                                    Text="-" />
-                            </Button>
-
-                            <TextBlock
-                                Grid.Column="2"
-                                HorizontalAlignment="Center"
-                                FontSize="29"
-                                Text="5" />
-                            <Button
-                                Grid.Column="3"
-                                Width="40"
-                                Height="30"
-                                Background="White"
-                                BorderBrush="Black">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0"
+                                    VerticalAlignment="Bottom"
                                     FontSize="17"
-                                    Foreground="Black"
-                                    Text="+" />
-                            </Button>
-                            <TextBlock
-                                Grid.Column="4"
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="25"
-                                Text="15 sản phẩm" />
-                        </Grid>
+                                    Text="Giá lúc mua: 9.990.000đ"
+                                    TextDecorations="Strikethrough" />
+                                <TextBlock
+                                    FontSize="25"
+                                    Foreground="#FF673AB7"
+                                    Text="Giá bán: 4.990.000 đ" />
+                            </StackPanel>
+
+                            <Grid
+                                Width="Auto"
+                                Margin="10,0,10,2"
+                                HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="55" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="0,0,10,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    Text="Số lượng" />
+                                <Button
+                                    Grid.Column="1"
+                                    Width="40"
+                                    Height="30"
+                                    Background="White"
+                                    BorderBrush="Black">
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="30"
+                                        Foreground="Black"
+                                        Text="-" />
+                                </Button>
+
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    FontSize="29"
+                                    Text="5" />
+                                <Button
+                                    Grid.Column="3"
+                                    Width="40"
+                                    Height="30"
+                                    Background="White"
+                                    BorderBrush="Black">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="17"
+                                        Foreground="Black"
+                                        Text="+" />
+                                </Button>
+                                <TextBlock
+                                    Grid.Column="4"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    Text="15 sản phẩm" />
+                            </Grid>
+
+                        </StackPanel>
 
 
-                    </StackPanel>
-                    <Button
-                        x:Name="btnThemVaoGioHang"
-                        Grid.Row="1"
-                        Width="250"
-                        Height="52"
-                        Margin="2,20,2,18"
-                        materialDesign:ButtonAssist.CornerRadius="4"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                        materialDesign:ButtonProgressAssist.Value="-1"
-                        Click="btnThemVaoGioHang_Click"
-                        Content="Thêm vào giỏ hàng"
-                        FontSize="25" />
-
-                    <StackPanel Grid.Row="2">
-                        <Grid Margin="10,10,10,2">
+                        <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180" />
+                                <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBlock
+                            <Button
+                                x:Name="btnThemVaoGioHang"
                                 Grid.Column="0"
-                                VerticalAlignment="Center"
-                                FontSize="25"
-                                Text="Tình trạng" />
-                            <TextBlock
+                                Width="250"
+                                Height="52"
+                                Margin="2,20,2,18"
+                                materialDesign:ButtonAssist.CornerRadius="4"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.Value="-1"
+                                Click="btnThemVaoGioHang_Click"
+                                Content="Thêm vào giỏ hàng"
+                                FontSize="25" />
+
+                            <Button
+                                x:Name="btnMuaHang"
                                 Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontSize="20"
-                                Text="Đã qua sử dụng" />
-
-                        </Grid>
-                        <Grid Margin="10,0,10,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock
-                                Grid.Column="0"
-                                VerticalAlignment="Center"
-                                FontSize="25"
-                                Text="Phí vận chuyển" />
-                            <TextBlock
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontSize="20"
-                                Text="20.000đ" />
-
-                        </Grid>
-
-                        <Grid Margin="10,0,10,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock
-                                Grid.Column="0"
-                                VerticalAlignment="Center"
-                                FontSize="25"
-                                Text="Loại" />
-                            <TextBlock
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontSize="20"
-                                Text="Thiết bị di động" />
-
+                                Width="250"
+                                Height="52"
+                                Margin="2,20,2,18"
+                                materialDesign:ButtonAssist.CornerRadius="4"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.Value="-1"
+                                Click="btnThemVaoGioHang_Click"
+                                Content="Mua ngay"
+                                FontSize="25" />
                         </Grid>
 
-                    </StackPanel>
+                        <StackPanel Grid.Row="2">
 
-                </Grid>
-            </materialDesign:Card>
+                            <Grid Margin="10,0,10,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    Text="Phí vận chuyển" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="20.000đ" />
 
-        </Grid>
-        <Grid Grid.Row="1">
-            <TextBox
-                Height="160"
-                Margin="10,10,10,0"
-                VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Mô tả"
-                AcceptsReturn="True"
-                FontSize="20"
-                Foreground="Black"
-                IsReadOnly="True"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="Hình thức: Mặt trước và màn hình không có xước. Mặt sau có vài vết nhỏ do sử dụng hàng ngày nhưng không ảnh hưởng đến chức năng. Góc cạnh có những dấu vết nhỏ. Pin: Còn tốt, đảm bảo hoạt động lâu dài. Hoạt động: Mọi chức năng đều hoạt động hoàn hảo, không có lỗi phần mềm hay phần cứng."
-                TextWrapping="Wrap"
-                VerticalScrollBarVisibility="Auto" />
-        </Grid>
+                            </Grid>
 
-    </Grid>
+                            <Grid Margin="10,0,10,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    Text="Loại" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="Thiết bị di động" />
 
+                            </Grid>
 
-    <!--<Grid>-->
-    <!--<Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+                            <Grid Margin="10,0,10,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    Text="Nơi bán" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="Hồ Chí Minh" />
 
-        <Grid Grid.Row="0">
-            <TextBlock
-                Margin="0,10,0,0"
-                HorizontalAlignment="Center"
-                FontSize="27"
-                Text="Laptop Lenovo" />
-        </Grid>
+                            </Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+                        </StackPanel>
 
-            <Grid Grid.Column="0">
-                <Image
-                    Width="300"
-                    Height="400"
-                    Source="/HinhCuaToi/lenovo.png" />
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <TextBox
-                        Height="50"
-                        Margin="10,10,10,0"
-                        materialDesign:HintAssist.Hint="Giá"
-                        IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="50.000 VNĐ" />
-                </Grid>
-
-                <Grid Grid.Row="1">
-                    <ComboBox
-                        Height="50"
-                        Margin="10"
-                        materialDesign:HintAssist.HelperText="Còn 13 sản phẩm có sẵn"
-                        materialDesign:HintAssist.Hint="Số lượng"
-                        materialDesign:TextFieldAssist.HasClearButton="True"
-                        IsEditable="True"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                        <ComboBoxItem>1</ComboBoxItem>
-                        <ComboBoxItem>2</ComboBoxItem>
-                        <ComboBoxItem>3</ComboBoxItem>
-                        <ComboBoxItem>4</ComboBoxItem>
-                        <ComboBoxItem>5</ComboBoxItem>
-                    </ComboBox>
-                </Grid>
-
-                <Grid Grid.Row="2">
-                    <TextBox
-                        Height="50"
-                        Margin="10,10,10,0"
-                        materialDesign:HintAssist.Hint="Phí ship"
-                        IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="5.000 VNĐ" />
-                </Grid>
-
+                    </Grid>
+                </materialDesign:Card>
 
             </Grid>
-
-
-        </Grid>
-
-
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
+            <Grid Grid.Row="1">
                 <TextBox
-                    Height="50"
-                    Margin="10"
-                    materialDesign:HintAssist.Hint="Tên người bán"
-                    Background="White"
+                    Height="160"
+                    Margin="10,10,10,0"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Mô tả"
+                    AcceptsReturn="True"
+                    FontSize="20"
+                    Foreground="Black"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="Võ Văn Trí" />
+                    Text="Smart Tivi Casper 32 inch 32HG5200 được thiết kế với vóc dáng vô cùng đơn giản, viền tivi mỏng 0,8 mm kết hợp với chân đế hình chữ V úp ngược mang lại tổng thể chiếc tivi trở nên sang trọng. Tivi Casper 32 inch phù hợp trưng bày ở những nơi có không gian nhỏ như: Phòng ngủ, phòng khách nhỏ,..."
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
             </Grid>
-            <Grid Grid.Column="1">
-                <TextBox
-                    Height="50"
-                    Margin="10"
-                    materialDesign:HintAssist.Hint="Tên người mua"
-                    Background="White"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="Nguyễn Hoàng Anh Khoa" />
+
+            <Grid Grid.Row="2" Margin="10,10,10,15">
+                <StackPanel>
+                    <TextBlock FontSize="25" Text="Thông tin chi tiết" />
+                    <TextBlock FontSize="20" Text="Xuất xứ: Nhật Bản" />
+                    <TextBlock FontSize="20" Text="Ngày mua: Tháng 4 năm 2015 (hoặc Tuần trước hoặc 2 năm hoặc 14/3/2004)" />
+                    <TextBlock FontSize="20" Text="Tình trạng: Còn mới 80%" />
+
+                    <ScrollViewer
+                        HorizontalAlignment="Center"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto">
+                        <ListView x:Name="lsvThongTinChiTietSP">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="LightBlue" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+
+                                    <!--  Ảnh  -->
+                                    <GridViewColumn Width="270" Header="Ảnh">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding Anh}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <!--  Mô tả  -->
+                                    <GridViewColumn Width="500" Header="Mô tả cho ảnh">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    FontSize="17"
+                                                    Text="{Binding Name}"
+                                                    TextWrapping="Wrap" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
             </Grid>
+
+
+
         </Grid>
 
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <TextBox
-                    Height="50"
-                    Margin="10"
-                    materialDesign:HintAssist.Hint="Địa chỉ người bán"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="Hồ Chí Minh" />
-            </Grid>
-            <Grid Grid.Column="1">
-                <TextBox
-                    Height="50"
-                    Margin="10"
-                    materialDesign:HintAssist.Hint="Địa chỉ người nhận"
-                    materialDesign:TextFieldAssist.HasClearButton="True"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="Hà Nội" />
-            </Grid>
-        </Grid>
+    </ScrollViewer>
 
 
-        <Grid Grid.Row="4">
-            <Grid Width="180">
-                <Grid Width="180">
-                    <Button
-                        Height="35"
-                        Margin="2,0"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                        materialDesign:ButtonProgressAssist.Value="-1"
-                        Content="Thêm vào giỏ hàng"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
-                </Grid>
-            </Grid>
-        </Grid>
-
-    </Grid>-->
 </Window>
