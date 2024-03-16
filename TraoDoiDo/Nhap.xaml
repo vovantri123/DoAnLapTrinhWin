@@ -23,8 +23,8 @@
             Height="400"
             Background="LightGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition  />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Image
                 Grid.Row="0"
@@ -37,7 +37,7 @@
                 Grid.Row="1"
                 HorizontalAlignment="Center"
                 FontSize="30"
-                Text="Xước màn hình ở góc trên "
+                Text="Xước màn hình ở góc trên. "
                 TextWrapping="Wrap" />
         </Grid>
     </ScrollViewer>

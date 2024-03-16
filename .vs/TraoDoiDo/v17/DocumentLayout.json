@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\nhap.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doantraodoido\\doanlaptrinhwin\\traodoido\\vitien.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnTraoDoiDo\\DoAnLapTrinhWin\\traodoido\\vitien.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\vitien.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -221,8 +221,7 @@
               "ToolTip": "C:\\DoAnTraoDoiDo\\DoAnLapTrinhWin\\TraoDoiDo\\ViTien.xaml",
               "RelativeToolTip": "TraoDoiDo\\ViTien.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-06T14:13:00.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-06T14:13:00.52Z"
             },
             {
               "$type": "Document",
@@ -301,8 +300,7 @@
               "ToolTip": "C:\\DoAnTraoDoiDo\\DoAnLapTrinhWin\\TraoDoiDo\\UCNapTien.xaml",
               "RelativeToolTip": "TraoDoiDo\\UCNapTien.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-13T15:42:55.927Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-13T15:42:55.927Z"
             },
             {
               "$type": "Document",
