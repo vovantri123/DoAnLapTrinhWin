@@ -1,25 +1,24 @@
-﻿C:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\GeneratedInternalTypeHelper.g.cs
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\App.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DangDo.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DangDo_Dang.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DangKy.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DangKyUC.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DangNhap.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DanhGia.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\DiaChi.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\MainWindow.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\MuaDo.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\NguoiDung.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\Nhap.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\QuanLy.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\QuenMatKhau.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\UCNapTien.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\UCThemAnhKhiDang.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\Thoat.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\ThongTinCaNhan.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\ThongTinCaNhanUC.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\ThongTinChiTietSanPham.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\TrangChu.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\UCSanPham.xaml;;
-FC:\DoAnTraoDoiDo\DoAnLapTrinhWin\TraoDoiDo\ViTien.xaml;;
+﻿
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\App.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DangDoUC.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DangDo_Dang.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DangKy.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DangKyUC.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DangNhap.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DanhGia.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\DiaChi.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\MainWindow.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\MuaDoUC.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\NguoiDung.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\QuanLyUC.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\QuenMatKhau.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\ThanhDieuKhien.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\UCNapTien.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\UCThemAnhKhiDang.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\Thoat.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\ThongTinCaNhanUC.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\ThongTinChiTietSanPham.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\TrangChuUC.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\UCSanPham.xaml;;
+FC:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\ViTienUC.xaml;;
 

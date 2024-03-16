@@ -6,7 +6,8 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="TrangChu"
+    x:Name="mainWindow"
+    Title="Trao đổi đồ"
     Width="1270"
     Height="850"
     Background="{DynamicResource MaterialDesignPaper}"
@@ -17,6 +18,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
 
     <Window.Resources>
@@ -144,10 +146,19 @@
     </Window.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <local:ThanhDieuKhien Margin="0,-4,0,0" Tag="{Binding Title, ElementName=mainWindow}" />
+
+        </Grid>
+
 
         <!--  // Background Color //  -->
 
-        <Grid>
+        <Grid Grid.Row="1">
 
             <!--  Nằm bên dưới nav bar khi được che phủ  -->
             <Grid
@@ -166,14 +177,18 @@
             </Grid.Background>-->
 
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="523*" />
+                        <ColumnDefinition Width="682*" />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="673*" />
-                        <RowDefinition Height="86*" />
                     </Grid.RowDefinitions>
 
                     <Grid
                         Grid.Row="0"
+                        Grid.ColumnSpan="2"
                         Height="75"
                         Background="#673ab7">
                         <Grid.ColumnDefinitions>
@@ -184,7 +199,8 @@
                         <materialDesign:Chip
                             Grid.Column="1"
                             HorizontalAlignment="Center"
-                            Style="{StaticResource MaterialDesignOutlineChip}" Click="ThongTinCaNhan_Click">
+                            Click="ThongTinCaNhan_Click"
+                            Style="{StaticResource MaterialDesignOutlineChip}">
                             <materialDesign:Chip.Icon>
                                 <Image Source="/HinhCuaToi/Avatar1.png" />
                             </materialDesign:Chip.Icon>
@@ -206,11 +222,10 @@
                             Text="Tên trang hiện tại" />
                     </Grid>
 
-                    <Frame
-                        x:Name="frameMain"
+                    <ContentControl
+                        x:Name="contentControlHienThi"
                         Grid.Row="1"
-                        Grid.RowSpan="2"
-                        NavigationUIVisibility="Hidden" />
+                        Grid.ColumnSpan="2" />
                 </Grid>
 
                 <Grid

@@ -72,36 +72,36 @@ namespace TraoDoiDo
 
         private void DangDo_Click(object sender, RoutedEventArgs e)
         {
-            frameMain.Content = new DangDo();
+            contentControlHienThi.Content = new DangDoUC();
             txtbTenTrang.Text = "Đăng đồ";
         }
         private void TrangChu_Click(object sender, RoutedEventArgs e)
         {
-            frameMain.Content = new TrangChu();
+            contentControlHienThi.Content = new TrangChuUC();
             txtbTenTrang.Text = "Trang chủ";
         }
 
         private void ViTien_Click(object sender, RoutedEventArgs e)
         {
-            frameMain.Content = new ViTien();
+            contentControlHienThi.Content = new ViTienUC();
             txtbTenTrang.Text = "Ví tiền";
         }
 
         private void ThongTinCaNhan_Click(object sender, RoutedEventArgs e)
         {
-            frameMain.Content = new ThongTinCaNhan();
+            contentControlHienThi.Content = new ThongTinCaNhanUC();
             txtbTenTrang.Text = "Thông tin cá nhân";
         }
 
         private void MuaDo_Click(object sender, RoutedEventArgs e)
         {
-            frameMain.Content = new MuaDo();
+            contentControlHienThi.Content = new MuaDoUC();
             txtbTenTrang.Text = "Mua đồ";
         }
 
         private void QuanLy_Click(object sender, RoutedEventArgs e)
         {
-            frameMain.Content = new QuanLy();
+            contentControlHienThi.Content = new QuanLyUC();
             txtbTenTrang.Text = "Quản lý";
         }
 
