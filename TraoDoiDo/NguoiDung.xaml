@@ -151,7 +151,21 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <local:ThanhDieuKhien Margin="0,-4,0,0" Tag="{Binding Title, ElementName=mainWindow}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Image
+                    x:Name="imgIcon"
+                    Width="27"
+                    Height="27"
+                    Margin="10,0,0,0"
+                    Source="HinhCuaToi/Icons/iconShop94.png" />
+            </Grid>
+            <local:ThanhDieuKhien
+                Grid.Column="1" 
+                Tag="{Binding Title, ElementName=mainWindow}" />
 
         </Grid>
 

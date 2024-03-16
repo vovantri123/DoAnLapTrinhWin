@@ -265,9 +265,6 @@
     <Resource Include="HinhCuaToi\Lenovo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HinhCuaToi\Warning.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="HinhCuaToi\TrangChu2.png" />
   </ItemGroup>
   <ItemGroup>

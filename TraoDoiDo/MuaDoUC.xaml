@@ -70,23 +70,7 @@
                                     <ComboBoxItem Content="Tất cả" />
                                 </ComboBox>
 
-                                <ComboBox
-                                    Width="120"
-                                    MinWidth="72"
-                                    Margin="20,10,20,0"
-                                    materialDesign:HintAssist.FloatingOffset="0, -18"
-                                    materialDesign:HintAssist.FloatingScale="0.7"
-                                    materialDesign:HintAssist.Hint="Số sao"
-                                    IsEditable="True"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                    <ComboBoxItem Content="0 sao" />
-                                    <ComboBoxItem Content="1 sao" />
-                                    <ComboBoxItem Content="2 sao" />
-                                    <ComboBoxItem Content="3 sao" />
-                                    <ComboBoxItem Content="4 sao" />
-                                    <ComboBoxItem Content="5 sao" />
-                                    <ComboBoxItem Content="Tất cả" />
-                                </ComboBox>
+                                
                             </StackPanel>
                             <TextBox
                                 Grid.Column="1"
