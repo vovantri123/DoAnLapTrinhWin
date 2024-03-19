@@ -140,19 +140,22 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
+
                                 <TextBlock
                                     Grid.Column="0"
                                     Margin="0,0,10,0"
                                     VerticalAlignment="Center"
                                     FontSize="25"
                                     Text="Số lượng" />
+
                                 <Button
+                                    x:Name="btnGiam"
                                     Grid.Column="1"
                                     Width="40"
                                     Height="30"
                                     Background="White"
-                                    BorderBrush="Black">
-
+                                    BorderBrush="Black"
+                                    Click="btnGiam_Click">
                                     <TextBlock
                                         VerticalAlignment="Center"
                                         FontSize="30"
@@ -161,16 +164,19 @@
                                 </Button>
 
                                 <TextBlock
+                                    x:Name="txtbSoLuongHienTai"
                                     Grid.Column="2"
                                     HorizontalAlignment="Center"
                                     FontSize="29"
                                     Text="5" />
                                 <Button
+                                    x:Name="btnTang"
                                     Grid.Column="3"
                                     Width="40"
                                     Height="30"
                                     Background="White"
-                                    BorderBrush="Black">
+                                    BorderBrush="Black"
+                                    Click="btnTang_Click">
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
@@ -190,10 +196,6 @@
 
 
                         <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
                             <Button
                                 x:Name="btnThemVaoGioHang"
                                 Grid.Column="0"
@@ -208,19 +210,6 @@
                                 Content="Thêm vào giỏ hàng"
                                 FontSize="25" />
 
-                            <Button
-                                x:Name="btnMuaHang"
-                                Grid.Column="1"
-                                Width="250"
-                                Height="52"
-                                Margin="2,20,2,18"
-                                materialDesign:ButtonAssist.CornerRadius="4"
-                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                                materialDesign:ButtonProgressAssist.Value="-1"
-                                Click="btnThemVaoGioHang_Click"
-                                Content="Mua ngay"
-                                FontSize="25" />
                         </Grid>
 
                         <StackPanel Grid.Row="2">

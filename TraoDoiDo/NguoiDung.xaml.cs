@@ -81,10 +81,10 @@ namespace TraoDoiDo
             txtbTenTrang.Text = "Trang chủ";
         }
 
-        private void ViTien_Click(object sender, RoutedEventArgs e)
+        private void ViDienTu_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new ViTienUC();
-            txtbTenTrang.Text = "Ví tiền";
+            contentControlHienThi.Content = new ViDienTuUC();
+            txtbTenTrang.Text = "Ví điện tử";
         }
 
         private void ThongTinCaNhan_Click(object sender, RoutedEventArgs e)

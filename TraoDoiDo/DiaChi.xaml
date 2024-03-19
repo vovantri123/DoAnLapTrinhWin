@@ -53,12 +53,14 @@
                 Grid.Column="1"
                 Margin="10,10,20,0"
                 materialDesign:HintAssist.Hint="Hình thức thanh toán"
-                materialDesign:TextFieldAssist.HasClearButton="True"
+                IsEnabled="False"
                 ItemsSource="{Binding ShortStringList}"
+                SelectedIndex="0"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}">
                 <ComboBoxItem Content="Chuyển khoản" />
                 <ComboBoxItem Content="Thanh toán trực tiếp" />
             </ComboBox>
+
 
         </Grid>
 

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\
 TraoDoiDo
 none
 false
 DEBUG;TRACE
-C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\App.xaml
-21-1376551978
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\App.xaml
+21-699628601
 
-25557150120
-191175777561
-DangDoUC.xaml;DangDo_Dang.xaml;DangKy.xaml;DangKyUC.xaml;DangNhap.xaml;DanhGia.xaml;DiaChi.xaml;MainWindow.xaml;MuaDoUC.xaml;NguoiDung.xaml;QuanLyUC.xaml;QuenMatKhau.xaml;ThanhDieuKhien.xaml;UCNapTien.xaml;UCThemAnhKhiDang.xaml;Thoat.xaml;ThongTinCaNhanUC.xaml;ThongTinChiTietSanPham.xaml;TrangChuUC.xaml;UCSanPham.xaml;ViTienUC.xaml;
+25-802626117
+19-896180943
+DangDoUC.xaml;DangDo_Dang.xaml;DangKy.xaml;DangKyUC.xaml;DangNhap.xaml;DiaChi.xaml;LyDoTraHangUC.xaml;MainWindow.xaml;MuaDoUC.xaml;NapRutTien.xaml;NguoiDung.xaml;QuanLyUC.xaml;QuenMatKhau.xaml;ThanhDieuKhien.xaml;ThemAnhKhiDangUC.xaml;Thoat.xaml;ThongTinCaNhanUC.xaml;ThongTinChiTietSanPham.xaml;TrangChuUC.xaml;SanPhamUC.xaml;ViDienTuUC.xaml;
 
 False
 

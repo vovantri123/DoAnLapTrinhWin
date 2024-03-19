@@ -126,20 +126,22 @@ namespace TraoDoiDo
             //Tab QLy Đơn hàng
             List<SPTabQuanLyDonHang> sp = new List<SPTabQuanLyDonHang>();
             sp.Add(new SPTabQuanLyDonHang { Id = 1, Name = "Product 1", Anh = "/HinhCuaToi/Lenovo.png", Quantity = "20", Price = "1.0000", ShippingFee = "10.000", TongTien = "200.000" });
-            lsvQuanLyDonHang.ItemsSource = sp;
+            lsvChoDongGoi.ItemsSource = sp;
+            lsvDangGiao.ItemsSource = sp;
+            lsvDaGiao.ItemsSource = sp;
         }
 
 
         private void btnDangDo_Click(object sender, RoutedEventArgs e)
         {
             DangDo_Dang f = new DangDo_Dang();
-            f.ShowDialog();
+            f.Show();
         }
         private void btnSuaDo_Click(object sender, RoutedEventArgs e)
         {
             DangDo_Dang f = new DangDo_Dang();
             f.btnDang.Content = "Sửa";
-            f.ShowDialog();
+            f.Show();
         }
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {

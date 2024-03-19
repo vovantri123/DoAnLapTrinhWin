@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TraoDoiDo
 {
     /// <summary>
-    /// Interaction logic for UCNapTien.xaml
+    /// Interaction logic for LyDoTraHangUC.xaml
     /// </summary>
-    public partial class UCNapTien : UserControl
+    public partial class LyDoTraHangUC : UserControl
     {
-        public UCNapTien()
+        public LyDoTraHangUC()
         {
             InitializeComponent();
         }

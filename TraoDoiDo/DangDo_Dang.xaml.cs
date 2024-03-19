@@ -28,5 +28,11 @@ namespace TraoDoiDo
         {
             MessageBox.Show("Đăng thành công\nĐơn hàng đang chờ Admin duyệt", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void btnThemAnh_Click(object sender, RoutedEventArgs e)
+        {
+            ThemAnhKhiDangUC uc = new ThemAnhKhiDangUC();
+            wpnlChuaAnh.Children.Add(uc);
+        }
     }
 }

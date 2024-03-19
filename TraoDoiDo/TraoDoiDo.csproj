@@ -87,14 +87,17 @@
     <Compile Include="DangKyUC.xaml.cs">
       <DependentUpon>DangKyUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DanhGia.xaml.cs">
-      <DependentUpon>DanhGia.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DiaChi.xaml.cs">
       <DependentUpon>DiaChi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LyDoTraHangUC.xaml.cs">
+      <DependentUpon>LyDoTraHangUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MuaDoUC.xaml.cs">
       <DependentUpon>MuaDoUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NapRutTien.xaml.cs">
+      <DependentUpon>NapRutTien.xaml</DependentUpon>
     </Compile>
     <Compile Include="NguoiDung.xaml.cs">
       <DependentUpon>NguoiDung.xaml</DependentUpon>
@@ -108,11 +111,8 @@
     <Compile Include="ThanhDieuKhien.xaml.cs">
       <DependentUpon>ThanhDieuKhien.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UCNapTien.xaml.cs">
-      <DependentUpon>UCNapTien.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UCThemAnhKhiDang.xaml.cs">
-      <DependentUpon>UCThemAnhKhiDang.xaml</DependentUpon>
+    <Compile Include="ThemAnhKhiDangUC.xaml.cs">
+      <DependentUpon>ThemAnhKhiDangUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Thoat.xaml.cs">
       <DependentUpon>Thoat.xaml</DependentUpon>
@@ -126,11 +126,11 @@
     <Compile Include="TrangChuUC.xaml.cs">
       <DependentUpon>TrangChuUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UCSanPham.xaml.cs">
-      <DependentUpon>UCSanPham.xaml</DependentUpon>
+    <Compile Include="SanPhamUC.xaml.cs">
+      <DependentUpon>SanPhamUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViTienUC.xaml.cs">
-      <DependentUpon>ViTienUC.xaml</DependentUpon>
+    <Compile Include="ViDienTuUC.xaml.cs">
+      <DependentUpon>ViDienTuUC.xaml</DependentUpon>
     </Compile>
     <Page Include="DangDoUC.xaml">
       <SubType>Designer</SubType>
@@ -152,11 +152,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DanhGia.xaml">
+    <Page Include="DiaChi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DiaChi.xaml">
+    <Page Include="LyDoTraHangUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +179,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NapRutTien.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NguoiDung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,11 +199,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UCNapTien.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UCThemAnhKhiDang.xaml">
+    <Page Include="ThemAnhKhiDangUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,11 +219,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UCSanPham.xaml">
+    <Page Include="SanPhamUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViTienUC.xaml">
+    <Page Include="ViDienTuUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

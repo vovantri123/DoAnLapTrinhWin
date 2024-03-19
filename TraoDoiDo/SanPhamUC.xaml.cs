@@ -19,9 +19,9 @@ namespace TraoDoiDo
     /// <summary>
     /// Interaction logic for UCSanPham.xaml
     /// </summary>
-    public partial class UCSanPham : UserControl
+    public partial class SanPhamUC : UserControl
     {
-        public UCSanPham()
+        public SanPhamUC()
         {
             InitializeComponent();
         }

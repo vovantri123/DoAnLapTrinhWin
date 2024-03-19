@@ -78,7 +78,7 @@
                                 <ComboBoxItem Content="Đã duyệt" />
                                 <ComboBoxItem Content="Tất cả" />
                             </ComboBox>
- 
+
                         </StackPanel>
                         <TextBox
                             Grid.Column="1"
@@ -154,19 +154,18 @@
                                             DisplayMemberBinding="{Binding ShippingFee}"
                                             Header="Phí ship" />
                                         <GridViewColumn
-                                            Width="50"
-                                            DisplayMemberBinding="{Binding SoSao}"
-                                            Header="Số sao" />
-                                        <GridViewColumn Width="105" Header="Trạng thái">
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding TrangThai}"
+                                            Header="Trạng thái" /> 
+                                        
+                                        <GridViewColumn Width="80" Header="Duyệt">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ComboBox Width="80" SelectedIndex="{Binding TrangThai}">
-                                                        <ComboBoxItem Content="Chưa duyệt" />
-                                                        <ComboBoxItem Content="Đã duyệt" />
-                                                    </ComboBox>
+                                                    <Button Content="Duyệt" x:Name="btnDuyet" Click="btnDuyet_Click" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
+
                                         <GridViewColumn Width="80" Header="Xóa">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>

@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TraoDoiDo
 {
     /// <summary>
-    /// Interaction logic for ViTien.xaml
+    /// Interaction logic for NapTien.xaml
     /// </summary>
-    public partial class ViTienUC : UserControl
+    public partial class NapRutTien : Window
     {
-        public ViTienUC()
+        public NapRutTien()
         {
             InitializeComponent();
         }

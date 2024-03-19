@@ -116,5 +116,24 @@ namespace TraoDoiDo
         {
             MessageBox.Show("Thêm vào giỏ hàng thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void btnTang_Click(object sender, RoutedEventArgs e)
+        {
+            int n = Convert.ToInt32(txtbSoLuongHienTai.Text);
+            n += 1;
+            txtbSoLuongHienTai.Text = n.ToString();
+
+
+        }
+
+        private void btnGiam_Click(object sender, RoutedEventArgs e)
+        {
+            int n = Convert.ToInt32(txtbSoLuongHienTai.Text);
+            if (n-1 >= 0)
+            {
+                n -= 1;
+            }   
+            txtbSoLuongHienTai.Text = n.ToString();
+        }
     }
 }

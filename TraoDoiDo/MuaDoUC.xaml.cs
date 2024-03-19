@@ -61,7 +61,7 @@ namespace TraoDoiDo
             {
                 for (int j=0;j<8;j++)
                 {
-                    UCSanPham uc = new UCSanPham(); 
+                    SanPhamUC uc = new SanPhamUC(); 
                     uc.Margin = new Thickness(8);
 
 
@@ -187,11 +187,6 @@ namespace TraoDoiDo
         private void btnDaNhanHang_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Bạn có chắc là đã nhận được hàng 0_o", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-        }
-        private void btnDanhGia_Click(object sender, RoutedEventArgs e)
-        {
-            DanhGia f = new DanhGia();
-            f.ShowDialog();
-        }
+        } 
     }
 }

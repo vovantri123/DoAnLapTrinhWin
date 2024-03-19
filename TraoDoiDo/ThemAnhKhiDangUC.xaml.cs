@@ -19,9 +19,9 @@ namespace TraoDoiDo
     /// <summary>
     /// Interaction logic for ThemAnhKhiDang.xaml
     /// </summary>
-    public partial class UCThemAnhKhiDang : UserControl
+    public partial class ThemAnhKhiDangUC : UserControl
     {
-        public UCThemAnhKhiDang()
+        public ThemAnhKhiDangUC()
         {
             InitializeComponent();
         }

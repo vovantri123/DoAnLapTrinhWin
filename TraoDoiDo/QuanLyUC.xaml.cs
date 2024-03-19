@@ -45,8 +45,8 @@ namespace TraoDoiDo
 
             // Khởi tạo danh sách sản phẩm
             Products = new ObservableCollection<Product>();
-            Products.Add(new Product { Id = 1, Name = "Sản phẩm 1", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 1", Quantity = 10, DaBan = 5, Price = 100000, Promotion = "10%", ShippingFee = 5000, SoSao = 4, TrangThai = "0" });
-            Products.Add(new Product { Id = 2, Name = "Sản phẩm 2", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 2", Quantity = 20, DaBan = 10, Price = 200000, Promotion = "20%", ShippingFee = 10000, SoSao = 3, TrangThai = "1" });
+            Products.Add(new Product { Id = 1, Name = "Sản phẩm 1", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 1", Quantity = 10, DaBan = 5, Price = 100000, Promotion = "10%", ShippingFee = 5000, SoSao = 4, TrangThai = "Chưa duyệt" });
+            Products.Add(new Product { Id = 2, Name = "Sản phẩm 2", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 2", Quantity = 20, DaBan = 10, Price = 200000, Promotion = "20%", ShippingFee = 10000, SoSao = 3, TrangThai = "Đã duyệt" });
 
             // Gán danh sách sản phẩm vào ItemsSource của ListView
             lsvQuanLySanPham.ItemsSource = Products;
@@ -91,5 +91,9 @@ namespace TraoDoiDo
         }
 
 
+        private void btnDuyet_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Nếu chưa duyệt thì chuyển sang đã duyệt\nNếu đã duyệt rồi, thì khi ấn nút này nó báo là sp đã được duyệt(hoặc vô hiệu hóa cái nút được thì càng tốt)");
+        }
     }
 }

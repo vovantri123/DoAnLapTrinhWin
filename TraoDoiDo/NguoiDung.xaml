@@ -152,7 +152,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
@@ -163,9 +163,7 @@
                     Margin="10,0,0,0"
                     Source="HinhCuaToi/Icons/iconShop94.png" />
             </Grid>
-            <local:ThanhDieuKhien
-                Grid.Column="1" 
-                Tag="{Binding Title, ElementName=mainWindow}" />
+            <local:ThanhDieuKhien Grid.Column="1" Tag="{Binding Title, ElementName=mainWindow}" />
 
         </Grid>
 
@@ -488,7 +486,7 @@
                         <ListViewItem
                             HorizontalAlignment="Left"
                             MouseEnter="ListViewItem_MouseEnter"
-                            MouseLeftButtonUp="ViTien_Click">
+                            MouseLeftButtonUp="ViDienTu_Click">
 
                             <StackPanel
                                 Width="230"
@@ -504,7 +502,7 @@
                                 <TextBlock
                                     Margin="25,0,0,0"
                                     Style="{StaticResource font_style}"
-                                    Text="Ví tiền" />
+                                    Text="Ví điện tử" />
                             </StackPanel>
 
                             <!--  // Tooltip //  -->
@@ -513,7 +511,7 @@
 
                                 <ToolTip
                                     x:Name="tt_maps"
-                                    Content="Ví tiền"
+                                    Content="Ví điện tử"
                                     Style="{StaticResource tt_style}" />
 
                             </ListViewItem.ToolTip>
@@ -588,7 +586,7 @@
 
                                 <ToolTip
                                     x:Name="tt_quanly"
-                                    Content="Settings"
+                                    Content="Quản lý"
                                     Style="{StaticResource tt_style}" />
 
                             </ListViewItem.ToolTip>
@@ -627,7 +625,7 @@
 
                                 <ToolTip
                                     x:Name="tt_signout"
-                                    Content="Sign Out"
+                                    Content="Thoát"
                                     Style="{StaticResource tt_style}" />
 
                             </ListViewItem.ToolTip>
