@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace TraoDoiDo
 {
@@ -20,62 +21,144 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinChiTietSanPham : Window
     {
-        //Test thong tin chi tiet sp (Begin)
-        public class ListViewItem
+
+
+
+
+
+
+
+
+
+
+        private List<string> danhSachAnh = new List<string>
         {
-            public string Anh { get; set; } // Assuming Anh is a string representing image source
-            public string Name { get; set; }
-        }
-        //Test thong tin chi tiet sp (End)
-
-
-
-
-
-
-
-
-
-
-        private List<string> imagePaths = new List<string>
-        {
-            "HinhCuaToi/IPadGen6_1.jpg",
-            "HinhCuaToi/IPadGen6_2.jpg",
-            "HinhCuaToi/IPadGen6_3.jpg",
-            // Add more image paths as needed
+            //Rỗng ban đầu
         };
 
         private int currentIndex = 0;
         public ObservableCollection<ListViewItem> Items { get; set; }
 
+
+
+
+
+
+
+
+
+        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        public string idSanPham ="1";
+        private void LoadThongTinSanPham(object sender, EventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStr = $@"
+                    SELECT Ten, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, NoiBan, XuatXu, NgayMua, PhanTramMoi, MoTaChung 
+                    FROM SanPham
+                    WHERE Id = '{idSanPham}'
+                ";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) // để while cho zui chứ đọc có 1 dòng duy nhất là hết r
+                {
+                    txtbTen.Text = reader.GetString(0);
+                    txtbLoai.Text = reader.GetString(1); 
+
+                    string soLuong = reader.GetString(2);
+                    string soLuongDaBan = reader.GetString(3);
+                    txtbSoLuongConLai.Text = (Convert.ToInt32(soLuong) - Convert.ToInt32(soLuongDaBan)).ToString();
+
+
+                    txtbGiaGoc.Text = reader.GetString(4);
+                    txtbGiaBan.Text = reader.GetString(5);
+                    txtbPhiShip.Text = reader.GetString(6);
+                    txtbNoiBan.Text = reader.GetString(7);
+                    txtbXuatXu.Text = reader.GetString(8);
+                    txtbNgayMua.Text = reader.GetString(9);
+                    txtbPhanTramConMoi.Text = reader.GetString(10);
+                    txtbMoTaChung.Text = reader.GetString(11);
+
+                    
+                   
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStr = @"
+                    SELECT SanPham.LinkAnhBia, MoTaAnhSanPham.LinkAnhMinhHoa, MoTaAnhSanPham.MoTa 
+                    FROM SanPham INNER JOIN MoTaAnhSanPham 
+                    ON SanPham.LinkAnhBia = MoTaAnhSanPham.LinkAnhBia
+                ";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string linkAnhBia = reader.GetString(0);
+                    string linkAnhMinhHoa = reader.GetString(1);
+                    string moTa = reader.GetString(2);
+                    
+                    danhSachAnh.Add(linkAnhMinhHoa);
+                    lsvThongTinChiTietSP.Items.Add(new {LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
+
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public ThongTinChiTietSanPham()
         {
 
             InitializeComponent();
+            Loaded += LoadAnhVaMoTa;
+            Loaded += LoadThongTinSanPham;
+            Loaded += btnAnhSau_Click;
 
-            if (imagePaths.Count > 0)
+
+
+            if (danhSachAnh.Count > 0)
             {
                 DisplayImage();
             }
 
 
 
-            // Initialize your collection of items
-            Items = new ObservableCollection<ListViewItem>();
 
-            // Add some sample data
-            Items.Add(new ListViewItem { Anh = "HinhCuaToi/IPadGen6_1.jpg", Name = "Hỏng góc trên bên trái\n\nPhần còn lại của iPad vẫn hoạt động bình thường." });
-            Items.Add(new ListViewItem { Anh = "HinhCuaToi/IPadGen6_2.jpg", Name = "Trầy màn hình mức độ nhẹ, vẫn nhìn tốt\n\nMàn hình vẫn rõ nét, không có điểm chết hoặc vết xước lớn.." });
-            Items.Add(new ListViewItem { Anh = "HinhCuaToi/IPadGen6_3.jpg", Name = "Gọn nhẹ, dễ mang theo. Chiếc iPad này là sự lựa chọn hoàn hảo cho các chuyến đi, từ cuộc họp gặp gỡ công việc đến những chuyến du lịch khám phá thế giới\n\nVới kích thước nhỏ gọn và trọng lượng nhẹ, chiếc iPad này không chỉ dễ dàng để mang theo trong túi xách hay ba lô mà còn không gây trở ngại cho bạn khi di chuyển. Bạn có thể dễ dàng sử dụng nó trên máy bay, tàu hỏa, hoặc thậm chí trong các không gian hẹp.\n\nDù bạn đang trên đường đi hay đang tận hưởng một buổi họp công việc ở một quán cà phê, iPad này sẽ giúp bạn duy trì sự linh hoạt và hiệu suất cao. Hãy mang theo nó và khám phá thế giới một cách dễ dàng và thuận tiện!" }); 
 
-            // Set the DataContext of your ListView to the collection of items
-            lsvThongTinChiTietSP.ItemsSource = Items;
+           
         }
 
         private void DisplayImage()
         {
             // Load and display the current image
-            string imagePath = imagePaths[currentIndex];
+            string imagePath = danhSachAnh[currentIndex];
             BitmapImage bitmapImage = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
             imgAnhSP.Source = bitmapImage;
         }
@@ -90,7 +173,7 @@ namespace TraoDoiDo
             if (currentIndex < 0)
             {
                 // Set currentIndex to the last image index
-                currentIndex = imagePaths.Count - 1;
+                currentIndex = danhSachAnh.Count - 1;
             }
 
             DisplayImage();
@@ -102,7 +185,7 @@ namespace TraoDoiDo
             currentIndex++;
 
             // Check if we have reached the end of the list
-            if (currentIndex >= imagePaths.Count)
+            if (currentIndex >= danhSachAnh.Count)
             {
                 // Set currentIndex back to the first image index
                 currentIndex = 0;

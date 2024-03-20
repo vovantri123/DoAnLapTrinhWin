@@ -321,13 +321,13 @@
     <Resource Include="HinhCuaToi\vpb.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HinhCuaToi\IPadGen6_1.jpg" />
+    <Resource Include="HinhCuaToi\SanPham\IPadGen6_1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HinhCuaToi\IPadGen6_2.jpg" />
+    <Resource Include="HinhCuaToi\SanPham\IPadGen6_2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HinhCuaToi\IPadGen6_3.jpg" />
+    <Resource Include="HinhCuaToi\SanPham\IPadGen6_3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HinhCuaToi\MayAnhNikon.jpg" />

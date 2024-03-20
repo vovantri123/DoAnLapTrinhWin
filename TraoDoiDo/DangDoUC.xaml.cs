@@ -10,127 +10,70 @@ using System.Reflection.Emit;
 using System.Runtime.Serialization;
 using LiveCharts.Defaults;
 using Microsoft.Win32;
-using System.Windows.Media.Imaging; 
+using System.Windows.Media.Imaging;
+using System.Data.SqlClient;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
 
     public partial class DangDoUC : UserControl
     {
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
-        public class SP
-        {
-            public string TenSanPham { get; set; }
-            public int SoLuongDaBan { get; set; }
-            public int TongSoLuongBanDau { get; set; }
-            public int TongTien { get; set; }
-        }
-        // Khai báo danh sách sản phẩm
-        List<Product> tab2 = new List<Product>();
-
-        // Property để sử dụng làm DataContext cho DataGrid
-        public List<Product> UnapprovedLeaveRequests
-        {
-            get { return tab2; }
-        }
+        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         public DangDoUC()
         {
             InitializeComponent();
-            // Khởi tạo dữ liệu mẫu
-            List<SP> sanPhams = new List<SP>
-            {
-                new SP { TenSanPham = "Sản phẩm A", SoLuongDaBan = 10, TongSoLuongBanDau = 20, TongTien=10000},
-                new SP { TenSanPham = "Sản phẩm B", SoLuongDaBan = 12, TongSoLuongBanDau = 18,TongTien=20000 },
-                new SP { TenSanPham = "Sản phẩm C", SoLuongDaBan = 3, TongSoLuongBanDau = 10,TongTien=14000 },
-                new SP { TenSanPham = "Sản phẩm D", SoLuongDaBan = 7, TongSoLuongBanDau = 14,TongTien=7000 }
-            };
+            Loaded += DangDoUC_Loaded;
 
-            SeriesCollection = new SeriesCollection
+        }
+
+        private void DangDoUC_Loaded(object sender, RoutedEventArgs e) //Giống firm load
+        {
+            //QUAN LY SAN PHAM
+            HienThi_QuanLySanPham();
+        }
+
+
+        private void HienThi_QuanLySanPham()
+        {
+            try
             {
-                new ColumnSeries
+                conn.Open();
+                string sqlStr = "SELECT Id, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai FROM SanPham";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    Title = "Số lượng đã bán",
-                    Values = new ChartValues<int>(sanPhams.Select(sp => sp.SoLuongDaBan))
-                },
-                new ColumnSeries
-                {
-                    Title = "Tổng số lượng ban đầu",
-                    Values = new ChartValues<int>(sanPhams.Select(sp => sp.TongSoLuongBanDau))
+                    string id = reader.GetString(0);
+                    string name = reader.GetString(1);
+                    string linkAnh = reader.GetString(2);
+                    string loai = reader.GetString(3);
+                    string soLuong = reader.GetString(4);
+                    string soLuongDaBan = reader.GetString(5);
+                    string giaGoc = reader.GetString(6);
+                    string giaBan = reader.GetString(7);
+                    string phiShip = reader.GetString(8);
+                    string trangThai = reader.GetString(9);
+
+                    lsvQuanLySanPham.Items.Add(new { Id = id, Ten = name, LinkAnh = linkAnh, Loai = loai, SoLuong = soLuong, SoLuongDaBan = soLuongDaBan, GiaGoc = giaGoc, GiaBan = giaBan, PhiShip = phiShip, TrangThai = trangThai });
+
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
                 }
-            };
-
-            Labels = sanPhams.Select(sp => sp.TenSanPham).ToArray();
-
-            Formatter = value => value.ToString("N");
-
-            // Gán dữ liệu cho biểu đồ
-            DataContext = this;
-
-
-            //TRÒN
-
-            SeriesCollection pieSeries = new SeriesCollection();
-
-            foreach (var sp in sanPhams)
-            {
-                pieSeries.Add(new PieSeries
-                {
-                    Title = sp.TenSanPham,
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(sp.TongTien) }
-                });
             }
-
-            // Gán SeriesCollection cho biểu đồ tròn
-            pieChart.Series = pieSeries;
-
-
-
-           
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
 
-        
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Anh { get; set; }
-
-            public string Type { get; set; }
-            public int Quantity { get; set; }
-            public int DaBan { get; set; }
-            public double Price { get; set; }
-            public string Promotion { get; set; }
-
-            public double ShippingFee { get; set; }
-            public string SoSao { get; set; }
-            public string TrangThai { get; set; }
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            List<Product> products = new List<Product>();
-            products.Add(new Product { Id = 1, Name = "Product 1",Anh= "/HinhCuaToi/Lenovo.png" ,Type = "Type 1", Quantity = 10, DaBan=0, Price = 100, Promotion = "10%", ShippingFee = 5 , SoSao="5", TrangThai="Đã được duyệt"});
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 2", Quantity = 15, DaBan = 0, Price = 150, Promotion = "20%", ShippingFee = 7, SoSao = "0", TrangThai = "Chờ duyệt" });
-            products.Add(new Product { Id = 3, Name = "Product 3", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 3", Quantity = 12, DaBan = 0, Price = 120, Promotion = "50%", ShippingFee = 9, SoSao = "0", TrangThai = "Chờ duyệt" });
-
-            lsvList.ItemsSource = products;
-
-
-
-
-
-            //Tab QLy Đơn hàng
-            List<SPTabQuanLyDonHang> sp = new List<SPTabQuanLyDonHang>();
-            sp.Add(new SPTabQuanLyDonHang { Id = 1, Name = "Product 1", Anh = "/HinhCuaToi/Lenovo.png", Quantity = "20", Price = "1.0000", ShippingFee = "10.000", TongTien = "200.000" });
-            lsvChoDongGoi.ItemsSource = sp;
-            lsvDangGiao.ItemsSource = sp;
-            lsvDaGiao.ItemsSource = sp;
-        }
-
+        // Dưới đây khoan hả sửa
 
         private void btnDangDo_Click(object sender, RoutedEventArgs e)
         {
@@ -146,21 +89,6 @@ namespace TraoDoiDo
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Bạn có chắc là muốn xóa sản phầm này?","Thông báo",MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-        }
-
-
-
-        //Tab QL đơn hàng
-        public class SPTabQuanLyDonHang
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Anh { get; set; }
-            public string Quantity { get; set; }
-            public string Price { get; set; }
-            public string ShippingFee { get; set; }
-            public string TongTien { get; set; }
-            public int Ngay { get; set; }
         }
 
         private void btnDiaChiGuiHang_Click(object sender, RoutedEventArgs e)
@@ -181,9 +109,7 @@ namespace TraoDoiDo
             f.txtEmail.Text = "tri@gmail.com";
             f.txtDiaChi.Text = "Số 1 VVN";
 
-
-
-            f.ShowDialog();
+            f.Show();
         }
     }
 
