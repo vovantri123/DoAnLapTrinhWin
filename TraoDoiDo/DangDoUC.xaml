@@ -160,26 +160,22 @@
                                                 Header="Đã bán" />
                                             <GridViewColumn
                                                 Width="90"
-                                                DisplayMemberBinding="{Binding Price}"
-                                                Header="Giá" />
+                                                DisplayMemberBinding="{Binding InitalPrice}"
+                                                Header="Giá gốc" />
                                             <GridViewColumn
                                                 Width="90"
-                                                DisplayMemberBinding="{Binding Promotion}"
-                                                Header="Khuyến mãi" />
+                                                DisplayMemberBinding="{Binding Price}"
+                                                Header="Giá" />
                                             <GridViewColumn
                                                 Width="90"
                                                 DisplayMemberBinding="{Binding ShippingFee}"
                                                 Header="Phí ship" />
                                             <GridViewColumn
-                                                Width="45"
-                                                DisplayMemberBinding="{Binding SoSao}"
-                                                Header="Số sao" />
-                                            <GridViewColumn
                                                 Width="105"
                                                 DisplayMemberBinding="{Binding TrangThai}"
                                                 Header="Trạng Thái" />
                                             <!--  Cột "Sửa"  -->
-                                            <GridViewColumn Width="80" Header="Sửa">
+                                            <GridViewColumn Width="90" Header="Sửa">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Button Click="btnSuaDo_Click" Content="Sửa" />
@@ -188,7 +184,7 @@
                                             </GridViewColumn>
 
                                             <!--  Cột "Xóa"  -->
-                                            <GridViewColumn Width="80" Header="Xóa">
+                                            <GridViewColumn Width="90" Header="Xóa">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Button Click="btnXoa_Click" Content="Xóa" />

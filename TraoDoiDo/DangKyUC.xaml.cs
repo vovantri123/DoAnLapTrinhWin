@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -23,6 +24,16 @@ namespace TraoDoiDo
         public DangKyUC()
         {
             InitializeComponent();
+            ThongTinKhachHangViewModel thongTinKH = new ThongTinKhachHangViewModel();
+            this.DataContext = thongTinKH;
         }
+        public string TenDangNhap { get; set; }
+        public string HoTen { get; set; }
+        public string GioiTinh { get; set; }
+        public DateTime NgaySinh { get; set; }
+        public string SDT { get; set; }
+        public string CMND  { get; set; }
+        public string Email  { get; set; }
+        public string DiaChi  { get; set; }
     }
 }

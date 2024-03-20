@@ -87,12 +87,20 @@
     <Compile Include="DangKyUC.xaml.cs">
       <DependentUpon>DangKyUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\DbConnection.cs" />
+    <Compile Include="Database\KhachHangDao.cs" />
+    <Compile Include="Database\TaiKhoanDao.cs" />
+    <Compile Include="Database\ThuocTinhDao.cs" />
     <Compile Include="DiaChi.xaml.cs">
       <DependentUpon>DiaChi.xaml</DependentUpon>
     </Compile>
     <Compile Include="LyDoTraHangUC.xaml.cs">
       <DependentUpon>LyDoTraHangUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\HangHoa.cs" />
+    <Compile Include="Models\KhachHang.cs" />
+    <Compile Include="Models\MoTaHangHoa.cs" />
+    <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="MuaDoUC.xaml.cs">
       <DependentUpon>MuaDoUC.xaml</DependentUpon>
     </Compile>
@@ -132,6 +140,11 @@
     <Compile Include="ViDienTuUC.xaml.cs">
       <DependentUpon>ViDienTuUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\HoTroMatKhau.cs" />
+    <Compile Include="ViewModels\KiemTraDinhDang.cs" />
+    <Compile Include="ViewModels\ThongTinKhachHangViewModel.cs" />
+    <Compile Include="ViewModels\ThuocTinhViewModel.cs" />
+    <Compile Include="ViewModels\XuLyTienIch.cs" />
     <Page Include="DangDoUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -340,6 +353,7 @@
   <ItemGroup>
     <Resource Include="HinhCuaToi\Icons\iconShop94.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

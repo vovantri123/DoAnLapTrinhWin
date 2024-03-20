@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -19,6 +20,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DangNhap : Window
     {
+        ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel();
         public DangNhap()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace TraoDoiDo
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
-            DangKy dangKy = new DangKy();
+            DangKy dangKy = new DangKy(ttkh);
             dangKy.Show();
         }
 

@@ -79,10 +79,10 @@ namespace TraoDoiDo
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            DangKy f = new DangKy();
+            /*DangKy f = new DangKy();
             f.txtbTieuDe.Text = "Thông tin người dùng";
             f.btnDangKy.Content = "Cập nhật";
-            f.ShowDialog();
+            f.ShowDialog();*/
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

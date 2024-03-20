@@ -33,7 +33,7 @@
 
         </Grid>
         <Grid Grid.Row="1">
-            <local:DangKyUC />
+            <local:DangKyUC/>
 
         </Grid>
         <Grid Grid.Row="2">
@@ -43,7 +43,7 @@
                 Height="40"
                 Margin="376,20,334,20"
                 Content="Đăng ký"
-                FontSize="20" />
+                FontSize="20" Click="btnDangKy_Click" />
         </Grid>
     </Grid>
 </Window>
