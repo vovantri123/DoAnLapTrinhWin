@@ -30,6 +30,7 @@ namespace TraoDoiDo
         {
             ThongTinChiTietSanPham f = new ThongTinChiTietSanPham();
             f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            f.idSanPham = txtbIdSanPham.Text;
             f.ShowDialog();
         }
     }

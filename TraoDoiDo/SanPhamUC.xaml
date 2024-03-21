@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-     Height="300"
     Width="200"
+    Height="300"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -31,6 +31,11 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
+                <TextBlock
+                    x:Name="txtbIdSanPham"
+                    HorizontalAlignment="Center"
+                    Foreground="Transparent"
+                    Text="1" />
                 <Image
                     x:Name="imgSP"
                     Margin="8,0,8,8"
@@ -60,11 +65,13 @@
                 <StackPanel>
 
                     <TextBlock
+                        x:Name="txtbTen"
                         Margin="0,12,0,0"
                         FontSize="18"
                         Text="GỌN NHẸ Máy tính bảng Windows 2 in 1..."
                         TextWrapping="Wrap" />
                     <TextBlock
+                        x:Name="txtbGiaGoc"
                         Margin="0,5,10,0"
                         VerticalAlignment="Bottom"
                         FontSize="15"
@@ -75,10 +82,12 @@
                     <StackPanel Orientation="Horizontal">
 
                         <TextBlock
+                            x:Name="txtbGiaBan"
                             FontSize="18"
                             Foreground="#FF673AB7"
                             Text="70.000.000đ" />
                         <TextBlock
+                            x:Name="txtbNoiBan"
                             Width="Auto"
                             Margin="10,0,0,0"
                             Padding="5,2,5,2"
@@ -92,8 +101,8 @@
 
 
                     </StackPanel>
-                    
-                    
+
+
                 </StackPanel>
             </Grid>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
@@ -21,64 +23,66 @@ namespace TraoDoiDo
     public partial class MuaDoUC : UserControl
     {
 
-        private void themDeTestForm()
-        {
-            //UCSanPham uc = new UCSanPham();
-            //uc.Width = 215; // Thiết lập chiều rộng mong muốn
-            //uc.Height = 350; // Thiết lập chiều cao mong muốn
-            //uc.Margin = new Thickness(8);
+        
 
-
-            //// Tạo một BitmapImage
-            //BitmapImage bitmap = new BitmapImage();
-            //bitmap.BeginInit();
-            //bitmap.UriSource = new Uri(""); // Thay thế path_to_your_image_folder với đường dẫn thực sự đến thư mục chứa hình ảnh của bạn
-            //bitmap.EndInit();
-
-            //// Gán BitmapImage tới Source của Image control
-            //uc.imgSP.Source = bitmap;
-
-
-            //wpnlHienThi.Children.Add(uc);
-        }
-
-
+        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        private SanPhamUC[] DanhSachSanPham = new SanPhamUC[2];
 
         public MuaDoUC()
         {
-            string[] Links = new string[10];
-            Links[0] = "pack://application:,,,/HinhCuaToi/Lenovo.png";
-            Links[1] = "pack://application:,,,/HinhCuaToi/MayAnhNikon.jpg";
-            Links[2] = "pack://application:,,,/HinhCuaToi/tiviThung.jpg";
-            Links[3] = "pack://application:,,,/HinhCuaToi/SacDuPhong.jpg";
-            Links[4] = "pack://application:,,,/HinhCuaToi/TaiNgheOladance.jpg";
-            Links[5] = "pack://application:,,,/HinhCuaToi/routerWifi.jpg";
-            Links[6] = "pack://application:,,,/HinhCuaToi/vietcombank.png";
-            Links[7] = "pack://application:,,,/HinhCuaToi/LoaPinoer.jpg";
-            Links[8] = "pack://application:,,,/HinhCuaToi/ThungMayPC.jpg";
             InitializeComponent();
-            for (int i = 0; i <3; i++)
+            Loaded += LoadSanPhamlenWpnlHienThi;
+        }
+
+        private void LoadSanPhamlenWpnlHienThi(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                for (int j=0;j<8;j++)
+                conn.Open();
+                string sqlStr = $@"
+                    SELECT IdSanPham, Ten, LinkAnhBia,   GiaGoc, GiaBan, NoiBan 
+                    FROM SanPham
+                ";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                int i = 0;
+
+                while (reader.Read()) // để while cho zui chứ đọc có 1 dòng duy nhất là hết r
                 {
-                    SanPhamUC uc = new SanPhamUC(); 
-                    uc.Margin = new Thickness(8);
+                    DanhSachSanPham[i] = new SanPhamUC(); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
+                    DanhSachSanPham[i].txtbIdSanPham.Text = reader.GetString(0);
+                    DanhSachSanPham[i].txtbTen.Text = reader.GetString(1);
 
-                    // Tạo một BitmapImage
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(Links[j]); // Thay thế path_to_your_image_folder với đường dẫn thực sự đến thư mục chứa hình ảnh của bạn
+                    bitmap.UriSource = new Uri("pack://application:,,,/" + reader.GetString(2)); 
                     bitmap.EndInit();
-
                     // Gán BitmapImage tới Source của Image control
-                    uc.imgSP.Source = bitmap;
+                    DanhSachSanPham[i].imgSP.Source = bitmap;
 
+                    DanhSachSanPham[i].txtbGiaGoc.Text = reader.GetString(3);
+                    DanhSachSanPham[i].txtbGiaBan.Text = reader.GetString(4);
+                    DanhSachSanPham[i].txtbNoiBan.Text = reader.GetString(5);
 
-                    wpnlHienThi.Children.Add(uc);
-                }    
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                    DanhSachSanPham[i].Margin = new Thickness(8);
+                    wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
+
         public class Product
         {
             public int Id { get; set; }

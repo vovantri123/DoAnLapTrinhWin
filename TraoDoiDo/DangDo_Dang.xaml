@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="DangDo_Dang"
     Width="940"
-    Height="700"
+    Height="900"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -46,14 +46,14 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
-                        <TextBox
+                        <TextBox x:Name="txtbIdSanPham"
                             Margin="20,10,20,0"
                             materialDesign:HintAssist.Hint="ID đồ"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             Text="{Binding ID}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto" />
-                        <TextBox
+                        <TextBox x:Name="txtbTen"
                             Margin="20,10,20,0"
                             materialDesign:HintAssist.Hint="Tên đồ"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -61,23 +61,25 @@
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto" />
 
-                        <ComboBox
+                        <ComboBox x:Name="txtbLoai"
                             MinWidth="72"
                             Margin="20,10,20,0"
                             materialDesign:HintAssist.FloatingOffset="0, -18"
                             materialDesign:HintAssist.FloatingScale="0.7"
                             materialDesign:HintAssist.Hint="Loại"
+                            IsEditable="True"
                             ItemsSource="{Binding LongIntegerList}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBoxItem Content="Đồ gia dụng" />
                             <ComboBoxItem Content="Thiết bị điện tử" />
                         </ComboBox>
-                        <ComboBox
+                        <ComboBox x:Name="cboSoLuong"
                             MinWidth="72"
                             Margin="20,10,20,0"
                             materialDesign:HintAssist.FloatingOffset="0, -18"
                             materialDesign:HintAssist.FloatingScale="0.7"
                             materialDesign:HintAssist.Hint="Số lượng"
+                            IsEditable="True"
                             ItemsSource="{Binding LongIntegerList}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBoxItem Content="1" />
@@ -86,9 +88,31 @@
                             <ComboBoxItem Content="4" />
                             <ComboBoxItem Content="5" />
                         </ComboBox>
-                        <TextBox
+                        <ComboBox x:Name="cboSoLuongDaBan"
+                            MinWidth="72"
                             Margin="20,10,20,0"
-                            materialDesign:HintAssist.Hint="Giá"
+                            materialDesign:HintAssist.FloatingOffset="0, -18"
+                            materialDesign:HintAssist.FloatingScale="0.7"
+                            materialDesign:HintAssist.Hint="Số lượng đã bán"
+                            IsEditable="True"
+                            ItemsSource="{Binding LongIntegerList}"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem Content="1" />
+                            <ComboBoxItem Content="2" />
+                            <ComboBoxItem Content="3" />
+                            <ComboBoxItem Content="4" />
+                            <ComboBoxItem Content="5" />
+                        </ComboBox>
+                        <TextBox x:Name="txtbGiaGoc"
+                            Margin="20,10,20,0"
+                            materialDesign:HintAssist.Hint="Giá gốc"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding ID}"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                        <TextBox x:Name="txtbGiaBan"
+                            Margin="20,10,20,0"
+                            materialDesign:HintAssist.Hint="Giá bán"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             Text="{Binding ID}"
                             TextWrapping="Wrap"
@@ -102,14 +126,35 @@
                             VerticalScrollBarVisibility="Auto" />
                         <TextBox
                             Margin="20,10,20,0"
-                            materialDesign:HintAssist.Hint="Khuyến mãi"
+                            materialDesign:HintAssist.Hint="Nơi bán"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             Text="{Binding ID}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto" />
                         <TextBox
                             Margin="20,10,20,0"
+                            materialDesign:HintAssist.Hint="Xuất xứ"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding ID}"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                        <TextBox
+                            Margin="20,10,20,0"
+                            materialDesign:HintAssist.Hint="Ngày mua"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding ID}"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                        <TextBox
+                            Margin="20,10,20,0"
+                            materialDesign:HintAssist.Hint="Phần trăm mới"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding ID}"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                        <TextBox
                             Height="120"
+                            Margin="20,10,20,0"
                             materialDesign:HintAssist.Hint="Mô tả"
                             materialDesign:TextFieldAssist.HasClearButton="False"
                             AcceptsReturn="True"

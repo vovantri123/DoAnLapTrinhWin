@@ -23,14 +23,6 @@ namespace TraoDoiDo
     {
 
 
-
-
-
-
-
-
-
-
         private List<string> danhSachAnh = new List<string>
         {
             //Rỗng ban đầu
@@ -38,12 +30,6 @@ namespace TraoDoiDo
 
         private int currentIndex = 0;
         public ObservableCollection<ListViewItem> Items { get; set; }
-
-
-
-
-
-
 
 
 
@@ -57,7 +43,7 @@ namespace TraoDoiDo
                 string sqlStr = $@"
                     SELECT Ten, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, NoiBan, XuatXu, NgayMua, PhanTramMoi, MoTaChung 
                     FROM SanPham
-                    WHERE Id = '{idSanPham}'
+                    WHERE IdSanPham = '{idSanPham}'
                 ";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);
@@ -102,10 +88,11 @@ namespace TraoDoiDo
             try
             {
                 conn.Open();
-                string sqlStr = @"
+                string sqlStr = $@"
                     SELECT SanPham.LinkAnhBia, MoTaAnhSanPham.LinkAnhMinhHoa, MoTaAnhSanPham.MoTa 
                     FROM SanPham INNER JOIN MoTaAnhSanPham 
-                    ON SanPham.LinkAnhBia = MoTaAnhSanPham.LinkAnhBia
+                    ON SanPham.IdSanPham = MoTaAnhSanPham.IdSanPham
+                    WHERE SanPham.IdSanPham = {idSanPham}
                 ";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);

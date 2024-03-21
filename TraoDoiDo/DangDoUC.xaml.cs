@@ -39,7 +39,7 @@ namespace TraoDoiDo
             try
             {
                 conn.Open();
-                string sqlStr = "SELECT Id, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai FROM SanPham";
+                string sqlStr = "SELECT IdSanPham, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai FROM SanPham";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);
                 SqlDataReader reader = command.ExecuteReader();
