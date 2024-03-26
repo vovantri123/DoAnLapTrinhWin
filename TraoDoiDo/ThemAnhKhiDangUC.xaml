@@ -6,8 +6,10 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Height="230"
     Width="650"
+    Height="230"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -21,6 +23,17 @@
             <ColumnDefinition Width="180" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <!--  2 cái textBlock dưới đây dùng làm biến tạm thôi  -->
+        <TextBlock
+            x:Name="txtbDuongDanAnh"
+            Foreground="Transparent" />
+        <TextBlock
+            x:Name="txtbTenFileAnh"
+            Foreground="Transparent" />
+
+
+        <!--    -->
+
         <Border
             Grid.Column="0"
             Margin="2"
@@ -33,6 +46,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
+
                     <Image x:Name="imgAnhSP" Source="/HinhCuaToi/no_image.jpg" />
                 </Grid>
                 <Grid Grid.Row="1">
@@ -48,9 +62,10 @@
                         <materialDesign:PackIcon Kind="FileImagePlusOutline" />
                     </Button>
                     <Button
+                        x:Name="btnXoaAnh"
                         Grid.Column="1"
                         Margin="10"
-                        Click="Button_Click">
+                        Click="btnXoaAnh_Click">
                         <materialDesign:PackIcon x:Name="btnHuyAnh" Kind="TrashCanOutline" />
                     </Button>
                 </Grid>
@@ -58,15 +73,15 @@
         </Border>
         <Grid Grid.Column="1">
             <TextBox
+                x:Name="txtbMoTa"
                 Grid.Row="0"
                 Margin="10,0,0,0"
                 materialDesign:HintAssist.Hint="Chú thích"
                 materialDesign:TextFieldAssist.HasClearButton="True"
-                
+                AcceptsReturn="True"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 Text="{Binding DiaChi}"
                 TextWrapping="Wrap"
-                AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto" />
         </Grid>
     </Grid>

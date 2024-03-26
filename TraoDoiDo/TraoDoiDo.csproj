@@ -81,11 +81,17 @@
     <Compile Include="DangDo_Dang.xaml.cs">
       <DependentUpon>DangDo_Dang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DangDo_Sua.xaml.cs">
+      <DependentUpon>DangDo_Sua.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DangKy.xaml.cs">
       <DependentUpon>DangKy.xaml</DependentUpon>
     </Compile>
     <Compile Include="DangKyUC.xaml.cs">
       <DependentUpon>DangKyUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DanhGia.xaml.cs">
+      <DependentUpon>DanhGia.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\DbConnection.cs" />
     <Compile Include="Database\KhachHangDao.cs" />
@@ -145,11 +151,16 @@
     <Compile Include="ViewModels\ThongTinKhachHangViewModel.cs" />
     <Compile Include="ViewModels\ThuocTinhViewModel.cs" />
     <Compile Include="ViewModels\XuLyTienIch.cs" />
+    <Compile Include="XuLyAnh.cs" />
     <Page Include="DangDoUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DangDo_Dang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DangDo_Sua.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DangNhap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DanhGia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

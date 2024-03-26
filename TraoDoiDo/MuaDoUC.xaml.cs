@@ -26,15 +26,23 @@ namespace TraoDoiDo
         
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        private SanPhamUC[] DanhSachSanPham = new SanPhamUC[2];
+        private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
+        private int idNguoi = 2;
 
         public MuaDoUC()
         {
             InitializeComponent();
-            Loaded += LoadSanPhamlenWpnlHienThi;
+            Loaded += MuaSam_Load; // TAB1
+            Loaded += GioHang_Load; //TAB2
+            Loaded += TrangThaiDonHang_Load; //TAB3
         }
 
-        private void LoadSanPhamlenWpnlHienThi(object sender, RoutedEventArgs e)
+        #region TAB1 MUA SẮM
+        private void MuaSam_Load(object sender, RoutedEventArgs e)
+        {
+            LoadSanPhamlenWpnlHienThi();
+        }
+        private void LoadSanPhamlenWpnlHienThi()
         {
             try
             {
@@ -55,12 +63,18 @@ namespace TraoDoiDo
                     DanhSachSanPham[i].txtbIdSanPham.Text = reader.GetString(0);
                     DanhSachSanPham[i].txtbTen.Text = reader.GetString(1);
 
+
+
+                    string tenFileAnh = reader.GetString(2);
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("pack://application:,,,/" + reader.GetString(2)); 
+                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    bitmap.UriSource = new Uri(duongDanhAnh); 
                     bitmap.EndInit();
                     // Gán BitmapImage tới Source của Image control
                     DanhSachSanPham[i].imgSP.Source = bitmap;
+
+
 
                     DanhSachSanPham[i].txtbGiaGoc.Text = reader.GetString(3);
                     DanhSachSanPham[i].txtbGiaBan.Text = reader.GetString(4);
@@ -82,58 +96,78 @@ namespace TraoDoiDo
                 conn.Close();
             }
         }
+        #endregion
 
-        public class Product
+
+
+
+        #region TAB2 GIỎ HÀNG
+
+
+        private void GioHang_Load(object sender, RoutedEventArgs e)
         {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Anh { get; set; }
-            public string Gia { get; set; }
-            public string PhiShip { get; set; }
-
-            public int Quantity { get; set; }
+            LsvGioHang_Load();
         }
 
-        public class SPTabTrangThaiDonHang
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Anh { get; set; }
-            public string Quantity { get; set; }
-            public string Price { get; set; }
-            public string ShippingFee { get; set; }
-            public string TongTien { get; set; }
-            public int Ngay { get; set; }
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Tab giỏ hàng
-            List<Product> products = new List<Product>();
-            products.Add(new Product { Id = 1, Name = "Product 1",Anh="/HinhCuaToi/Lenovo.png" ,Gia="200.000",PhiShip="10.000",Quantity = 10 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-            products.Add(new Product { Id = 2, Name = "Product 2", Anh = "/HinhCuaToi/Lenovo.png" , Gia = "150.000", PhiShip = "12.000",Quantity = 15 });
-
-            lsvList.ItemsSource = products;
-
-
-            //Tab trạng thái đon hàng
-            List<SPTabTrangThaiDonHang> sp = new List<SPTabTrangThaiDonHang>();
-            sp.Add(new SPTabTrangThaiDonHang { Id = 1, Name = "Product 1", Anh = "/HinhCuaToi/Lenovo.png", Quantity = "20", Price = "1.0000", ShippingFee = "10.000", TongTien= "200.000"  });
-            lsvChoNguoiBanXacNhan.ItemsSource = sp;
-            lsvChoNhanHang.ItemsSource = sp;
-            lsvDaNhan.ItemsSource = sp;
         
+        private void LsvGioHang_Load()
+        {
+            try
+            {
+                conn.Open();
+                string sqlStr = $@"
+                    SELECT Ten, LinkAnhBia, GiaBan, PhiShip, SoLuongMua, SoLuong, SoLuongDaBan 
+                    FROM GioHang 
+                    INNER JOIN NguoiDung ON GioHang.IdNguoiDung = NguoiDung.IdNguoiDung
+                    INNER JOIN SanPham ON GioHang.IdSanPham = SanPham.IdSanPham
+                    WHERE NguoiDung.IdNguoiDung = '{idNguoi}'
+
+                ";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                lsvGioHang.Items.Clear();
+                int soTT = 0;
+                while (reader.Read())
+                {
+                    soTT++; 
+                    string tenSP = reader.GetString(0); 
+                    string tenFileAnh = reader.GetString(1);
+                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+
+
+
+                    string giaBan = reader.GetString(2);
+                    string phiShip = reader.GetString(3);
+                    string soLuongMua = reader.GetString(4);
+
+                    int soLuong = Convert.ToInt32(reader.GetString(5)); //Tổng
+                    int soLuongDaBan = Convert.ToInt32(reader.GetString(6));
+                    string trangThai = "";
+                    if (soLuong == soLuongDaBan)
+                        trangThai = "Hết hàng";
+                    else
+                        trangThai = "Còn hàng";
+
+
+                    lsvGioHang.Items.Add(new { STT = soTT, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TrangThaiConHayHet = trangThai });
+
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
+
+
+
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
@@ -141,17 +175,16 @@ namespace TraoDoiDo
             f.ShowDialog();
         }
 
-
         private void SelectAllCheckBox_Click(object sender, RoutedEventArgs e)
         {
             // Kiểm tra xem CheckBox đã được chọn hay không
             if (sender is CheckBox selectAllCheckBox && selectAllCheckBox.IsChecked.HasValue)
             {
                 // Lặp qua mỗi mục trong ListView để đặt trạng thái chọn tương ứng
-                foreach (var item in lsvList.Items)
+                foreach (var item in lsvGioHang.Items)
                 {
                     // Lấy ListViewItem từ mỗi mục
-                    ListViewItem listViewItem = lsvList.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+                    ListViewItem listViewItem = lsvGioHang.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
                     if (listViewItem != null)
                     {
                         // Lấy CheckBox từ CellTemplate của mỗi mục
@@ -183,7 +216,89 @@ namespace TraoDoiDo
             return null;
         }
 
-        //Tab trạng thái đơn hàng
+        #endregion
+
+
+
+
+
+
+        #region TAB3 TRẠNG THÁI ĐƠN HÀNG
+        
+        private void TrangThaiDonHang_Load(object sender, RoutedEventArgs e)
+        { 
+            LoadLsvTrongTabTrangThaiDonHang("lsvChoNguoiBanXacNhan", "Chờ xác nhận");
+            LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
+            LoadLsvTrongTabTrangThaiDonHang("lsvDaNhan", "Đã nhận"); 
+        }
+        private void LoadLsvTrongTabTrangThaiDonHang(string tenLsv, string trangthai)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStr = $@"
+                    SELECT SanPham.IdSanPham,SanPham.Ten,SanPham.LinkAnhBia, TrangThaiDonHang.SoLuongMua, SanPham.GiaBan, SanPham.PhiShip, TrangThaiDonHang.TongThanhToan, TrangThaiDonHang.Ngay
+                    FROM TrangThaiDonHang
+                    INNER JOIN NguoiDung ON TrangThaiDonHang.IdNguoiDung = NguoiDung.IdNguoiDung
+                    INNER JOIN SanPham ON TrangThaiDonHang.IdSanPham= SanPham.IdSanPham
+                    WHERE NguoiDung.IdNguoiDung = {idNguoi} and TrangThaiDonHang.TrangThai = N'{trangthai}'
+                ";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (tenLsv == "lsvChoNguoiBanXacNhan")
+                    lsvChoNguoiBanXacNhan.Items.Clear();
+                else if (tenLsv == "lsvChoGiaoHang")
+                    lsvChoGiaoHang.Items.Clear();
+                else if (tenLsv == "lsvDaNhan")
+                    lsvDaNhan.Items.Clear();
+
+                while (reader.Read())
+                {
+                    string idSP = reader.GetString(0);
+                    string tenSP = reader.GetString(1);
+                    string tenFileAnh = reader.GetString(2);
+                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+
+                    string soLuongMua = reader.GetString(3);
+                    string giaBan = reader.GetString(4);
+
+
+
+                    string phiShip = reader.GetString(5);
+                    string tongThanhToan = reader.GetString(6);
+                    string ngay = reader.GetString(7);
+
+
+
+                    if (tenLsv == "lsvChoNguoiBanXacNhan") 
+                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
+                    else if (tenLsv == "lsvChoGiaoHang") 
+                        lsvChoGiaoHang.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
+                    else if (tenLsv == "lsvDaNhan")
+                        lsvDaNhan.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
+
+
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+       
+        private void btnDanhGia_Click(object sender, RoutedEventArgs e)
+        {
+            DanhGia f = new DanhGia();
+            f.ShowDialog();
+        }
         private void btnHuyDatHang_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Bạn có chắc là muốn hủy đặt hàng 0_o\nĐơn hàng mà bạn hủy sẽ được hoàn tiền", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
@@ -191,6 +306,7 @@ namespace TraoDoiDo
         private void btnDaNhanHang_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Bạn có chắc là đã nhận được hàng 0_o", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-        } 
+        }
+        #endregion
     }
 }

@@ -20,7 +20,7 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
 
-    <Grid Loaded="Grid_Loaded">
+    <Grid>
         <TabControl
             Width="Auto"
             materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
@@ -118,7 +118,7 @@
                             HorizontalScrollBarVisibility="Auto"
                             VerticalScrollBarVisibility="Auto">
 
-                            <ListView x:Name="lsvList">
+                            <ListView x:Name="lsvGioHang">
                                 <ListView.View>
                                     <GridView>
                                         <GridView.ColumnHeaderContainerStyle>
@@ -144,17 +144,17 @@
 
                                         <GridViewColumn
                                             Width="60"
-                                            DisplayMemberBinding="{Binding Id}"
+                                            DisplayMemberBinding="{Binding STT}"
                                             Header="STT" />
                                         <GridViewColumn
                                             Width="130"
-                                            DisplayMemberBinding="{Binding Name}"
+                                            DisplayMemberBinding="{Binding TenSP}"
                                             Header="Tên đồ" />
                                         <!--  Cột "Ảnh"  -->
                                         <GridViewColumn Width="100" Header="Ảnh">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Image Source="{Binding Anh}" />
+                                                    <Image Source="{Binding LinkAnhBia}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -168,8 +168,12 @@
                                             Header="Phí Ship" />
                                         <GridViewColumn
                                             Width="100"
-                                            DisplayMemberBinding="{Binding Quantity}"
-                                            Header="Số lượng" />
+                                            DisplayMemberBinding="{Binding SoLuongMua}"
+                                            Header="Số lượng mua" />
+                                        <GridViewColumn
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding TrangThaiConHayHet}"
+                                            Header="Trạng thái" />
 
                                         <!--  Cột "Xóa"  -->
                                         <GridViewColumn Width="90" Header="Xóa">
@@ -304,35 +308,35 @@
                                                 </GridView.ColumnHeaderContainerStyle>
                                                 <GridViewColumn
                                                     Width="45"
-                                                    DisplayMemberBinding="{Binding Id}"
+                                                    DisplayMemberBinding="{Binding IdSP}"
                                                     Header="Id đồ" />
                                                 <GridViewColumn
                                                     Width="130"
-                                                    DisplayMemberBinding="{Binding Name}"
+                                                    DisplayMemberBinding="{Binding TenSP}"
                                                     Header="Tên đồ" />
                                                 <!--  Ảnh  -->
                                                 <GridViewColumn Width="100" Header="Ảnh">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Image Source="{Binding Anh}" />
+                                                            <Image Source="{Binding LinkAnhBia}" />
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
                                                 <GridViewColumn
-                                                    Width="80"
-                                                    DisplayMemberBinding="{Binding Quantity}"
-                                                    Header="Số lượng" />
+                                                    Width="100"
+                                                    DisplayMemberBinding="{Binding SoLuongMua}"
+                                                    Header="Số lượng mua" />
                                                 <GridViewColumn
                                                     Width="90"
-                                                    DisplayMemberBinding="{Binding Price}"
+                                                    DisplayMemberBinding="{Binding Gia}"
                                                     Header="Giá" />
                                                 <GridViewColumn
                                                     Width="90"
-                                                    DisplayMemberBinding="{Binding ShippingFee}"
+                                                    DisplayMemberBinding="{Binding PhiShip}"
                                                     Header="Phí ship" />
                                                 <GridViewColumn
                                                     Width="120"
-                                                    DisplayMemberBinding="{Binding TongTien}"
+                                                    DisplayMemberBinding="{Binding TongThanhToan}"
                                                     Header="Tổng thanh toán" />
                                                 <GridViewColumn
                                                     Width="145"
@@ -379,7 +383,7 @@
                                                 Margin="5"
                                                 FontSize="20"
                                                 FontWeight="Bold"
-                                                Text="Chờ nhận hàng" />
+                                                Text="Chờ giao hàng" />
                                         </materialDesign:Badged>
                                     </StackPanel>
                                 </Expander.Header>
@@ -387,7 +391,7 @@
                                     HorizontalAlignment="Center"
                                     HorizontalScrollBarVisibility="Auto"
                                     VerticalScrollBarVisibility="Auto">
-                                    <ListView x:Name="lsvChoNhanHang">
+                                    <ListView x:Name="lsvChoGiaoHang">
                                         <ListView.Resources>
                                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                                         </ListView.Resources>
@@ -402,35 +406,35 @@
                                                 </GridView.ColumnHeaderContainerStyle>
                                                 <GridViewColumn
                                                     Width="45"
-                                                    DisplayMemberBinding="{Binding Id}"
+                                                    DisplayMemberBinding="{Binding IdSP}"
                                                     Header="Id đồ" />
                                                 <GridViewColumn
                                                     Width="130"
-                                                    DisplayMemberBinding="{Binding Name}"
+                                                    DisplayMemberBinding="{Binding TenSP}"
                                                     Header="Tên đồ" />
                                                 <!--  Ảnh  -->
                                                 <GridViewColumn Width="100" Header="Ảnh">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Image Source="{Binding Anh}" />
+                                                            <Image Source="{Binding LinkAnhBia}" />
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
                                                 <GridViewColumn
-                                                    Width="80"
-                                                    DisplayMemberBinding="{Binding Quantity}"
-                                                    Header="Số lượng" />
+                                                    Width="100"
+                                                    DisplayMemberBinding="{Binding SoLuongMua}"
+                                                    Header="Số lượng mua" />
                                                 <GridViewColumn
                                                     Width="90"
-                                                    DisplayMemberBinding="{Binding Price}"
+                                                    DisplayMemberBinding="{Binding Gia}"
                                                     Header="Giá" />
                                                 <GridViewColumn
                                                     Width="90"
-                                                    DisplayMemberBinding="{Binding ShippingFee}"
+                                                    DisplayMemberBinding="{Binding PhiShip}"
                                                     Header="Phí ship" />
                                                 <GridViewColumn
                                                     Width="120"
-                                                    DisplayMemberBinding="{Binding TongTien}"
+                                                    DisplayMemberBinding="{Binding TongThanhToan}"
                                                     Header="Tổng thanh toán" />
                                                 <GridViewColumn
                                                     Width="145"
@@ -513,40 +517,55 @@
                                                 </GridView.ColumnHeaderContainerStyle>
                                                 <GridViewColumn
                                                     Width="45"
-                                                    DisplayMemberBinding="{Binding Id}"
+                                                    DisplayMemberBinding="{Binding IdSP}"
                                                     Header="Id đồ" />
                                                 <GridViewColumn
                                                     Width="130"
-                                                    DisplayMemberBinding="{Binding Name}"
+                                                    DisplayMemberBinding="{Binding TenSP}"
                                                     Header="Tên đồ" />
                                                 <!--  Ảnh  -->
                                                 <GridViewColumn Width="100" Header="Ảnh">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Image Source="{Binding Anh}" />
+                                                            <Image Source="{Binding LinkAnhBia}" />
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
                                                 <GridViewColumn
-                                                    Width="80"
-                                                    DisplayMemberBinding="{Binding Quantity}"
-                                                    Header="Số lượng" />
+                                                    Width="100"
+                                                    DisplayMemberBinding="{Binding SoLuongMua}"
+                                                    Header="Số lượng mua" />
                                                 <GridViewColumn
                                                     Width="90"
-                                                    DisplayMemberBinding="{Binding Price}"
+                                                    DisplayMemberBinding="{Binding Gia}"
                                                     Header="Giá" />
                                                 <GridViewColumn
                                                     Width="90"
-                                                    DisplayMemberBinding="{Binding ShippingFee}"
+                                                    DisplayMemberBinding="{Binding PhiShip}"
                                                     Header="Phí ship" />
                                                 <GridViewColumn
                                                     Width="120"
-                                                    DisplayMemberBinding="{Binding TongTien}"
+                                                    DisplayMemberBinding="{Binding TongThanhToan}"
                                                     Header="Tổng thanh toán" />
                                                 <GridViewColumn
                                                     Width="145"
                                                     DisplayMemberBinding="{Binding Ngay}"
                                                     Header="Ngày nhận hàng" />
+                                                <!--  Cột "btn Đánh giá người bán"  -->
+                                                <GridViewColumn Width="120" Header="Đánh giá người bán">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Button
+                                                                x:Name="btnDanhGia"
+                                                                Grid.Row="2"
+                                                                Grid.Column="1"
+                                                                Margin="4"
+                                                                Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                                                CommandParameter="{x:Static Dock.Bottom}"
+                                                                Content="Đánh giá" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
 
                                             </GridView>
                                         </ListView.View>

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Runtime.Remoting.Messaging;
+using System.Runtime.Remoting.Channels;
 
 namespace TraoDoiDo
 {
@@ -22,13 +24,14 @@ namespace TraoDoiDo
     public partial class ThongTinChiTietSanPham : Window
     {
 
+        
 
         private List<string> danhSachAnh = new List<string>
         {
             //Rỗng ban đầu
         };
 
-        private int currentIndex = 0;
+        private int currentIndex = -1;
         public ObservableCollection<ListViewItem> Items { get; set; }
 
 
@@ -92,18 +95,21 @@ namespace TraoDoiDo
                     SELECT SanPham.LinkAnhBia, MoTaAnhSanPham.LinkAnhMinhHoa, MoTaAnhSanPham.MoTa 
                     FROM SanPham INNER JOIN MoTaAnhSanPham 
                     ON SanPham.IdSanPham = MoTaAnhSanPham.IdSanPham
-                    WHERE SanPham.IdSanPham = {idSanPham}
+                    WHERE SanPham.IdSanPham = '{idSanPham}'
                 ";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    string linkAnhBia = reader.GetString(0);
-                    string linkAnhMinhHoa = reader.GetString(1);
+                    string linkAnhBia = reader.GetString(0); 
                     string moTa = reader.GetString(2);
                     
-                    danhSachAnh.Add(linkAnhMinhHoa);
+
+                    string thuMucHinhCuaToi = XuLyAnh.layDuongDanToiHinhSanPham();
+                    string linkAnhMinhHoa = System.IO.Path.Combine(thuMucHinhCuaToi, reader.GetString(1));  
+                    danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
+
                     lsvThongTinChiTietSP.Items.Add(new {LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
@@ -128,57 +134,61 @@ namespace TraoDoiDo
             Loaded += LoadThongTinSanPham;
             Loaded += btnAnhSau_Click;
 
+            
+            //if (danhSachAnh.Count > 0)
+            //{
+            //    DisplayImage();
+            //}
 
-
-            if (danhSachAnh.Count > 0)
-            {
-                DisplayImage();
-            }
-
-
-
-
-
-           
         }
 
         private void DisplayImage()
         {
             // Load and display the current image
             string imagePath = danhSachAnh[currentIndex];
-            BitmapImage bitmapImage = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(imagePath);
+            bitmapImage.EndInit();
+
             imgAnhSP.Source = bitmapImage;
         }
 
 
         private void btnAnhTruoc_Click(object sender, EventArgs e)
         {
-            // Move to the previous image
-            currentIndex--;
-
-            // Check if we have reached the beginning of the list
-            if (currentIndex < 0)
+            if (danhSachAnh.Count > 0)
             {
-                // Set currentIndex to the last image index
-                currentIndex = danhSachAnh.Count - 1;
-            }
+                // Move to the previous image
+                currentIndex--;
 
-            DisplayImage();
+                // Check if we have reached the beginning of the list
+                if (currentIndex < 0)
+                {
+                    // Set currentIndex to the last image index
+                    currentIndex = danhSachAnh.Count - 1;
+                }
+
+                DisplayImage();
+            }
         }
 
         private void btnAnhSau_Click(object sender, RoutedEventArgs e)
         {
-            // Move to the next image
-            currentIndex++;
-
-            // Check if we have reached the end of the list
-            if (currentIndex >= danhSachAnh.Count)
+            if (danhSachAnh.Count > 0)
             {
-                // Set currentIndex back to the first image index
-                currentIndex = 0;
-            }
+                // Move to the next image
+                currentIndex++;
 
-            DisplayImage();
+                // Check if we have reached the end of the list
+                if (currentIndex >= danhSachAnh.Count)
+                {
+                    // Set currentIndex back to the first image index
+                    currentIndex = 0;
+                }
+
+                DisplayImage();
+            }
         }
 
 
