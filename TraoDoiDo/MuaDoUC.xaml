@@ -73,6 +73,7 @@
 
                             </StackPanel>
                             <TextBox
+                                x:Name="txbTimKiem"
                                 Grid.Column="1"
                                 Width="230"
                                 Height="47"
@@ -81,6 +82,7 @@
                                 materialDesign:HintAssist.Hint="Tìm kiếm"
                                 AcceptsReturn="True"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="txbTimKiem_TextChanged"
                                 TextWrapping="Wrap" />
 
                         </Grid>
@@ -101,11 +103,11 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Giỏ hàng">
+            <TabItem Header="Giỏ hàng" MouseLeftButtonDown ="LsvGioHang_Load">
 
                 <Grid Margin="16">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="800" />
+                        <ColumnDefinition Width="830" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
@@ -129,23 +131,23 @@
                                             </Style>
                                         </GridView.ColumnHeaderContainerStyle>
                                         <!--  Cột checkbox để chọn tất cả  -->
-                                        <GridViewColumn Width="60" Header="">
+                                        <GridViewColumn Width="40" Header="">
                                             <GridViewColumn.HeaderTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox Click="SelectAllCheckBox_Click" />
+                                                    <CheckBox x:Name="checkBoxTong" Click="ChonTatCaCacDong_Click" />
                                                 </DataTemplate>
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                                                    <CheckBox Click="TinhTienCuaNhungDongDuocChon" IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
 
                                         <GridViewColumn
-                                            Width="60"
-                                            DisplayMemberBinding="{Binding STT}"
-                                            Header="STT" />
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding IdSP}"
+                                            Header="Id đồ" />
                                         <GridViewColumn
                                             Width="130"
                                             DisplayMemberBinding="{Binding TenSP}"
@@ -167,7 +169,7 @@
                                             DisplayMemberBinding="{Binding PhiShip}"
                                             Header="Phí Ship" />
                                         <GridViewColumn
-                                            Width="100"
+                                            Width="90"
                                             DisplayMemberBinding="{Binding SoLuongMua}"
                                             Header="Số lượng mua" />
                                         <GridViewColumn
@@ -179,7 +181,7 @@
                                         <GridViewColumn Width="90" Header="Xóa">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Content="Xóa" />
+                                                    <Button Content="Xóa" Click="btnXoaKhoiGioHang_Click" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -200,26 +202,75 @@
                             Height="180"
                             Background="#9359c5">
                             <StackPanel>
-                                <TextBlock
-                                    Margin="18,16,-18,0"
-                                    VerticalAlignment="Top"
-                                    FontSize="17"
-                                    Foreground="White"
-                                    Text="Tổng tiền hàng: 400.000đ" />
-                                <TextBlock
-                                    Margin="18,3,-18,0"
-                                    VerticalAlignment="Top"
-                                    FontSize="17"
-                                    Foreground="White"
-                                    Text="Tổng tiền phí vận chuyển: 50.000đ" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="18,16,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="17"
+                                        Foreground="White"
+                                        Text="Tổng tiền hàng: " />
+                                    <TextBlock
+                                        x:Name="txtbTongTienHang"
+                                        Margin="18,16,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="17"
+                                        Foreground="White"
+                                        Text="0" />
 
-                                <TextBlock
-                                    Margin="18,12,-18,0"
-                                    VerticalAlignment="Top"
-                                    FontSize="20"
-                                    FontWeight="Bold"
-                                    Foreground="White"
-                                    Text="Tổng thanh toán: 450.000 VNĐ" />
+                                    <TextBlock
+                                        Margin="18,16,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="17"
+                                        Foreground="White"
+                                        Text=" đ" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock
+                                        Margin="18,3,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="17"
+                                        Foreground="White"
+                                        Text="Tổng tiền phí vận chuyển: " />
+                                    <TextBlock
+                                        x:Name="txtbTongTienShip"
+                                        Margin="18,3,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="17"
+                                        Foreground="White"
+                                        Text="0" />
+                                    <TextBlock
+                                        Margin="18,3,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="17"
+                                        Foreground="White"
+                                        Text=" đ" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock
+                                        Margin="18,12,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Tổng thanh toán: " />
+                                    <TextBlock
+                                        x:Name="txtbTongThanhToan"
+                                        Margin="18,12,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="0" />
+                                    <TextBlock
+                                        Margin="18,12,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text=" đ" />
+                                </StackPanel>
                                 <Button
                                     x:Name="btnThanhToan"
                                     Grid.Row="1"
@@ -239,7 +290,6 @@
                 <Grid>
                     <materialDesign:DrawerHost
                         x:Name="DrawerHost"
-                        Margin="10,0,10,10"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}"
@@ -255,7 +305,7 @@
 
                             </StackPanel>
                         </materialDesign:DrawerHost.BottomDrawerContent>
-                        <Grid>
+                        <Grid Margin="10,0,10,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -348,6 +398,8 @@
                                                         <DataTemplate>
                                                             <Button
                                                                 x:Name="btnHuyDatHang"
+                                                                Width="100"
+                                                                Margin="4"
                                                                 Click="btnHuyDatHang_Click"
                                                                 Content="Hủy" />
                                                         </DataTemplate>
@@ -446,6 +498,8 @@
                                                         <DataTemplate>
                                                             <Button
                                                                 x:Name="btnDaNhanHang"
+                                                                Width="100"
+                                                                Margin="4"
                                                                 Click="btnDaNhanHang_Click"
                                                                 Content="Đã nhận" />
                                                         </DataTemplate>
@@ -456,8 +510,8 @@
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button
-                                                                Grid.Row="2"
                                                                 Grid.Column="1"
+                                                                Width="100"
                                                                 Margin="4"
                                                                 Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                                                                 CommandParameter="{x:Static Dock.Bottom}"
@@ -557,11 +611,9 @@
                                                         <DataTemplate>
                                                             <Button
                                                                 x:Name="btnDanhGia"
-                                                                Grid.Row="2"
-                                                                Grid.Column="1"
+                                                                Width="100"
                                                                 Margin="4"
-                                                                Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                                                                CommandParameter="{x:Static Dock.Bottom}"
+                                                                Click="btnDanhGia_Click"
                                                                 Content="Đánh giá" />
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>

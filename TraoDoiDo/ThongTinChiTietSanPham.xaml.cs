@@ -23,9 +23,13 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinChiTietSanPham : Window
     {
+        public int idNguoiMua = 2;
+
+        public int idNguoiDang = 1;
+        public string idSanPham ="1";
+        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
 
         
-
         private List<string> danhSachAnh = new List<string>
         {
             //Rỗng ban đầu
@@ -36,8 +40,18 @@ namespace TraoDoiDo
 
 
 
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        public string idSanPham ="1";
+        public ThongTinChiTietSanPham()
+        {
+
+            InitializeComponent();
+            Loaded += LoadAnhVaMoTa;
+            Loaded += LoadThongTinSanPham;
+            Loaded += btnAnhSau_Click;
+
+             
+
+        }
+
         private void LoadThongTinSanPham(object sender, EventArgs e)
         {
             try
@@ -52,7 +66,7 @@ namespace TraoDoiDo
                 SqlCommand command = new SqlCommand(sqlStr, conn);
                 SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read()) // để while cho zui chứ đọc có 1 dòng duy nhất là hết r
+                while (reader.Read()) // để while cho zui chứ đọc có 1 dòng duy nhất (do dữ liệu mỗi dòng là duy nhất)
                 {
                     txtbTen.Text = reader.GetString(0);
                     txtbLoai.Text = reader.GetString(1); 
@@ -105,9 +119,8 @@ namespace TraoDoiDo
                     string linkAnhBia = reader.GetString(0); 
                     string moTa = reader.GetString(2);
                     
-
-                    string thuMucHinhCuaToi = XuLyAnh.layDuongDanToiHinhSanPham();
-                    string linkAnhMinhHoa = System.IO.Path.Combine(thuMucHinhCuaToi, reader.GetString(1));  
+                     
+                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnh(reader.GetString(1));
                     danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
 
                     lsvThongTinChiTietSP.Items.Add(new {LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
@@ -126,21 +139,13 @@ namespace TraoDoiDo
             }
         }
 
-        public ThongTinChiTietSanPham()
+        
+        private void ThongTinNguoiDang_Click(object sender, RoutedEventArgs e)
         {
-
-            InitializeComponent();
-            Loaded += LoadAnhVaMoTa;
-            Loaded += LoadThongTinSanPham;
-            Loaded += btnAnhSau_Click;
-
-            
-            //if (danhSachAnh.Count > 0)
-            //{
-            //    DisplayImage();
-            //}
-
+            ThongTinNguoiDang f = new ThongTinNguoiDang(idNguoiDang); 
+            f.Show();
         }
+
 
         private void DisplayImage()
         {
@@ -155,7 +160,7 @@ namespace TraoDoiDo
         }
 
 
-        private void btnAnhTruoc_Click(object sender, EventArgs e)
+        private void btnAnhTruoc_Click(object sender, RoutedEventArgs e)
         {
             if (danhSachAnh.Count > 0)
             {
@@ -194,13 +199,37 @@ namespace TraoDoiDo
 
         private void btnThemVaoGioHang_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Thêm vào giỏ hàng thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                conn.Open();
+                string sqlStr = $@"
+                    INSERT INTO GioHang (IdNguoiMua,IdSanPham, SoLuongMua)  
+                    VALUES ('{idNguoiMua}', '{idSanPham}','{txtbSoLuongHienTai.Text}')
+                ";
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                int rowsAffected = command.ExecuteNonQuery();
+                if(rowsAffected > 0) 
+                    MessageBox.Show("Thêm vào giỏ hàng thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+                this.Close();
+            }
         }
 
         private void btnTang_Click(object sender, RoutedEventArgs e)
         {
             int n = Convert.ToInt32(txtbSoLuongHienTai.Text);
-            n += 1;
+            if (n + 1 <= Convert.ToInt32(txtbSoLuongConLai.Text))
+            {
+                n += 1; 
+            } 
+                
             txtbSoLuongHienTai.Text = n.ToString();
 
 
@@ -209,7 +238,7 @@ namespace TraoDoiDo
         private void btnGiam_Click(object sender, RoutedEventArgs e)
         {
             int n = Convert.ToInt32(txtbSoLuongHienTai.Text);
-            if (n-1 >= 0)
+            if (n-1 > 0)
             {
                 n -= 1;
             }   

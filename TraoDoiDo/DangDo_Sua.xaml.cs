@@ -20,19 +20,18 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DangDo_Sua : Window
     {
-        private int soLuongAnh = 0;
+        public int soLuongAnh = 0; 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        private ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100]; //Khi dùng thì phải khai báo là DanhSachAnhVaMoTa[i] = new ThemAnhKhiDangUC();
+        public ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100]; //Khi dùng thì phải khai báo là DanhSachAnhVaMoTa[i] = new ThemAnhKhiDangUC();
 
         public DangDo_Sua()
         {
-            InitializeComponent();
-            Loaded += btnThemAnh_Click;
+            InitializeComponent(); 
         }
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
+            suaAnhVaMoTaTrongCSDL(); //Phải để cái này ở trên cái dưới
             suaThongTinSanPhamTrongCSDL();
-            suaAnhVaMoTaTrongCSDL();
         }
         private void suaAnhVaMoTaTrongCSDL()
         {
@@ -49,28 +48,33 @@ namespace TraoDoiDo
                 //Cập  nhật dữ liệu mới
                 for (int i = 0; i < soLuongAnh; i++)
                 {
-                    string idAnhMinhHoa = (i + 1).ToString();
-                    string tenFileAnh = "no_image.jpg";
-                    if (!string.IsNullOrEmpty(DanhSachAnhVaMoTa[0].txtbTenFileAnh.Text))
-                        tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
 
-                    string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
-                       
-                    string sqlStr = $@" INSERT INTO MoTaAnhSanPham (IdSanPham, IdAnhMinhHoa ,LinkAnhMinhHoa, MoTa)  
+                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text!= "no_image.jpg")
+                    {
+                        string idAnhMinhHoa = (i + 1).ToString();
+                        string tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
+
+
+                        string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
+
+                        string sqlStr = $@" INSERT INTO MoTaAnhSanPham (IdSanPham, IdAnhMinhHoa ,LinkAnhMinhHoa, MoTa)  
                                         VALUES ('{id}', '{idAnhMinhHoa}','{tenFileAnh}', N'{moTa}')";
 
 
-                    SqlCommand command = new SqlCommand(sqlStr, conn);
-                    int rowsAffected = command.ExecuteNonQuery();
+                        SqlCommand command = new SqlCommand(sqlStr, conn);
+                        int rowsAffected = command.ExecuteNonQuery();
 
-                    string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
-                    LuuAnhVaoThuMuc(noiLuAnh);
+                        string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
+                        LuuAnhVaoThuMuc(noiLuAnh);
 
 
-                    if (rowsAffected <= 0)
-                    {
-                        MessageBox.Show($"Không thể sửa ảnh số {soLuongAnh + 1} và mô tả của ảnh này trong cơ sở dữ liệu.");
+                        if (rowsAffected <= 0)
+                        {
+                            MessageBox.Show($"Không thể sửa ảnh số {soLuongAnh + 1} và mô tả của ảnh này trong cơ sở dữ liệu.");
+                        }
                     }
+                    else
+                        continue;
                 }
             }
             catch (Exception ex)
@@ -93,9 +97,13 @@ namespace TraoDoiDo
                 string id = txtbIdSanPham.Text;
                 string ten = txtbTen.Text;
 
-                string linkAnh = "no_image.jpg";
-                if (!string.IsNullOrEmpty(DanhSachAnhVaMoTa[0].txtbTenFileAnh.Text))
-                    linkAnh = DanhSachAnhVaMoTa[0].txtbTenFileAnh.Text;
+                string tenFileAnh = "no_image.jpg";
+                for (int i = 0; i < soLuongAnh; i++)
+                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
+                    {
+                        tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
+                        break;
+                    }
 
                 string loai = txtbLoai.Text;
                 string soLuong = cboSoLuong.Text;
@@ -109,11 +117,11 @@ namespace TraoDoiDo
                 string ngayMua = txtbNgayMua.Text;
                 string phanTramMoi = txtbPhanTramMoi.Text;
                 string moTaChung = txtbMoTaChung.Text;
-
+                
                 // Câu lệnh SQL UPDATE
                 string sqlStr = $@"UPDATE SanPham 
                   SET Ten = N'{ten}', 
-                      LinkAnhBia = '{linkAnh}', 
+                      LinkAnhBia = '{tenFileAnh}', 
                       Loai = N'{loai}', 
                       SoLuong = '{soLuong}', 
                       SoLuongDaBan = '{soLuongDaBan}', 
@@ -151,12 +159,13 @@ namespace TraoDoiDo
             }
         }
 
-        private void btnThemAnh_Click(object sender, RoutedEventArgs e)
-        {
+        public void btnThemAnh_Click(object sender, RoutedEventArgs e)
+        { 
             DanhSachAnhVaMoTa[soLuongAnh] = new ThemAnhKhiDangUC();
             wpnlChuaAnh.Children.Add(DanhSachAnhVaMoTa[soLuongAnh]);
             soLuongAnh++;
         }
+        
 
         private void LuuAnhVaoThuMuc(string duongDanAnh)
         {

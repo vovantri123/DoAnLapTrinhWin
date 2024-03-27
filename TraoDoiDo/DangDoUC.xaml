@@ -98,6 +98,7 @@
 
                             </StackPanel>
                             <TextBox
+                                x:Name="txbTimKiem"
                                 Grid.Column="2"
                                 Width="230"
                                 Height="47"
@@ -106,6 +107,7 @@
                                 materialDesign:HintAssist.Hint="Tìm kiếm"
                                 AcceptsReturn="True"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="txbTiemKiem_TextChanged"
                                 TextWrapping="Wrap" />
                         </Grid>
                         <Grid
@@ -261,6 +263,10 @@
                                                 DisplayMemberBinding="{Binding IdSP}"
                                                 Header="Id đồ" />
                                             <GridViewColumn
+                                                Width="85"
+                                                DisplayMemberBinding="{Binding IdNguoiMua}"
+                                                Header="Id người mua" />
+                                            <GridViewColumn
                                                 Width="130"
                                                 DisplayMemberBinding="{Binding TenSP}"
                                                 Header="Tên đồ" />
@@ -303,7 +309,7 @@
                                             <GridViewColumn Width="125" Header="Gửi hàng">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Content="Gửi hàng" />
+                                                        <Button Content="Gửi hàng" Click="btnGuiHang_Click"/>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -365,6 +371,10 @@
                                                 Width="45"
                                                 DisplayMemberBinding="{Binding IdSP}"
                                                 Header="Id đồ" />
+                                            <GridViewColumn
+                                                Width="85"
+                                                DisplayMemberBinding="{Binding IdNguoiMua}"
+                                                Header="Id người mua" />
                                             <GridViewColumn
                                                 Width="130"
                                                 DisplayMemberBinding="{Binding TenSP}"
@@ -462,6 +472,10 @@
                                                 DisplayMemberBinding="{Binding IdSP}"
                                                 Header="Id đồ" />
                                             <GridViewColumn
+                                                Width="85"
+                                                DisplayMemberBinding="{Binding IdNguoiMua}"
+                                                Header="Id người mua" />
+                                            <GridViewColumn
                                                 Width="130"
                                                 DisplayMemberBinding="{Binding TenSP}"
                                                 Header="Tên đồ" />
@@ -558,6 +572,10 @@
                                                 DisplayMemberBinding="{Binding IdSP}"
                                                 Header="Id đồ" />
                                             <GridViewColumn
+                                                Width="85"
+                                                DisplayMemberBinding="{Binding IdNguoiMua}"
+                                                Header="Id người mua" />
+                                            <GridViewColumn
                                                 Width="130"
                                                 DisplayMemberBinding="{Binding TenSP}"
                                                 Header="Tên đồ" />
@@ -585,6 +603,17 @@
                                                 Width="120"
                                                 DisplayMemberBinding="{Binding TongTien}"
                                                 Header="Tổng tiền" />
+                                            <!--  Cột "Thông tin khách hàng"  -->
+                                            <GridViewColumn Width="130" Header="Thông tin khách hàng">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            x:Name="btnDiaChiGuiHang"
+                                                            Click="btnDiaChiGuiHang_Click"
+                                                            Content="Xem địa chỉ" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
                                             <GridViewColumn
                                                 Width="125"
                                                 DisplayMemberBinding="{Binding LyDoTraHang}"

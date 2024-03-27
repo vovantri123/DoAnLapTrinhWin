@@ -26,10 +26,12 @@
         <!--  2 cái textBlock dưới đây dùng làm biến tạm thôi  -->
         <TextBlock
             x:Name="txtbDuongDanAnh"
-            Foreground="Transparent" />
+            Foreground="Transparent"
+            Text="" />
         <TextBlock
             x:Name="txtbTenFileAnh"
-            Foreground="Transparent" />
+            Foreground="Transparent"
+            Text="" />
 
 
         <!--    -->
@@ -80,7 +82,6 @@
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 AcceptsReturn="True"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="{Binding DiaChi}"
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Auto" />
         </Grid>

@@ -71,8 +71,15 @@ mc:Ignorable="d">
                         IsEditable="True"
                         ItemsSource="{Binding LongIntegerList}"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                            <ComboBoxItem Content="Tivi" />
-                            <ComboBoxItem Content="IPad" />
+                            
+                            <ComboBoxItem Content="Quần áo" />
+                            <ComboBoxItem Content="Đồ điện tử" />
+                            <ComboBoxItem Content="Đồ chơi" />
+                            <ComboBoxItem Content="Đồ gia dụng" />
+                            <ComboBoxItem Content="Đồ nội thất" />
+                            <ComboBoxItem Content="Sách" /> 
+                            <ComboBoxItem Content="Đồ dùng văn phòng phẩm" /> 
+                            
                         </ComboBox>
                         <ComboBox
                         x:Name="cboSoLuong"
@@ -89,6 +96,8 @@ mc:Ignorable="d">
                             <ComboBoxItem Content="3" />
                             <ComboBoxItem Content="4" />
                             <ComboBoxItem Content="5" />
+                            <ComboBoxItem Content="6" />
+                            <ComboBoxItem Content="7" />
                         </ComboBox>
                         <ComboBox
                         x:Name="cboSoLuongDaBan"
@@ -105,6 +114,8 @@ mc:Ignorable="d">
                             <ComboBoxItem Content="3" />
                             <ComboBoxItem Content="4" />
                             <ComboBoxItem Content="5" />
+                            <ComboBoxItem Content="6" />
+                            <ComboBoxItem Content="7" />
                         </ComboBox>
                         <TextBox
                         x:Name="txtbGiaGoc"

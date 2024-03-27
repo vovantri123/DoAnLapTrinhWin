@@ -137,6 +137,9 @@
     <Compile Include="ThongTinChiTietSanPham.xaml.cs">
       <DependentUpon>ThongTinChiTietSanPham.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThongTinNguoiDang.xaml.cs">
+      <DependentUpon>ThongTinNguoiDang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrangChuUC.xaml.cs">
       <DependentUpon>TrangChuUC.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ThongTinChiTietSanPham.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThongTinNguoiDang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

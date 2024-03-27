@@ -46,7 +46,7 @@
                 Grid.Column="0"
                 Margin="20,10,10,0"
                 VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Họ và tên người nhận"
+                materialDesign:HintAssist.Hint="Họ và tên người mua"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" />
             <ComboBox
                 x:Name="cboHinhThucThanhToan"
@@ -93,10 +93,10 @@
                 materialDesign:HintAssist.Hint="Email"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" />
         </Grid>
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" VerticalAlignment="Center">
             <Button
                 x:Name="btnXacNhanThanhToan"
-                Width="175"
+                Width="180"
                 Height="40"
                 Margin="0,10,20,0"
                 HorizontalAlignment="Right"
@@ -104,10 +104,11 @@
                 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                 materialDesign:ButtonProgressAssist.Value="-1"
-                Click="btnXacNhanThanhToan_Click"
-                Content="Xác nhận thanh toán"
+                Click="btnXacNhanThanhToan_Click_1"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                Style="{StaticResource MaterialDesignRaisedButton}" />
+                Style="{StaticResource MaterialDesignRaisedButton}">
+                <TextBlock TextWrapping="Wrap">Xác nhận thanh toán</TextBlock>
+            </Button>
         </Grid>
     </Grid>
 </Window>

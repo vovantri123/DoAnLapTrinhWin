@@ -300,3 +300,5 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Sua.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DanhGia.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DanhGia.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinNguoiDang.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinNguoiDang.baml

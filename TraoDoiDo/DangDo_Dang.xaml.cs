@@ -46,27 +46,33 @@ namespace TraoDoiDo
                 string id = txtbIdSanPham.Text; 
                 for (int i = 0; i < soLuongAnh; i++)
                 {
-                    string idAnhMinhHoa = (i+1).ToString();
-                    string tenFileAnh = "no_image.jpg"; 
-                    if (!string.IsNullOrEmpty(DanhSachAnhVaMoTa[0].txtbTenFileAnh.Text))
-                        tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
 
-                    string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
+                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text!= "no_image.jpg")
+                    {
+                        string idAnhMinhHoa = (i + 1).ToString();
+                        string tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
 
-                    string sqlStr = $@" INSERT INTO MoTaAnhSanPham (IdSanPham, IdAnhMinhHoa ,LinkAnhMinhHoa, MoTa)  
+
+                        string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
+
+                        string sqlStr = $@" INSERT INTO MoTaAnhSanPham (IdSanPham, IdAnhMinhHoa ,LinkAnhMinhHoa, MoTa)  
                                         VALUES ('{id}', '{idAnhMinhHoa}','{tenFileAnh}', N'{moTa}')";
 
-                    SqlCommand command = new SqlCommand(sqlStr, conn);
-                    int rowsAffected = command.ExecuteNonQuery();
 
-                    string noiLuAnh =  DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
-                    LuuAnhVaoThuMuc(noiLuAnh);
+                        SqlCommand command = new SqlCommand(sqlStr, conn);
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
+                        LuuAnhVaoThuMuc(noiLuAnh);
 
 
-                    if (rowsAffected <= 0) 
-                    {
-                        MessageBox.Show($"Không thể thêm ảnh số {soLuongAnh + 1} và mô tả của ảnh này vào cơ sở dữ liệu.");
+                        if (rowsAffected <= 0)
+                        {
+                            MessageBox.Show($"Không thể sửa ảnh số {soLuongAnh + 1} và mô tả của ảnh này trong cơ sở dữ liệu.");
+                        }
                     }
+                    else
+                        continue;
                 }
             }
             catch (Exception ex)
@@ -89,9 +95,13 @@ namespace TraoDoiDo
                 string id = txtbIdSanPham.Text;
                 string ten = txtbTen.Text;
 
-                string linkAnh = "no_image.jpg";
-                if (!string.IsNullOrEmpty(DanhSachAnhVaMoTa[0].txtbTenFileAnh.Text)) 
-                    linkAnh = DanhSachAnhVaMoTa[0].txtbTenFileAnh.Text;
+                string tenFileAnh = "no_image.jpg";
+                for (int i = 0; i < soLuongAnh; i++)
+                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
+                    {
+                        tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
+                        break;
+                    }
 
                 string loai = txtbLoai.Text;
                 string soLuong = cboSoLuong.Text;
@@ -108,7 +118,7 @@ namespace TraoDoiDo
 
                 // Câu lệnh SQL INSERT
                 string sqlStr = $@"INSERT INTO SanPham (IdSanPham, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai, NoiBan, XuatXu, NgayMua, PhanTramMoi, MoTaChung) 
-                   VALUES ('{id}', N'{ten}', '{linkAnh}', N'{loai}', '{soLuong}', '{soLuongDaBan}', '{giaGoc}', '{giaBan}', '{phiShip}', N'{trangThai}', N'{noiBan}', N'{xuatXu}', '{ngayMua}', '{phanTramMoi}', N'{moTaChung}')";
+                   VALUES ('{id}', N'{ten}', '{tenFileAnh}', N'{loai}', '{soLuong}', '{soLuongDaBan}', '{giaGoc}', '{giaBan}', '{phiShip}', N'{trangThai}', N'{noiBan}', N'{xuatXu}', '{ngayMua}', '{phanTramMoi}', N'{moTaChung}')";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);
                 int rowsAffected = command.ExecuteNonQuery();
@@ -135,7 +145,7 @@ namespace TraoDoiDo
         private void btnThemAnh_Click(object sender, RoutedEventArgs e)
         {
             DanhSachAnhVaMoTa[soLuongAnh] = new ThemAnhKhiDangUC(); 
-            wpnlChuaAnh.Children.Add(DanhSachAnhVaMoTa[soLuongAnh]);
+            wpnlChuaAnh.Children.Add(DanhSachAnhVaMoTa[soLuongAnh]); 
             soLuongAnh++;
         }
 

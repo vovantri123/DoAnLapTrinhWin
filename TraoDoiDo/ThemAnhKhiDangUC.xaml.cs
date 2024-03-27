@@ -90,7 +90,14 @@ namespace TraoDoiDo
 
         private void btnXoaAnh_Click(object sender, RoutedEventArgs e)
         {
-            imgAnhSP.Source = null;
+            string tenFileAnh = "no_image.jpg";
+            txtbTenFileAnh.Text = tenFileAnh;
+
+            string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnh("no_image.jpg");
+            txtbDuongDanAnh.Text = duongDanAnh;
+            imgAnhSP.Source = new BitmapImage(new Uri(duongDanAnh));
+
+            txtbMoTa.Text = "";
         }
     }
 }
