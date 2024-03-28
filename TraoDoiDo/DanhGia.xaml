@@ -44,6 +44,7 @@
 
         <Grid Grid.Row="1">
             <TextBlock
+                x:Name="txtbTenNguoiDang"
                 HorizontalAlignment="Center"
                 FontSize="35"
                 FontWeight="Bold"
@@ -61,7 +62,7 @@
             <StackPanel>
 
                 <materialDesign:RatingBar
-                    x:Name="BasicRatingBarWithPreview"
+                    x:Name="ratingBarSoSao"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     IsPreviewValueEnabled="True"
@@ -84,7 +85,7 @@
                     </materialDesign:RatingBar.ValueItemTemplate>
                 </materialDesign:RatingBar>
                 <TextBox
-                    x:Name="txtbDanhGiaNguoiBan"
+                    x:Name="txtbDanhGia"
                     Height="90"
                     Margin="20,10,20,0"
                     materialDesign:HintAssist.Hint="Đánh giá người bán"
@@ -94,13 +95,13 @@
                     TextWrapping="Wrap"
                     VerticalScrollBarVisibility="Auto" />
                 <Button
+                    x:Name="btnGuiDanhGia"
                     Width="100"
                     Height="60"
                     Margin="0,20,0,0"
-                    Click="Button_Click">
+                    Click="btnGuiDanhGia_Click">
 
                     <materialDesign:PackIcon
-                        x:Name="btnGuiDanhGia"
                         Width="50"
                         Height="40"
                         Kind="Send" />

@@ -141,7 +141,7 @@
                                                 DisplayMemberBinding="{Binding Ten}"
                                                 Header="Tên đồ" />
                                             <!--  Ảnh  -->
-                                            <GridViewColumn Width="100" Header="Ảnh">
+                                            <GridViewColumn Width="120" Header="Ảnh">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Image Source="{Binding LinkAnh}" />
@@ -172,10 +172,7 @@
                                                 Width="90"
                                                 DisplayMemberBinding="{Binding PhiShip}"
                                                 Header="Phí ship" />
-                                            <GridViewColumn
-                                                Width="105"
-                                                DisplayMemberBinding="{Binding TrangThai}"
-                                                Header="Trạng Thái" />
+                                           
                                             <!--  Cột "Sửa"  -->
                                             <GridViewColumn Width="90" Header="Sửa">
                                                 <GridViewColumn.CellTemplate>

@@ -45,7 +45,7 @@ namespace TraoDoiDo
             {
                 conn.Open();
                 string sqlStr = $@"
-                    SELECT IdSanPham, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai 
+                    SELECT IdSanPham, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip
                     FROM SanPham
                     WHERE Ten LIKE N'{txbTimKiem.Text.Trim()}%'
                 ";
@@ -67,10 +67,9 @@ namespace TraoDoiDo
                     string giaGoc = reader.GetString(6);
                     string giaBan = reader.GetString(7);
                     string phiShip = reader.GetString(8);
-                    string trangThai = reader.GetString(9);
 
 
-                    lsvQuanLySanPham.Items.Add(new { Id = id, Ten = name, LinkAnh = linkAnhBia, Loai = loai, SoLuong = soLuong, SoLuongDaBan = soLuongDaBan, GiaGoc = giaGoc, GiaBan = giaBan, PhiShip = phiShip, TrangThai = trangThai });
+                    lsvQuanLySanPham.Items.Add(new { Id = id, Ten = name, LinkAnh = linkAnhBia, Loai = loai, SoLuong = soLuong, SoLuongDaBan = soLuongDaBan, GiaGoc = giaGoc, GiaBan = giaBan, PhiShip = phiShip});
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);

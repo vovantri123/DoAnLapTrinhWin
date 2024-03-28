@@ -25,13 +25,13 @@
 
         <Grid Grid.Row="0">
             <TextBlock
+                Margin="0,7,0,5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="30"
-                Margin="0,7,0,5"
                 Text="Chọn lí do" />
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid x:Name="GridLyDo" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -104,7 +104,10 @@
         </Grid>
 
         <Grid Grid.Row="2" Width="300">
-            <Button Content="Xác nhận" />
+            <Button
+                x:Name="btnXacNhanTraHang"
+                Click="btnXacNhanTraHang_Click"
+                Content="Xác nhận trả hàng" />
         </Grid>
     </Grid>
 </UserControl>

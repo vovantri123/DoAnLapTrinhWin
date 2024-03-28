@@ -181,8 +181,7 @@ namespace TraoDoiDo
         }
         #endregion
 
-
-
+         
 
         #region TAB2 GIỎ HÀNG
 
@@ -378,10 +377,7 @@ namespace TraoDoiDo
 
         #endregion
 
-
-
-
-
+         
 
         #region TAB3 TRẠNG THÁI ĐƠN HÀNG
 
@@ -453,23 +449,207 @@ namespace TraoDoiDo
                 conn.Close();
             }
         }
-       
+        private void btnHuyDatHang_Click(object sender, RoutedEventArgs e)
+        {
+            // Lấy button được click
+            Button btn = sender as Button;
+
+            // Lấy ListViewItem chứa button
+            ListViewItem item = FindAncestor<ListViewItem>(btn);
+
+            if (item != null)
+            {
+                // Lấy dữ liệu của ListViewItem
+                dynamic dataItem = item.DataContext;
+
+                if (dataItem != null)
+                { 
+                    if (MessageBox.Show("Bạn có chắc là muốn hủy đặt hàng 0_o\nĐơn hàng mà bạn hủy sẽ được hoàn tiền", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        try
+                        {
+                            conn.Open();
+
+                            // Xóa dữ liệu từ bảng TrangThaiDongHang
+                            string sqlDelete = $"DELETE FROM TrangThaiDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}";
+                            SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
+                            cmdDelete.ExecuteNonQuery();
+
+
+                            // Xóa dữ liệu  khỏi bảng QuanLyDonHang
+                            sqlDelete = $"DELETE FROM QuanLyDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}";
+                            cmdDelete = new SqlCommand(sqlDelete, conn);
+                            cmdDelete.ExecuteNonQuery();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi xảy ra khi xóa: " + ex.Message);
+                        }
+                        finally
+                        {
+                            conn.Close();
+                            TrangThaiDonHang_Load(sender, e);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể xác định dòng chứa nút 'Xóa'.");
+            }
+        }
+
+
+        private void btnDaNhanHang_Click(object sender, RoutedEventArgs e)
+        {
+            // Lấy button được click
+            Button btn = sender as Button;
+
+            // Lấy ListViewItem chứa button
+            ListViewItem item = FindAncestor<ListViewItem>(btn);
+
+            if (item != null)
+            {
+                // Lấy dữ liệu của ListViewItem
+                dynamic dataItem = item.DataContext;
+
+                if (dataItem != null)
+                {
+                    if (MessageBox.Show("Bạn có chắc là đã nhận được hàng 0_o", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        try
+                        {
+                            conn.Open();
+                             
+                            string sqlStr = $@"
+                                UPDATE TrangThaiDonHang 
+                                SET TrangThai = N'Đã nhận'
+                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}
+                            ";
+                            SqlCommand command = new SqlCommand(sqlStr, conn);
+                            command.ExecuteNonQuery();
+
+                            sqlStr = $@" 
+                                UPDATE QuanLyDonHang 
+                                SET TrangThai = N'Đã giao'
+                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}
+                            ";
+                            command = new SqlCommand(sqlStr, conn);
+                            command.ExecuteNonQuery();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi xảy ra: " + ex.Message);
+                        }
+                        finally
+                        {
+                            conn.Close();
+                            TrangThaiDonHang_Load(sender, e);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể xác định dòng chứa nút .");
+            } 
+        }
+
         private void btnDanhGia_Click(object sender, RoutedEventArgs e)
         {
             DanhGia f = new DanhGia();
+            f.idNguoiMua = idNguoiMua;
+
+
+            // Lấy button được click
+            Button btn = sender as Button;
+
+            // Lấy ListViewItem chứa button
+            ListViewItem item = FindAncestor<ListViewItem>(btn);
+
+            if (item != null)
+            {
+                // Lấy dữ liệu của ListViewItem
+                dynamic dataItem = item.DataContext;
+
+                if (dataItem != null)
+                {
+                    
+                    try
+                    {
+                        conn.Open();
+
+                        string sqlStr = $@"
+                            SELECT IdNguoiDang, HoTenNguoiDung 
+                            FROM SanPham
+                            INNER JOIN NguoiDung ON SanPham.IdSanPham = NguoiDung.IdNguoiDung
+                            WHERE IdSanPham = {dataItem.IdSP}
+                        ";
+                        SqlCommand command = new SqlCommand(sqlStr, conn);
+                        SqlDataReader reader = command.ExecuteReader();
+                        while(reader.Read())
+                        {
+                            f.idNguoiDang = reader.GetInt32(0);
+                            f.txtbTenNguoiDang.Text = reader.GetString(1);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi xảy ra: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                        TrangThaiDonHang_Load(sender, e);
+                    } 
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể xác định dòng chứa nút .");
+            }
+
             f.ShowDialog();
         }
-        private void btnHuyDatHang_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Bạn có chắc là muốn hủy đặt hàng 0_o\nĐơn hàng mà bạn hủy sẽ được hoàn tiền", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-        }
-        private void btnDaNhanHang_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Bạn có chắc là đã nhận được hàng 0_o", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-        }
+
+
+
         #endregion
 
-        
+        private void btnTraHang_Click(object sender, RoutedEventArgs e)
+        {
+            ucLyDoTraHang.idNguoiMua = idNguoiMua;
 
+            // Lấy button được click
+            Button btn = sender as Button;
+
+            // Lấy ListViewItem chứa button
+            ListViewItem item = FindAncestor<ListViewItem>(btn);
+
+            if (item != null)
+            {
+                // Lấy dữ liệu của ListViewItem
+                dynamic dataItem = item.DataContext;
+
+                if (dataItem != null)
+                {
+                    ucLyDoTraHang.idSP = dataItem.IdSP;
+                    ucLyDoTraHang.DrawerClosed += (btnSender, args) =>
+                    {
+                        // Đảm bảo rằng sự kiện DrawerClosed được kích hoạt thành công
+                        MessageBox.Show("DrawerClosed event triggered.");
+
+                        LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
+                        MessageBox.Show("Đã load lại lsvChoGiaoHang");
+                    };
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể xác định dòng chứa nút 'Xóa'.");
+            }
+        }
     }
 }

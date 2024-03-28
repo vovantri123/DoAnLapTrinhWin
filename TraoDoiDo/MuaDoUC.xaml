@@ -103,7 +103,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Giỏ hàng" MouseLeftButtonDown ="LsvGioHang_Load">
+            <TabItem Header="Giỏ hàng" MouseLeftButtonDown="LsvGioHang_Load">
 
                 <Grid Margin="16">
                     <Grid.ColumnDefinitions>
@@ -181,7 +181,7 @@
                                         <GridViewColumn Width="90" Header="Xóa">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Content="Xóa" Click="btnXoaKhoiGioHang_Click" />
+                                                    <Button Click="btnXoaKhoiGioHang_Click" Content="Xóa" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -301,7 +301,7 @@
                                 HorizontalAlignment="Center"
                                 Background="White"
                                 Orientation="Horizontal">
-                                <local:LyDoTraHangUC HorizontalAlignment="Center" />
+                                <local:LyDoTraHangUC x:Name="ucLyDoTraHang" HorizontalAlignment="Center" />
 
                             </StackPanel>
                         </materialDesign:DrawerHost.BottomDrawerContent>
@@ -513,9 +513,10 @@
                                                                 Grid.Column="1"
                                                                 Width="100"
                                                                 Margin="4"
+                                                                x:Name="btnTraHang" 
                                                                 Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                                                                 CommandParameter="{x:Static Dock.Bottom}"
-                                                                Content="Trả hàng" />
+                                                                Content="Trả hàng" Click="btnTraHang_Click" />
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
