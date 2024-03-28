@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Channels;
-
+using TraoDoiDo.ViewModels;
 namespace TraoDoiDo
 {
     /// <summary>

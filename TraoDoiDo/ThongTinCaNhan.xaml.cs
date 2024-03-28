@@ -10,23 +10,38 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
     /// <summary>
     /// Interaction logic for ThongTinCaNhan.xaml
     /// </summary>
-    public partial class ThongTinCaNhan : Page
+    public partial class ThongTinCaNhan : Window
     {
+        KhachHang ngDung = new KhachHang();
         public ThongTinCaNhan()
         {
             InitializeComponent();
+            Loaded += FThongTinCaNhan_Loaded;
         }
-        private void ThongTinCaNhanUC_Loaded(object sender, RoutedEventArgs e)
+        public ThongTinCaNhan(KhachHang nguoiDung)
         {
+            InitializeComponent();
+            ngDung = nguoiDung;
+        }
 
+        private void FThongTinCaNhan_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtHoTen.Text = ngDung.HoTen;
+            txtSdt.Text = ngDung.Sdt;
+            txtCmnd.Text = ngDung.Cmnd;
+            txtDiaChi.Text = ngDung.DiaChi;
+            txtEmail.Text = ngDung.Email;
+            txtId.Text = ngDung.Id;
+            txtTenDangNhap.Text = ngDung.TaiKhoan.TenDangNhap;
+            txtMatKhau.Password = ngDung.TaiKhoan.MatKhau;
         }
     }
 }

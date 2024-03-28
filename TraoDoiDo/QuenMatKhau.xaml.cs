@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.Database;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -19,9 +21,40 @@ namespace TraoDoiDo
     /// </summary>
     public partial class QuenMatKhau : Window
     {
+        KiemTraDinhDang kiemTra = new KiemTraDinhDang();
         public QuenMatKhau()
         {
             InitializeComponent();
+        }
+
+        private void btnTimKiem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                KhacHangDao khacHangDao = new KhacHangDao();
+                string mk = "";
+                if (kiemTra.kiemTraEmail(txtThongTinTaiKhoan.Text))
+                {
+                    mk = khacHangDao.TimKiemBangEmail(txtThongTinTaiKhoan.Text);
+                }
+                if (kiemTra.kiemTraSoDienThoai(txtThongTinTaiKhoan.Text))
+                {
+                    mk = khacHangDao.TimKiemBangSdt(txtThongTinTaiKhoan.Text);
+                }
+                if (!string.IsNullOrWhiteSpace(mk))
+                    MessageBox.Show($"Mật khẩu của khách hàng là: {mk}");
+                else
+                    MessageBox.Show($"Không tìm thấy email");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

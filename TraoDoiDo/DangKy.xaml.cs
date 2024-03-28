@@ -22,22 +22,50 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DangKy : Window
     {
-        ThongTinKhachHangViewModel thongTinKH = new ThongTinKhachHangViewModel();
-        public DangKy(ThongTinKhachHangViewModel thongTin)
+        public DangKy()
         {
             InitializeComponent();
-            thongTin = new ThongTinKhachHangViewModel();
-            thongTinKH = thongTin;
-            this.DataContext = thongTin;
+            this.DataContext = this;
         }
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
-            TaiKhoan tk = new TaiKhoan();
+
             TaiKhoanDao tkDao = new TaiKhoanDao();
-            KhachHang khachHang = new KhachHang(tkDao.TaoID(tk),thongTinKH.HoTen,thongTinKH.GioiTinh,thongTinKH.NgaySinh,thongTinKH.CMND,thongTinKH.Email,thongTinKH.SDT,thongTinKH.DiaChi,thongTinKH.Anh);
+            TaiKhoan tk = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, null);
+            KhachHang khachHang = new KhachHang(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageDaiDien.Tag.ToString(), tk, "");
+            ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(khachHang);
             KhacHangDao khachHangDao = new KhacHangDao();
-            khachHangDao.Them(khachHang);
+            bool check = ttkh.kiemTraCacTextBox();
+            if (check)
+            {
+                bool addKhachHang = false;
+                bool addTaiKhoan = false;
+                try
+                {
+                    khachHangDao.Them(khachHang);
+                    addKhachHang = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể thêm khách hàng: " + ex.Message);
+                }
+                try
+                {
+                    tkDao.Them(tk);
+                    addTaiKhoan = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể thêm tài khoản: " + ex.Message);
+                }
+                if (addKhachHang && addTaiKhoan)
+                {
+                    MessageBox.Show("Đăng kí thành công");
+                }
+
+            }
+
         }
     }
 }

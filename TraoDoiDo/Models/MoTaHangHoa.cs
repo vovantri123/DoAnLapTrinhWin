@@ -10,8 +10,8 @@ namespace TraoDoiDo.Models
     {
         private string id = "";
         private string ten = "";
-        private List <string> anh = new List<string>();
-        private List <string> moTa = new List<string>();
+        private List<string> anh = new List<string>();
+        private List<string> moTa = new List<string>();
 
         public string Id { get => id; set => id = value; }
         public string Ten { get => ten; set => ten = value; }

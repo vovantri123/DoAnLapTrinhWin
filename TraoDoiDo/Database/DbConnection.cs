@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TraoDoiDo.ViewModels;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo.Database
 {
@@ -39,23 +40,23 @@ namespace TraoDoiDo.Database
                 conn.Close();
             }
         }
-        public string LayMotDoiTuong(string s,string data)
+
+        public string LayMotDoiTuong(string s, string data)
         {
-            XuLyTienIch xly = new XuLyTienIch();
-            List<object> list = LayDanhSachDoiTuong(s,data);
+            List<string> list = LayDanhSachMotDoiTuong(s, data);
             if (list.Count == 0)
             {
                 return null;
             }
             else
             {
-                return xly.TaoIdMoi(list);
+                return list[0];
             }
         }
 
-        public List<object> LayDanhSachDoiTuong(string s,string data)
+        public List<string> LayDanhSachMotDoiTuong(string s, string data)
         {
-            List<object> list = new List<object>();
+            List<string> list = new List<string>();
             try
             {
                 conn.Open();
@@ -63,10 +64,39 @@ namespace TraoDoiDo.Database
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    list.Add(reader[$"{data}"]);
+                    list.Add(reader[data].ToString());
                 }
                 cmd.Dispose();
                 reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
+        public List<T> LayDanhSach<T>(string s)
+        {
+            List<T> list = new List<T>();
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(s, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        var value = (T)reader.GetValue(i);
+                        list.Add(value);
+                    }
+
+                }
             }
             catch (Exception ex)
             {

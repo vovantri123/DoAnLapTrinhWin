@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Name="ThongTinCaNhanUC1"
+    x:Name="UCThongTinCaNhan"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
     d:DesignHeight="700"
@@ -18,7 +18,7 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="UCThongTinCaNhan_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="450" />
@@ -48,105 +48,113 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <TextBox
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="5,25,5,25"
-                        materialDesign:HintAssist.Hint="ID người dùng"
-                        IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding ID}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
+                x:Name="txtId"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="5,25,5,25"
+                materialDesign:HintAssist.Hint="ID người dùng"
+                IsReadOnly="True"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding ID}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
                     <TextBox
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Margin="80,25,-70,25"
-                        materialDesign:HintAssist.Hint="Số điện thoại"
-                        AcceptsReturn="False"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding SDT}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
+                x:Name="txtSdt"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="80,25,-70,25"
+                materialDesign:HintAssist.Hint="Số điện thoại"
+                AcceptsReturn="False"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding SDT}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
                     <TextBox
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="5,25,5,25"
-                        materialDesign:HintAssist.Hint="Họ và tên"
-                        AcceptsReturn="False"
-                        MaxLength="100"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding Ten}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
+                x:Name="txtHoTen"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="5,25,5,25"
+                materialDesign:HintAssist.Hint="Họ và tên"
+                AcceptsReturn="False"
+                MaxLength="100"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Path=Text,ElementName=txtHoTen}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
                     <TextBox
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Margin="5,25,5,25"
-                        materialDesign:HintAssist.Hint="CMND/CCCD"
-                        AcceptsReturn="False"
-                        MaxLength="12"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding Cmnd}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
+                x:Name="txtCmnd"
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="5,25,5,25"
+                materialDesign:HintAssist.Hint="CMND/CCCD"
+                AcceptsReturn="False"
+                MaxLength="12"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Cmnd}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
                     <ComboBox
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        Height="66"
-                        Margin="5,0,5,0"
-                        materialDesign:HintAssist.Hint="Giới tính"
-                        SelectedValue="{Binding GioiTinh}"
-                        SelectedValuePath="Content"
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                        Text="{Binding GioiTinh}">
+                x:Name="cbGioiTinh"
+                Grid.Row="3"
+                Grid.Column="0"
+                Height="66"
+                Margin="5,0,5,0"
+                materialDesign:HintAssist.Hint="Giới tính"
+                SelectedValue="{Binding GioiTinh}"
+                SelectedValuePath="Content"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                Text="{Binding GioiTinh}">
                         <ComboBoxItem Content="Nam" />
                         <ComboBoxItem Content="Nữ" />
                         <ComboBoxItem Content="Khác" />
                     </ComboBox>
                     <DatePicker
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Height="66"
-                        Margin="80,0,-70,0"
-                        materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
-                        materialDesign:HintAssist.Hint="Ngày sinh"
-                        SelectedDate="{Binding NgaySinh, StringFormat='dd/MM/yyyy'}"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                        Text="Format" />
+                x:Name="dtpNgaySinh"
+                Grid.Row="1"
+                Grid.Column="1"
+                Height="66"
+                Margin="80,0,-70,0"
+                materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
+                materialDesign:HintAssist.Hint="Ngày sinh"
+                SelectedDate="{Binding NgaySinh, StringFormat='dd/MM/yyyy'}"
+                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                Text="Format" />
                     <TextBox
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Margin="80,25,-70,25"
-                        materialDesign:HintAssist.Hint="Địa chỉ"
-                        AcceptsReturn="False"
-                        MaxLength="255"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding DiaChi}"
-                        TextChanged="TextBox_TextChanged"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
+                x:Name="txtDiaChi"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="80,25,-70,25"
+                materialDesign:HintAssist.Hint="Địa chỉ"
+                AcceptsReturn="False"
+                MaxLength="255"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding DiaChi}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
                     <TextBox
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        Margin="80,25,-70,25"
-                        materialDesign:HintAssist.Hint="Email"
-                        AcceptsReturn="False"
-                        MaxLength="254"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding Email}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
+                x:Name="txtEmail"
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="80,25,-70,25"
+                materialDesign:HintAssist.Hint="Email"
+                AcceptsReturn="False"
+                MaxLength="254"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Email}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Button
-                        Width="320"
-                        Margin="0,35,0,0"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                        materialDesign:ButtonProgressAssist.Value="-1"
-                        Content="Cập nhật thông tin"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                x:Name="btnCapNhat"
+                Width="320"
+                Margin="0,35,0,0"
+                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                materialDesign:ButtonProgressAssist.Value="-1"
+                Content="Cập nhật thông tin"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}" Click="btnCapNhat_Click" />
                 </Grid>
             </Grid>
 
@@ -156,38 +164,39 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Border
-                    Grid.Row="0"
-                    Margin="10,10,0,10"
-                    Background="WhiteSmoke"
-                    BorderBrush="BlueViolet"
-                    BorderThickness="1"
-                    CornerRadius="20">
-                    <Image Source="HinhCuaToi/Avatar1.png">
+            Grid.Row="0"
+            Margin="10,10,0,10"
+            Background="WhiteSmoke"
+            BorderBrush="BlueViolet"
+            BorderThickness="1"
+            CornerRadius="20">
+                    <Image x:Name="imageHinhDaiDien">
                         <Image.OpacityMask>
                             <VisualBrush Stretch="Uniform">
                                 <VisualBrush.Visual>
                                     <Ellipse
-                                        Width="30"
-                                        Height="30"
-                                        Margin="10,10,10,0"
-                                        Fill="White" />
+                                Width="30"
+                                Height="30"
+                                Margin="10,10,10,0"
+                                Fill="White" />
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Image.OpacityMask>
                     </Image>
                 </Border>
                 <Button
-                    Grid.Row="1"
-                    Width="180"
-                    Height="40"
-                    Margin="0,10,0,0"
-                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                    materialDesign:ButtonProgressAssist.Value="-1"
-                    Content="Chọn ảnh"
-                    FontSize="25"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+            x:Name="btnChonAnh"
+            Grid.Row="1"
+            Width="180"
+            Height="40"
+            Margin="0,10,0,0"
+            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+            materialDesign:ButtonProgressAssist.Value="-1"
+            Content="Chọn ảnh"
+            FontSize="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}" Click="btnChonAnh_Click" />
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Margin="0,15,0,0">
@@ -196,15 +205,15 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid
-                Grid.Row="0"
-                Margin="0,25,0,0"
-                Background="#673ab7">
+        Grid.Row="0"
+        Margin="0,25,0,0"
+        Background="#673ab7">
                 <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="30"
-                    Foreground="White"
-                    Text="Thông tin tài khoản" />
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="30"
+            Foreground="White"
+            Text="Thông tin tài khoản" />
             </Grid>
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -213,35 +222,39 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBox
-                    Grid.Column="0"
-                    Width="320"
-                    Height="50"
-                    Margin="5,25,5,25"
-                    materialDesign:HintAssist.Hint="Tên đăng nhập"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding ID}"
-                    TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto" />
-                <TextBox
-                    Grid.Column="1"
-                    Width="320"
-                    Height="50"
-                    Margin="5,25,5,25"
-                    materialDesign:HintAssist.Hint="Mật khẩu"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding ID}"
-                    TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto" />
+            x:Name="txtTenDangNhap"
+            Grid.Column="0"
+            Width="320"
+            Height="50"
+            Margin="5,25,5,25"
+            materialDesign:HintAssist.Hint="Tên đăng nhập"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            Text="{Binding ID}"
+            TextWrapping="Wrap"
+            VerticalScrollBarVisibility="Auto" />
+                <PasswordBox
+            x:Name="txtMatKhau"
+            Grid.Column="1"
+            Width="320"
+            Height="50"
+            Margin="5,25,5,25"
+            materialDesign:HintAssist.Foreground="#673ab7"
+            materialDesign:HintAssist.Hint="Mật khẩu"
+            materialDesign:TextFieldAssist.HasClearButton="True"
+            materialDesign:TextFieldAssist.UnderlineBrush="#673ab7"
+            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+             />
                 <Button
-                    Grid.Column="2"
-                    Width="150"
-                    Margin="2,0"
-                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                    materialDesign:ButtonProgressAssist.Value="-1"
-                    Content="Đổi mật khẩu"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+            x:Name="btnDoiMatKhau"
+            Grid.Column="2"
+            Width="150"
+            Margin="2,0"
+            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+            materialDesign:ButtonProgressAssist.Value="-1"
+            Content="Đổi mật khẩu"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}" Click="btnDoiMatKhau_Click" />
             </Grid>
         </Grid>
     </Grid>

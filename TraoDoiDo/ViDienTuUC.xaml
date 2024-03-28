@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl x:Name="UcViDienTU"
     x:Class="TraoDoiDo.ViDienTuUC"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -18,7 +18,7 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="UcViDienTU_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -63,6 +63,7 @@
                                     FontSize="25"
                                     Text="SỐ DƯ" />
                                 <TextBlock
+                                    x:Name="lblSoDu"
                                     Grid.Column="1"
                                     Margin="0"
                                     HorizontalAlignment="Center"
@@ -151,32 +152,32 @@
                                     </Style>
                                 </GridView.ColumnHeaderContainerStyle>
                                 <GridViewColumn
-                                    Width="Auto" 
+                                    Width="120" 
                                     DisplayMemberBinding="{Binding Id}"
-                                    Header="STT" />
+                                    Header="Số Id giao dịch" />
                                 <GridViewColumn
-                                    Width="Auto"
-                                    DisplayMemberBinding="{Binding Name}"
-                                    Header="Loại giao dịch (nạp hay rút)" />
-                                 
-                                <GridViewColumn
-                                    Width="Auto"
+                                    Width="200"
                                     DisplayMemberBinding="{Binding Type}"
+                                    Header="Loại giao dịch" />
+
+                                <GridViewColumn
+                                    Width="170"
+                                    DisplayMemberBinding="{Binding Money}"
                                     Header="Số tiền" />
-                                
+
                                 <GridViewColumn
-                                    Width="Auto"
-                                    DisplayMemberBinding="{Binding Quantity}"
-                                    Header="Từ nguồn tiền (ví điện tử hay ngân hàng)" />
+                                    Width="110"
+                                    DisplayMemberBinding="{Binding Initial}"
+                                    Header="Từ nguồn tiền" />
                                 <GridViewColumn
-                                    Width="Auto"
-                                    DisplayMemberBinding="{Binding DaBan}"
-                                    Header="Đến nguồn tiền (ví điện tử hay ngân hàng)" />
+                                    Width="110"
+                                    DisplayMemberBinding="{Binding End}"
+                                    Header="Đến nguồn tiền" />
                                 <GridViewColumn
-                                    Width="Auto"
-                                    DisplayMemberBinding="{Binding Price}"
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Date}"
                                     Header="Ngày giao dịch" />
-                               
+
                             </GridView>
                         </ListView.View>
                     </ListView>

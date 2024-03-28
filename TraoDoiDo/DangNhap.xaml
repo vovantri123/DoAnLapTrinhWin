@@ -21,7 +21,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition /> 
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid
@@ -73,6 +73,7 @@
                                 VerticalAlignment="Center"
                                 Kind="Account" />
                             <TextBox
+                                x:Name="txtTenDangNhap"
                                 Grid.Column="1"
                                 Width="270"
                                 Height="47"
@@ -97,6 +98,7 @@
                                 VerticalAlignment="Center"
                                 Kind="Key" />
                             <PasswordBox
+                                x:Name="txtMatKhau"
                                 Grid.Column="1"
                                 Width="270"
                                 Height="47"

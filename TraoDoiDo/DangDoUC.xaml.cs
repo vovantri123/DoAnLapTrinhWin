@@ -19,6 +19,7 @@ using System.ComponentModel.Design;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Reflection;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -69,7 +70,7 @@ namespace TraoDoiDo
                     string phiShip = reader.GetString(8);
 
 
-                    lsvQuanLySanPham.Items.Add(new { Id = id, Ten = name, LinkAnh = linkAnhBia, Loai = loai, SoLuong = soLuong, SoLuongDaBan = soLuongDaBan, GiaGoc = giaGoc, GiaBan = giaBan, PhiShip = phiShip});
+                    lsvQuanLySanPham.Items.Add(new { Id = id, Ten = name, LinkAnh = linkAnhBia, Loai = loai, SoLuong = soLuong, SoLuongDaBan = soLuongDaBan, GiaGoc = giaGoc, GiaBan = giaBan, PhiShip = phiShip });
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
@@ -103,7 +104,7 @@ namespace TraoDoiDo
                 while (reader.Read())
                 {
                     string id = reader.GetString(0);
-                    string name = reader.GetString(1); 
+                    string name = reader.GetString(1);
 
                     string tenFileAnh = reader.GetString(2);
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
@@ -116,7 +117,7 @@ namespace TraoDoiDo
                     string phiShip = reader.GetString(8);
                     string trangThai = reader.GetString(9);
 
-                    
+
                     lsvQuanLySanPham.Items.Add(new { Id = id, Ten = name, LinkAnh = linkAnhBia, Loai = loai, SoLuong = soLuong, SoLuongDaBan = soLuongDaBan, GiaGoc = giaGoc, GiaBan = giaBan, PhiShip = phiShip, TrangThai = trangThai });
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
@@ -196,7 +197,7 @@ namespace TraoDoiDo
             var parentT = parent as T;
             return parentT ?? FindAncestor<T>(parent);
         }
- 
+
 
         private int timIdMaxTrongBangSanPham()
         {
@@ -230,10 +231,12 @@ namespace TraoDoiDo
 
         private void btnThemSanPhamMoi_Click(object sender, RoutedEventArgs e)
         {
-            DangDo_Dang f = new DangDo_Dang(); 
+            DangDo_Dang f = new DangDo_Dang();
 
-             
-            f.txtbIdSanPham.Text = (timIdMaxTrongBangSanPham()+1).ToString(); //Truy vấn để lấy ra id max :v
+
+            f.idNguoiDang = idNguoiDang;
+
+            f.txtbIdSanPham.Text = (timIdMaxTrongBangSanPham() + 1).ToString(); //Truy vấn để lấy ra id max :v
 
             // DƯỚI ĐÂY LÀ CÁCH Load lại lsvQuanLySanPham sau khi (thêm sản phẩm, và đóng cái DangDo_Dang)
             f.Closed += (s, ev) =>
@@ -271,9 +274,9 @@ namespace TraoDoiDo
 
                         //Đổ thông tin lên
                         string sqlStr = $@"SELECT * FROM SanPham WHERE IdSanPham = '{dataItem.Id}'";
-                         
+
                         SqlCommand command = new SqlCommand(sqlStr, conn);
-                        SqlDataReader reader = command.ExecuteReader(); 
+                        SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read()) //While true cho dui chứ nó đọc có 1 dòng là nghỉ à (tại dữ liệu với sqlStr là duy nhất 1 dòng thôi)
                         {
                             //Cách 2 truyền tên cột thay vì index
@@ -288,12 +291,12 @@ namespace TraoDoiDo
                             f.txtbXuatXu.Text = reader.GetString(reader.GetOrdinal("XuatXu"));
                             f.txtbNgayMua.Text = reader.GetString(reader.GetOrdinal("NgayMua"));
                             f.txtbPhanTramMoi.Text = reader.GetString(reader.GetOrdinal("PhanTramMoi"));
-                            f.txtbMoTaChung.Text = reader.GetString(reader.GetOrdinal("MoTaChung")); 
-                             
+                            f.txtbMoTaChung.Text = reader.GetString(reader.GetOrdinal("MoTaChung"));
+
                         }
                         reader.Close(); // AI bảo là nếu chỉ dùng reader 1 lần thôi thì không cần đóng
                                         // DƯỚI ĐÂY LÀ CÁCH Load lại lsvQuanLySanPham sau  khi (sửa sản phẩm và đóng cái DangDo_Sua)
-                        
+
 
                         //Đổ ảnh và mô tả lên
                         sqlStr = $@"
@@ -303,7 +306,7 @@ namespace TraoDoiDo
                             WHERE SanPham.IdSanPham = '{dataItem.Id}'
                         ";
                         command = new SqlCommand(sqlStr, conn);
-                        reader = command.ExecuteReader();   
+                        reader = command.ExecuteReader();
                         while (reader.Read())
                         {
                             f.DanhSachAnhVaMoTa[f.soLuongAnh] = new ThemAnhKhiDangUC();
@@ -314,13 +317,13 @@ namespace TraoDoiDo
                             string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
                             f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbDuongDanAnh.Text = duongDanAnh;
                             f.DanhSachAnhVaMoTa[f.soLuongAnh].imgAnhSP.Source = new BitmapImage(new Uri(duongDanAnh));
-                            
+
                             string moTa = reader.GetString(1);
-                            f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbMoTa.Text = moTa; 
+                            f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbMoTa.Text = moTa;
 
                             f.wpnlChuaAnh.Children.Add(f.DanhSachAnhVaMoTa[f.soLuongAnh]);
                             f.soLuongAnh++;
-                        } 
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -334,10 +337,10 @@ namespace TraoDoiDo
                             HienThi_QuanLySanPham();
                         };
                         f.Show();
-                    } 
+                    }
                     //Đổ dữ liệu qua form sửa_END
 
-                    
+
                 }
             }
         }
@@ -348,7 +351,7 @@ namespace TraoDoiDo
 
         #region TAB2 QUẢN LÝ ĐƠN HÀNG
         private void QuanLyDonHang_Load(object sender, RoutedEventArgs e)
-        { 
+        {
             LoadLsvTrongTabQuanLyDonHang("lsvChoDongGoi", "Chờ đóng gói");
             LoadLsvTrongTabQuanLyDonHang("lsvDangGiao", "Đang giao");
             LoadLsvTrongTabQuanLyDonHang("lsvDaGiao", "Đã giao");
@@ -381,7 +384,7 @@ namespace TraoDoiDo
                     lsvDonHangBiHoanTra.Items.Clear();
 
                 while (reader.Read())
-                { 
+                {
                     string idSP = reader.GetString(0);
                     string tenSP = reader.GetString(1);
                     string tenFileAnh = reader.GetString(2);
@@ -394,23 +397,23 @@ namespace TraoDoiDo
 
                     string phiShip = reader.GetString(5);
                     string tongTien = reader.GetString(6);
-                    string idNguoiMua = reader.GetInt32(8).ToString(); 
-                    
+                    string idNguoiMua = reader.GetInt32(8).ToString();
+
 
 
 
                     if (tenLsv == "lsvChoDongGoi")
-                        lsvChoDongGoi.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip, TongTien = tongTien});
+                        lsvChoDongGoi.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip, TongTien = tongTien });
                     else if (tenLsv == "lsvDangGiao")
                         lsvDangGiao.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip, TongTien = tongTien });
                     else if (tenLsv == "lsvDaGiao")
-                        lsvDaGiao.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip, TongTien = tongTien});
+                        lsvDaGiao.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip, TongTien = tongTien });
                     else if (tenLsv == "lsvDonHangBiHoanTra")
                     {
                         string lyDoTraHang = reader.GetString(7);
-                        lsvDonHangBiHoanTra.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip,  TongTien = tongTien, LyDoTraHang = lyDoTraHang });
-                    }    
-                        
+                        lsvDonHangBiHoanTra.Items.Add(new { IdSP = idSP, IdNguoiMua = idNguoiMua, TenSP = tenSP, LinkAnhBia = linkAnhBia, SoLuongMua = soLuongMua, Gia = giaBan, PhiShip = phiShip, TongTien = tongTien, LyDoTraHang = lyDoTraHang });
+                    }
+
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
@@ -426,7 +429,7 @@ namespace TraoDoiDo
             }
         }
 
-        
+
         private void btnDiaChiGuiHang_Click(object sender, RoutedEventArgs e)
         {
             // Lấy button được click
@@ -442,14 +445,14 @@ namespace TraoDoiDo
 
                 if (dataItem != null)
                 {
-                    DiaChi f = new DiaChi(Convert.ToInt32(dataItem.IdNguoiMua)); 
+                    DiaChi f = new DiaChi(Convert.ToInt32(dataItem.IdNguoiMua));
 
-                     
+
                     try
                     {
                         conn.Open();
 
-                         
+
                         string sqlStr = $@" 
                             SELECT distinct HoTenNguoiDung, SdtNguoiDung, EmailNguoiDung, DiaChiNguoiDung
                             FROM TrangThaiDonHang
@@ -459,15 +462,15 @@ namespace TraoDoiDo
 
                         SqlCommand command = new SqlCommand(sqlStr, conn);
                         SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read()) 
-                        {  
+                        while (reader.Read())
+                        {
                             f.txtbTieuDe.Text = "Địa chỉ khách hàng";
                             f.txtHoTen.Text = reader.GetString(0);
                             f.txtSoDienThoai.Text = reader.GetString(1);
                             f.txtEmail.Text = reader.GetString(2);
                             f.txtDiaChi.Text = reader.GetString(3);
                         }
-                       
+
                     }
                     catch (Exception ex)
                     {
@@ -484,20 +487,20 @@ namespace TraoDoiDo
                         f.txtEmail.IsReadOnly = true;
 
                         f.btnXacNhanThanhToan.Visibility = Visibility.Collapsed;
-                        
-                        
+
+
 
                         f.Show();
-                    } 
+                    }
 
 
                 }
             }
-           
-            
+
+
         }
         private void btnGuiHang_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             // Lấy button được click
             Button btn = sender as Button;
 
@@ -520,15 +523,15 @@ namespace TraoDoiDo
                     try
                     {
                         conn.Open();
-                        
 
-                        
+
+
                         string sqlStr = $@"UPDATE QuanLyDonHang 
                         SET TrangThai = N'Đang giao'   
                         WHERE IdNguoiMua = {idNguoiMua} AND IdSanPham = {idSanPham}";
 
 
-                        SqlCommand command = new SqlCommand(sqlStr, conn); 
+                        SqlCommand command = new SqlCommand(sqlStr, conn);
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
@@ -542,13 +545,13 @@ namespace TraoDoiDo
                     finally
                     {
                         conn.Close();
-                        QuanLyDonHang_Load(sender,e);
+                        QuanLyDonHang_Load(sender, e);
                     }
 
 
                 }
             }
-            
+
         }
 
 

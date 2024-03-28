@@ -52,6 +52,7 @@
                         Text="Tìm tài khoản của bạn"
                         TextAlignment="Center" />
                     <TextBox
+                        x:Name="txtThongTinTaiKhoan"
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="20,0,20,20"
@@ -65,13 +66,15 @@
                         VerticalScrollBarVisibility="Auto" />
                     <Grid Grid.Row="2">
                         <Button
+                            x:Name="btnTimKiem"
                             Margin="350,0,20,10"
                             materialDesign:ButtonAssist.CornerRadius="10"
-                            Content="Tìm kiếm" />
+                            Content="Tìm kiếm" Click="btnTimKiem_Click" />
                         <Button
+                            x:Name="btnHuy"
                             Margin="230,0,135,10"
                             materialDesign:ButtonAssist.CornerRadius="10"
-                            Content="Hủy" />
+                            Content="Hủy" Click="btnHuy_Click" />
                     </Grid>
 
                 </Grid>

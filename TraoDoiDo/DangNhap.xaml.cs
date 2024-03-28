@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.Database;
+using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
@@ -20,7 +22,8 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DangNhap : Window
     {
-        ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel();
+        private TaiKhoanDao tkDao = new TaiKhoanDao();
+        private KhacHangDao khDao = new KhacHangDao();
         public DangNhap()
         {
             InitializeComponent();
@@ -28,13 +31,27 @@ namespace TraoDoiDo
 
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            NguoiDung f = new NguoiDung();
-            f.Show();
+            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password.ToString(), null);
+            TaiKhoan taiKhoanMoi = tkDao.TimKiemBangTen(taiKhoan.TenDangNhap);
+            List<string> listNguoiDung = khDao.TimKiemBangTenDangNhap(taiKhoan.TenDangNhap);
+            KhachHang kh = new KhachHang(taiKhoanMoi.IDNguoiDung, listNguoiDung[0], listNguoiDung[2].ToString(), listNguoiDung[4].ToString(), listNguoiDung[1].ToString(), listNguoiDung[6].ToString(), listNguoiDung[3].ToString(), listNguoiDung[5].ToString(), listNguoiDung[7].ToString(), taiKhoanMoi, "");
+            if (taiKhoanMoi == null || !string.Equals(taiKhoan.MatKhau, taiKhoanMoi.MatKhau))
+            {
+                MessageBox.Show("Tài khoản sai! Vui lòng đăng nhập lại");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Đăng nhập thành công");
+                this.Hide();
+                NguoiDung f = new NguoiDung(kh);
+                f.Show();
+            }
         }
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
-            DangKy dangKy = new DangKy(ttkh);
+            DangKy dangKy = new DangKy();
             dangKy.Show();
         }
 

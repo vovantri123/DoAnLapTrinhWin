@@ -94,6 +94,7 @@
       <DependentUpon>DanhGia.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\DbConnection.cs" />
+    <Compile Include="Database\GiaoDichDao.cs" />
     <Compile Include="Database\KhachHangDao.cs" />
     <Compile Include="Database\TaiKhoanDao.cs" />
     <Compile Include="Database\ThuocTinhDao.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="LyDoTraHangUC.xaml.cs">
       <DependentUpon>LyDoTraHangUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\GiaoDich.cs" />
     <Compile Include="Models\HangHoa.cs" />
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\MoTaHangHoa.cs" />
@@ -131,6 +133,9 @@
     <Compile Include="Thoat.xaml.cs">
       <DependentUpon>Thoat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThongTinCaNhan.xaml.cs">
+      <DependentUpon>ThongTinCaNhan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThongTinCaNhanUC.xaml.cs">
       <DependentUpon>ThongTinCaNhanUC.xaml</DependentUpon>
     </Compile>
@@ -154,7 +159,7 @@
     <Compile Include="ViewModels\ThongTinKhachHangViewModel.cs" />
     <Compile Include="ViewModels\ThuocTinhViewModel.cs" />
     <Compile Include="ViewModels\XuLyTienIch.cs" />
-    <Compile Include="XuLyAnh.cs" />
+    <Compile Include="ViewModels\XuLyAnh.cs" />
     <Page Include="DangDoUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Thoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThongTinCaNhan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

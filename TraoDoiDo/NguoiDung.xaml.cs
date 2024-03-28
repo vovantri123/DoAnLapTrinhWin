@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using MaterialDesignThemes.Wpf;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
@@ -21,11 +22,17 @@ namespace TraoDoiDo
     /// </summary>
     public partial class NguoiDung : Window
     {
-
+        private KhachHang kh;
         public NguoiDung()
         {
             InitializeComponent();
             TrangChu_Click(Owner, new RoutedEventArgs());
+        }
+        public NguoiDung(KhachHang nguoiDung)
+        {
+            InitializeComponent();
+            TrangChu_Click(Owner, new RoutedEventArgs());
+            kh = nguoiDung;
         }
 
 
@@ -56,7 +63,7 @@ namespace TraoDoiDo
         private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
         {
             //img_bg.Opacity = 1;
-            lopPhu.Visibility = Visibility.Collapsed; 
+            lopPhu.Visibility = Visibility.Collapsed;
         }
 
         private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
@@ -83,13 +90,13 @@ namespace TraoDoiDo
 
         private void ViDienTu_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new ViDienTuUC();
+            contentControlHienThi.Content = new ViDienTuUC(kh);
             txtbTenTrang.Text = "Ví điện tử";
         }
 
         private void ThongTinCaNhan_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new ThongTinCaNhanUC();
+            contentControlHienThi.Content = new ThongTinCaNhanUC(kh);
             txtbTenTrang.Text = "Thông tin cá nhân";
         }
 
@@ -108,7 +115,7 @@ namespace TraoDoiDo
         private void Thoat_Click(object sender, RoutedEventArgs e)
         {
             Thoat f = new Thoat();
-            f.WindowStartupLocation = WindowStartupLocation.CenterScreen;   
+            f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             f.ShowDialog();
         }
 

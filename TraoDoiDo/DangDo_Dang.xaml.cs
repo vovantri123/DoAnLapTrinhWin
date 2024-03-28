@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -20,6 +21,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DangDo_Dang : Window
     {
+        public int idNguoiDang = 0;
         private int soLuongAnh = 0;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         private ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100]; //Khi dùng thì phải khai báo là DanhSachAnhVaMoTa[i] = new ThemAnhKhiDangUC();
@@ -43,11 +45,11 @@ namespace TraoDoiDo
                 conn.Open();
 
 
-                string id = txtbIdSanPham.Text; 
+                string id = txtbIdSanPham.Text;
                 for (int i = 0; i < soLuongAnh; i++)
                 {
 
-                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text!= "no_image.jpg")
+                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
                     {
                         string idAnhMinhHoa = (i + 1).ToString();
                         string tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
@@ -83,7 +85,7 @@ namespace TraoDoiDo
             {
                 conn.Close();
             }
-            
+
         }
         private void themThongTinVaoCSDL()
         {
@@ -117,8 +119,8 @@ namespace TraoDoiDo
                 string moTaChung = txtbMoTaChung.Text;
 
                 // Câu lệnh SQL INSERT
-                string sqlStr = $@"INSERT INTO SanPham (IdSanPham, Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai, NoiBan, XuatXu, NgayMua, PhanTramMoi, MoTaChung) 
-                   VALUES ('{id}', N'{ten}', '{tenFileAnh}', N'{loai}', '{soLuong}', '{soLuongDaBan}', '{giaGoc}', '{giaBan}', '{phiShip}', N'{trangThai}', N'{noiBan}', N'{xuatXu}', '{ngayMua}', '{phanTramMoi}', N'{moTaChung}')";
+                string sqlStr = $@"INSERT INTO SanPham (IdSanPham, IdNguoiDang,Ten, LinkAnhBia, Loai, SoLuong, SoLuongDaBan, GiaGoc, GiaBan, PhiShip, TrangThai, NoiBan, XuatXu, NgayMua, PhanTramMoi, MoTaChung, SoLuotXem) 
+                   VALUES ('{id}', '{idNguoiDang}' , N'{ten}', '{tenFileAnh}', N'{loai}', '{soLuong}', '{soLuongDaBan}', '{giaGoc}', '{giaBan}', '{phiShip}', N'{trangThai}', N'{noiBan}', N'{xuatXu}', '{ngayMua}', '{phanTramMoi}', N'{moTaChung}','{0}')";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);
                 int rowsAffected = command.ExecuteNonQuery();
@@ -144,8 +146,8 @@ namespace TraoDoiDo
 
         private void btnThemAnh_Click(object sender, RoutedEventArgs e)
         {
-            DanhSachAnhVaMoTa[soLuongAnh] = new ThemAnhKhiDangUC(); 
-            wpnlChuaAnh.Children.Add(DanhSachAnhVaMoTa[soLuongAnh]); 
+            DanhSachAnhVaMoTa[soLuongAnh] = new ThemAnhKhiDangUC();
+            wpnlChuaAnh.Children.Add(DanhSachAnhVaMoTa[soLuongAnh]);
             soLuongAnh++;
         }
 
