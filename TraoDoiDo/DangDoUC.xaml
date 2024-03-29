@@ -63,38 +63,17 @@
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBoxItem Content="Quần áo" />
+                                    <ComboBoxItem Content="Đồ điện tử" />
+                                    <ComboBoxItem Content="Đồ chơi" />
                                     <ComboBoxItem Content="Đồ gia dụng" />
-                                    <ComboBoxItem Content="Thiết bị di động" />
-                                    <ComboBoxItem Content="Đồ dùng học tập" />
+                                    <ComboBoxItem Content="Đồ nội thất" />
+                                    <ComboBoxItem Content="Sách" />
+                                    <ComboBoxItem Content="Đồ dùng văn phòng phẩm" />
                                     <ComboBoxItem Content="Tất cả" />
                                 </ComboBox>
 
-                                <ComboBox
-                                    MinWidth="72"
-                                    Margin="20,10,20,0"
-                                    materialDesign:HintAssist.FloatingOffset="0, -18"
-                                    materialDesign:HintAssist.FloatingScale="0.7"
-                                    materialDesign:HintAssist.Hint="Giá"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                    <ComboBoxItem Content="Dưới 100.000đ" />
-                                    <ComboBoxItem Content="Từ 100.000 - 200.000đ" />
-                                    <ComboBoxItem Content="Từ 200.000 - 500.000đ" />
-                                    <ComboBoxItem Content="Trên 500.000đ" />
-                                    <ComboBoxItem Content="Tất cả" />
-                                </ComboBox>
 
-                                <ComboBox
-                                    MinWidth="72"
-                                    Margin="20,10,20,0"
-                                    materialDesign:HintAssist.FloatingOffset="0, -18"
-                                    materialDesign:HintAssist.FloatingScale="0.7"
-                                    materialDesign:HintAssist.Hint="Trạng thái"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                    <ComboBoxItem Content="Chờ duyệt" />
-                                    <ComboBoxItem Content="Đã được duyệt" />
-                                    <ComboBoxItem Content="Không được duyệt" />
-                                    <ComboBoxItem Content="Tất cả" />
-                                </ComboBox>
 
                             </StackPanel>
                             <TextBox
@@ -172,7 +151,7 @@
                                                 Width="90"
                                                 DisplayMemberBinding="{Binding PhiShip}"
                                                 Header="Phí ship" />
-                                           
+
                                             <!--  Cột "Sửa"  -->
                                             <GridViewColumn Width="90" Header="Sửa">
                                                 <GridViewColumn.CellTemplate>
@@ -260,7 +239,7 @@
                                                 DisplayMemberBinding="{Binding IdSP}"
                                                 Header="Id đồ" />
                                             <GridViewColumn
-                                                Width="85"
+                                                Width="0" 
                                                 DisplayMemberBinding="{Binding IdNguoiMua}"
                                                 Header="Id người mua" />
                                             <GridViewColumn
@@ -306,7 +285,7 @@
                                             <GridViewColumn Width="125" Header="Gửi hàng">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Content="Gửi hàng" Click="btnGuiHang_Click"/>
+                                                        <Button Click="btnGuiHang_Click" Content="Gửi hàng" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>

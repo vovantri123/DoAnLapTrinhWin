@@ -75,6 +75,12 @@ namespace TraoDoiDo
             giaoDichDao.Them(giaoDich);
         }
 
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rbtn = (RadioButton)sender;
+            txtGiaTien.Text = rbtn.Content.ToString();
+        }
+
         public static string XoaDauCham(string tien)
         {
             return tien.Replace(".", "");

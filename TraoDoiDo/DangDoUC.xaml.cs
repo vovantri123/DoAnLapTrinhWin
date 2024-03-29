@@ -28,11 +28,84 @@ namespace TraoDoiDo
     {
         public int idNguoiDang = 1;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+
+        #region Tạm để quay video
+        public class SP
+        {
+            public string TenSanPham { get; set; }
+            public int SoLuongDaBan { get; set; }
+            public int TongSoLuongBanDau { get; set; }
+            public int TongTien { get; set; }
+        }
+
+
+        public SeriesCollection SeriesCollection { get; set; }
+
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
+
+
+        #endregion
+
+
+
         public DangDoUC()
         {
             InitializeComponent();
             Loaded += QuanLySanPham_Load;
             Loaded += QuanLyDonHang_Load;
+
+
+            #region//TẠM để quay video
+
+            // Khởi tạo dữ liệu mẫu
+            List<SP> sanPhams = new List<SP>
+            {
+                new SP { TenSanPham = "Sản phẩm A", SoLuongDaBan = 10, TongSoLuongBanDau = 20, TongTien=10000},
+                new SP { TenSanPham = "Sản phẩm B", SoLuongDaBan = 12, TongSoLuongBanDau = 18,TongTien=20000 },
+                new SP { TenSanPham = "Sản phẩm C", SoLuongDaBan = 3, TongSoLuongBanDau = 10,TongTien=14000 },
+                new SP { TenSanPham = "Sản phẩm D", SoLuongDaBan = 7, TongSoLuongBanDau = 14,TongTien=7000 }
+            };
+
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title = "Số lượng đã bán",
+                    Values = new ChartValues<int>(sanPhams.Select(sp => sp.SoLuongDaBan))
+                },
+                new ColumnSeries
+                {
+                    Title = "Tổng số lượng ban đầu",
+                    Values = new ChartValues<int>(sanPhams.Select(sp => sp.TongSoLuongBanDau))
+                }
+            };
+
+            Labels = sanPhams.Select(sp => sp.TenSanPham).ToArray();
+
+            Formatter = value => value.ToString("N");
+
+            // Gán dữ liệu cho biểu đồ
+            DataContext = this;
+
+
+            //TRÒN
+
+            SeriesCollection pieSeries = new SeriesCollection();
+
+            foreach (var sp in sanPhams)
+            {
+                pieSeries.Add(new PieSeries
+                {
+                    Title = sp.TenSanPham,
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(sp.TongTien) }
+                });
+            }
+
+            // Gán SeriesCollection cho biểu đồ tròn
+            pieChart.Series = pieSeries;
+
+            #endregion
 
         }
         #region TAB1 QUẢN LÝ SẢN PHẨM
@@ -88,7 +161,6 @@ namespace TraoDoiDo
 
         private void HienThi_QuanLySanPham()
         {
-
             try
             {
                 conn.Open();

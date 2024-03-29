@@ -30,11 +30,10 @@ namespace TraoDoiDo
             public string Type { get; set; }
             public int Quantity { get; set; }
             public int DaBan { get; set; }
-            public decimal Price { get; set; }
-            public string Promotion { get; set; }
+            public decimal GiaGoc { get; set; }
+            public decimal GiaBan { get; set; } 
             public decimal ShippingFee { get; set; }
-            public int SoSao { get; set; }
-            public string TrangThai { get; set; } //0 là chưa duyệt, còn 1 là đã duyệt
+            public int SoSao { get; set; } 
         }
         public ObservableCollection<Product> Products { get; set; }
         public ObservableCollection<User> Users { get; set; }
@@ -45,8 +44,8 @@ namespace TraoDoiDo
 
             // Khởi tạo danh sách sản phẩm
             Products = new ObservableCollection<Product>();
-            Products.Add(new Product { Id = 1, Name = "Sản phẩm 1", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 1", Quantity = 10, DaBan = 5, Price = 100000, Promotion = "10%", ShippingFee = 5000, SoSao = 4, TrangThai = "Chưa duyệt" });
-            Products.Add(new Product { Id = 2, Name = "Sản phẩm 2", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 2", Quantity = 20, DaBan = 10, Price = 200000, Promotion = "20%", ShippingFee = 10000, SoSao = 3, TrangThai = "Đã duyệt" });
+            Products.Add(new Product { Id = 1, Name = "Sản phẩm 1", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 1", Quantity = 10, DaBan = 5, GiaGoc = 100000, GiaBan = 20000, ShippingFee = 5000, SoSao = 4, });
+            Products.Add(new Product { Id = 2, Name = "Sản phẩm 2", Anh = "/HinhCuaToi/Lenovo.png", Type = "Type 2", Quantity = 20, DaBan = 10, GiaGoc = 200000, GiaBan = 12000, ShippingFee = 10000, SoSao = 3 });
 
             // Gán danh sách sản phẩm vào ItemsSource của ListView
             lsvQuanLySanPham.ItemsSource = Products;

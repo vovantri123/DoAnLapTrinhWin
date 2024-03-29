@@ -27,6 +27,9 @@ namespace TraoDoiDo
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         KhachHang nguoiDung = new KhachHang();
         GiaoDich gd;
+        GiaoDichDao gdDao = new GiaoDichDao();
+        List<string> listTienNap = new List<string>();
+        List<string> listTienRut = new List<string>();
         public ViDienTuUC()
         {
             InitializeComponent();
@@ -55,28 +58,17 @@ namespace TraoDoiDo
 
         private void UcViDienTU_Loaded(object sender, RoutedEventArgs e)
         {
-            HienThi_GiaoDich();
-            string t = tinhTongTien();
-            lblSoDu.Text = t;
-        }
-        public string tinhTongTien()
-        {
-            GiaoDichDao gdDao = new GiaoDichDao();
-            List<string> listTienNap = gdDao.TinhTienNguoiDung(gd, "Nạp tiền");
-            double tongTienNap = tinhTong(listTienNap);
-            List<string> listTienRut = gdDao.TinhTienNguoiDung(gd, "Rút tiền");
-            double tongTienRut = tinhTong(listTienNap);
-            double tongTien = tongTienNap - tongTienRut;
-            return tongTien.ToString();
-        }
-        public double tinhTong(List<string> list)
-        {
-            double tongTien = 0;
-            foreach (string t in list)
+
+            try
             {
-                tongTien += Convert.ToDouble(t);
+                HienThi_GiaoDich();
+                string t = tinhTongTien();
+                lblSoDu.Text = t;
             }
-            return tongTien;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
         private void HienThi_GiaoDich()
         {
@@ -88,7 +80,7 @@ namespace TraoDoiDo
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    gd = new GiaoDich(reader[0].ToString(), nguoiDung.Id, reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString());
+                    gd = new GiaoDich(reader.GetInt32(0).ToString(), nguoiDung.Id, reader.GetString(1).ToString(), reader.GetString(2).ToString(), reader.GetString(3).ToString(), reader.GetString(4).ToString(), reader.GetString(5).ToString());
                     lsvLichSuGiaoDich.Items.Add(new { Id = gd.Id, Type = gd.LoaiGiaoDich, Money = gd.SoTien, Initial = gd.TuNguonTien, End = gd.DenNguonTien, Date = gd.NgayGiaoDich });
                 }
             }
@@ -101,5 +93,24 @@ namespace TraoDoiDo
                 conn.Close();
             }
         }
+        public string tinhTongTien()
+        {
+            listTienNap = gdDao.TinhTienNguoiDung(gd, "Nạp tiền");
+            double tongTienNap = tinhTong(listTienNap);
+            listTienRut = gdDao.TinhTienNguoiDung(gd, "Rút tiền");
+            double tongTienRut = tinhTong(listTienRut);
+            double tongTien = tongTienNap - tongTienRut;
+            return tongTien.ToString();
+        }
+        public double tinhTong(List<string> list)
+        {
+            double tongTien = 0;
+            foreach (string t in list)
+            {
+                tongTien += Convert.ToDouble(t);
+            }
+            return tongTien;
+        }
+
     }
 }

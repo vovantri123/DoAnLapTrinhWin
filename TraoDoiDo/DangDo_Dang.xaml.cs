@@ -179,14 +179,14 @@ namespace TraoDoiDo
                 // Kiểm tra xem tệp ảnh đã tồn tại trong thư mục chưa
                 if (System.IO.File.Exists(duongDanMoi))
                 {
-                    MessageBox.Show("Tệp ảnh đã tồn tại trong thư mục HinhSanPham.");
+                    //MessageBox.Show("Tệp ảnh đã tồn tại trong thư mục HinhSanPham.");
                     return;
                 }
 
                 // Sao chép tệp ảnh vào thư mục "HinhCuaToi"
                 System.IO.File.Copy(duongDanAnh, duongDanMoi, true);
 
-                MessageBox.Show("Ảnh đã được lưu vào thư mục HinhSanPham.");
+                //MessageBox.Show("Ảnh đã được lưu vào thư mục HinhSanPham.");
             }
             catch (Exception ex)
             {

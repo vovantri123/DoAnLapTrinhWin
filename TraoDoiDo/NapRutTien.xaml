@@ -98,6 +98,7 @@
                             Content="100.000"
                             FontSize="16"
                             IsChecked="False"
+                            Checked="RadioButton_Checked"
                             GroupName="NhomTien"
                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
                         <RadioButton
@@ -108,6 +109,7 @@
                             Content="200.000"
                             FontSize="16"
                             IsChecked="False"
+                            Checked="RadioButton_Checked"
                             GroupName="NhomTien"
                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
                         <RadioButton
@@ -118,6 +120,7 @@
                             Content="500.000"
                             FontSize="16"
                             IsChecked="False"
+                            Checked="RadioButton_Checked"
                             GroupName="NhomTien"
                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
                     </Grid>
@@ -135,6 +138,7 @@
                             Content="1.000.000"
                             FontSize="16"
                             IsChecked="False"
+                            Checked="RadioButton_Checked"
                             GroupName="NhomTien"
                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
                         <RadioButton
@@ -145,6 +149,7 @@
                             Content="2.000.000"
                             FontSize="16"
                             IsChecked="False"
+                            Checked="RadioButton_Checked"
                             GroupName="NhomTien"
                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
                         <RadioButton
@@ -155,6 +160,7 @@
                             Content="5.000.000"
                             FontSize="16"
                             IsChecked="False"
+                            Checked="RadioButton_Checked"
                             GroupName="NhomTien"
                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
 

@@ -19,8 +19,15 @@ namespace TraoDoiDo.Database
         }
         public List<string> TinhTienNguoiDung(GiaoDich gd, string loai)
         {
-            string sqlStr = $"SELECT {giaoDichSoTien} FROM {giaoDichHeader} WHERE {giaoDichLoai}='{loai}' AND {nguoiDungID}='{gd.IdNguoiDung}'";
-            return dbConnection.LayDanhSach<string>(sqlStr);
+            string sqlStr = $"SELECT * FROM {giaoDichHeader} WHERE {giaoDichLoai}=N'{loai}' AND {nguoiDungID}='{gd.IdNguoiDung}'";
+            List<string> t = dbConnection.LayDanhSachMotDoiTuong(sqlStr, $"{giaoDichSoTien}");
+            return t;
+        }
+
+        public void NapTienVaoTaiKhoan(string id, string tien)
+        {
+            string sqlStr = $"UPDATE {nguoiDungHeader} SET {nguoiDungTien}='{tien}' WHERE {nguoiDungID}='{id}'";
+            dbConnection.ThucThi(sqlStr);
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Channels;
 using TraoDoiDo.ViewModels;
+using System.Reflection;
 namespace TraoDoiDo
 {
     /// <summary>
@@ -23,10 +24,11 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinChiTietSanPham : Window
     {
-        public int idNguoiMua = 2;
-
+        public int idNguoiMua = 2; 
         public int idNguoiDang = 1;
-        public string idSanPham ="1";
+        public string idSanPham ="1"; 
+        private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
+        private int soLuongSP = 0;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
 
         
@@ -47,9 +49,117 @@ namespace TraoDoiDo
             Loaded += LoadAnhVaMoTa;
             Loaded += LoadThongTinSanPham;
             Loaded += btnAnhSau_Click;
+           
+        }
 
-             
+        #region THÊM SẢN PHẨM CÙNG LOẠI VÀO MỤC KHÁM PHÁ THÊM
 
+        private void LoadSanPhamlenWpnlHienThi()
+        { 
+            try
+            {
+                conn.Open();
+                string sqlStr = $@"
+                        SELECT SanPham.IdSanPham, Ten, LinkAnhBia,   GiaGoc, GiaBan, NoiBan , YeuThich
+                        FROM SanPham 
+                        INNER JOIN DanhMucYeuThich ON DanhMucYeuThich.IdNguoiMua = 1 AND DanhMucYeuThich.IdSanPham =SanPham.IdSanPham
+                        WHERE Loai = N'{txtbLoai.Text}' AND SanPham.IdSanPham != {idSanPham}
+                        ";
+
+                wpnlHienThiSPCungLoai.Children.Clear();
+
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                int i = 0;
+
+
+                while (reader.Read())
+                {
+                    int yeuThich = reader.GetInt32(6);
+                    DanhSachSanPham[i] = new SanPhamUC(yeuThich);
+
+                    DanhSachSanPham[i].txtbIdSanPham.Text = reader.GetString(0);
+                    DanhSachSanPham[i].txtbTen.Text = reader.GetString(1);
+
+
+
+                    string tenFileAnh = reader.GetString(2);
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    bitmap.UriSource = new Uri(duongDanhAnh);
+                    bitmap.EndInit();
+                    // Gán BitmapImage tới Source của Image control
+                    DanhSachSanPham[i].imgSP.Source = bitmap;
+
+
+
+                    DanhSachSanPham[i].txtbGiaGoc.Text = reader.GetString(3);
+                    DanhSachSanPham[i].txtbGiaBan.Text = reader.GetString(4);
+                    DanhSachSanPham[i].txtbNoiBan.Text = reader.GetString(5);
+
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                    DanhSachSanPham[i].Margin = new Thickness(8);
+                    wpnlHienThiSPCungLoai.Children.Add(DanhSachSanPham[i]);
+                    i++;
+                } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            } 
+        }
+
+        #endregion
+
+
+        private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStr = $@"
+                    SELECT SanPham.LinkAnhBia, MoTaAnhSanPham.LinkAnhMinhHoa, MoTaAnhSanPham.MoTa 
+                    FROM SanPham INNER JOIN MoTaAnhSanPham 
+                    ON SanPham.IdSanPham = MoTaAnhSanPham.IdSanPham
+                    WHERE SanPham.IdSanPham = '{idSanPham}'
+                ";
+
+                SqlCommand command = new SqlCommand(sqlStr, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string linkAnhBia = reader.GetString(0);
+                    string moTa = reader.GetString(2);
+
+
+                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnh(reader.GetString(1));
+                    danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
+
+                    if (moTa.Trim() == "")
+                        continue;
+
+                    //lsvThongTinChiTietSP.Items.Add(new { LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
+                    lsvThongTinChiTietSP.Items.Add(new { MoTa = moTa });
+
+                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
+                    //lsvQuanLySanPham.Items.Add(sanPham);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void LoadThongTinSanPham(object sender, EventArgs e)
@@ -99,47 +209,10 @@ namespace TraoDoiDo
             {
                 conn.Close();
             }
-        }
-        private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                conn.Open();
-                string sqlStr = $@"
-                    SELECT SanPham.LinkAnhBia, MoTaAnhSanPham.LinkAnhMinhHoa, MoTaAnhSanPham.MoTa 
-                    FROM SanPham INNER JOIN MoTaAnhSanPham 
-                    ON SanPham.IdSanPham = MoTaAnhSanPham.IdSanPham
-                    WHERE SanPham.IdSanPham = '{idSanPham}'
-                ";
 
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    string linkAnhBia = reader.GetString(0); 
-                    string moTa = reader.GetString(2);
-                    
-                     
-                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnh(reader.GetString(1));
-                    danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
+            LoadSanPhamlenWpnlHienThi();
+        } 
 
-                    lsvThongTinChiTietSP.Items.Add(new {LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
-
-                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                    //lsvQuanLySanPham.Items.Add(sanPham);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        
         private void ThongTinNguoiDang_Click(object sender, RoutedEventArgs e)
         {
             ThongTinNguoiDang f = new ThongTinNguoiDang(idNguoiDang); 

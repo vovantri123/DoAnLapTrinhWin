@@ -10,6 +10,7 @@
     Height="310"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    MouseLeftButtonDown="btnThongTinChiTietSanPham_Click"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -43,22 +44,41 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Source="/HinhCuaToi/laptopAi.jpg" />
+
                 <Button
-                    x:Name="btnThemVaoGioHang"
-                    Margin="0,0,13,-10"
+                    x:Name="btnBoYeuThich"
+                    Margin="0,0,10,-10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Background="#FF673AB7"
-                    Click="btnThongTin_Click"
                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}"
-                    ToolTip="Thêm vào giỏ hàng">
+                    ToolTip="Thêm vào giỏ hàng"
+                    Visibility="Collapsed" Click="btnBoYeuThich_Click">
 
                     <materialDesign:PackIcon
                         Width="22"
                         Height="24"
                         Foreground="White"
-                        Kind="CartArrowDown" />
+                        Kind="Heart" />
                 </Button>
+                <Button
+                    x:Name="btnThemVaoYeuThich"
+                    Margin="0,0,10,-10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Background="#FF673AB7"
+                    Click="btnThemVaoYeuThich_Click"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}"
+                    ToolTip="Thêm vào giỏ hàng"
+                    Visibility="Visible">
+
+                    <materialDesign:PackIcon
+                        Width="22"
+                        Height="24"
+                        Foreground="White"
+                        Kind="HeartOutline" />
+                </Button>
+
 
             </Grid>
             <Grid Grid.Row="1">
@@ -77,14 +97,23 @@
                         FontSize="17.5"
                         Text="GỌN NHẸ Máy tính bảng Windows 2 in 1 đến từ nhà Lenovo"
                         TextTrimming="CharacterEllipsis" />
-                    <TextBlock
-                        x:Name="txtbGiaGoc"
-                        Grid.Row="1"
-                        Margin="0,5,10,-1"
-                        VerticalAlignment="Bottom"
-                        FontSize="16.5"
-                        Text="100.000.000đ"
-                        TextDecorations="Strikethrough" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="txtbGiaGoc"
+                            Margin="0,5,0,-1"
+                            VerticalAlignment="Bottom"
+                            FontSize="16.5"
+                            Text="100.000.000"
+                            TextDecorations="Strikethrough" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Margin="0,5,10,-1"
+                            VerticalAlignment="Bottom"
+                            FontSize="16.5"
+                            Text=" đ"
+                            TextDecorations="Strikethrough" />
+                    </StackPanel>
+
 
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
 
@@ -93,7 +122,12 @@
                             FontSize="18.5"
                             FontWeight="Bold"
                             Foreground="#FF673AB7"
-                            Text="70.000.000đ" />
+                            Text="70.000.000" />
+                        <TextBlock
+                            FontSize="18.5"
+                            FontWeight="Bold"
+                            Foreground="#FF673AB7"
+                            Text=" đ" />
 
 
                     </StackPanel>
@@ -108,23 +142,23 @@
                             x:Name="txtbSoLuotXem"
                             Grid.Column="0"
                             VerticalAlignment="Center"
-                            Foreground="#DD262020" 
+                            Foreground="#DD262020"
                             Text="17" />
                         <TextBlock
                             Grid.Column="1"
                             VerticalAlignment="Center"
-                            Text=" lượt xem" Foreground="#DD262020" />
+                            Foreground="#DD262020"
+                            Text=" lượt xem" />
                         <TextBlock
                             x:Name="txtbNoiBan"
                             Grid.Column="2"
                             Width="Auto"
                             Margin="10,0,0,0"
-                            Padding="5,2,5,2" 
-                            VerticalAlignment="Center" 
+                            Padding="5,2,5,2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
                             FontSize="13"
-                            Foreground="#DD262020" 
-                            
-                            HorizontalAlignment="Center" 
+                            Foreground="#DD262020"
                             Text="Hà Nội" />
                     </Grid>
 

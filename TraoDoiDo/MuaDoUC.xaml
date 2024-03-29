@@ -47,26 +47,29 @@
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
                                     IsEditable="True"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="ComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="Quần áo" />
+                                    <ComboBoxItem Content="Đồ điện tử" />
+                                    <ComboBoxItem Content="Đồ chơi" />
                                     <ComboBoxItem Content="Đồ gia dụng" />
-                                    <ComboBoxItem Content="Thiết bị di động" />
-                                    <ComboBoxItem Content="Đồ dùng học tập" />
+                                    <ComboBoxItem Content="Đồ nội thất" />
+                                    <ComboBoxItem Content="Sách" />
+                                    <ComboBoxItem Content="Đồ dùng văn phòng phẩm" />
                                     <ComboBoxItem Content="Tất cả" />
                                 </ComboBox>
 
                                 <ComboBox
+                                    x:Name="cboSapXepTheoYeuThich"
                                     Width="120"
                                     MinWidth="72"
                                     Margin="20,10,20,0"
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
-                                    materialDesign:HintAssist.Hint="Giá"
-                                    IsEditable="True"
+                                    materialDesign:HintAssist.Hint="Sắp xếp"
+                                    IsEditable="False"
+                                    SelectionChanged="cboSapXepTheoYeuThich_SelectionChanged"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                    <ComboBoxItem Content="Dưới 100.000đ" />
-                                    <ComboBoxItem Content="Từ 100.000 - 200.000đ" />
-                                    <ComboBoxItem Content="Từ 200.000 - 500.000đ" />
-                                    <ComboBoxItem Content="Trên 500.000đ" />
+                                    <ComboBoxItem Content="Yêu thích" />
                                     <ComboBoxItem Content="Tất cả" />
                                 </ComboBox>
 
@@ -510,13 +513,14 @@
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button
+                                                                x:Name="btnTraHang"
                                                                 Grid.Column="1"
                                                                 Width="100"
                                                                 Margin="4"
-                                                                x:Name="btnTraHang" 
+                                                                Click="btnTraHang_Click"
                                                                 Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                                                                 CommandParameter="{x:Static Dock.Bottom}"
-                                                                Content="Trả hàng" Click="btnTraHang_Click" />
+                                                                Content="Trả hàng" />
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>

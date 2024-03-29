@@ -26,12 +26,24 @@ namespace TraoDoiDo
 
         private string tenNguoiDang;
         private string soLuotDanhGia;
+        public int yeuThich = 0;
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-
-        public SanPhamUC()
+ 
+        public SanPhamUC(int yeuThich)
         {
+            this.yeuThich = yeuThich;
             InitializeComponent();
+            if (yeuThich == 0)
+            {
+                btnThemVaoYeuThich.Visibility = Visibility.Visible;
+                btnBoYeuThich.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
+                btnBoYeuThich.Visibility = Visibility.Visible;
+            } 
         }
         private void timTenVaSoLuotDahGiaNguoiDang()
         {
@@ -104,7 +116,9 @@ namespace TraoDoiDo
         }
 
 
-        private void btnThongTin_Click(object sender, RoutedEventArgs e)
+       
+
+        private void btnThongTinChiTietSanPham_Click(object sender, MouseButtonEventArgs e)
         {
             timTenVaSoLuotDahGiaNguoiDang();
             tangSoLuotXemThem1();
@@ -114,8 +128,20 @@ namespace TraoDoiDo
             f.txtbTenNguoiDang.Text = tenNguoiDang;
             f.txtbSoLuotDanhGia.Text = soLuotDanhGia;
             f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            f.idSanPham = txtbIdSanPham.Text; 
+            f.idSanPham = txtbIdSanPham.Text;
             f.ShowDialog();
+        }
+         
+        private void btnThemVaoYeuThich_Click(object sender, RoutedEventArgs e)
+        {
+            btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
+            btnBoYeuThich.Visibility = Visibility.Visible;
+        }
+
+        private void btnBoYeuThich_Click(object sender, RoutedEventArgs e)
+        {
+            btnBoYeuThich.Visibility = Visibility.Collapsed;
+            btnThemVaoYeuThich.Visibility = Visibility.Visible;
         }
     }
 }
