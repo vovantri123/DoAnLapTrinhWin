@@ -24,14 +24,14 @@ namespace TraoDoiDo
     public partial class ThongTinNguoiDang : Window
     { 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr); 
-        public ThongTinNguoiDang(int idNguoiDang)// K dùng constructor mà dùng public int id=1 toàn cục thì sẽ bị fail, do contrustor chạy trước khi gán
+        public ThongTinNguoiDang(string idNguoiDang)// K dùng constructor mà dùng public int id=1 toàn cục thì sẽ bị fail, do contrustor chạy trước khi gán
         {
             InitializeComponent();
             LoadThongTinNguoiDang(idNguoiDang);
             LoadDSDanhGia(idNguoiDang); 
         }
 
-        private void LoadThongTinNguoiDang(int idNguoiDang)
+        private void LoadThongTinNguoiDang(string idNguoiDang)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace TraoDoiDo
             }
         }
 
-        private void LoadDSDanhGia(int idNguoiDang)
+        private void LoadDSDanhGia(string idNguoiDang)
         {
             try
             {

@@ -96,8 +96,13 @@
     <Compile Include="Database\DbConnection.cs" />
     <Compile Include="Database\GiaoDichDao.cs" />
     <Compile Include="Database\KhachHangDao.cs" />
+    <Compile Include="Database\MoTaAnhSanPhamDao.cs" />
+    <Compile Include="Database\MoTaHangHoaDao.cs" />
+    <Compile Include="Database\QuanLyDonHangDao.cs" />
+    <Compile Include="Database\SanPhamDao.cs" />
     <Compile Include="Database\TaiKhoanDao.cs" />
     <Compile Include="Database\ThuocTinhDao.cs" />
+    <Compile Include="Database\TrangThaiDonHangDao.cs" />
     <Compile Include="DiaChi.xaml.cs">
       <DependentUpon>DiaChi.xaml</DependentUpon>
     </Compile>
@@ -105,10 +110,13 @@
       <DependentUpon>LyDoTraHangUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\GiaoDich.cs" />
-    <Compile Include="Models\HangHoa.cs" />
+    <Compile Include="Models\MoTaAnhSanPham.cs" />
+    <Compile Include="Models\QuanLyDonHang.cs" />
+    <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\MoTaHangHoa.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
+    <Compile Include="Models\TrangThaiDonHang.cs" />
     <Compile Include="MuaDoUC.xaml.cs">
       <DependentUpon>MuaDoUC.xaml</DependentUpon>
     </Compile>

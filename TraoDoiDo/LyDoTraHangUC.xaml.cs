@@ -22,7 +22,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class LyDoTraHangUC : UserControl
     {
-        public int idNguoiMua = 1;
+        public string idNguoiMua;
         public string idSP = "2";
         public event EventHandler DrawerClosed;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);

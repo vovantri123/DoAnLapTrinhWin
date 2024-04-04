@@ -57,12 +57,14 @@
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
                                 <ComboBox
+                                    x:Name="cbLocLoai"
                                     MinWidth="72"
                                     Margin="20,10,20,0"
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    SelectionChanged="cbLocLoai_SelectionChanged"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
                                     <ComboBoxItem Content="Quần áo" />
                                     <ComboBoxItem Content="Đồ điện tử" />
                                     <ComboBoxItem Content="Đồ chơi" />
@@ -239,7 +241,7 @@
                                                 DisplayMemberBinding="{Binding IdSP}"
                                                 Header="Id đồ" />
                                             <GridViewColumn
-                                                Width="0" 
+                                                Width="80"
                                                 DisplayMemberBinding="{Binding IdNguoiMua}"
                                                 Header="Id người mua" />
                                             <GridViewColumn

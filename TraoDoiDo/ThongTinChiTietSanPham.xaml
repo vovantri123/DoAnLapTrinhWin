@@ -9,7 +9,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="ThongTinChiTietSanPham"
     Width="1000"
-    Height="870"
+    Height="840"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -19,7 +19,7 @@
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-
+    
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
         <Grid>
@@ -409,13 +409,15 @@
                         <ListView x:Name="lsvThongTinChiTietSP">
                             <ListView.Resources>
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                                
                             </ListView.Resources>
                             <ListView.View>
                                 <GridView>
                                     <GridView.ColumnHeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalAlignment" Value="Left" />
+                                            <Setter Property="HorizontalAlignment" Value="Left" />  
                                         </Style>
+                                        
                                     </GridView.ColumnHeaderContainerStyle>
 
                                     <!--  Ảnh  -->

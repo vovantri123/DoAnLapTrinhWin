@@ -17,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
+using TraoDoiDo.Database;
+using System.Xml.Linq;
 namespace TraoDoiDo
 {
     /// <summary>
@@ -29,14 +31,23 @@ namespace TraoDoiDo
         private int soLuongSP = 0;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
-        public int idNguoiMua = 2;
+        KhachHang ngDung = new KhachHang();
+        SanPhamDao sanPhamDao = new SanPhamDao();
 
         public MuaDoUC()
         {
             InitializeComponent();
             Loaded += MuaSam_Load; // TAB1
-            Loaded += GioHang_Load; //TAB2
-            Loaded += TrangThaiDonHang_Load; //TAB3
+            //Loaded += GioHang_Load; //TAB2
+            //Loaded += TrangThaiDonHang_Load; //TAB3
+        } 
+        public MuaDoUC(KhachHang kh)
+        {
+            InitializeComponent();
+            Loaded += MuaSam_Load; // TAB1
+           // Loaded += GioHang_Load; //TAB2
+            //Loaded += TrangThaiDonHang_Load; //TAB3
+            ngDung = kh;
         }
 
         #region TAB1 MUA SẮM
@@ -48,80 +59,74 @@ namespace TraoDoiDo
         }
         private void txbTimKiem_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
+            if (txbTimKiem.Text.Trim() != "")
             {
-                conn.Open(); 
-                string sqlStr = $@"
-                    SELECT SanPham.IdSanPham, Ten, LinkAnhBia,   GiaGoc, GiaBan, NoiBan , YeuThich
-                    FROM SanPham 
-                    INNER JOIN DanhMucYeuThich ON DanhMucYeuThich.IdNguoiMua = {idNguoiMua} AND DanhMucYeuThich.IdSanPham =SanPham.IdSanPham
-                    WHERE Ten LIKE N'{txbTimKiem.Text.Trim()}%'
-                ";
                 wpnlHienThi.Children.Clear();
-                
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
-                int i = 0;
-
-
-                while (reader.Read()) 
+                for (int i = 0; i < soLuongSP; i++)
                 {
-                    int yeuThich = reader.GetInt32(6);
-                    DanhSachSanPham[i] = new SanPhamUC(yeuThich); 
-
-                    DanhSachSanPham[i].txtbIdSanPham.Text = reader.GetString(0);
-                    DanhSachSanPham[i].txtbTen.Text = reader.GetString(1);
-
-
-
-                    string tenFileAnh = reader.GetString(2);
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
-                    bitmap.UriSource = new Uri(duongDanhAnh);
-                    bitmap.EndInit();
-                    // Gán BitmapImage tới Source của Image control
-                    DanhSachSanPham[i].imgSP.Source = bitmap;
-
-
-
-                    DanhSachSanPham[i].txtbGiaGoc.Text = reader.GetString(3);
-                    DanhSachSanPham[i].txtbGiaBan.Text = reader.GetString(4);
-                    DanhSachSanPham[i].txtbNoiBan.Text = reader.GetString(5);
-
-                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                    //lsvQuanLySanPham.Items.Add(sanPham);
-                    DanhSachSanPham[i].Margin = new Thickness(8);
-                    wpnlHienThi.Children.Add(DanhSachSanPham[i]);
-                    i++;
+                    string tenSP = DanhSachSanPham[i].txtbTen.Text.ToLower();
+                    string timKiem = txbTimKiem.Text.Trim().ToLower();
+                    if (tenSP.Contains(timKiem))
+                    {
+                        wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                    }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                wpnlHienThi.Children.Clear();
+                for (int i = 0; i < soLuongSP; i++)
+                {
+                    wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                }
             }
         }
-        
+
         private void SapXeoTheoYeuThich()
         {
+            LoadSanPhamlenWpnlHienThi(); //Cái nói chung cái gì dính tới yêu thích thì cứ load lại 1 cái, mấy cái lọc với tìm kiếm không cần là do tính năng ẩn hiện cái nút của bên UC có sẵn r :)))
             wpnlHienThi.Children.Clear();
-            for (int i = 0; i < soLuongSP; i++) 
+            for (int i = 0; i < soLuongSP; i++)
                 if (DanhSachSanPham[i].yeuThich == 1)
                 {
-                    wpnlHienThi.Children.Add(DanhSachSanPham[i]); 
+                    wpnlHienThi.Children.Add(DanhSachSanPham[i]);
                 }
-            for (int i=0; i< soLuongSP; i++)
-                if (DanhSachSanPham[i].yeuThich != 1)
+            for (int i = 0; i < soLuongSP; i++)
+                if (DanhSachSanPham[i].yeuThich == 0)
                 {
                     wpnlHienThi.Children.Add(DanhSachSanPham[i]);
-                }    
-             
+                }
         }
+
+        private void cboSapXepTheoLoai_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox.SelectedItem != null)
+            {
+                string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
+                if (selectedItemContent == "Tất cả")
+                {
+                    wpnlHienThi.Children.Clear();
+                    for (int i = 0; i < soLuongSP; i++)
+                    {
+                        wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                    }
+                }
+                else
+                {
+                    wpnlHienThi.Children.Clear();
+                    for (int i = 0; i < soLuongSP; i++)
+                    {
+                        if (DanhSachSanPham[i].txtbLoai.Text.Contains(selectedItemContent))
+                        {
+                            wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                        }
+                    }
+                }
+            }
+        }
+
+
         private void cboSapXepTheoYeuThich_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
@@ -138,134 +143,51 @@ namespace TraoDoiDo
                 }
             }
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-            ComboBox comboBox = sender as ComboBox;
-            if (comboBox.SelectedItem != null)
-            {
-                string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
-                try
-                {
-                    
-                    string sqlStr = "";
-                    if (selectedItemContent == "Tất cả")
-                    {
-                        MuaSam_Load(sender, e);
-                    }
-                    else
-                    {
-                        conn.Open();
-                        sqlStr = $@"
-                            SELECT SanPham.IdSanPham, Ten, LinkAnhBia,   GiaGoc, GiaBan, NoiBan , YeuThich
-                            FROM SanPham 
-                            INNER JOIN DanhMucYeuThich ON DanhMucYeuThich.IdNguoiMua = 1 AND DanhMucYeuThich.IdSanPham =SanPham.IdSanPham
-                            WHERE Loai = N'{selectedItemContent}'
-                         ";
-                         
-                        wpnlHienThi.Children.Clear();
-
-
-                        SqlCommand command = new SqlCommand(sqlStr, conn);
-                        SqlDataReader reader = command.ExecuteReader();
-                        int i = 0;
-
-
-                        while (reader.Read())
-                        {
-                            int yeuThich = reader.GetInt32(6);
-                            DanhSachSanPham[i] = new SanPhamUC(yeuThich);
-
-                            DanhSachSanPham[i].txtbIdSanPham.Text = reader.GetString(0);
-                            DanhSachSanPham[i].txtbTen.Text = reader.GetString(1);
-
-
-
-                            string tenFileAnh = reader.GetString(2);
-                            BitmapImage bitmap = new BitmapImage();
-                            bitmap.BeginInit();
-                            string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
-                            bitmap.UriSource = new Uri(duongDanhAnh);
-                            bitmap.EndInit();
-                            // Gán BitmapImage tới Source của Image control
-                            DanhSachSanPham[i].imgSP.Source = bitmap;
-
-
-
-                            DanhSachSanPham[i].txtbGiaGoc.Text = reader.GetString(3);
-                            DanhSachSanPham[i].txtbGiaBan.Text = reader.GetString(4);
-                            DanhSachSanPham[i].txtbNoiBan.Text = reader.GetString(5);
-
-                            //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                            //lsvQuanLySanPham.Items.Add(sanPham);
-                            DanhSachSanPham[i].Margin = new Thickness(8);
-                            wpnlHienThi.Children.Add(DanhSachSanPham[i]);
-                            i++;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (selectedItemContent != "Tất cả")
-                        conn.Close();
-                }
-            }
-        }
         private void LoadSanPhamlenWpnlHienThi()
         {
+            soLuongSP = 0;
             try
             {
                 conn.Open();
-                string sqlStr = $@"
-                    SELECT SanPham.IdSanPham, Ten, LinkAnhBia,   GiaGoc, GiaBan, NoiBan, SoLuotXem, IdNguoiDung, YeuThich
-                    FROM SanPham
-                    INNER JOIN NguoiDung ON SanPham.IdNguoiDang = NguoiDung.IdNguoiDung
-                    INNER JOIN DanhMucYeuThich ON DanhMucYeuThich.IdNguoiMua = {idNguoiMua} AND DanhMucYeuThich.IdSanPham =SanPham.IdSanPham
-                ";
+                List<List<string>> listSanPham = new List<List<string>>();
+                listSanPham = sanPhamDao.LoadSanPham(ngDung.Id);
 
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader(); 
-
-                while (reader.Read()) 
+                foreach(var list in listSanPham)
                 {
-                    int yeuThich = reader.GetInt32(8);
+                    int yeuThich = 0;
+                    if (!string.IsNullOrEmpty(list[8])) //Neu nguoi mua co trong bang yeu thich (tức đang yêu thich một sản phẩm nào đó)
+                    {
+                        yeuThich = 1;
+                    }
+
                     DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
-                    DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = reader.GetString(0);
-                    DanhSachSanPham[soLuongSP].txtbTen.Text = reader.GetString(1);
+                    DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = list[0].ToString();
+                    DanhSachSanPham[soLuongSP].txtbTen.Text = list[1];
 
-
-
-                    string tenFileAnh = reader.GetString(2);
+                    string tenFileAnh = list[2];
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
-                    bitmap.UriSource = new Uri(duongDanhAnh); 
+                    bitmap.UriSource = new Uri(duongDanhAnh);
                     bitmap.EndInit();
                     // Gán BitmapImage tới Source của Image control
                     DanhSachSanPham[soLuongSP].imgSP.Source = bitmap;
 
-
-
-                    DanhSachSanPham[soLuongSP].txtbGiaGoc.Text = reader.GetString(3);
-                    DanhSachSanPham[soLuongSP].txtbGiaBan.Text = reader.GetString(4);
-                    DanhSachSanPham[soLuongSP].txtbNoiBan.Text = reader.GetString(5);
-                    DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = reader.GetString(6);
-                    DanhSachSanPham[soLuongSP].idNguoiDang = reader.GetInt32(7);  
+                    DanhSachSanPham[soLuongSP].txtbGiaGoc.Text = list[3];
+                    DanhSachSanPham[soLuongSP].txtbGiaBan.Text = list[4];
+                    DanhSachSanPham[soLuongSP].txtbNoiBan.Text = list[5];
+                    DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = list[6];
+                    DanhSachSanPham[soLuongSP].idNguoiDang = list[7].ToString();
+                    DanhSachSanPham[soLuongSP].txtbLoai.Text = list[9];
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
                     DanhSachSanPham[soLuongSP].Margin = new Thickness(8);
+                    DanhSachSanPham[soLuongSP].idNguoiMua = ngDung.Id;
                     wpnlHienThi.Children.Add(DanhSachSanPham[soLuongSP]);
                     soLuongSP++;
                 }
-
-                
-               
 
             }
             catch (Exception ex)
@@ -278,7 +200,7 @@ namespace TraoDoiDo
             }
         }
         private void SapXepGiamDanTheoSoLuotXem()
-        { 
+        {
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
                     if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
@@ -304,10 +226,10 @@ namespace TraoDoiDo
 
         private void GioHang_Load(object sender, RoutedEventArgs e)
         {
-            LsvGioHang_Load(sender,e);
+            LsvGioHang_Load(sender, e);
         }
-        
-         
+
+
         private void LsvGioHang_Load(object sender, RoutedEventArgs e)
         {
             try
@@ -318,7 +240,7 @@ namespace TraoDoiDo
                     FROM GioHang 
                     INNER JOIN NguoiDung ON GioHang.IdNguoiMua = NguoiDung.IdNguoiDung
                     INNER JOIN SanPham ON GioHang.IdSanPham = SanPham.IdSanPham
-                    WHERE NguoiDung.IdNguoiDung = '{idNguoiMua}'
+                    WHERE NguoiDung.IdNguoiDung = '{ngDung.Id}'
 
                 ";
 
@@ -382,10 +304,10 @@ namespace TraoDoiDo
                     {
                         try
                         {
-                            conn.Open(); 
-                            string sqlDelete = $@"DELETE FROM GioHang WHERE IdNguoiMua={idNguoiMua} AND IdSanPham = {dataItem.IdSP} ";
+                            conn.Open();
+                            string sqlDelete = $@"DELETE FROM GioHang WHERE IdNguoiMua={ngDung.Id} AND IdSanPham = {dataItem.IdSP} ";
                             SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
-                            cmdDelete.ExecuteNonQuery();  
+                            cmdDelete.ExecuteNonQuery();
                         }
                         catch (Exception ex)
                         {
@@ -394,7 +316,7 @@ namespace TraoDoiDo
                         finally
                         {
                             conn.Close();
-                            GioHang_Load(sender,e);
+                            GioHang_Load(sender, e);
                         }
                     }
                 }
@@ -419,7 +341,7 @@ namespace TraoDoiDo
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            DiaChi f = new DiaChi(idNguoiMua); 
+            DiaChi f = new DiaChi();
             f.ShowDialog();
         }
 
@@ -445,7 +367,7 @@ namespace TraoDoiDo
                     }
                 }
             }
-            TinhTienCuaNhungDongDuocChon(sender,e);
+            TinhTienCuaNhungDongDuocChon(sender, e);
         }
         // Phương thức hỗ trợ để tìm kiếm một đối tượng theo kiểu trong một VisualTree
         private T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
@@ -466,41 +388,41 @@ namespace TraoDoiDo
         }
 
 
-        private void TinhTienCuaNhungDongDuocChon(object sender,RoutedEventArgs e)
+        private void TinhTienCuaNhungDongDuocChon(object sender, RoutedEventArgs e)
         {
             int tongTienhang = 0;
             int tongTienShip = 0;
-           
+
 
             foreach (var dongDuocChon in lsvGioHang.SelectedItems)
             {
                 dynamic item = dongDuocChon;
                 int gia = Convert.ToInt32(item.Gia);
-                int phiShip = Convert.ToInt32(item.PhiShip); 
+                int phiShip = Convert.ToInt32(item.PhiShip);
                 int soLuongMua = Convert.ToInt32(item.SoLuongMua);
 
-                tongTienhang += gia*soLuongMua;
+                tongTienhang += gia * soLuongMua;
                 tongTienShip += phiShip;
             }
 
             txtbTongTienHang.Text = tongTienhang.ToString();
             txtbTongTienShip.Text = tongTienShip.ToString();
-            txtbTongThanhToan.Text = (tongTienhang+tongTienShip).ToString();    
+            txtbTongThanhToan.Text = (tongTienhang + tongTienShip).ToString();
         }
 
 
 
 
         #endregion
-         
+
 
         #region TAB3 TRẠNG THÁI ĐƠN HÀNG
 
         private void TrangThaiDonHang_Load(object sender, RoutedEventArgs e)
-        { 
+        {
             LoadLsvTrongTabTrangThaiDonHang("lsvChoNguoiBanXacNhan", "Chờ xác nhận");
             LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
-            LoadLsvTrongTabTrangThaiDonHang("lsvDaNhan", "Đã nhận"); 
+            LoadLsvTrongTabTrangThaiDonHang("lsvDaNhan", "Đã nhận");
         }
         private void LoadLsvTrongTabTrangThaiDonHang(string tenLsv, string trangthai)
         {
@@ -512,7 +434,7 @@ namespace TraoDoiDo
                     FROM TrangThaiDonHang
                     INNER JOIN NguoiDung ON TrangThaiDonHang.IdNguoiMua = NguoiDung.IdNguoiDung
                     INNER JOIN SanPham ON TrangThaiDonHang.IdSanPham= SanPham.IdSanPham
-                    WHERE NguoiDung.IdNguoiDung = {idNguoiMua} and TrangThaiDonHang.TrangThai = N'{trangthai}'
+                    WHERE NguoiDung.IdNguoiDung = {ngDung.Id} and TrangThaiDonHang.TrangThai = N'{trangthai}'
                 ";
 
                 SqlCommand command = new SqlCommand(sqlStr, conn);
@@ -543,9 +465,9 @@ namespace TraoDoiDo
 
 
 
-                    if (tenLsv == "lsvChoNguoiBanXacNhan") 
+                    if (tenLsv == "lsvChoNguoiBanXacNhan")
                         lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
-                    else if (tenLsv == "lsvChoGiaoHang") 
+                    else if (tenLsv == "lsvChoGiaoHang")
                         lsvChoGiaoHang.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
                     else if (tenLsv == "lsvDaNhan")
                         lsvDaNhan.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
@@ -578,7 +500,7 @@ namespace TraoDoiDo
                 dynamic dataItem = item.DataContext;
 
                 if (dataItem != null)
-                { 
+                {
                     if (MessageBox.Show("Bạn có chắc là muốn hủy đặt hàng 0_o\nĐơn hàng mà bạn hủy sẽ được hoàn tiền", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         try
@@ -586,13 +508,13 @@ namespace TraoDoiDo
                             conn.Open();
 
                             // Xóa dữ liệu từ bảng TrangThaiDongHang
-                            string sqlDelete = $"DELETE FROM TrangThaiDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}";
+                            string sqlDelete = $"DELETE FROM TrangThaiDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}";
                             SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
                             cmdDelete.ExecuteNonQuery();
 
 
-                            // Xóa dữ liệu  khỏi bảng QuanLyDonHang
-                            sqlDelete = $"DELETE FROM QuanLyDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}";
+                            // Xóa dữ liệu  khỏi bảng QuanLyDonHang 
+                            sqlDelete = $"DELETE FROM QuanLyDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}";
                             cmdDelete = new SqlCommand(sqlDelete, conn);
                             cmdDelete.ExecuteNonQuery();
 
@@ -636,11 +558,11 @@ namespace TraoDoiDo
                         try
                         {
                             conn.Open();
-                             
+
                             string sqlStr = $@"
                                 UPDATE TrangThaiDonHang 
                                 SET TrangThai = N'Đã nhận'
-                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}
+                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}
                             ";
                             SqlCommand command = new SqlCommand(sqlStr, conn);
                             command.ExecuteNonQuery();
@@ -648,7 +570,7 @@ namespace TraoDoiDo
                             sqlStr = $@" 
                                 UPDATE QuanLyDonHang 
                                 SET TrangThai = N'Đã giao'
-                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {idNguoiMua}
+                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}
                             ";
                             command = new SqlCommand(sqlStr, conn);
                             command.ExecuteNonQuery();
@@ -669,13 +591,13 @@ namespace TraoDoiDo
             else
             {
                 MessageBox.Show("Không thể xác định dòng chứa nút .");
-            } 
+            }
         }
 
         private void btnDanhGia_Click(object sender, RoutedEventArgs e)
         {
             DanhGia f = new DanhGia();
-            f.idNguoiMua = idNguoiMua;
+            f.idNguoiMua = ngDung.Id;
 
 
             // Lấy button được click
@@ -691,7 +613,7 @@ namespace TraoDoiDo
 
                 if (dataItem != null)
                 {
-                    
+
                     try
                     {
                         conn.Open();
@@ -704,9 +626,9 @@ namespace TraoDoiDo
                         ";
                         SqlCommand command = new SqlCommand(sqlStr, conn);
                         SqlDataReader reader = command.ExecuteReader();
-                        while(reader.Read())
+                        while (reader.Read())
                         {
-                            f.idNguoiDang = reader.GetInt32(0);
+                            f.idNguoiDang = reader.GetInt32(0).ToString();
                             f.txtbTenNguoiDang.Text = reader.GetString(1);
                         }
                     }
@@ -718,7 +640,7 @@ namespace TraoDoiDo
                     {
                         conn.Close();
                         TrangThaiDonHang_Load(sender, e);
-                    } 
+                    }
                 }
             }
             else
@@ -729,11 +651,11 @@ namespace TraoDoiDo
             f.ShowDialog();
         }
 
-         
+
 
         private void btnTraHang_Click(object sender, RoutedEventArgs e)
         {
-            ucLyDoTraHang.idNguoiMua = idNguoiMua;
+            ucLyDoTraHang.idNguoiMua = ngDung.Id;
 
             // Lấy button được click
             Button btn = sender as Button;
@@ -750,9 +672,9 @@ namespace TraoDoiDo
                 {
                     ucLyDoTraHang.idSP = dataItem.IdSP;
                     ucLyDoTraHang.DrawerClosed += (btnSender, args) =>
-                    { 
+                    {
 
-                        LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng"); 
+                        LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
                     };
                 }
             }
@@ -762,8 +684,8 @@ namespace TraoDoiDo
             }
         }
 
+
         #endregion
 
-        
     }
 }

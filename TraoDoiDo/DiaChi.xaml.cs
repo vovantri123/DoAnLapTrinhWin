@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
@@ -21,47 +22,20 @@ namespace TraoDoiDo
     public partial class DiaChi : Window
     {
 
-        public int idNguoiMua = 0; 
+        KhachHang ngDung = new KhachHang(); 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        public DiaChi(int idNguoiMua)
+        public DiaChi()
         {
-            this.idNguoiMua=idNguoiMua;
             InitializeComponent();
-            LoadThongTinNguoiMua(); 
+            Loaded += FDiaChi_Loaded;
         } 
-        private void LoadThongTinNguoiMua()
+        public DiaChi(KhachHang kh)
         {
-            try
-            {
-                conn.Open();
-                string sqlStr = $@"
-                    SELECT HoTenNguoiDung, SdtNguoiDung, EmailNguoiDung,DiaChiNguoiDung
-                    FROM NguoiDung
-                    WHERE IdNguoiDung = {idNguoiMua}
-                ";
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
-                while(reader.Read())
-                {
-                    //txtHoTen.Text = reader["HoTenNguoiDung"].ToString(); 
-                    txtHoTen.Text = reader.GetString(0);
-                    txtSoDienThoai.Text = reader.GetString(1);
-                    txtEmail.Text = reader.GetString(2);
-                    txtDiaChi.Text = reader.GetString(3);
-                }    
-
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-        }
+            InitializeComponent();
+            ngDung = kh;
+            Loaded += FDiaChi_Loaded;
+        } 
+        
 
         private void btnXacNhanThanhToan_Click_1(object sender, RoutedEventArgs e)
         {
@@ -81,7 +55,7 @@ namespace TraoDoiDo
                         SdtNguoiDung='{txtSoDienThoai.Text}', 
                         EmailNguoiDung='{txtEmail.Text}',
                         DiaChiNguoiDung = N'{txtDiaChi.Text}'
-                    WHERE IdNguoiDung = {idNguoiMua}
+                    WHERE IdNguoiDung = {ngDung.Id}
                 ";
                 SqlCommand command = new SqlCommand(sqlStr, conn);
                 SqlDataReader reader = command.ExecuteReader();
@@ -104,6 +78,14 @@ namespace TraoDoiDo
             {
                 conn.Close();
             }
+        }
+
+        private void FDiaChi_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtHoTen.Text = ngDung.HoTen.ToString();
+            txtSoDienThoai.Text = ngDung.Sdt.ToString();
+            txtEmail.Text = ngDung.Email.ToString();
+            txtDiaChi.Text = ngDung.DiaChi.ToString();
         }
     }
 }

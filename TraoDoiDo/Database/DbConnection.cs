@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using TraoDoiDo.ViewModels;
-using TraoDoiDo.Models;
 
 namespace TraoDoiDo.Database
 {
@@ -20,15 +14,21 @@ namespace TraoDoiDo.Database
             conn = new SqlConnection(Properties.Settings.Default.connStr);
         }
 
-        public void ThucThi(string s)
+        public bool ThucThi(string s)
         {
+            bool co = false;
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(s, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {
-                    MessageBox.Show("Thành công");
+                    co = true;
+                    MessageBoxButton messageBox = MessageBoxButton.OK;
+                    if ((messageBox & MessageBoxButton.OK)!=0)
+                    {
+                        MessageBox.Show("Thành công");
+                    }
                 }
             }
             catch (Exception ex)
@@ -39,6 +39,7 @@ namespace TraoDoiDo.Database
             {
                 conn.Close();
             }
+            return co;
         }
 
         public string LayMotDoiTuong(string s, string data)
@@ -79,6 +80,37 @@ namespace TraoDoiDo.Database
             }
             return list;
         }
+        public List<List<T>> LayDanhSachNhieuPhanTu<T>(string s)
+        {
+            List<List<T>> listResult = new List<List<T>>();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(s, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    List<T> list = new List<T>();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        var value = (T)Convert.ChangeType(reader.GetValue(i), typeof(T));
+                        list.Add(value);
+                    }
+                    listResult.Add(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return listResult;
+        }
         public List<T> LayDanhSach<T>(string s)
         {
             List<T> list = new List<T>();
@@ -92,10 +124,9 @@ namespace TraoDoiDo.Database
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        var value = (T)reader.GetValue(i);
+                        var value = (T)Convert.ChangeType(reader.GetValue(i), typeof(T));
                         list.Add(value);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -108,5 +139,6 @@ namespace TraoDoiDo.Database
             }
             return list;
         }
+
     }
 }

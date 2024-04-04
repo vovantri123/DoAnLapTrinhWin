@@ -12,7 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
+using TraoDoiDo.Database;
 namespace TraoDoiDo
 {
     /// <summary>
@@ -23,10 +25,33 @@ namespace TraoDoiDo
         public int soLuongAnh = 0; 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         public ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100]; //Khi dùng thì phải khai báo là DanhSachAnhVaMoTa[i] = new ThemAnhKhiDangUC();
-
+        SanPham sanPham = new SanPham();
+        MoTaAnhSanPhamDao moTaAnhSanPhamDao = new MoTaAnhSanPhamDao();
+        SanPhamDao sanPhamDao = new SanPhamDao();
         public DangDo_Sua()
         {
             InitializeComponent(); 
+        }
+        public DangDo_Sua(SanPham sp)
+        {
+            InitializeComponent();
+            sanPham = sp;
+        }
+        private void FDangDoSua_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtbIdSanPham.Text = sanPham.Id;
+            txtbTen.Text = sanPham.Ten;
+            txtbLoai.Text = sanPham.Loai;
+            txtbNgayMua.Text = sanPham.NgayMua;
+            txtbGiaBan.Text = sanPham.GiaBan;
+            txtbGiaGoc.Text = sanPham.GiaGoc;
+            txtbXuatXu.Text = sanPham.XuatXu;
+            txtbMoTaChung.Text = sanPham.MoTaChung;
+            txtbPhanTramMoi.Text = sanPham.PhanTramMoi;
+            txtbPhiShip.Text = sanPham.PhiShip;
+            txtbNoiBan.Text = sanPham.NoiBan;
+            cboSoLuong.Text = sanPham.SoLuong;
+            cboSoLuongDaBan.Text = sanPham.SoLuongDaBan;
         }
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
@@ -35,58 +60,52 @@ namespace TraoDoiDo
         }
         private void suaAnhVaMoTaTrongCSDL()
         {
+            bool coSanPham = false;
+            bool coMoTa = false;
             try
             {
-                conn.Open();
-                 
-                string id = txtbIdSanPham.Text;
-                
                 // Xóa dữ liệu cũ khỏi bảng MoTaAnhSanPham
-                string sqlDelete = $"DELETE FROM MoTaAnhSanPham WHERE IdSanPham = {id}";
-                SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
-                cmdDelete.ExecuteNonQuery();
-                //Cập  nhật dữ liệu mới
-                for (int i = 0; i < soLuongAnh; i++)
-                {
-
-                    if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text!= "no_image.jpg")
-                    {
-                        string idAnhMinhHoa = (i + 1).ToString();
-                        string tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
-
-
-                        string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
-
-                        string sqlStr = $@" INSERT INTO MoTaAnhSanPham (IdSanPham, IdAnhMinhHoa ,LinkAnhMinhHoa, MoTa)  
-                                        VALUES ('{id}', '{idAnhMinhHoa}','{tenFileAnh}', N'{moTa}')";
-
-
-                        SqlCommand command = new SqlCommand(sqlStr, conn);
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
-                        LuuAnhVaoThuMuc(noiLuAnh);
-
-
-                        if (rowsAffected <= 0)
-                        {
-                            MessageBox.Show($"Không thể sửa ảnh số {soLuongAnh + 1} và mô tả của ảnh này trong cơ sở dữ liệu.");
-                        }
-                    }
-                    else
-                        continue;
-                }
+                MoTaAnhSanPham moTaAnhSP = new MoTaAnhSanPham(txtbIdSanPham.Text, null, null, null);
+                moTaAnhSanPhamDao.Xoa(moTaAnhSP);
+                coMoTa = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            finally
+            //Cập  nhật dữ liệu mới
+            for (int i = 0; i < soLuongAnh; i++)
             {
-                conn.Close();
-            }
+                coSanPham = false;
+                if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
+                    {
 
+                        try
+                        {
+                            if (coSanPham==false)
+                            {
+                                MoTaAnhSanPham moTaAnhSP = new MoTaAnhSanPham(txtbIdSanPham.Text, (i + 1).ToString(), DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text, DanhSachAnhVaMoTa[i].txtbMoTa.Text);
+                                moTaAnhSanPhamDao.Them(moTaAnhSP);
+                                coSanPham = true;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi: " + ex.Message);
+                        }
+                        
+                        string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
+                        XuLyAnh.LuuAnhVaoThuMuc(noiLuAnh);
+                    }
+                    else
+                        continue;
+            }
+            if (coMoTa && coSanPham)
+            {
+                MessageBox.Show("Thành công");
+            }
         }
+        
         private void suaThongTinSanPhamTrongCSDL()
         {
             try
@@ -94,9 +113,6 @@ namespace TraoDoiDo
                 conn.Open();
 
                 // Dữ liệu cần chèn
-                string id = txtbIdSanPham.Text;
-                string ten = txtbTen.Text;
-
                 string tenFileAnh = "no_image.jpg";
                 for (int i = 0; i < soLuongAnh; i++)
                     if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
@@ -104,50 +120,11 @@ namespace TraoDoiDo
                         tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
                         break;
                     }
-
-                string loai = txtbLoai.Text;
-                string soLuong = cboSoLuong.Text;
-                string soLuongDaBan = cboSoLuongDaBan.Text;
-                string giaGoc = txtbGiaGoc.Text;
-                string giaBan = txtbGiaBan.Text;
-                string phiShip = txtbPhiShip.Text;
-                string trangThai = "Đã duyệt";
-                string noiBan = txtbNoiBan.Text;
-                string xuatXu = txtbXuatXu.Text;
-                string ngayMua = txtbNgayMua.Text;
-                string phanTramMoi = txtbPhanTramMoi.Text;
-                string moTaChung = txtbMoTaChung.Text;
-                
-                // Câu lệnh SQL UPDATE
-                string sqlStr = $@"UPDATE SanPham 
-                  SET Ten = N'{ten}', 
-                      LinkAnhBia = '{tenFileAnh}', 
-                      Loai = N'{loai}', 
-                      SoLuong = '{soLuong}', 
-                      SoLuongDaBan = '{soLuongDaBan}', 
-                      GiaGoc = '{giaGoc}', 
-                      GiaBan = '{giaBan}', 
-                      PhiShip = '{phiShip}', 
-                      TrangThai = N'{trangThai}', 
-                      NoiBan = N'{noiBan}', 
-                      XuatXu = N'{xuatXu}', 
-                      NgayMua = '{ngayMua}', 
-                      PhanTramMoi = '{phanTramMoi}', 
-                      MoTaChung = N'{moTaChung}' 
-                  WHERE IdSanPham = '{id}'";
-
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                int rowsAffected = command.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Thông tin sản phẩm đã được sửa");
-                }
-                else
-                {
-                    MessageBox.Show("Thông tin sản phẩm sửa thất bại");
-                }
+                string luotXem = sanPhamDao.LayLuotXem(txtbIdSanPham.Text);
+                SanPham sp= new SanPham(txtbIdSanPham.Text,sanPham.IdNguoi, txtbTen.Text,tenFileAnh, txtbLoai.Text, cboSoLuong.Text, cboSoLuongDaBan.Text, txtbGiaGoc.Text,
+                    txtbGiaBan.Text, txtbPhiShip.Text,"Đã duyệt", txtbNoiBan.Text, txtbXuatXu.Text, txtbNgayMua.Text, txtbMoTaChung.Text, txtbPhanTramMoi.Text,luotXem);
+                sanPhamDao.CapNhat(sp);
+               
             }
             catch (Exception ex)
             {
@@ -164,50 +141,6 @@ namespace TraoDoiDo
             DanhSachAnhVaMoTa[soLuongAnh] = new ThemAnhKhiDangUC();
             wpnlChuaAnh.Children.Add(DanhSachAnhVaMoTa[soLuongAnh]);
             soLuongAnh++;
-        }
-        
-
-        private void LuuAnhVaoThuMuc(string duongDanAnh)
-        {
-            try
-            {
-                // Kiểm tra xem đường dẫn ảnh có tồn tại không
-                if (!System.IO.File.Exists(duongDanAnh))
-                {
-                    MessageBox.Show("Không tìm thấy tệp ảnh.");
-                    return;
-                }
-
-                string thuMucHinhCuaToi = XuLyAnh.layDuongDanToiHinhSanPham();
-
-                // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo mới
-                if (!System.IO.Directory.Exists(thuMucHinhCuaToi))
-                {
-                    System.IO.Directory.CreateDirectory(thuMucHinhCuaToi);
-                }
-
-                // Lấy tên tệp ảnh từ đường dẫn
-                string tenFile = System.IO.Path.GetFileName(duongDanAnh);
-
-                // Tạo đường dẫn mới cho tệp ảnh trong thư mục "HinhCuaToi"
-                string duongDanMoi = System.IO.Path.Combine(thuMucHinhCuaToi, tenFile);
-
-                // Kiểm tra xem tệp ảnh đã tồn tại trong thư mục chưa
-                if (System.IO.File.Exists(duongDanMoi))
-                {
-                    MessageBox.Show("Tệp ảnh đã tồn tại trong thư mục HinhSanPham.");
-                    return;
-                }
-
-                // Sao chép tệp ảnh vào thư mục "HinhCuaToi"
-                System.IO.File.Copy(duongDanAnh, duongDanMoi, true);
-
-                MessageBox.Show("Ảnh đã được lưu vào thư mục HinhSanPham.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi lưu ảnh: " + ex.Message);
-            }
         }
     }
 }

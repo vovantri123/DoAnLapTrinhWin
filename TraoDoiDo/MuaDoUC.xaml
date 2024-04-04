@@ -41,13 +41,14 @@
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <ComboBox
                                     Width="120"
+                                    x:Name="cboSapXepTheoLoai"
                                     MinWidth="72"
                                     Margin="20,10,20,0"
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
                                     IsEditable="True"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="ComboBox_SelectionChanged">
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="cboSapXepTheoLoai_SelectionChanged" >
                                     <ComboBoxItem Content="Quần áo" />
                                     <ComboBoxItem Content="Đồ điện tử" />
                                     <ComboBoxItem Content="Đồ chơi" />

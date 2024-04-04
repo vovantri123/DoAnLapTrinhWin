@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Media.Animation;
-using MaterialDesignThemes.Wpf;
 using TraoDoiDo.Models;
 
 namespace TraoDoiDo
@@ -79,7 +66,7 @@ namespace TraoDoiDo
 
         private void DangDo_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new DangDoUC();
+            contentControlHienThi.Content = new DangDoUC(kh);
             txtbTenTrang.Text = "Đăng đồ";
         }
         private void TrangChu_Click(object sender, RoutedEventArgs e)
@@ -102,7 +89,7 @@ namespace TraoDoiDo
 
         private void MuaDo_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new MuaDoUC();
+            contentControlHienThi.Content = new MuaDoUC(kh);
             txtbTenTrang.Text = "Mua đồ";
         }
 

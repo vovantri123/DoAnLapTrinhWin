@@ -20,8 +20,8 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DanhGia : Window
     {
-        public int idNguoiDang=0;
-        public int idNguoiMua=0;
+        public string idNguoiDang;
+        public string idNguoiMua;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         public DanhGia()
         {
