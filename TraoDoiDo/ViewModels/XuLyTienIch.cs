@@ -14,5 +14,8 @@ namespace TraoDoiDo.ViewModels
         public const string TinNhanNgaySinhKhongHopLe = "Ngày sinh không hợp lệ";
         public const string TinNhanCMNDKhongHopLe = "CMND/CCCD không hợp lệ";
         public const string TinNhanTrongKhongHopLe = "Các thông tin không được để trống! Vui lòng nhập lại";
+
+       
     }
+
 }

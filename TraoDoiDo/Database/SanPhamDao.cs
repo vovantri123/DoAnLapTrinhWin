@@ -32,7 +32,7 @@ namespace TraoDoiDo.Database
                         SELECT {sanPhamHeader}.{sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamNoiBan} , {danhMucHeader}.{danhMucNguoiMua}, {sanPhamLoai}
                         FROM {sanPhamHeader} 
                         LEFT OUTER JOIN {danhMucHeader} ON {danhMucHeader}.{danhMucNguoiMua} = '{sp.IdNguoi}' AND {danhMucHeader}.{sanPhamID} = {sanPhamHeader}.{sanPhamID}
-                        WHERE Loai = N'{sp.Loai}' AND SanPham.IdSanPham != '{sp.Id}'
+                        WHERE {sanPhamLoai} = N'{sp.Loai}' AND {sanPhamHeader}.{sanPhamID} != '{sp.Id}' AND {sanPhamIdNguoiDang} = '{sp.IdNguoi}'
                         ";
             return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
         }
@@ -57,7 +57,7 @@ namespace TraoDoiDo.Database
         public List<List<string>> LoadSanPham(string idNguoiMua)
         {
             string sqlStr = $@" SELECT {sanPhamHeader}.{sanPhamID}, {sanPhamHeader}.{sanPhamTen}, {sanPhamHeader}.{sanPhamAnh}, {sanPhamHeader}.{sanPhamGiaGoc}, {sanPhamHeader}.{sanPhamGiaBan}, {sanPhamHeader}.{sanPhamNoiBan}, {sanPhamHeader}.{sanPhamSoLuotXem}, {nguoiDungHeader}.{nguoiDungID},{danhMucHeader}.{danhMucNguoiMua} ,{sanPhamHeader}.{sanPhamLoai}
-                    FROM {sanPhamHeader} INNER JOIN {nguoiDungHeader} ON {sanPhamHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} LEFT OUTER JOIN {danhMucHeader} ON {danhMucHeader}.{danhMucNguoiMua} = '{idNguoiMua}' AND {danhMucHeader}.{sanPhamID} = {sanPhamHeader}.{sanPhamID}
+                    FROM {sanPhamHeader} INNER JOIN {nguoiDungHeader} ON {sanPhamHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} LEFT OUTER JOIN {danhMucHeader} ON {danhMucHeader}.{danhMucNguoiMua} = '{idNguoiMua}' AND {danhMucHeader}.{sanPhamID} = {sanPhamHeader}.{sanPhamID} WHERE {sanPhamIdNguoiDang} != '{idNguoiMua}'
                 ";
             return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
         }
@@ -65,6 +65,12 @@ namespace TraoDoiDo.Database
         {
             string sqlStr = $"SELECT {sanPhamSoLuotXem} FROM {sanPhamHeader} WHERE {sanPhamID}='{idSP}'";
             return dbConnection.LayMotDoiTuong(sqlStr, $"{sanPhamSoLuotXem}");
+        }
+        public void CapNhatLuotXem(string idSP,int soLuotXem)
+        {
+            string sqlStr = $@" UPDATE {sanPhamHeader} SET {sanPhamSoLuotXem} = '{(soLuotXem + 1)}' WHERE IdSanPham = '{idSP}' ";
+            dbConnection.ThucThi(sqlStr,false);
+
         }
         public List<List<string>> timKiemBangId(string id)
         {
@@ -93,6 +99,15 @@ namespace TraoDoiDo.Database
         {
             string sqlStr = $"SELECT {sanPhamID} FROM {sanPhamHeader}";
             return dbConnection.LayDanhSachMotDoiTuong(sqlStr, $"{sanPhamID}");
+        }
+        public List<string> timKiemIdNguoiDang(string idSP)
+        {
+            string sqlStr = $@"
+                            SELECT {sanPhamIdNguoiDang}, {nguoiDungTen} 
+                            FROM {sanPhamHeader}
+                            INNER JOIN {nguoiDungHeader} ON {sanPhamHeader}.{sanPhamID} = {nguoiDungHeader}.{nguoiDungID}
+                            WHERE {sanPhamID} = '{idSP}' ";
+            return dbConnection.LayDanhSach<string>(sqlStr);
         }
     }
 }

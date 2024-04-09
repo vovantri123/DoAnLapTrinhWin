@@ -17,10 +17,28 @@ namespace TraoDoiDo.Database
                     $" WHERE {quanLyHeader}.{quanLyIdNguoiDang} = '{idNguoiDang}' and {quanLyHeader}.{quanLyTrangThai}=N'{trangThai}' ";
             return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
         }
+        public void Them(QuanLyDonHang ql)
+        {
+            string sqlStr = $"INSERT INTO {quanLyHeader} ({quanLyIdNguoiDang},{quanLyIdNguoiMua},{quanLyIdSanPham},{quanLyTrangThai},{quanLyLyDo})"
+            + $"VALUES ('{ql.IdNguoiDang}',N'{ql.IdNguoiMua}','{ql.IdSanPham}',N'{ql.TrangThai}',N'{ql.LyDo}')";
+            dbConnection.ThucThi(sqlStr);
+        }
+        public void Xoa(QuanLyDonHang ql)
+        {
+            string sqlStr = $"DELETE FROM {quanLyHeader} WHERE {quanLyIdSanPham} = {ql.IdSanPham} AND {quanLyIdNguoiMua} = {ql.IdNguoiMua}";
+            dbConnection.ThucThi(sqlStr);
+        }
         public void CapNhat(QuanLyDonHang ql)
         {
             string sqlStr = $@"UPDATE {quanLyHeader} 
                         SET {quanLyTrangThai} = N'{ql.TrangThai}'   
+                        WHERE {quanLyIdNguoiMua} = '{ql.IdNguoiMua}' AND {quanLyIdSanPham} = '{ql.IdSanPham}'";
+            dbConnection.ThucThi(sqlStr);
+        } 
+        public void CapNhatTraHang(QuanLyDonHang ql)
+        {
+            string sqlStr = $@"UPDATE {quanLyHeader} 
+                        SET {quanLyTrangThai} = N'{ql.TrangThai}' , {quanLyLyDo} = N'{ql.LyDo}'   
                         WHERE {quanLyIdNguoiMua} = '{ql.IdNguoiMua}' AND {quanLyIdSanPham} = '{ql.IdSanPham}'";
             dbConnection.ThucThi(sqlStr);
         }

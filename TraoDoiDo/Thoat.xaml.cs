@@ -26,6 +26,19 @@ namespace TraoDoiDo
 
         private void btnCo_Click(object sender, RoutedEventArgs e)
         { 
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window != Application.Current.MainWindow)
+                {
+                    window.Close();
+                }
+            }
+            DangNhap fDangNhap = new DangNhap();
+            fDangNhap.Show();
+        }
+
+        private void btnKhong_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

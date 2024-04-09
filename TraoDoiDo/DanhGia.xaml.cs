@@ -11,7 +11,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes; 
+using System.Windows.Shapes;
+using TraoDoiDo.Database;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
@@ -22,7 +24,7 @@ namespace TraoDoiDo
     {
         public string idNguoiDang;
         public string idNguoiMua;
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        DanhGiaNguoiDungDao danhGiaNguoiDungDao = new DanhGiaNguoiDungDao();
         public DanhGia()
         {
             InitializeComponent();
@@ -30,33 +32,36 @@ namespace TraoDoiDo
 
         private void btnGuiDanhGia_Click(object sender, RoutedEventArgs e)
         {
+            bool coXoa = false;
+            bool coThem = false;
+            DanhGiaNguoiDung danhGiaNguoiDung = new DanhGiaNguoiDung(idNguoiDang, idNguoiMua, ratingBarSoSao.Value.ToString(), txtbDanhGia.Text);
             try
             {
-                conn.Open();
-
-                string sqlStr = $@" DELETE DanhGiaNguoiDang 
-                                     WHERE IdNguoiDang = {idNguoiDang} AND IdNguoiMua = {idNguoiMua}";
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                command.ExecuteNonQuery();
-
-
-                sqlStr = $@" INSERT INTO DanhGiaNguoiDang (IdNguoiDang, IdNguoiMua ,SoSao, NhanXet)  
-                                        VALUES ({idNguoiDang}, {idNguoiMua}, N'{ratingBarSoSao.Value}', N'{txtbDanhGia.Text}')";
-                command = new SqlCommand(sqlStr, conn);
-                command.ExecuteNonQuery();
-
-
-                MessageBox.Show("Cảm ơn bạn đã gửi đánh giá\nChúc bạn một ngày vui :)", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                danhGiaNguoiDungDao.Xoa(danhGiaNguoiDung);
+                coXoa = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
+            try
             {
-                conn.Close();
+                danhGiaNguoiDungDao.Them(danhGiaNguoiDung);
+                coThem = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            if (coThem && coXoa)
+            {
+                MessageBox.Show("Cảm ơn bạn đã gửi đánh giá\nChúc bạn một ngày vui :)", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
+                
+
+
         }
     }
 }

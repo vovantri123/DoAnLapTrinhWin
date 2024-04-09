@@ -30,6 +30,23 @@ namespace TraoDoiDo.Database
                 $"{nguoiDungDiaChi} = '{user.DiaChi}', {nguoiDungAnh} = '{user.Anh}' WHERE {nguoiDungID}='{user.Id}'";
             dbConnection.ThucThi(sqlStr);
         }
+        public void CapNhatDiaChi(KhachHang user)
+        {
+            string sqlStr = $@"
+                    UPDATE {nguoiDungHeader}
+                    SET {nguoiDungTen} = N'{user.HoTen}', 
+                        {nguoiDungSdt}= '{user.Sdt}', 
+                        {nguoiDungEmail}= '{user.Email}',
+                        {nguoiDungDiaChi} = N'{user.DiaChi}'
+                    WHERE {nguoiDungID} = '{user.Id}' ";
+            dbConnection.ThucThi(sqlStr);
+        }
+        public List<string> TimKiemTheoIdNguoi(KhachHang user)
+        {
+            string sqlStr = $@"SELECT {nguoiDungTen},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{user.Id}' ";
+            return dbConnection.LayDanhSach<string>(sqlStr);
+        }
+
         public string TimKiemBangId(string id)
         {
             string sqlStr = $"SELECT * FROM {nguoiDungHeader} WHERE {nguoiDungID}='{id}'";

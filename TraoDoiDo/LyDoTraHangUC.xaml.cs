@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TraoDoiDo.Database;
+using TraoDoiDo.Models;
 
 namespace TraoDoiDo
 {
@@ -23,9 +25,11 @@ namespace TraoDoiDo
     public partial class LyDoTraHangUC : UserControl
     {
         public string idNguoiMua;
-        public string idSP = "2";
+        public string idSP;
         public event EventHandler DrawerClosed;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
+        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         public LyDoTraHangUC()
         {
             InitializeComponent();
@@ -33,40 +37,34 @@ namespace TraoDoiDo
 
         private void btnXacNhanTraHang_Click(object sender, RoutedEventArgs e)
         {
+            bool coTT = false;
+            bool coQL = false;
             try
             {
-                conn.Open();
-
                 // Xóa dữ liệu  khỏi bảng TrangThaiDonHang
-                string sqlStr = $@"
-                    UPDATE TrangThaiDonHang
-                    SET TrangThai = N'Đã trả hàng'
-                    WHERE TrangThaiDonHang.IdNguoiMua={idNguoiMua} AND TrangThaiDonHang.IdSanPham = {idSP}
-                ";
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                command.ExecuteNonQuery();
-
-                sqlStr = $@"
-                    UPDATE QuanLyDonHang
-                    SET TrangThai = N'Bị hoàn trả',
-                        LyDoTraHang = N'{timLyDoDuocChon()}'
-                    WHERE QuanLyDonHang.IdNguoiMua={idNguoiMua} AND QuanLyDonHang.IdSanPham = {idSP}
-            ";
-                command = new SqlCommand(sqlStr, conn);
-                command.ExecuteNonQuery();
-
-
-
+                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(idNguoiMua,idSP,null,null,null,"Đã trả hàng");
+                trangThaiDonHangDao.CapNhat(trangThaiDonHang);
+                coTT = true;    
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi xảy ra khi trả sản phẩm: " + ex.Message);
             }
-            finally
+            try
             {
-                conn.Close();
+                QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, idNguoiMua, idSP, "Bị hoàn trả", timLyDoDuocChon());
+                quanLyDonHangDao.CapNhatTraHang(quanLyDonHang);
+                coQL = true;
             }
-            MessageBox.Show("Trả hàng thành công\nTiền đã được hoàn lại");
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xảy ra khi trả sản phẩm: " + ex.Message);
+            }
+            if (coTT && coQL)
+            {
+                MessageBox.Show("Trả hàng thành công\nTiền đã được hoàn lại");
+            }
+            
             btnXacNhanTraHang.IsEnabled = false;
             // Tìm DrawerHost gần nhất
             DependencyObject parent = VisualTreeHelper.GetParent(this);

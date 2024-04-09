@@ -45,48 +45,6 @@ namespace TraoDoiDo
                
             }
         }
-        private void LuuAnhVaoThuMuc(string duongDanAnh)
-        {
-            try
-            {
-                // Kiểm tra xem đường dẫn ảnh có tồn tại không
-                if (!System.IO.File.Exists(duongDanAnh))
-                {
-                    MessageBox.Show("Không tìm thấy tệp ảnh.");
-                    return;
-                }
-
-                string thuMucHinhCuaToi = XuLyAnh.layDuongDanToiHinhSanPham();
-
-                // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo mới
-                if (!System.IO.Directory.Exists(thuMucHinhCuaToi))
-                {
-                    System.IO.Directory.CreateDirectory(thuMucHinhCuaToi);
-                }
-
-                // Lấy tên tệp ảnh từ đường dẫn
-                string tenFile = System.IO.Path.GetFileName(duongDanAnh);
-
-                // Tạo đường dẫn mới cho tệp ảnh trong thư mục "HinhCuaToi"
-                string duongDanMoi = System.IO.Path.Combine(thuMucHinhCuaToi, tenFile);
-
-                // Kiểm tra xem tệp ảnh đã tồn tại trong thư mục chưa
-                if (System.IO.File.Exists(duongDanMoi))
-                {
-                    MessageBox.Show("Tệp ảnh đã tồn tại trong thư mục HinhSanPham.");
-                    return;
-                }
-
-                // Sao chép tệp ảnh vào thư mục "HinhCuaToi"
-                System.IO.File.Copy(duongDanAnh, duongDanMoi, true);
-
-                MessageBox.Show("Ảnh đã được lưu vào thư mục HinhSanPham.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi lưu ảnh: " + ex.Message);
-            }
-        }
 
         private void btnXoaAnh_Click(object sender, RoutedEventArgs e)
         {

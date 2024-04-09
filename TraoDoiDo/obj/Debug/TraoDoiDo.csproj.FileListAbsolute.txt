@@ -386,14 +386,13 @@ C:\DoAnLapTrinhWinTDD\DoAnLTWindowT5\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CoreCo
 C:\DoAnLapTrinhWinTDD\DoAnLTWindowT5\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinCaNhan.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinCaNhan.baml
-C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\TraoDoiDo.exe
-C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
-C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\LiveCharts.dll
-C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\LiveCharts.Wpf.dll
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\MaterialDesignColors.dll
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
+C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\LiveCharts.dll
+C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\LiveCharts.Wpf.dll
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\System.Data.SqlClient.dll
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\LiveCharts.pdb
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\LiveCharts.xml
@@ -468,3 +467,4 @@ C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.C
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
+C:\DoAnLapTrinhWinTDD\DoAnLapTrinWinNewCN\TraoDoiDo\bin\Debug\TraoDoiDo.pdb

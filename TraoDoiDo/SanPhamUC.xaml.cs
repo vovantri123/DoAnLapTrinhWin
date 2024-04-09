@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 
 namespace TraoDoiDo
@@ -31,6 +32,7 @@ namespace TraoDoiDo
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         SanPham sanPham = new SanPham();
+        SanPhamDao sanPhamDao = new SanPhamDao();
         public SanPhamUC(int yeuThich)
         {
             this.yeuThich = yeuThich;
@@ -56,32 +58,15 @@ namespace TraoDoiDo
         {
             try
             {
-                conn.Open();
-                string sqlStr = $@"
-                    SELECT HoTenNguoiDung, COUNT(NhanXet) as SLNhanXet
-                    FROM NguoiDung
-                    INNER JOIN DanhGiaNguoiDang ON NguoiDung.IdNguoiDung = DanhGiaNguoiDang.IdNguoiDang
-                    GROUP BY IdNguoiDung,HoTenNguoiDung
-                    HAVING IdNguoiDung= {idNguoiDang}
-                ";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    tenNguoiDang = reader.GetString(0);
-                    soLuotDanhGia = reader.GetInt32(1).ToString();
-
-                }
+                DanhGiaNguoiDungDao danhGiaNgDungDao = new DanhGiaNguoiDungDao();
+                List<string> list = new List<string>();
+                list = danhGiaNgDungDao.timTenNguoiDangVaNhanXet(idNguoiDang);
+                tenNguoiDang = list[0];
+                soLuotDanhGia = list[1].ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 
@@ -91,51 +76,29 @@ namespace TraoDoiDo
             string idSanPham = txtbIdSanPham.Text;
             try
             {
-                conn.Open();
                 //B1 Lấy số lượt xem từ bảng SanPham
-                string sqlStr = $@"SELECT SoLuotXem FROM SanPham WHERE IdSanPham = {idSanPham} ";
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    soLuotXem = Convert.ToInt32(reader.GetString(0));
-                }
-                reader.Close();
-
-
+                soLuotXem = Convert.ToInt32(sanPhamDao.LayLuotXem(idSanPham));
                 //B2 Cập nhật số lượt xem
-                sqlStr = $@"
-                UPDATE SanPham 
-                SET SoLuotXem = '{(soLuotXem + 1)}' 
-                WHERE IdSanPham = {idSanPham}
-                ";
-                command = new SqlCommand(sqlStr, conn);
-                command.ExecuteNonQuery();
+                sanPhamDao.CapNhatLuotXem(idSanPham, soLuotXem);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
         }
-
-
-
 
         private void btnThongTinChiTietSanPham_Click(object sender, MouseButtonEventArgs e)
         {
             timTenVaSoLuotDanhGiaNguoiDang();
             tangSoLuotXemThem1();
-            sanPham = new SanPham(txtbIdSanPham.Text, idNguoiMua, txtbTen.Text, null, txtbLoai.Text, null, null, txtbGiaGoc.Text, txtbGiaBan.Text, null, null, txtbNoiBan.Text,null,null,null,null,txtbSoLuotXem.Text);
+            sanPham = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, null, txtbLoai.Text, null, null, txtbGiaGoc.Text, txtbGiaBan.Text, null, null, txtbNoiBan.Text,null,null,null,null,txtbSoLuotXem.Text);
             ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sanPham);
             f.idNguoiDang = idNguoiDang;
             f.txtbTenNguoiDang.Text = tenNguoiDang;
             f.txtbSoLuotDanhGia.Text = soLuotDanhGia;
             f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             f.idSanPham = txtbIdSanPham.Text;
+            f.idNguoiMua = idNguoiMua;
             f.ShowDialog();
         }
 
@@ -145,27 +108,15 @@ namespace TraoDoiDo
             btnBoYeuThich.Visibility = Visibility.Visible;
             try
             {
-                conn.Open();
-
-
                 // Câu lệnh SQL INSERT
-                string sqlStr = $@"INSERT INTO DanhMucYeuThich (IdNguoiMua,IdSanPham) 
-                   VALUES ('{idNguoiMua}', '{txtbIdSanPham.Text}')";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                int rowsAffected = command.ExecuteNonQuery();
-
-
+                DanhMucYeuThich danhMuc = new DanhMucYeuThich(idNguoiMua, txtbIdSanPham.Text);
+                DanhMucYeuThichDao danhMucDao = new DanhMucYeuThichDao();
+                danhMucDao.Them(danhMuc);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
-
         }
 
         private void btnBoYeuThich_Click(object sender, RoutedEventArgs e)
@@ -174,27 +125,15 @@ namespace TraoDoiDo
             btnThemVaoYeuThich.Visibility = Visibility.Visible;
             try
             {
-                conn.Open();
-
                 // Câu lệnh SQL INSERT
-                string sqlStr = $@" DELETE FROM DanhMucYeuThich 
-                WHERE IdNguoiMua = '{idNguoiMua}' AND IdSanPham = '{txtbIdSanPham.Text}'";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                int rowsAffected = command.ExecuteNonQuery();
-
-
+                DanhMucYeuThich danhMuc = new DanhMucYeuThich(idNguoiMua, txtbIdSanPham.Text);
+                DanhMucYeuThichDao danhMucDao = new DanhMucYeuThichDao();
+                danhMucDao.Xoa(danhMuc);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
         }
-
-        
     }
 }

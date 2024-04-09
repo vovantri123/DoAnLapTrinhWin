@@ -9,7 +9,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class NguoiDung : Window
     {
-        private KhachHang kh;
+        private KhachHang kh = new KhachHang();
         public NguoiDung()
         {
             InitializeComponent();

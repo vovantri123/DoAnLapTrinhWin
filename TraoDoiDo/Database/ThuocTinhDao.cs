@@ -60,7 +60,7 @@
 
         //Table GioHang
         protected const string gioHangHeader = "GioHang";
-        public const string giaoHangSoLuongMua = "SoLuongMua";
+        public const string gioHangSoLuongMua = "SoLuongMua";
 
         //Table DanhGiaNguoiDung
         protected const string danhGiaHeader = "DanhGiaNguoiDang";
@@ -88,8 +88,8 @@
 
         //Table DanhMucYeuThich
         protected const string danhMucHeader = "DanhMucYeuThich";
-        public const string danhMucYeuThich = "YeuThich";
         public const string danhMucNguoiMua = "IdNguoiMua";
+
 
         protected DbConnection dbConnection = new DbConnection();
     }

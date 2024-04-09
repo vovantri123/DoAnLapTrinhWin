@@ -29,16 +29,12 @@ namespace TraoDoiDo
         public string idNguoiMua;
         public string idNguoiDang;
         public string idSanPham ;
-        private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
+        private SanPhamUC[] DanhSachSanPham ;
         public string linkAnhBiaGlobal = "";
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         SanPham sanPham = new SanPham();
         SanPham sp = new SanPham();
         SanPhamDao spDao = new SanPhamDao();
-        private List<string> danhSachAnh = new List<string>
-        {
-            //Rỗng ban đầu
-        };
+        private List<string> danhSachAnh = new List<string>();
 
         private int currentIndex = -1;
         public ObservableCollection<ListViewItem> Items { get; set; }
@@ -66,12 +62,13 @@ namespace TraoDoiDo
 
         #region THÊM SẢN PHẨM CÙNG LOẠI VÀO MỤC KHÁM PHÁ THÊM
 
-        private void LoadSanPhamlenWpnlHienThi()
+        private void LoadSanPhamlenWpnlHienThi(object sender, RoutedEventArgs e)
         {
             try
             {
                 List<List<string>> listSanPhamCungLoai = new List<List<string>>();
                 listSanPhamCungLoai = spDao.LoadSanPhamCungLoai(sp);
+                DanhSachSanPham = new SanPhamUC[listSanPhamCungLoai.Count+1];
                 wpnlHienThiSPCungLoai.Children.Clear();
                 int i = 0;
                 foreach(var list in listSanPhamCungLoai)
@@ -113,10 +110,6 @@ namespace TraoDoiDo
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
         }
 
         #endregion
@@ -128,8 +121,8 @@ namespace TraoDoiDo
             {
                 List<List<string>> listAnhVaMoTa = new List<List<string>>();
                 listAnhVaMoTa = spDao.LoadAnhVaMoTa(sanPham);
-                
-                foreach(var list in listAnhVaMoTa)
+
+                foreach (var list in listAnhVaMoTa)
                 {
                     string linkAnhBia = list[0];
                     linkAnhBiaGlobal = list[0];
@@ -139,10 +132,17 @@ namespace TraoDoiDo
                     if (moTa.Trim() == "")
                         continue;
                     //lsvThongTinChiTietSP.Items.Add(new { LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
-                    lsvThongTinChiTietSP.Items.Add(new { MoTa = moTa });
-                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                    //lsvQuanLySanPham.Items.Add(sanPham);
+                    string[] lines = moTa.Split(new string[] { "." }, StringSplitOptions.None);
+                    foreach (string item in lines)
+                    {
+                        if (!string.IsNullOrEmpty(item.Trim()))
+                        {
+                            string formatItem = item.Replace(".", Environment.NewLine);
+                            lsvThongTinChiTietSP.Items.Add(new { MoTa = formatItem });
+                        }
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -150,12 +150,12 @@ namespace TraoDoiDo
             }
         }
 
-        private void LoadThongTinSanPham(object sender, EventArgs e)
+        private void LoadThongTinSanPham(object sender, RoutedEventArgs e)
         {
             try
             {
                 List<string> listThongTinSP = spDao.LoadThongTinSanPham(sanPham);
-                sp = new SanPham(sanPham.Id, idNguoiMua, listThongTinSP[0], linkAnhBiaGlobal, listThongTinSP[1], listThongTinSP[2], listThongTinSP[3], listThongTinSP[4],listThongTinSP[5], listThongTinSP[6],null, listThongTinSP[7], listThongTinSP[8], listThongTinSP[9],listThongTinSP[11], listThongTinSP[10], sanPham.LuotXem);
+                sp = new SanPham(sanPham.Id, sanPham.IdNguoi, listThongTinSP[0], linkAnhBiaGlobal, listThongTinSP[1], listThongTinSP[2], listThongTinSP[3], listThongTinSP[4],listThongTinSP[5], listThongTinSP[6],null, listThongTinSP[7], listThongTinSP[8], listThongTinSP[9],listThongTinSP[11], listThongTinSP[10], sanPham.LuotXem);
                 string soLuong = listThongTinSP[2];
                 string soLuongDaBan = listThongTinSP[3];
                 txtbSoLuongConLai.Text = (Convert.ToInt32(soLuong) - Convert.ToInt32(soLuongDaBan)).ToString();
@@ -169,9 +169,6 @@ namespace TraoDoiDo
                 txtbNgayMua.Text = sp.NgayMua;
                 txtbPhanTramConMoi.Text = sp.PhanTramMoi;
                 txtbMoTaChung.Text = sp.MoTaChung;
-                //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                //lsvQuanLySanPham.Items.Add(sanPham);
-
             }
             catch (Exception ex)
             {
@@ -179,7 +176,7 @@ namespace TraoDoiDo
             }
             finally
             {
-                LoadSanPhamlenWpnlHienThi();
+                LoadSanPhamlenWpnlHienThi(sender, e);
             }
         }
 
@@ -244,15 +241,10 @@ namespace TraoDoiDo
         {
             try
             {
-                conn.Open();
-                string sqlStr = $@"
-                    INSERT INTO GioHang (IdNguoiMua,IdSanPham, SoLuongMua)  
-                    VALUES ('{idNguoiMua}', '{idSanPham}','{txtbSoLuongHienTai.Text}')
-                ";
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                int rowsAffected = command.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                    MessageBox.Show("Thêm vào giỏ hàng thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                GioHang gioHang = new GioHang(idNguoiMua, idSanPham, txtbSoLuongHienTai.Text);
+                GioHangDao gioHangDao = new GioHangDao();
+                gioHangDao.Xoa(gioHang);
+                gioHangDao.Them(gioHang);
             }
             catch (Exception ex)
             {
@@ -260,7 +252,6 @@ namespace TraoDoiDo
             }
             finally
             {
-                conn.Close();
                 this.Close();
             }
         }

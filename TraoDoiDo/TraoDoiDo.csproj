@@ -93,8 +93,11 @@
     <Compile Include="DanhGia.xaml.cs">
       <DependentUpon>DanhGia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\DanhGiaNguoiDungDao.cs" />
+    <Compile Include="Database\DanhMucYeuThichDao.cs" />
     <Compile Include="Database\DbConnection.cs" />
     <Compile Include="Database\GiaoDichDao.cs" />
+    <Compile Include="Database\GioHangDao.cs" />
     <Compile Include="Database\KhachHangDao.cs" />
     <Compile Include="Database\MoTaAnhSanPhamDao.cs" />
     <Compile Include="Database\MoTaHangHoaDao.cs" />
@@ -109,7 +112,10 @@
     <Compile Include="LyDoTraHangUC.xaml.cs">
       <DependentUpon>LyDoTraHangUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DanhGiaNguoiDung.cs" />
+    <Compile Include="Models\DanhMucYeuThich.cs" />
     <Compile Include="Models\GiaoDich.cs" />
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\MoTaAnhSanPham.cs" />
     <Compile Include="Models\QuanLyDonHang.cs" />
     <Compile Include="Models\SanPham.cs" />

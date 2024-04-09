@@ -12,7 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.Database;
 using TraoDoiDo.Models;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -23,7 +25,12 @@ namespace TraoDoiDo
     {
 
         KhachHang ngDung = new KhachHang(); 
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        KhacHangDao ngDungDao = new KhacHangDao();
+        GioHangDao gioHangDao = new GioHangDao();
+        SanPhamDao sanPhamDao = new SanPhamDao();
+        TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
+        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
+        List<List<string>> listIdSP = new List<List<string>>();
         public DiaChi()
         {
             InitializeComponent();
@@ -35,49 +42,66 @@ namespace TraoDoiDo
             ngDung = kh;
             Loaded += FDiaChi_Loaded;
         } 
+        public DiaChi(KhachHang kh, List<List<string>> listId)
+        {
+            InitializeComponent();
+            ngDung = kh;
+            listIdSP = listId;
+            Loaded += FDiaChi_Loaded;
+        } 
         
 
         private void btnXacNhanThanhToan_Click_1(object sender, RoutedEventArgs e)
         {
-
-            capNhatThongTinCaNhan();
-            MessageBox.Show("Đã thanh toán thành công\nĐơn hàng đang chờ người bán xác nhận\n(Nhớ trừ tiền dô tài khoản)", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        private void capNhatThongTinCaNhan()
-        {
+            bool co = false;
             try
             {
-                conn.Open();
-                string sqlStr = $@"
-                    UPDATE NguoiDung
-                    
-                    SET HoTenNguoiDung = N'{txtHoTen.Text}', 
-                        SdtNguoiDung='{txtSoDienThoai.Text}', 
-                        EmailNguoiDung='{txtEmail.Text}',
-                        DiaChiNguoiDung = N'{txtDiaChi.Text}'
-                    WHERE IdNguoiDung = {ngDung.Id}
-                ";
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                capNhatThongTinCaNhan();
+                foreach (var item in listIdSP)
                 {
-                    //txtHoTen.Text = reader["HoTenNguoiDung"].ToString(); 
-                    txtHoTen.Text = reader.GetString(0);
-                    txtSoDienThoai.Text = reader.GetString(1);
-                    txtEmail.Text = reader.GetString(2);
-                    txtDiaChi.Text = reader.GetString(3);
+                    GioHang gioHang = new GioHang(ngDung.Id, item[1].ToString(), item[2].ToString());
+                    TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id, item[1].ToString(), item[2].ToString(), item[3].ToString(), item[4].ToString(), item[5].ToString());
+
+                    string idNguoiDang = quanLyDonHangDao.timIdNguoiDang(ngDung.Id, item[1].ToString());
+                    QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, idNguoiDang, ngDung.Id, item[1].ToString(),"Chờ đóng gói",null);
+                    quanLyDonHangDao.Xoa(quanLyDonHang);
+                    quanLyDonHangDao.Them(quanLyDonHang);
+                    trangThaiDonHangDao.Xoa(trangThaiDonHang);
+                    trangThaiDonHangDao.Them(trangThaiDonHang);
+                    gioHangDao.Xoa(gioHang);
+                    co = true;
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
+            if (co)
+                MessageBox.Show("Thanh toán thành công");
+        }
+        private void capNhatThongTinCaNhan()
+        {
+            KhachHang user = new KhachHang(ngDung.Id,txtHoTen.Text,ngDung.GioiTinh,ngDung.NgaySinh,ngDung.Cmnd,txtEmail.Text,txtSoDienThoai.Text,txtDiaChi.Text,ngDung.Anh,ngDung.TaiKhoan,ngDung.Tien);
+            ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(user);
+            bool check = ttkh.kiemTraCacTextBox();
+            if(check)
             {
-                conn.Close();
+                try
+                {
+                    List<string> listNguoiDung = new List<string>();
+                    ngDungDao.CapNhatDiaChi(user);
+                    listNguoiDung = ngDungDao.TimKiemTheoIdNguoi(user);
+                    txtHoTen.Text = listNguoiDung[0];
+                    txtSoDienThoai.Text = listNguoiDung[1];
+                    txtEmail.Text = listNguoiDung[2];
+                    txtDiaChi.Text = listNguoiDung[3];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+            
         }
 
         private void FDiaChi_Loaded(object sender, RoutedEventArgs e)

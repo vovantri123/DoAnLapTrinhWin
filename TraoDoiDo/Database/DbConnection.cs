@@ -41,6 +41,31 @@ namespace TraoDoiDo.Database
             }
             return co;
         }
+        public bool ThucThi(string s,bool co)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(s, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBoxButton messageBox = MessageBoxButton.OK;
+                    if ((messageBox & MessageBoxButton.OK)!=0 && co)
+                    {
+                        MessageBox.Show("Thành công");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thất bại" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return co;
+        }
 
         public string LayMotDoiTuong(string s, string data)
         {

@@ -26,27 +26,28 @@ namespace TraoDoiDo
     /// </summary>
     public partial class MuaDoUC : UserControl
     {
-
-
         private int soLuongSP = 0;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
         KhachHang ngDung = new KhachHang();
         SanPhamDao sanPhamDao = new SanPhamDao();
-
+        GioHangDao gioHangDao = new GioHangDao();
+        TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
+        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
+        List<List<string>> listSp = new List<List<string>>();
         public MuaDoUC()
         {
             InitializeComponent();
             Loaded += MuaSam_Load; // TAB1
-            //Loaded += GioHang_Load; //TAB2
-            //Loaded += TrangThaiDonHang_Load; //TAB3
+            Loaded += GioHang_Load; //TAB2
+            Loaded += TrangThaiDonHang_Load; //TAB3
         } 
         public MuaDoUC(KhachHang kh)
         {
             InitializeComponent();
             Loaded += MuaSam_Load; // TAB1
-           // Loaded += GioHang_Load; //TAB2
-            //Loaded += TrangThaiDonHang_Load; //TAB3
+            Loaded += GioHang_Load; //TAB2
+            Loaded += TrangThaiDonHang_Load; //TAB3
             ngDung = kh;
         }
 
@@ -159,7 +160,6 @@ namespace TraoDoiDo
                     {
                         yeuThich = 1;
                     }
-
                     DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
                     DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = list[0].ToString();
@@ -179,6 +179,7 @@ namespace TraoDoiDo
                     DanhSachSanPham[soLuongSP].txtbNoiBan.Text = list[5];
                     DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = list[6];
                     DanhSachSanPham[soLuongSP].idNguoiDang = list[7].ToString();
+                    DanhSachSanPham[soLuongSP].idNguoiMua = ngDung.Id;
                     DanhSachSanPham[soLuongSP].txtbLoai.Text = list[9];
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
@@ -219,8 +220,6 @@ namespace TraoDoiDo
         }
         #endregion
 
-
-
         #region TAB2 GIỎ HÀNG
 
 
@@ -229,59 +228,33 @@ namespace TraoDoiDo
             LsvGioHang_Load(sender, e);
         }
 
-
         private void LsvGioHang_Load(object sender, RoutedEventArgs e)
         {
             try
             {
-                conn.Open();
-                string sqlStr = $@"
-                    SELECT GioHang.IdSanPham, Ten, LinkAnhBia, GiaBan, PhiShip, SoLuongMua, SoLuong, SoLuongDaBan 
-                    FROM GioHang 
-                    INNER JOIN NguoiDung ON GioHang.IdNguoiMua = NguoiDung.IdNguoiDung
-                    INNER JOIN SanPham ON GioHang.IdSanPham = SanPham.IdSanPham
-                    WHERE NguoiDung.IdNguoiDung = '{ngDung.Id}'
-
-                ";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
+                List<List<string>> listSanPham = new List<List<string>>();
+                listSanPham = gioHangDao.timThongTinSanPham(ngDung.Id);
                 lsvGioHang.Items.Clear();
-                while (reader.Read())
+                foreach(var list in listSanPham)
                 {
-                    string idSP = reader.GetString(0);
-                    string tenSP = reader.GetString(1);
-                    string tenFileAnh = reader.GetString(2);
+                    string tenFileAnh =list[2];
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
 
-
-
-                    string giaBan = reader.GetString(3);
-                    string phiShip = reader.GetString(4);
-                    string soLuongMua = reader.GetString(5);
-
-                    int soLuong = Convert.ToInt32(reader.GetString(6)); // số lượng Tổng
-                    int soLuongDaBan = Convert.ToInt32(reader.GetString(7));
+                    int soLuong = Convert.ToInt32(list[6]); // số lượng Tổng
+                    int soLuongDaBan = Convert.ToInt32(list[7]);
                     string trangThai = "";
+                    
                     if (soLuongDaBan >= soLuong)
                         trangThai = "Hết hàng";
                     else
                         trangThai = "Còn hàng";
-
-
-                    lsvGioHang.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TrangThaiConHayHet = trangThai });
-
-                    //SanPham sanPham = new SanPham(id, name, imageUrl);
-                    //lsvQuanLySanPham.Items.Add(sanPham);
+                    SanPham sanPham = new SanPham(list[0], ngDung.Id, list[1], linkAnhBia, null, list[6], list[7], null, list[3], list[4], trangThai, null, null, null, null, null, null);
+                    lsvGioHang.Items.Add(new { IdSP = sanPham.Id, TenSP = sanPham.Ten, LinkAnhBia = linkAnhBia, Gia = sanPham.GiaBan, PhiShip = sanPham.PhiShip, SoLuongMua = list[5], TrangThaiConHayHet = trangThai });
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 
@@ -304,10 +277,8 @@ namespace TraoDoiDo
                     {
                         try
                         {
-                            conn.Open();
-                            string sqlDelete = $@"DELETE FROM GioHang WHERE IdNguoiMua={ngDung.Id} AND IdSanPham = {dataItem.IdSP} ";
-                            SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
-                            cmdDelete.ExecuteNonQuery();
+                            GioHang gioHang = new GioHang(ngDung.Id, dataItem.IdSP,dataItem.SoLuongMua);
+                            gioHangDao.Xoa(gioHang);
                         }
                         catch (Exception ex)
                         {
@@ -315,7 +286,6 @@ namespace TraoDoiDo
                         }
                         finally
                         {
-                            conn.Close();
                             GioHang_Load(sender, e);
                         }
                     }
@@ -341,7 +311,7 @@ namespace TraoDoiDo
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            DiaChi f = new DiaChi();
+            DiaChi f = new DiaChi(ngDung,listSp);
             f.ShowDialog();
         }
 
@@ -387,32 +357,35 @@ namespace TraoDoiDo
             return null;
         }
 
-
         private void TinhTienCuaNhungDongDuocChon(object sender, RoutedEventArgs e)
         {
             int tongTienhang = 0;
             int tongTienShip = 0;
-
-
+            List<string> listID = new List<string>();
+            string[] mang = new string[6]; 
             foreach (var dongDuocChon in lsvGioHang.SelectedItems)
             {
                 dynamic item = dongDuocChon;
                 int gia = Convert.ToInt32(item.Gia);
                 int phiShip = Convert.ToInt32(item.PhiShip);
                 int soLuongMua = Convert.ToInt32(item.SoLuongMua);
-
+                string idSP = item.IdSP;
                 tongTienhang += gia * soLuongMua;
                 tongTienShip += phiShip;
+                mang[0] = ngDung.Id;
+                mang[1] = item.IdSP;
+                mang[2] = soLuongMua.ToString();
+                mang[3] = (tongTienhang + tongTienShip).ToString();
+                mang[4] = DateTime.Now.ToString();
+                mang[5] = "Chờ xác nhận";
+                listID.AddRange(mang);
+                listSp.Add(listID);
             }
 
             txtbTongTienHang.Text = tongTienhang.ToString();
             txtbTongTienShip.Text = tongTienShip.ToString();
             txtbTongThanhToan.Text = (tongTienhang + tongTienShip).ToString();
         }
-
-
-
-
         #endregion
 
 
@@ -428,17 +401,11 @@ namespace TraoDoiDo
         {
             try
             {
-                conn.Open();
-                string sqlStr = $@"
-                    SELECT SanPham.IdSanPham,SanPham.Ten,SanPham.LinkAnhBia, TrangThaiDonHang.SoLuongMua, SanPham.GiaBan, SanPham.PhiShip, TrangThaiDonHang.TongThanhToan, TrangThaiDonHang.Ngay
-                    FROM TrangThaiDonHang
-                    INNER JOIN NguoiDung ON TrangThaiDonHang.IdNguoiMua = NguoiDung.IdNguoiDung
-                    INNER JOIN SanPham ON TrangThaiDonHang.IdSanPham= SanPham.IdSanPham
-                    WHERE NguoiDung.IdNguoiDung = {ngDung.Id} and TrangThaiDonHang.TrangThai = N'{trangthai}'
-                ";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
+                //Load Form TrangThaiDonHang
+                List<List<string>> listTrangThaiDon = new List<List<string>>();
+                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,null,null,null,null,trangthai);
+                // Sử dụng list<string> truy xuất list[0] thay cho getString
+                listTrangThaiDon = trangThaiDonHangDao.LoadTrangThaiDonHang(trangThaiDonHang);
 
                 if (tenLsv == "lsvChoNguoiBanXacNhan")
                     lsvChoNguoiBanXacNhan.Items.Clear();
@@ -447,32 +414,17 @@ namespace TraoDoiDo
                 else if (tenLsv == "lsvDaNhan")
                     lsvDaNhan.Items.Clear();
 
-                while (reader.Read())
+                foreach(var list in listTrangThaiDon)
                 {
-                    string idSP = reader.GetString(0);
-                    string tenSP = reader.GetString(1);
-                    string tenFileAnh = reader.GetString(2);
+                    string tenFileAnh = list[2];
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
 
-                    string soLuongMua = reader.GetString(3);
-                    string giaBan = reader.GetString(4);
-
-
-
-                    string phiShip = reader.GetString(5);
-                    string tongThanhToan = reader.GetString(6);
-                    string ngay = reader.GetString(7);
-
-
-
                     if (tenLsv == "lsvChoNguoiBanXacNhan")
-                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
+                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = list[0], TenSP = list[1], LinkAnhBia = linkAnhBia, Gia = list[4], PhiShip = list[5], SoLuongMua = list[3], TongThanhToan = list[6], Ngay = list[7] });
                     else if (tenLsv == "lsvChoGiaoHang")
-                        lsvChoGiaoHang.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
+                        lsvChoGiaoHang.Items.Add(new { IdSP = list[0], TenSP = list[1], LinkAnhBia = linkAnhBia, Gia = list[4], PhiShip = list[5], SoLuongMua = list[3], TongThanhToan = list[6], Ngay = list[7] });
                     else if (tenLsv == "lsvDaNhan")
-                        lsvDaNhan.Items.Add(new { IdSP = idSP, TenSP = tenSP, LinkAnhBia = linkAnhBia, Gia = giaBan, PhiShip = phiShip, SoLuongMua = soLuongMua, TongThanhToan = tongThanhToan, Ngay = ngay });
-
-
+                        lsvDaNhan.Items.Add(new { IdSP = list[0], TenSP = list[1], LinkAnhBia = linkAnhBia, Gia = list[4], PhiShip = list[5], SoLuongMua = list[3], TongThanhToan = list[6], Ngay = list[7] });
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
                 }
@@ -480,10 +432,6 @@ namespace TraoDoiDo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
         private void btnHuyDatHang_Click(object sender, RoutedEventArgs e)
@@ -505,19 +453,13 @@ namespace TraoDoiDo
                     {
                         try
                         {
-                            conn.Open();
-
                             // Xóa dữ liệu từ bảng TrangThaiDongHang
-                            string sqlDelete = $"DELETE FROM TrangThaiDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}";
-                            SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
-                            cmdDelete.ExecuteNonQuery();
-
+                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,null);
+                            trangThaiDonHangDao.Xoa(trangThaiDonHang);
 
                             // Xóa dữ liệu  khỏi bảng QuanLyDonHang 
-                            sqlDelete = $"DELETE FROM QuanLyDonHang WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}";
-                            cmdDelete = new SqlCommand(sqlDelete, conn);
-                            cmdDelete.ExecuteNonQuery();
-
+                            QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngDung.Id, dataItem.IdSP, null, null);
+                            quanLyDonHangDao.Xoa(quanLyDonHang);
                         }
                         catch (Exception ex)
                         {
@@ -525,7 +467,6 @@ namespace TraoDoiDo
                         }
                         finally
                         {
-                            conn.Close();
                             TrangThaiDonHang_Load(sender, e);
                         }
                     }
@@ -558,23 +499,11 @@ namespace TraoDoiDo
                         try
                         {
                             conn.Open();
+                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,"Đã nhận");
+                            trangThaiDonHangDao.CapNhat(trangThaiDonHang);
 
-                            string sqlStr = $@"
-                                UPDATE TrangThaiDonHang 
-                                SET TrangThai = N'Đã nhận'
-                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}
-                            ";
-                            SqlCommand command = new SqlCommand(sqlStr, conn);
-                            command.ExecuteNonQuery();
-
-                            sqlStr = $@" 
-                                UPDATE QuanLyDonHang 
-                                SET TrangThai = N'Đã giao'
-                                WHERE IdSanPham = {dataItem.IdSP} AND IdNguoiMua = {ngDung.Id}
-                            ";
-                            command = new SqlCommand(sqlStr, conn);
-                            command.ExecuteNonQuery();
-
+                            QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null,null,ngDung.Id,dataItem.IdSP,"Đã giao",null);
+                            quanLyDonHangDao.CapNhat(quanLyDonHang);
                         }
                         catch (Exception ex)
                         {
@@ -582,7 +511,6 @@ namespace TraoDoiDo
                         }
                         finally
                         {
-                            conn.Close();
                             TrangThaiDonHang_Load(sender, e);
                         }
                     }
@@ -598,7 +526,6 @@ namespace TraoDoiDo
         {
             DanhGia f = new DanhGia();
             f.idNguoiMua = ngDung.Id;
-
 
             // Lấy button được click
             Button btn = sender as Button;
@@ -616,21 +543,10 @@ namespace TraoDoiDo
 
                     try
                     {
-                        conn.Open();
-
-                        string sqlStr = $@"
-                            SELECT IdNguoiDang, HoTenNguoiDung 
-                            FROM SanPham
-                            INNER JOIN NguoiDung ON SanPham.IdSanPham = NguoiDung.IdNguoiDung
-                            WHERE IdSanPham = {dataItem.IdSP}
-                        ";
-                        SqlCommand command = new SqlCommand(sqlStr, conn);
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            f.idNguoiDang = reader.GetInt32(0).ToString();
-                            f.txtbTenNguoiDang.Text = reader.GetString(1);
-                        }
+                        List<string> listSanPham = new List<string>();
+                        listSanPham = sanPhamDao.timKiemIdNguoiDang(dataItem.IdSP);
+                        f.idNguoiDang = listSanPham[0].ToString();
+                        f.txtbTenNguoiDang.Text = listSanPham[1];
                     }
                     catch (Exception ex)
                     {
@@ -638,7 +554,6 @@ namespace TraoDoiDo
                     }
                     finally
                     {
-                        conn.Close();
                         TrangThaiDonHang_Load(sender, e);
                     }
                 }
