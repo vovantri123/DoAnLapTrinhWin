@@ -47,5 +47,10 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"SELECT {quanLyHeader}.{quanLyIdNguoiDang} FROM {quanLyHeader} WHERE {quanLyHeader}.{quanLyIdNguoiMua} = '{idNguoiMua}' AND {quanLyHeader}.{quanLyIdSanPham} = '{idSanPham}' ";
             return dbConnection.LayMotDoiTuong(sqlStr, $"{quanLyIdNguoiDang}");
         }
+        public string timIdNguoiMua(string idNguoiDang,string idSanPham)
+        {
+            string sqlStr = $@"SELECT {quanLyHeader}.{quanLyIdNguoiMua} FROM {quanLyHeader} WHERE {quanLyHeader}.{quanLyIdNguoiDang} = '{idNguoiDang}' AND {quanLyHeader}.{quanLyIdSanPham} = '{idSanPham}' ";
+            return dbConnection.LayMotDoiTuong(sqlStr, $"{quanLyIdNguoiMua}");
+        }
     }
 }

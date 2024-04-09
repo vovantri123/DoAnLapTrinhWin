@@ -118,7 +118,7 @@
                 materialDesign:HintAssist.Hint="Ngày sinh"
                 SelectedDate="{Binding NgaySinh, StringFormat='dd/MM/yyyy'}"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                Text="Format" />
+                 />
                     <TextBox
                 x:Name="txtDiaChi"
                 Grid.Row="2"

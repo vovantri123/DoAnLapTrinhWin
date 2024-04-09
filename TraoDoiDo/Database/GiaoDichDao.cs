@@ -29,5 +29,11 @@ namespace TraoDoiDo.Database
             string sqlStr = $"UPDATE {nguoiDungHeader} SET {nguoiDungTien}='{tien}' WHERE {nguoiDungID}='{id}'";
             dbConnection.ThucThi(sqlStr);
         }
+
+        public List<List<string>> TimKiemGiaoDichBangId(string idNguoiDung)
+        {
+            string sqlStr = $"SELECT {giaoDichID}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay} FROM {giaoDichHeader} WHERE {nguoiDungID}= '{idNguoiDung}' ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
     }
 }

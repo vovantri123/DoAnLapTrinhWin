@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using TraoDoiDo.Models;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -14,12 +17,14 @@ namespace TraoDoiDo
         {
             InitializeComponent();
             TrangChu_Click(Owner, new RoutedEventArgs());
+            Loaded += mainWindow_Loaded;
         }
         public NguoiDung(KhachHang nguoiDung)
         {
             InitializeComponent();
             TrangChu_Click(Owner, new RoutedEventArgs());
             kh = nguoiDung;
+            Loaded += mainWindow_Loaded;
         }
 
 
@@ -106,5 +111,15 @@ namespace TraoDoiDo
             f.ShowDialog();
         }
 
+        private void mainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadWindow();
+        }
+        public void LoadWindow()
+        {
+            lblTenNguoiDung.Text = kh.HoTen;
+            lblTienNguoiDung.Text = kh.Tien + " VND";
+            imgNguoiDung.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
+        }
     }
 }

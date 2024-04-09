@@ -33,6 +33,8 @@ namespace TraoDoiDo
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         SanPham sanPham = new SanPham();
         SanPhamDao sanPhamDao = new SanPhamDao();
+        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
+        List<string> listSP = new List<string>();
         public SanPhamUC(int yeuThich)
         {
             this.yeuThich = yeuThich;
@@ -49,10 +51,12 @@ namespace TraoDoiDo
             }
             
         }
+        
         private void FSanPhamUC_Loaded(object sender, RoutedEventArgs e)
         {
-            //sanPham = new SanPham(txtbIdSanPham.Text,idNguoiMua,txtbTen.Text,imgSP.Source.ToString(),txtbLoai.Text,null,null,txtbGiaGoc.Text,txtbGiaBan.Text,null,null,txtbNoiBan.Text,null,null,null,null,txtbSoLuotXem.Text);
-
+            listSP = sanPhamDao.timKiemToanBoBangId(txtbIdSanPham.Text);
+            sanPham = new SanPham(listSP[0], listSP[1], listSP[2],listSP[3].ToString(), listSP[4], listSP[5], listSP[6], listSP[7], listSP[8], listSP[9], listSP[10], listSP[11], listSP[12], listSP[13], listSP[15], listSP[14], txtbSoLuotXem.Text);
+            idNguoiMua = quanLyDonHangDao.timIdNguoiMua(listSP[1], listSP[0]);
         }
         private void timTenVaSoLuotDanhGiaNguoiDang()
         {
@@ -60,8 +64,8 @@ namespace TraoDoiDo
             {
                 DanhGiaNguoiDungDao danhGiaNgDungDao = new DanhGiaNguoiDungDao();
                 List<string> list = new List<string>();
-                list = danhGiaNgDungDao.timTenNguoiDangVaNhanXet(idNguoiDang);
-                tenNguoiDang = list[0];
+                list = danhGiaNgDungDao.timTenNguoiDangVaNhanXet(sanPham.IdNguoi);
+                tenNguoiDang = list[0].ToString();
                 soLuotDanhGia = list[1].ToString();
             }
             catch (Exception ex)
@@ -91,7 +95,7 @@ namespace TraoDoiDo
         {
             timTenVaSoLuotDanhGiaNguoiDang();
             tangSoLuotXemThem1();
-            sanPham = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, null, txtbLoai.Text, null, null, txtbGiaGoc.Text, txtbGiaBan.Text, null, null, txtbNoiBan.Text,null,null,null,null,txtbSoLuotXem.Text);
+            sanPham = new SanPham(txtbIdSanPham.Text, sanPham.IdNguoi, txtbTen.Text,sanPham.LinkAnh, txtbLoai.Text,sanPham.SoLuong,sanPham.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text,sanPham.PhiShip,sanPham.TrangThai, txtbNoiBan.Text,sanPham.XuatXu,sanPham.NgayMua,sanPham.MoTaChung,sanPham.PhanTramMoi,txtbSoLuotXem.Text);
             ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sanPham);
             f.idNguoiDang = idNguoiDang;
             f.txtbTenNguoiDang.Text = tenNguoiDang;

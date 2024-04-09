@@ -23,7 +23,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DiaChi : Window
     {
-
+        public string tongThanhToan;
         KhachHang ngDung = new KhachHang(); 
         KhacHangDao ngDungDao = new KhacHangDao();
         GioHangDao gioHangDao = new GioHangDao();
@@ -61,14 +61,20 @@ namespace TraoDoiDo
                 {
                     GioHang gioHang = new GioHang(ngDung.Id, item[1].ToString(), item[2].ToString());
                     TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id, item[1].ToString(), item[2].ToString(), item[3].ToString(), item[4].ToString(), item[5].ToString());
-
-                    string idNguoiDang = quanLyDonHangDao.timIdNguoiDang(ngDung.Id, item[1].ToString());
-                    QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, idNguoiDang, ngDung.Id, item[1].ToString(),"Chờ đóng gói",null);
+                    List<string> listNguoiDang = sanPhamDao.timKiemIdNguoiDang(item[1].ToString());
+                    QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, listNguoiDang[0], ngDung.Id, item[1].ToString(),"Chờ đóng gói",null);
                     quanLyDonHangDao.Xoa(quanLyDonHang);
                     quanLyDonHangDao.Them(quanLyDonHang);
                     trangThaiDonHangDao.Xoa(trangThaiDonHang);
                     trangThaiDonHangDao.Them(trangThaiDonHang);
                     gioHangDao.Xoa(gioHang);
+                }
+                double tienTT = Convert.ToDouble(ngDung.Tien) - Convert.ToDouble(tongThanhToan);
+                if (tienTT < 0)
+                    MessageBox.Show("Số tiền trong tài khoản của bạn không đủ vui lòng nạp thêm!!!!", "Thông báo",MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                {
+                    ngDungDao.CapNhatSoTien(tienTT.ToString(), ngDung.Id);
                     co = true;
                 }
             }

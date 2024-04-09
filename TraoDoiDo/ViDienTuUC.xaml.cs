@@ -26,10 +26,12 @@ namespace TraoDoiDo
     {
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         KhachHang nguoiDung = new KhachHang();
+        KhacHangDao nguoiDungDao = new KhacHangDao();
         GiaoDich gd;
         GiaoDichDao gdDao = new GiaoDichDao();
         List<string> listTienNap = new List<string>();
         List<string> listTienRut = new List<string>();
+        List<List<string>> listGiaoDich = new List<List<string>>();
         public ViDienTuUC()
         {
             InitializeComponent();
@@ -62,7 +64,7 @@ namespace TraoDoiDo
             try
             {
                 HienThi_GiaoDich();
-                string t = tinhTongTien();
+                string t = nguoiDungDao.TimKiemTienBangId(nguoiDung.Id);
                 lblSoDu.Text = t;
             }
             catch (Exception ex)
@@ -74,13 +76,10 @@ namespace TraoDoiDo
         {
             try
             {
-                conn.Open();
-                string sqlStr = $"SELECT IdGiaoDich, loaiGiaoDich,soTien,tuNguonGiaoDich,denNguonGiaoDich,ngayGiaoDich FROM GiaoDich WHERE IdNguoiDung='{nguoiDung.Id}'";
-                SqlCommand cmd = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                listGiaoDich = gdDao.TimKiemGiaoDichBangId(nguoiDung.Id);
+                foreach(var list in listGiaoDich)
                 {
-                    gd = new GiaoDich(reader.GetInt32(0).ToString(), nguoiDung.Id, reader.GetString(1).ToString(), reader.GetString(2).ToString(), reader.GetString(3).ToString(), reader.GetString(4).ToString(), reader.GetString(5).ToString());
+                    gd = new GiaoDich(list[0], nguoiDung.Id, list[1], list[2], list[3], list[4], list[5]);
                     lsvLichSuGiaoDich.Items.Add(new { Id = gd.Id, Type = gd.LoaiGiaoDich, Money = gd.SoTien, Initial = gd.TuNguonTien, End = gd.DenNguonTien, Date = gd.NgayGiaoDich });
                 }
             }
@@ -93,24 +92,7 @@ namespace TraoDoiDo
                 conn.Close();
             }
         }
-        public string tinhTongTien()
-        {
-            listTienNap = gdDao.TinhTienNguoiDung(gd, "Nạp tiền");
-            double tongTienNap = tinhTong(listTienNap);
-            listTienRut = gdDao.TinhTienNguoiDung(gd, "Rút tiền");
-            double tongTienRut = tinhTong(listTienRut);
-            double tongTien = tongTienNap - tongTienRut;
-            return tongTien.ToString();
-        }
-        public double tinhTong(List<string> list)
-        {
-            double tongTien = 0;
-            foreach (string t in list)
-            {
-                tongTien += Convert.ToDouble(t);
-            }
-            return tongTien;
-        }
+        
 
     }
 }

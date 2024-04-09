@@ -23,12 +23,13 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinCaNhanUC : UserControl
     {
-        KhachHang kh;
+        KhachHang kh = new KhachHang();
 
         public ThongTinCaNhanUC()
         {
             InitializeComponent();
             this.DataContext = this;
+            Loaded += UCThongTinCaNhan_Loaded;
         }
         public ThongTinCaNhanUC(KhachHang nguoiDung)
         {
@@ -55,7 +56,8 @@ namespace TraoDoiDo
             txtMatKhau.Password = kh.TaiKhoan.MatKhau;
             txtEmail.Text = kh.Email;
             cbGioiTinh.Text = kh.GioiTinh;
-            dtpNgaySinh.Text = kh.NgaySinh;
+            DateTime ngaySinh = DateTime.ParseExact(kh.NgaySinh, "dd/MM/yyyy", null);
+            dtpNgaySinh.SelectedDate = Convert.ToDateTime(ngaySinh);
             imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }
 

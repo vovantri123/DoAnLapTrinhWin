@@ -312,6 +312,7 @@ namespace TraoDoiDo
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
             DiaChi f = new DiaChi(ngDung,listSp);
+            f.tongThanhToan = txtbTongThanhToan.Text;
             f.ShowDialog();
         }
 

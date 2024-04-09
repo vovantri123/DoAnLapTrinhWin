@@ -12,6 +12,7 @@
     Height="850"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    Loaded="mainWindow_Loaded"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -205,20 +206,28 @@
                         Background="#673ab7">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
-                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="220" />
                         </Grid.ColumnDefinitions>
 
                         <materialDesign:Chip
                             Grid.Column="1"
-                            HorizontalAlignment="Center"
+                            Width="Auto"
+                            HorizontalAlignment="Left"
                             Click="ThongTinCaNhan_Click"
                             Style="{StaticResource MaterialDesignOutlineChip}">
                             <materialDesign:Chip.Icon>
-                                <Image Source="/HinhCuaToi/Avatar1.png" />
+                                <Image x:Name="imgNguoiDung" Source="/HinhCuaToi/Avatar1.png" />
                             </materialDesign:Chip.Icon>
                             <StackPanel>
-                                <TextBlock Foreground="White" Text="Harry Potter" />
-                                <TextBlock Foreground="White" Text="1.200.000 VNĐ" />
+                                <TextBlock
+                                    Width="Auto"
+                                    x:Name="lblTenNguoiDung"
+                                    FontSize="13"
+                                    Foreground="White" />
+                                <TextBlock
+                                    x:Name="lblTienNguoiDung"
+                                    FontSize="13"
+                                    Foreground="White" />
                             </StackPanel>
                         </materialDesign:Chip>
 

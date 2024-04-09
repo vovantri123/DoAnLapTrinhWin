@@ -41,12 +41,21 @@ namespace TraoDoiDo.Database
                     WHERE {nguoiDungID} = '{user.Id}' ";
             dbConnection.ThucThi(sqlStr);
         }
+        public void CapNhatSoTien(string soTien,string idNguoiDung)
+        {
+            string sqlStr = $@"UPDATE {nguoiDungHeader} SET {nguoiDungTien} = '{soTien}' WHERE {nguoiDungID} = '{idNguoiDung}' ";
+            dbConnection.ThucThi(sqlStr);
+        } 
         public List<string> TimKiemTheoIdNguoi(KhachHang user)
         {
             string sqlStr = $@"SELECT {nguoiDungTen},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{user.Id}' ";
             return dbConnection.LayDanhSach<string>(sqlStr);
         }
-
+        public string TimKiemTienBangId(string id)
+        {
+            string sqlStr = $@"SELECT {nguoiDungTien} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{id}' ";
+            return dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungTien}");
+        }
         public string TimKiemBangId(string id)
         {
             string sqlStr = $"SELECT * FROM {nguoiDungHeader} WHERE {nguoiDungID}='{id}'";
