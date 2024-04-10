@@ -64,7 +64,7 @@
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
                                     SelectionChanged="cbLocLoai_SelectionChanged"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBoxItem Content="Quần áo" />
                                     <ComboBoxItem Content="Đồ điện tử" />
                                     <ComboBoxItem Content="Đồ chơi" />
@@ -180,7 +180,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Quản lý đơn hàng">
+            <TabItem x:Name="tabItemQuanLyDonHang" Header="Quản lý đơn hàng" Loaded="tabItemQuanLyDonHang_Loaded">
                 <Grid>
 
                     <Grid>
@@ -612,7 +612,7 @@
 
 
             </TabItem>
-            <TabItem Header="Thống kê">
+            <TabItem x:Name="tabItemThongKe" Header="Thống kê" Loaded="tabItemThongKe_Loaded">
                 <Grid>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <Grid>
@@ -620,12 +620,8 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="380" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="600" />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" FontSize="35">Tổng quan</TextBlock>
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
@@ -638,7 +634,7 @@
                                     Height="200"
                                     Margin="10,10,0,10">
                                     <Border
-                                        BorderBrush="Black"
+                                        BorderBrush="Gray"
                                         BorderThickness="1"
                                         CornerRadius="5">
                                         <Border.Effect>
@@ -673,13 +669,22 @@
                                                         FontSize="35"
                                                         Foreground="White"
                                                         Text="Tổng doanh thu" />
-                                                    <TextBlock
+                                                    <StackPanel
                                                         Grid.Row="1"
                                                         Margin="15,0,15,15"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="35"
-                                                        Foreground="White"
-                                                        Text="2.300.000 VNĐ" />
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            x:Name="txtbTongDoanhThu"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="35"
+                                                            Foreground="White"
+                                                            Text="2.300.000" />
+                                                        <TextBlock
+                                                            VerticalAlignment="Center"
+                                                            FontSize="35"
+                                                            Foreground="White"
+                                                            Text=" VNĐ" />
+                                                    </StackPanel>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
@@ -696,7 +701,7 @@
                                     Height="200"
                                     Margin="10,10,0,10">
                                     <Border
-                                        BorderBrush="Black"
+                                        BorderBrush="Gray"
                                         BorderThickness="1"
                                         CornerRadius="5">
                                         <Border.Effect>
@@ -731,13 +736,23 @@
                                                         FontSize="34"
                                                         Foreground="White"
                                                         Text="Tổng khách hàng" />
-                                                    <TextBlock
+                                                    <StackPanel
                                                         Grid.Row="1"
                                                         Margin="15,0,15,15"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="35"
-                                                        Foreground="White"
-                                                        Text="127 Người" />
+                                                        Orientation="Horizontal">
+
+                                                        <TextBlock
+                                                            x:Name="txtbTongSoLuongKhachHang"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="35"
+                                                            Foreground="White"
+                                                            Text="127" />
+                                                        <TextBlock
+                                                            VerticalAlignment="Center"
+                                                            FontSize="35"
+                                                            Foreground="White"
+                                                            Text=" Người" />
+                                                    </StackPanel>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
@@ -749,7 +764,7 @@
                                     Height="200"
                                     Margin="10,10,0,10">
                                     <Border
-                                        BorderBrush="Black"
+                                        BorderBrush="Gray"
                                         BorderThickness="1"
                                         CornerRadius="5">
                                         <Border.Effect>
@@ -784,13 +799,23 @@
                                                         FontSize="35"
                                                         Foreground="White"
                                                         Text="Đã bán được" />
-                                                    <TextBlock
+                                                    <StackPanel
                                                         Grid.Row="1"
                                                         Margin="15,0,15,15"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="35"
-                                                        Foreground="White"
-                                                        Text="168 Sản phẩm" />
+                                                        Orientation="Horizontal">
+
+                                                        <TextBlock
+                                                            x:Name="txtbTongSoLuongSanPhamDaBan"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="35"
+                                                            Foreground="White"
+                                                            Text="168" />
+                                                        <TextBlock
+                                                            VerticalAlignment="Center"
+                                                            FontSize="35"
+                                                            Foreground="White"
+                                                            Text=" Sản phẩm" />
+                                                    </StackPanel>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
@@ -798,35 +823,292 @@
                                 </Grid>
 
                             </Grid>
+                            <Grid Grid.Row="1" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="770" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Margin="10,20,10,20">
+                                    <materialDesign:Card UniformCornerRadius="20">
+                                        <StackPanel>
+                                            <Grid>
+                                                <TextBlock
+                                                    Margin="20"
+                                                    HorizontalAlignment="Left"
+                                                    FontSize="18"
+                                                    FontWeight="SemiBold"
+                                                    Text="Tổng doanh thu theo sản phẩm" />
+                                            </Grid>
+                                            <lvc:CartesianChart
+                                                x:Name="chart_TongDoanhThuTheoSanPham"
+                                                Height="300"
+                                                Margin="10,0"
+                                                Foreground="Black"
+                                                LegendLocation="None"
+                                                Series="{Binding DoanhThuTheoSanPham_SC}" />
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </Grid>
 
-                            <TextBlock
-                                Grid.Row="2"
-                                FontSize="35"
-                                Text="Tỉ trọng doanh thu mặt hàng" />
+                                <Grid Grid.Column="1" Margin="10,20,5,20">
+                                    <materialDesign:Card
+                                        Width="370"
+                                        HorizontalAlignment="Right"
+                                        UniformCornerRadius="20">
+                                        <StackPanel>
+                                            <Grid>
+                                                <TextBlock
+                                                    Margin="20"
+                                                    HorizontalAlignment="Left"
+                                                    FontSize="18"
+                                                    FontWeight="SemiBold"
+                                                    Text="Tỷ lệ % doanh số theo sản phẩm" />
 
-                            <Grid Grid.Row="3">
-                                <Grid Width="600">
-                                    <lvc:PieChart
-                                        x:Name="pieChart"
-                                        Grid.Column="1"
-                                        LegendLocation="Right" />
+                                            </Grid>
+                                            <lvc:PieChart
+                                                x:Name="chart_TiLePhanTramDoanhThuTheoSanPham"
+                                                Width="300"
+                                                Height="300"
+                                                LegendLocation="None" />
+                                        </StackPanel>
+                                    </materialDesign:Card>
                                 </Grid>
                             </Grid>
-                            <TextBlock
-                                Grid.Row="4"
-                                FontSize="35"
-                                Text="Sản lượng bán ra của từng mặt hàng" />
-                            <lvc:CartesianChart
-                                Grid.Row="5"
-                                LegendLocation="Left"
-                                Series="{Binding SeriesCollection}">
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="Tên sản phẩm" Labels="{Binding Labels}" />
-                                </lvc:CartesianChart.AxisX>
-                                <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="Số lượng" LabelFormatter="{Binding Formatter}" />
-                                </lvc:CartesianChart.AxisY>
-                            </lvc:CartesianChart>
+
+                            <Grid Grid.Row="2" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="780" />
+                                    <ColumnDefinition Width="382" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Margin="10,10,10,0">
+                                    <materialDesign:Card Margin="10,10,10,20" UniformCornerRadius="20">
+                                        <StackPanel>
+                                            <Grid>
+                                                <TextBlock
+                                                    Margin="20"
+                                                    HorizontalAlignment="Left"
+                                                    FontSize="18"
+                                                    FontWeight="SemiBold"
+                                                    Text="Số lượng sản phẩm đã bán" />
+                                            </Grid>
+                                            <lvc:CartesianChart
+                                                x:Name="chart_SoLuongSanPhamDaBan"
+                                                Height="280"
+                                                Margin="10,0"
+                                                Foreground="Black"
+                                                LegendLocation="Bottom"
+                                                Series="{Binding abcxyz}" />
+                                        </StackPanel>
+                                    </materialDesign:Card>
+
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <materialDesign:Card
+                                        Height="335"
+                                        Padding="10"
+                                        UniformCornerRadius="20">
+                                        <StackPanel>
+                                            <Grid>
+                                                <TextBlock
+                                                    Margin="0,0,0,20"
+                                                    HorizontalAlignment="Left"
+                                                    FontSize="18"
+                                                    FontWeight="SemiBold"
+                                                    Text="Đánh giá của người mua" />
+                                            </Grid>
+                                            <Grid Height="150">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="175" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel
+                                                        Grid.Row="0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Margin="5,0"
+                                                            FontWeight="SemiBold"
+                                                            Text="5 Sao" />
+                                                        <ProgressBar
+                                                            x:Name="progressBar5Sao"
+                                                            Width="100"
+                                                            Height="8"
+                                                            Margin="5,0"
+                                                            Background="#FFE8E8E8"
+                                                            BorderBrush="SeaGreen"
+                                                            Foreground="SeaGreen"
+                                                            Value="80" />
+                                                        <TextBlock
+                                                            x:Name="txtbSoLuong5Sao"
+                                                            FontWeight="SemiBold"
+                                                            Text="32" />
+                                                    </StackPanel>
+                                                    <StackPanel
+                                                        Grid.Row="1"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Margin="5,0"
+                                                            FontWeight="SemiBold"
+                                                            Text="4 Sao" />
+                                                        <ProgressBar
+                                                            x:Name="progressBar4Sao"
+                                                            Width="100"
+                                                            Height="8"
+                                                            Margin="5,0"
+                                                            Background="#FFE8E8E8"
+                                                            BorderBrush="SeaGreen"
+                                                            Foreground="SeaGreen"
+                                                            Value="64" />
+                                                        <TextBlock
+                                                            x:Name="txtbSoLuong4Sao"
+                                                            FontWeight="SemiBold"
+                                                            Text="12" />
+                                                    </StackPanel>
+                                                    <StackPanel
+                                                        Grid.Row="2"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Margin="5,0"
+                                                            FontWeight="SemiBold"
+                                                            Text="3 Sao" />
+                                                        <ProgressBar
+                                                            x:Name="progressBar3Sao"
+                                                            Width="100"
+                                                            Height="8"
+                                                            Margin="5,0"
+                                                            Background="#FFE8E8E8"
+                                                            BorderBrush="SeaGreen"
+                                                            Foreground="SeaGreen"
+                                                            Value="60" />
+                                                        <TextBlock
+                                                            x:Name="txtbSoLuong3Sao"
+                                                            FontWeight="SemiBold"
+                                                            Text="14" />
+                                                    </StackPanel>
+                                                    <StackPanel
+                                                        Grid.Row="3"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Margin="5,0"
+                                                            FontWeight="SemiBold"
+                                                            Text="2 Sao" />
+                                                        <ProgressBar
+                                                            x:Name="progressBar2Sao"
+                                                            Width="100"
+                                                            Height="8"
+                                                            Margin="5,0"
+                                                            Background="#FFE8E8E8"
+                                                            BorderBrush="SeaGreen"
+                                                            Foreground="SeaGreen"
+                                                            Value="27" />
+                                                        <TextBlock
+                                                            x:Name="txtbSoLuong2Sao"
+                                                            FontWeight="SemiBold"
+                                                            Text="3" />
+                                                    </StackPanel>
+                                                    <StackPanel
+                                                        Grid.Row="4"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Margin="5,0"
+                                                            FontWeight="SemiBold"
+                                                            Text="1 Sao" />
+                                                        <ProgressBar
+                                                            x:Name="progressBar1Sao"
+                                                            Width="100"
+                                                            Height="8"
+                                                            Margin="5,0"
+                                                            Background="#FFE8E8E8"
+                                                            BorderBrush="SeaGreen"
+                                                            Foreground="SeaGreen"
+                                                            Value="10" />
+                                                        <TextBlock
+                                                            x:Name="txtbSoLuong1Sao"
+                                                            FontWeight="SemiBold"
+                                                            Text="0" />
+                                                    </StackPanel>
+
+                                                </Grid>
+                                                <Grid
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock
+                                                        x:Name="txtbSoSaoTrungBinh"
+                                                        Grid.Row="0"
+                                                        HorizontalAlignment="Center"
+                                                        FontSize="35"
+                                                        FontWeight="SemiBold"
+                                                        Text="4.8" />
+                                                    <materialDesign:RatingBar
+                                                        x:Name="ratingBar_SoSao"
+                                                        Grid.Row="1"
+                                                        HorizontalAlignment="Center"
+                                                        IsReadOnly="True"
+                                                        Value="4" />
+                                                    <Grid Grid.Row="2" HorizontalAlignment="Center">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock
+                                                            x:Name="txtbSoLuotDanhGia"
+                                                            Grid.Column="0"
+                                                            HorizontalAlignment="Center"
+                                                            FontWeight="SemiBold"
+                                                            Text="15" />
+                                                        <TextBlock
+                                                            Grid.Column="1"
+                                                            HorizontalAlignment="Center"
+                                                            FontWeight="SemiBold"
+                                                            Text=" lượt đánh giá" />
+                                                    </Grid>
+                                                    <Button
+                                                        x:Name="btnThongTinChiTietDanhGia"
+                                                        Grid.Row="3"
+                                                        Width="85"
+                                                        Height="30"
+                                                        Click="btnThongTinChiTietDanhGia_Click"
+                                                        Content="Chi tiết" />
+
+                                                </Grid>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </Grid>
+
+
+                            </Grid>
+
+
+
+
+
                         </Grid>
                     </ScrollViewer>
 

@@ -109,5 +109,37 @@ namespace TraoDoiDo.Database
                             WHERE {sanPhamID} = '{idSP}' ";
             return dbConnection.LayDanhSach<string>(sqlStr);
         }
+        public List<List<string>> tinhSoLuongSPDaBan(string idNguoiDang)
+        {
+            string sqlStr = $@"
+            SELECT {sanPhamTen}, {sanPhamSLDaBan}, {sanPhamSoLuong}
+            FROM {sanPhamHeader}
+            WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
+        public List<List<string>> tinhDoanhThuTheoSanPham(string idNguoiDang)
+        {
+            string sqlStr = $@"
+            SELECT {sanPhamTen}, {sanPhamSLDaBan}, {sanPhamGiaBan}
+            FROM {sanPhamHeader}
+            WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
+        public List<List<string>> tinhDoanhThu(string idNguoiDang)
+        {
+            string sqlStr = $@"
+            SELECT DISTINCT {sanPhamSLDaBan}, {sanPhamGiaBan}
+            FROM {sanPhamHeader}  
+            WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' AND {sanPhamSLDaBan}>0 ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
+        public List<List<string>> tinhTongSLDaBan(string idNguoiDang)
+        {
+            string sqlStr = $@"
+            SELECT DISTINCT {sanPhamIdNguoiDang}, {sanPhamSLDaBan}
+            FROM {sanPhamHeader}  
+            WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
     }
 }

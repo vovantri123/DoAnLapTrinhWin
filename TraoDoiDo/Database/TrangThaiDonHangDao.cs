@@ -50,5 +50,16 @@ namespace TraoDoiDo.Database
                     WHERE {nguoiDungHeader}.{nguoiDungID} = {trangThaiDon.IdNguoiMua} and {trangThaiHeader}.{trangThaiTrangThai} = N'{trangThaiDon.TrangThai}' ";
             return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
         }
+        public List<List<string>> tinhTongKhachHang(string idNguoiDang)
+        {
+            string sqlStr = $@"
+            SELECT DISTINCT {sanPhamHeader}.{sanPhamIdNguoiDang}, COUNT({trangThaiHeader}.{trangThaiIdNguoiMua})
+            FROM {trangThaiHeader}
+            INNER JOIN {sanPhamHeader} ON {trangThaiHeader}.{trangThaiIdSanPham} = {sanPhamHeader}.{sanPhamID}
+            GROUP BY {sanPhamHeader}.{sanPhamIdNguoiDang}
+            HAVING {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
+    
     }
 }

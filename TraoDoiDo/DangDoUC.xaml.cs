@@ -1,4 +1,5 @@
 ﻿using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -24,85 +25,14 @@ namespace TraoDoiDo
         MoTaHangHoaDao moTaDao = new MoTaHangHoaDao();
         QuanLyDonHangDao quanLyDao = new QuanLyDonHangDao();
         TrangThaiDonHangDao trangThaiHangDao = new TrangThaiDonHangDao();
-        #region Tạm để quay video
-        public class SP
-        {
-            public string TenSanPham { get; set; }
-            public int SoLuongDaBan { get; set; }
-            public int TongSoLuongBanDau { get; set; }
-            public int TongTien { get; set; }
-        }
-
-
-        public SeriesCollection SeriesCollection { get; set; }
-
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
-
-
-        #endregion
-
-
+        DanhGiaNguoiDungDao danhGiaNguoiDungDao = new DanhGiaNguoiDungDao();
 
         public DangDoUC()
         {
             InitializeComponent();
             Loaded += QuanLySanPham_Load;
-            //Loaded += QuanLyDonHang_Load;
-
-
-            /*#region//TẠM để quay video
-
-            // Khởi tạo dữ liệu mẫu
-            List<SP> sanPhams = new List<SP>
-            {
-                new SP { TenSanPham = "Sản phẩm A", SoLuongDaBan = 10, TongSoLuongBanDau = 20, TongTien=10000},
-                new SP { TenSanPham = "Sản phẩm B", SoLuongDaBan = 12, TongSoLuongBanDau = 18,TongTien=20000 },
-                new SP { TenSanPham = "Sản phẩm C", SoLuongDaBan = 3, TongSoLuongBanDau = 10,TongTien=14000 },
-                new SP { TenSanPham = "Sản phẩm D", SoLuongDaBan = 7, TongSoLuongBanDau = 14,TongTien=7000 }
-            };
-
-            SeriesCollection = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "Số lượng đã bán",
-                    Values = new ChartValues<int>(sanPhams.Select(sp => sp.SoLuongDaBan))
-                },
-                new ColumnSeries
-                {
-                    Title = "Tổng số lượng ban đầu",
-                    Values = new ChartValues<int>(sanPhams.Select(sp => sp.TongSoLuongBanDau))
-                }
-            };
-
-            Labels = sanPhams.Select(sp => sp.TenSanPham).ToArray();
-
-            Formatter = value => value.ToString("N");
-
-            // Gán dữ liệu cho biểu đồ
-            DataContext = this;
-
-
-            //TRÒN
-
-            SeriesCollection pieSeries = new SeriesCollection();
-
-            foreach (var sp in sanPhams)
-            {
-                pieSeries.Add(new PieSeries
-                {
-                    Title = sp.TenSanPham,
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(sp.TongTien) }
-                });
-            }
-
-            // Gán SeriesCollection cho biểu đồ tròn
-            pieChart.Series = pieSeries;
-
-            #endregion*/
-
-
+            Loaded += QuanLyDonHang_Load;
+            Loaded += ThongKe_Load;
         }
 
         public DangDoUC(KhachHang kh)
@@ -110,6 +40,7 @@ namespace TraoDoiDo
             InitializeComponent();
             Loaded += QuanLySanPham_Load;
             Loaded += QuanLyDonHang_Load;
+            Loaded += ThongKe_Load;
             nguoiDung = kh;
         }
         #region TAB1 QUẢN LÝ SẢN PHẨM
@@ -126,7 +57,6 @@ namespace TraoDoiDo
                 if (txbTimKiem.Text == null)
                     HienThi_QuanLySanPham();
                 listSP = sanPhamDao.timKiemBangTen(txbTimKiem.Text.Trim(), nguoiDung.Id);
-
                 foreach (var list in listSP)
                 {
                     SanPham sanPham = new SanPham(list[0], nguoiDung.Id, list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9], null, null, null, null, null,"0");
@@ -489,14 +419,324 @@ namespace TraoDoiDo
 
         #endregion
 
+        #region TAB3 TỔNG QUAN VÀ THỐNG KÊ
+        private void ThongKe_Load(object sender, RoutedEventArgs e)
+        {
+            LoadTongKhachHang();
+            LoadTongSoLuongSanPhamDaBan();
+            LoadTongDoanhThu();
+
+            LoadDoanhThuTheoSanPham();
+            LoadTiLePhanTramDoanhThuTheoSanPham();
+            LoadSoLuongSanPhamDaBan();
+
+            LoadDanhGiaNguoiMua();
+        }
+
+        private void LoadDanhGiaNguoiMua()
+        {
+            try
+            {
+                int soLuong1Sao = 0;
+                int soLuong2Sao = 0;
+                int soLuong3Sao = 0;
+                int soLuong4Sao = 0;
+                int soLuong5Sao = 0;
+                List<List<string>> listSoSao = danhGiaNguoiDungDao.TinhSoSao(nguoiDung.Id);
+                foreach(var list in listSoSao)
+                {
+                    int soSao = Convert.ToInt32(list[0].ToString());
+                    int soLuongDanhGia = Convert.ToInt32(list[1]);
+                    switch (soSao)
+                    {
+                        case 1:
+                            soLuong1Sao = soLuongDanhGia;
+                            break;
+                        case 2:
+                            soLuong2Sao = soLuongDanhGia;
+                            break;
+                        case 3:
+                            soLuong3Sao = soLuongDanhGia;
+                            break;
+                        case 4:
+                            soLuong4Sao = soLuongDanhGia;
+                            break;
+                        case 5:
+                            soLuong5Sao = soLuongDanhGia;
+                            break;
+                    }
+                }
+
+                int tongSoLuotDanhGia = soLuong1Sao + soLuong2Sao + soLuong3Sao + soLuong4Sao + soLuong5Sao;
+                txtbSoLuotDanhGia.Text = tongSoLuotDanhGia.ToString();
+
+                ratingBar_SoSao.Value = (soLuong1Sao * 1 + soLuong2Sao * 2 + soLuong3Sao * 3 + soLuong4Sao * 4 + soLuong5Sao * 5) / tongSoLuotDanhGia;
+                txtbSoSaoTrungBinh.Text = ratingBar_SoSao.Value.ToString("0.0");
+
+
+                progressBar1Sao.Value = ((double)soLuong1Sao / tongSoLuotDanhGia) * 100;
+                progressBar2Sao.Value = ((double)soLuong2Sao / tongSoLuotDanhGia) * 100;
+                progressBar3Sao.Value = ((double)soLuong3Sao / tongSoLuotDanhGia) * 100;
+                progressBar4Sao.Value = ((double)soLuong4Sao / tongSoLuotDanhGia) * 100;
+                progressBar5Sao.Value = ((double)soLuong5Sao / tongSoLuotDanhGia) * 100;
+
+                txtbSoLuong1Sao.Text = soLuong1Sao.ToString();
+                txtbSoLuong2Sao.Text = soLuong2Sao.ToString();
+                txtbSoLuong3Sao.Text = soLuong3Sao.ToString();
+                txtbSoLuong4Sao.Text = soLuong4Sao.ToString();
+                txtbSoLuong5Sao.Text = soLuong5Sao.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadSoLuongSanPhamDaBan()
+        {
+            try
+            {
+                List<string> dsNhan = new List<string>();
+                List<int> dsSoLuongDaBan = new List<int>();
+                List<int> dsSoLuongTong = new List<int>();
+                List<List<string>> listSLDaBan = sanPhamDao.tinhSoLuongSPDaBan(nguoiDung.Id);
+               
+                foreach(var list in listSLDaBan)
+                {
+                    string ten = list[0];
+                    int soLuongDaban = Convert.ToInt32(list[1]);
+                    int soLuongTong = Convert.ToInt32(list[2]);
+
+                    dsNhan.Add(ten);
+                    dsSoLuongDaBan.Add(soLuongDaban);
+                    dsSoLuongTong.Add(soLuongTong);
+                }
+
+                // Tạo 2 cột cạnh nhau
+                SeriesCollection DoanhThuTheoSanPham_SC = new SeriesCollection
+                {
+                     new ColumnSeries
+                     {
+                         Title = "Số lượng đã bán",
+                         Values = new ChartValues<int>(dsSoLuongDaBan),
+
+                         Fill = Brushes.LightSkyBlue, // Màu của cột số lượng đã bán
+                         ScalesYAt = 0 // Đặt cột này ở trục Y thứ nhất
+
+                     },
+                     new ColumnSeries
+                     {
+                         Title = "Số lượng tổng",
+                         Values = new ChartValues<int>(dsSoLuongTong),
+                         Fill = Brushes.Teal, // Màu của cột số lượng tổng
+                         ScalesYAt = 0 // Đặt cột này ở trục Y thứ hai
+                     }
+                };
+
+                // Đặt dữ liệu vào Chart
+                chart_SoLuongSanPhamDaBan.Series = DoanhThuTheoSanPham_SC;
+
+                var xAxis = new LiveCharts.Wpf.Axis
+                {
+                    Title = "Tên sản phẩm",
+                    Labels = dsNhan.ToArray(),
+                    FontSize = 9.5,
+                    Separator = LiveCharts.Wpf.DefaultAxes.CleanSeparator
+
+                };
+                chart_SoLuongSanPhamDaBan.AxisX.Add(xAxis);
+
+                var yAxis = new LiveCharts.Wpf.Axis
+                {
+                    Title = "Số lượng",
+                    FontSize = 9.5,
+                    LabelFormatter = value => value.ToString("#,##0") // Định dạng label cho trục Y thứ nhất
+                };
+                chart_SoLuongSanPhamDaBan.AxisY.Add(yAxis);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadTiLePhanTramDoanhThuTheoSanPham()
+        {
+            try
+            {
+                List<string> dsNhan = new List<string>();
+                List<int> dsDoanhThu = new List<int>();
+                List<List<string>> listTiLeDoanhThu = sanPhamDao.tinhDoanhThuTheoSanPham(nguoiDung.Id);
+                
+                foreach(var list in listTiLeDoanhThu)
+                {
+                    string ten = list[0];
+                    int soLuongDaban = Convert.ToInt32(list[1]);
+                    int giaBan = Convert.ToInt32(list[2]);
+                    int doanhThu = soLuongDaban * giaBan;
+                    dsNhan.Add(ten);
+                    dsDoanhThu.Add(doanhThu);
+                }
+
+                // Tạo SeriesCollection cho biểu đồ PieChart
+                SeriesCollection TiLePhanTramDoanhThuTheoSanPham_SC = new SeriesCollection();
+
+                // Tạo các Slice (phần chia) cho PieChart từ dữ liệu
+                for (int i = 0; i < dsNhan.Count; i++)
+                {
+                    TiLePhanTramDoanhThuTheoSanPham_SC.Add(new PieSeries
+                    {
+                        Title = dsNhan[i], // Tên sản phẩm
+                        Values = new ChartValues<int> { dsDoanhThu[i] } // Doanh thu tương ứng với sản phẩm
+
+                    });
+                }
+
+                // Đặt dữ liệu vào PieChart
+                chart_TiLePhanTramDoanhThuTheoSanPham.Series = TiLePhanTramDoanhThuTheoSanPham_SC;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+        private void LoadDoanhThuTheoSanPham()
+        {
+            try
+            {
+                List<string> dsNhan = new List<string>();
+                List<int> dsDoanhThu = new List<int>();
+                List<List<string>> listDoanhThu = sanPhamDao.tinhDoanhThuTheoSanPham(nguoiDung.Id);
+
+                foreach(var list in listDoanhThu)
+                {
+                    string ten = list[0];
+                    int soLuongDaban = Convert.ToInt32(list[1]);
+                    int giaBan = Convert.ToInt32(list[2]);
+                    int doanhThu = soLuongDaban * giaBan;
+
+                    dsNhan.Add(ten);
+                    dsDoanhThu.Add(doanhThu);
+                }
+                SeriesCollection DoanhThuTheoSanPham_SC = new SeriesCollection
+                {
+                     new ColumnSeries
+                     {
+                         Title = "Doanh thu",
+                         Values = new ChartValues<int> (dsDoanhThu)
+                     }
+                };
+
+
+                // Đặt dữ liệu vào Chart
+                chart_TongDoanhThuTheoSanPham.Series = DoanhThuTheoSanPham_SC;
+
+                var xAxis = new LiveCharts.Wpf.Axis
+                {
+                    Title = "Tên sản phẩm",
+                    FontSize = 9.5,
+                    Labels = dsNhan.ToArray(),
+                    Separator = LiveCharts.Wpf.DefaultAxes.CleanSeparator
+                };
+                chart_TongDoanhThuTheoSanPham.AxisX.Add(xAxis);
+
+                var yAxis = new LiveCharts.Wpf.Axis
+                {
+                    Title = "Doanh thu",
+                    FontSize = 9.5,
+                    LabelFormatter = value => value.ToString("#,##0,##0") // Định dạng label
+                };
+                chart_TongDoanhThuTheoSanPham.AxisY.Add(yAxis);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadTongDoanhThu()
+        {
+            try
+            {
+                int tongDoanhThu = 0;
+                List<List<string>> listTongDoanhThu = sanPhamDao.tinhDoanhThu(nguoiDung.Id);
+                foreach(var list in listTongDoanhThu)
+                {
+                    int soLuongDaBan = Convert.ToInt32(list[0]);
+                    int giaBan = Convert.ToInt32(list[1]);
+                    tongDoanhThu += soLuongDaBan * giaBan;
+                }
+                txtbTongDoanhThu.Text = tongDoanhThu.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void LoadTongSoLuongSanPhamDaBan()
+        {
+            try
+            {
+                int tongSanPhamDaBan = 0;
+                List<List<string>> listTongSLDaBan = sanPhamDao.tinhTongSLDaBan(nguoiDung.Id);
+
+                foreach(var list in listTongSLDaBan)
+                {
+                    tongSanPhamDaBan += Convert.ToInt32(list[1]);
+                }
+                txtbTongSoLuongSanPhamDaBan.Text = tongSanPhamDaBan.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void LoadTongKhachHang()
+        {
+            try
+            {
+                List<List<string>> listTongKhachHang = trangThaiHangDao.tinhTongKhachHang(nguoiDung.Id);
+                
+                foreach(var list in listTongKhachHang)
+                {
+                    txtbTongSoLuongKhachHang.Text = list[1].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnThongTinChiTietDanhGia_Click(object sender, RoutedEventArgs e)
+        {
+            ThongTinNguoiDang f = new ThongTinNguoiDang(nguoiDung.Id);
+            f.txtbTieuDe.Text = "Đánh giá của khách hàng";
+            f.Show();
+        }
+
+        #endregion
+
         #region LOAD TabItem
         private void tabItemQuanLySP_Loaded(object sender, RoutedEventArgs e)
         {
-            HienThi_QuanLySanPham();
+            //HienThi_QuanLySanPham();
+            Loaded += QuanLySanPham_Load;
         }
+        private void tabItemQuanLyDonHang_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded += QuanLyDonHang_Load;
+        }
+        private void tabItemThongKe_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded += ThongKe_Load;
+        }
+
         #endregion
 
-       
+
     }
 }
 

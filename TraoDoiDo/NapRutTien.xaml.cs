@@ -75,7 +75,11 @@ namespace TraoDoiDo
             {
                 MessageBox.Show(ex.Message);
             }
-            
+            finally
+            {
+                NguoiDung fNguoiDung = new NguoiDung();
+                fNguoiDung.LoadWindow();
+            }
             if (coNapTien)
                 MessageBox.Show("Nạp tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -101,7 +105,11 @@ namespace TraoDoiDo
             {
                 MessageBox.Show(ex.Message);
             }
-            
+            finally
+            {
+                NguoiDung fNguoiDung = new NguoiDung();
+                fNguoiDung.LoadWindow();
+            }
             if (coRutTien)
                 MessageBox.Show("Nạp tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }

@@ -114,12 +114,12 @@ namespace TraoDoiDo
         private void mainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadWindow();
+            imgNguoiDung.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }
         public void LoadWindow()
         {
             lblTenNguoiDung.Text = kh.HoTen;
             lblTienNguoiDung.Text = kh.Tien + " VND";
-            imgNguoiDung.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }
     }
 }

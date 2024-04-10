@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TraoDoiDo.Database;
 
 namespace TraoDoiDo
 {
@@ -23,7 +24,7 @@ namespace TraoDoiDo
      
     public partial class ThongTinNguoiDang : Window
     { 
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr); 
+        DanhGiaNguoiDungDao danhGiaNguoiDungDao = new DanhGiaNguoiDungDao();
         public ThongTinNguoiDang(string idNguoiDang)// K dùng constructor mà dùng public int id=1 toàn cục thì sẽ bị fail, do contrustor chạy trước khi gán
         {
             InitializeComponent();
@@ -35,37 +36,19 @@ namespace TraoDoiDo
         {
             try
             {
-                conn.Open();
-                string sqlStr = $@" 
-                SELECT distinct HoTenNguoiDung, SdtNguoiDung, EmailNguoiDung, DiaChiNguoiDung
-                FROM DanhGiaNguoiDang
-                INNER JOIN NguoiDung ON DanhGiaNguoiDang.IdNguoiDang = NguoiDung.IdNguoiDung 
-                WHERE DanhGiaNguoiDang.IdNguoiDang =  {idNguoiDang}
-
-                ";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
+                List<List<string>> listThongTinNguoiDang = danhGiaNguoiDungDao.LoadThongTinNguoiDang(idNguoiDang);
                 itemsControlDSDanhGia.Items.Clear();
-                while (reader.Read())
+                foreach(var list in listThongTinNguoiDang)
                 {
-                    txtHoTen.Text = reader.GetString(0);
-                    txtSoDienThoai.Text = reader.GetString(1);
-
-                    txtEmail.Text = reader.GetString(2);
-                    txtDiaChi.Text = reader.GetString(3);
-
-
-                     
+                    txtHoTen.Text = list[0];
+                    txtSoDienThoai.Text = list[1];
+                    txtEmail.Text = list[2];
+                    txtDiaChi.Text = list[3];
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 
@@ -73,40 +56,17 @@ namespace TraoDoiDo
         {
             try
             {
-                conn.Open();
-                string sqlStr = $@" 
-                SELECT NguoiDung.HoTenNguoiDung, DanhGiaNguoiDang.SoSao, DanhGiaNguoiDang.NhanXet 
-                FROM DanhGiaNguoiDang
-                INNER JOIN NguoiDung ON DanhGiaNguoiDang.IdNguoiMua = NguoiDung.IdNguoiDung 
-                WHERE DanhGiaNguoiDang.IdNguoiDang = {idNguoiDang}
-
-                ";
-
-                SqlCommand command = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = command.ExecuteReader();
+                List<List<string>> listDanhSachDanhGia = danhGiaNguoiDungDao.LoadDanhSachDanhGia(idNguoiDang);
                 itemsControlDSDanhGia.Items.Clear();
-                while (reader.Read())
+                foreach(var list in listDanhSachDanhGia)
                 {
-                    string ten = reader.GetString(0);
-                    string soSao = reader.GetString(1);
-
-                    string nhanXet = reader.GetString(2);
-                   
-
-
-                    itemsControlDSDanhGia.Items.Add(new {Ten = ten, SoSao = soSao, NhanXet = nhanXet}); 
+                    itemsControlDSDanhGia.Items.Add(new {Ten = list[0], SoSao = list[1], NhanXet = list[2]}); 
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
         }
-
-
     }
 }

@@ -30,5 +30,33 @@ namespace TraoDoiDo.Database
                                         VALUES ({danhGiaNguoiDung.IdNguoiDang}, {danhGiaNguoiDung.IdNguoiMua}, N'{danhGiaNguoiDung.SoSao}', N'{danhGiaNguoiDung.NhanXet}')";
             dbConnection.ThucThi(sqlStr);
         }
+        public List<List<string>> TinhSoSao(string idNguoiDang)
+        {
+            string sqlStr = $@"
+            SELECT {danhGiaSoSao}, COUNT({danhGiaIdNguoiMua}) 
+            FROM {danhGiaHeader}
+            WHERE {sanPhamIdNguoiDang}= '{idNguoiDang}'
+            GROUP BY {danhGiaSoSao} ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
+        public List<List<string>> LoadThongTinNguoiDang(string idNguoiDang)
+        {
+            string sqlStr = $@" 
+                SELECT distinct {nguoiDungTen}, {nguoiDungSdt}, {nguoiDungEmail}, {nguoiDungDiaChi}
+                FROM {danhGiaHeader}
+                INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} 
+                WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} =  '{idNguoiDang}'
+                ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+        }
+        public List<List<string>> LoadDanhSachDanhGia(string idNguoiDang)
+        {
+            string sqlStr = $@" 
+                SELECT {nguoiDungHeader}.{nguoiDungTen}, {danhGiaHeader}.{danhGiaSoSao}, {danhGiaHeader}.{danhGiaNhanXet} 
+                FROM {danhGiaHeader}
+                INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{danhGiaIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID} 
+                WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr); 
+        }
     }
 }
