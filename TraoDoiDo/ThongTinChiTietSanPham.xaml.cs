@@ -18,7 +18,10 @@ using System.Runtime.Remoting.Channels;
 using TraoDoiDo.ViewModels;
 using System.Reflection;
 using TraoDoiDo.Models;
-using TraoDoiDo.Database;
+using TraoDoiDo.Database; 
+
+
+
 namespace TraoDoiDo
 {
     /// <summary>
@@ -47,8 +50,9 @@ namespace TraoDoiDo
             Loaded += LoadAnhVaMoTa;
             Loaded += LoadThongTinSanPham;
             Loaded += btnAnhSau_Click;
-
+            Loaded += LoadThongTinNguoiDang;
         }
+
         public ThongTinChiTietSanPham(SanPham sp)
         {
 
@@ -57,10 +61,15 @@ namespace TraoDoiDo
             Loaded += LoadAnhVaMoTa;
             Loaded += LoadThongTinSanPham;
             Loaded += btnAnhSau_Click;
+            Loaded += LoadThongTinNguoiDang;
             sanPham = sp;
         }
 
         #region THÊM SẢN PHẨM CÙNG LOẠI VÀO MỤC KHÁM PHÁ THÊM
+
+
+        
+
 
         private void LoadSanPhamlenWpnlHienThi(object sender, RoutedEventArgs e)
         {
@@ -115,6 +124,17 @@ namespace TraoDoiDo
         #endregion
 
 
+        private KhacHangDao khDao = new KhacHangDao();
+        private void LoadThongTinNguoiDang(object sender, RoutedEventArgs e)
+        {
+             
+            //KhachHang kh = khDao.TimKiemTienBangId(idNguoiDang);
+             
+
+
+        }
+
+
         private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
         {
             try
@@ -132,15 +152,7 @@ namespace TraoDoiDo
                     if (moTa.Trim() == "")
                         continue;
                     //lsvThongTinChiTietSP.Items.Add(new { LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
-                    string[] lines = moTa.Split(new string[] { "." }, StringSplitOptions.None);
-                    foreach (string item in lines)
-                    {
-                        if (!string.IsNullOrEmpty(item.Trim()))
-                        {
-                            string formatItem = item.Replace(".", Environment.NewLine);
-                            lsvThongTinChiTietSP.Items.Add(new { MoTa = formatItem });
-                        }
-                    }
+                    lsvThongTinChiTietSP.Items.Add(new { MoTa = "- " + moTa }); 
                 }
 
             }

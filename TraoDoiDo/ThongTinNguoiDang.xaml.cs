@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TraoDoiDo.Database;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -44,6 +45,7 @@ namespace TraoDoiDo
                     txtSoDienThoai.Text = list[1];
                     txtEmail.Text = list[2];
                     txtDiaChi.Text = list[3];
+                    imgNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(list[4])));
                 }
             }
             catch (Exception ex)
@@ -60,7 +62,7 @@ namespace TraoDoiDo
                 itemsControlDSDanhGia.Items.Clear();
                 foreach(var list in listDanhSachDanhGia)
                 {
-                    itemsControlDSDanhGia.Items.Add(new {Ten = list[0], SoSao = list[1], NhanXet = list[2]}); 
+                    itemsControlDSDanhGia.Items.Add(new {Ten = list[0], SoSao = list[1], NhanXet = list[2], LinkAnhDaiDienNguoiDanhGia = XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(list[3])}); 
                 }
             }
             catch (Exception ex)

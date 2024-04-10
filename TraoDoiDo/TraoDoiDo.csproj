@@ -138,17 +138,17 @@
     <Compile Include="QuenMatKhau.xaml.cs">
       <DependentUpon>QuenMatKhau.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThanhDieuKhien.xaml.cs">
-      <DependentUpon>ThanhDieuKhien.xaml</DependentUpon>
+    <Compile Include="TangGiamUC.xaml.cs">
+      <DependentUpon>TangGiamUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhDieuKhienUC.xaml.cs">
+      <DependentUpon>ThanhDieuKhienUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ThemAnhKhiDangUC.xaml.cs">
       <DependentUpon>ThemAnhKhiDangUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Thoat.xaml.cs">
       <DependentUpon>Thoat.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ThongTinCaNhan.xaml.cs">
-      <DependentUpon>ThongTinCaNhan.xaml</DependentUpon>
     </Compile>
     <Compile Include="ThongTinCaNhanUC.xaml.cs">
       <DependentUpon>ThongTinCaNhanUC.xaml</DependentUpon>
@@ -245,7 +245,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThanhDieuKhien.xaml">
+    <Page Include="TangGiamUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThanhDieuKhienUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,10 +258,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Thoat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ThongTinCaNhan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -40,7 +41,7 @@ namespace TraoDoiDo
         {
             InitializeComponent();
             nguoiDung = kh;
-            //Loaded += UcViDienTU_Loaded;
+            imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }
 
         private void btnNapTien_Click(object sender, RoutedEventArgs e)

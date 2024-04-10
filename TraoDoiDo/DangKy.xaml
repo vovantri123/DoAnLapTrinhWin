@@ -8,18 +8,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="DangKy"
     Width="850"
-    Height="530"
+    Height="550"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
-    <Grid Width="850">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="70" />
             <RowDefinition />
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <local:ThanhDieuKhienUC Margin="0,-4,0,0" Tag="" />
+        </Grid>
         <Grid
-            Grid.Row="0"
+            Grid.Row="1"
             Margin="0,0,0,20"
-            Background="BlueViolet">
+            Background="{StaticResource GridBackgroundBrush}">
             <TextBlock
                 x:Name="txtbTieuDe"
                 Grid.Column="1"
@@ -32,7 +38,7 @@
                 TextAlignment="Justify" />
 
         </Grid>
-        <Grid Grid.Row="1" Width="800">
+        <Grid Grid.Row="2" Width="800">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220" />
                 <ColumnDefinition Width="*" />
@@ -63,9 +69,7 @@
                         <Button
                             x:Name="btnChonAnh"
                             Margin="58,0,58,0"
-                            Background="BlueViolet"
-                            Content="Chọn ảnh"
-                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                            Content="Chọn ảnh" />
                     </Border>
 
 
@@ -210,12 +214,11 @@
             </Grid>
 
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Button
                 x:Name="btnDangKy"
                 Width="140"
-                Height="40"
-                Margin="376,20,334,20"
+                Height="40" 
                 Click="btnDangKy_Click"
                 Content="Đăng ký"
                 FontSize="20" />

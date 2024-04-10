@@ -55,9 +55,11 @@ namespace TraoDoiDo
             txtTenDangNhap.Text = kh.TaiKhoan.TenDangNhap;
             txtMatKhau.Password = kh.TaiKhoan.MatKhau;
             txtEmail.Text = kh.Email;
-            cbGioiTinh.Text = kh.GioiTinh;
-            DateTime ngaySinh = DateTime.ParseExact(kh.NgaySinh, "dd/MM/yyyy", null);
-            dtpNgaySinh.SelectedDate = Convert.ToDateTime(ngaySinh);
+            cbGioiTinh.Text = kh.GioiTinh; 
+             
+            DateTime selectedDate = DateTime.Parse(kh.NgaySinh);
+            dtpNgaySinh.SelectedDate = selectedDate;
+
             imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }
 

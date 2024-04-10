@@ -19,7 +19,7 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
 
-    <Grid Background="#FF948AE1">
+    <Grid Background="#FF8E83E3">
         <Grid>
 
             <!--  Nút Previous  -->

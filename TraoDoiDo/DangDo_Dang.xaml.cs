@@ -60,7 +60,7 @@ namespace TraoDoiDo
                     tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
                     break;
                 }
-            SanPham sanPham = new SanPham(txtbIdSanPham.Text, ngDung.Id, txtbTen.Text, tenFileAnh, txtbLoai.Text, cboSoLuong.Text, cboSoLuongDaBan.Text, txtbGiaGoc.Text, txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", txtbNoiBan.Text, txtbXuatXu.Text, txtbNgayMua.Text, txtbMoTaChung.Text, txtbPhanTramMoi.Text,"0");
+            SanPham sanPham = new SanPham(txtbIdSanPham.Text, ngDung.Id, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text, txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), "0");
             SanPhamDao sanPhamDao = new SanPhamDao();
             sanPhamDao.Them(sanPham);
         }

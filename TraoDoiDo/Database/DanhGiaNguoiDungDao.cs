@@ -42,7 +42,7 @@ namespace TraoDoiDo.Database
         public List<List<string>> LoadThongTinNguoiDang(string idNguoiDang)
         {
             string sqlStr = $@" 
-                SELECT distinct {nguoiDungTen}, {nguoiDungSdt}, {nguoiDungEmail}, {nguoiDungDiaChi}
+                SELECT distinct {nguoiDungTen}, {nguoiDungSdt}, {nguoiDungEmail}, {nguoiDungDiaChi}, {nguoiDungHeader}.{nguoiDungAnh} 
                 FROM {danhGiaHeader}
                 INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} 
                 WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} =  '{idNguoiDang}'
@@ -52,7 +52,7 @@ namespace TraoDoiDo.Database
         public List<List<string>> LoadDanhSachDanhGia(string idNguoiDang)
         {
             string sqlStr = $@" 
-                SELECT {nguoiDungHeader}.{nguoiDungTen}, {danhGiaHeader}.{danhGiaSoSao}, {danhGiaHeader}.{danhGiaNhanXet} 
+                SELECT {nguoiDungHeader}.{nguoiDungTen}, {danhGiaHeader}.{danhGiaSoSao}, {danhGiaHeader}.{danhGiaNhanXet}, {nguoiDungHeader}.{nguoiDungAnh} 
                 FROM {danhGiaHeader}
                 INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{danhGiaIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID} 
                 WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} = '{idNguoiDang}' ";

@@ -38,17 +38,20 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <StackPanel
+                                Grid.Column="0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
                                 <ComboBox
-                                    Width="120"
                                     x:Name="cboSapXepTheoLoai"
-                                    MinWidth="72"
-                                    Margin="20,10,20,0"
+                                    Width="120"
+                                    Margin="0,0,15,0"
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Loại"
-                                    IsEditable="True"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="cboSapXepTheoLoai_SelectionChanged" >
+                                    IsEditable="False"
+                                    SelectionChanged="cboSapXepTheoLoai_SelectionChanged"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                     <ComboBoxItem Content="Quần áo" />
                                     <ComboBoxItem Content="Đồ điện tử" />
                                     <ComboBoxItem Content="Đồ chơi" />
@@ -62,14 +65,13 @@
                                 <ComboBox
                                     x:Name="cboSapXepTheoYeuThich"
                                     Width="120"
-                                    MinWidth="72"
-                                    Margin="20,10,20,0"
+                                    Margin="0,0,15,0"
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
                                     materialDesign:HintAssist.Hint="Sắp xếp"
                                     IsEditable="False"
                                     SelectionChanged="cboSapXepTheoYeuThich_SelectionChanged"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                     <ComboBoxItem Content="Yêu thích" />
                                     <ComboBoxItem Content="Tất cả" />
                                 </ComboBox>
@@ -80,10 +82,11 @@
                                 x:Name="txbTimKiem"
                                 Grid.Column="1"
                                 Width="230"
-                                Height="47"
+                                Height="48"
                                 Margin="0,0,15,0"
                                 HorizontalAlignment="Right"
                                 materialDesign:HintAssist.Hint="Tìm kiếm"
+                                materialDesign:TextFieldAssist.PrefixText="Tên: "
                                 AcceptsReturn="True"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextChanged="txbTimKiem_TextChanged"
@@ -93,6 +96,7 @@
 
                         <ScrollViewer
                             Grid.Row="1"
+                            Grid.ColumnSpan="2"
                             Margin="6,16,16,16"
                             HorizontalScrollBarVisibility="Disabled"
                             VerticalScrollBarVisibility="Auto">
@@ -111,7 +115,7 @@
 
                 <Grid Margin="16">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="830" />
+                        <ColumnDefinition Width="832" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
@@ -125,6 +129,12 @@
                             VerticalScrollBarVisibility="Auto">
 
                             <ListView x:Name="lsvGioHang">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="Background" Value="#ffffff" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView>
                                         <GridView.ColumnHeaderContainerStyle>
@@ -185,10 +195,26 @@
                                         <GridViewColumn Width="90" Header="Xóa">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Click="btnXoaKhoiGioHang_Click" Content="Xóa" />
+                                                    <Button
+                                                        Width="45"
+                                                        Height="45"
+                                                        Margin="8,0,0,0"
+                                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                                        Background="#dd4131"
+                                                        BorderBrush="White"
+                                                        BorderThickness="1"
+                                                        Click="btnXoaKhoiGioHang_Click"
+                                                        ToolTip="Xóa">
+                                                        <materialDesign:PackIcon
+                                                            Width="15"
+                                                            Height="15"
+                                                            Foreground="White"
+                                                            Kind="DeleteOutline" />
+                                                    </Button>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
+
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -281,8 +307,14 @@
                                     Width="250"
                                     Height="35"
                                     Margin="0,20,0,0"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.Value="-1"
                                     Click="btnThanhToan_Click"
-                                    Content="Thanh Toán" />
+                                    Content="Thanh Toán"
+                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    Style="{StaticResource MaterialDesignRaisedButton}" />
+
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -332,7 +364,7 @@
                                         <materialDesign:Badged
                                             Margin="10,0"
                                             VerticalAlignment="Center"
-                                            Badge="{Binding ElementName=dgNeedApprove, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
+                                            Badge="{Binding ElementName=lsvChoNguoiBanXacNhan, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
                                             BadgeBackground="#42a5f5"
                                             BadgeForeground="White">
                                             <TextBlock
@@ -351,6 +383,11 @@
                                         <ListView.Resources>
                                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                                         </ListView.Resources>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.ColumnHeaderContainerStyle>
@@ -397,18 +434,32 @@
                                                     DisplayMemberBinding="{Binding Ngay}"
                                                     Header="Ngày đặt hàng" />
                                                 <!--  Cột "Hủy đặt hàng"  -->
+
                                                 <GridViewColumn Width="120" Header="Hủy đặt hàng">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button
                                                                 x:Name="btnHuyDatHang"
-                                                                Width="100"
-                                                                Margin="4"
+                                                                Width="45"
+                                                                Height="45"
+                                                                Margin="8,0,0,0"
+                                                                materialDesign:ButtonAssist.CornerRadius="10"
+                                                                Background="#FFC33838"
+                                                                BorderBrush="White"
+                                                                BorderThickness="1"
                                                                 Click="btnHuyDatHang_Click"
-                                                                Content="Hủy" />
+                                                                ToolTip="Hủy đặt hàng">
+                                                                <materialDesign:PackIcon
+                                                                    Width="15"
+                                                                    Height="15"
+                                                                    Foreground="White"
+                                                                    Kind="CloseOutline" />
+                                                            </Button>
+
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
+
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
@@ -432,8 +483,8 @@
                                         <materialDesign:Badged
                                             Margin="10,0"
                                             VerticalAlignment="Center"
-                                            Badge="{Binding ElementName=dgNeedApprove, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
-                                            BadgeBackground="#42a5f5"
+                                            Badge="{Binding ElementName=lsvChoGiaoHang, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
+                                            BadgeBackground="#FF209214"
                                             BadgeForeground="White">
                                             <TextBlock
                                                 Margin="5"
@@ -451,6 +502,12 @@
                                         <ListView.Resources>
                                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                                         </ListView.Resources>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.ColumnHeaderContainerStyle>
@@ -497,31 +554,54 @@
                                                     DisplayMemberBinding="{Binding Ngay}"
                                                     Header="Ngày dự kiến nhận hàng" />
                                                 <!--  Cột "btn Đã nhận hàng"  -->
-                                                <GridViewColumn Width="120" Header="Đã nhận hàng">
+
+                                                <GridViewColumn Width="120" Header="Đã nhân hàng">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button
-                                                                x:Name="btnDaNhanHang"
-                                                                Width="100"
-                                                                Margin="4"
+                                                                Width="45"
+                                                                Height="45"
+                                                                Margin="8,0,0,0"
+                                                                materialDesign:ButtonAssist.CornerRadius="10"
+                                                                BorderBrush="White"
+                                                                BorderThickness="1"
                                                                 Click="btnDaNhanHang_Click"
-                                                                Content="Đã nhận" />
+                                                                ToolTip="Đã nhận">
+                                                                <materialDesign:PackIcon
+                                                                    Width="15"
+                                                                    Height="15"
+                                                                    Foreground="White"
+                                                                    Kind="CheckOutline" />
+                                                            </Button>
+
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
+
                                                 <!--  Cột "btn Đã nhận hàng"  -->
                                                 <GridViewColumn Width="120" Header="Trả hàng">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button
                                                                 x:Name="btnTraHang"
-                                                                Grid.Column="1"
-                                                                Width="100"
-                                                                Margin="4"
+                                                                Width="45"
+                                                                Height="45"
+                                                                Margin="8,0,0,0"
+                                                                materialDesign:ButtonAssist.CornerRadius="10"
+                                                                Background="#FFC33838"
+                                                                BorderBrush="White"
+                                                                BorderThickness="1"
                                                                 Click="btnTraHang_Click"
                                                                 Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                                                                 CommandParameter="{x:Static Dock.Bottom}"
-                                                                Content="Trả hàng" />
+                                                                ToolTip="Đã nhận">
+                                                                <materialDesign:PackIcon
+                                                                    Width="15"
+                                                                    Height="15"
+                                                                    Foreground="White"
+                                                                    Kind="KeyboardReturn" />
+                                                            </Button>
+
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
@@ -547,8 +627,8 @@
                                         <materialDesign:Badged
                                             Margin="10,0"
                                             VerticalAlignment="Center"
-                                            Badge="{Binding ElementName=dgNeedApprove, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
-                                            BadgeBackground="#42a5f5"
+                                            Badge="{Binding ElementName=lsvDaNhan, Path=Items.Count, UpdateSourceTrigger=PropertyChanged}"
+                                            BadgeBackground="#FFF542A6"
                                             BadgeForeground="White">
                                             <TextBlock
                                                 Margin="5"
@@ -566,6 +646,13 @@
                                         <ListView.Resources>
                                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                                         </ListView.Resources>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                              
+    
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.ColumnHeaderContainerStyle>
@@ -617,14 +704,24 @@
                                                         <DataTemplate>
                                                             <Button
                                                                 x:Name="btnDanhGia"
-                                                                Width="100"
-                                                                Margin="4"
+                                                                Width="45"
+                                                                Height="45"
+                                                                Margin="8,0,0,0"
+                                                                materialDesign:ButtonAssist.CornerRadius="10"
+                                                                BorderBrush="White"
+                                                                BorderThickness="1"
                                                                 Click="btnDanhGia_Click"
-                                                                Content="Đánh giá" />
+                                                                ToolTip="Đã nhận">
+                                                                <materialDesign:PackIcon
+                                                                    Width="15"
+                                                                    Height="15"
+                                                                    Foreground="White"
+                                                                    Kind="FileDocumentEditOutline" />
+                                                            </Button>
+
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
-
                                             </GridView>
                                         </ListView.View>
                                     </ListView>

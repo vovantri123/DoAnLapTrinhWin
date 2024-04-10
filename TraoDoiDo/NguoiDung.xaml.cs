@@ -73,35 +73,41 @@ namespace TraoDoiDo
         {
             contentControlHienThi.Content = new DangDoUC(kh);
             txtbTenTrang.Text = "Đăng đồ";
+            Tg_Btn.IsChecked = false;
         }
         private void TrangChu_Click(object sender, RoutedEventArgs e)
         {
             contentControlHienThi.Content = new TrangChuUC();
             txtbTenTrang.Text = "Trang chủ";
+            Tg_Btn.IsChecked = false;
         }
 
         private void ViDienTu_Click(object sender, RoutedEventArgs e)
         {
             contentControlHienThi.Content = new ViDienTuUC(kh);
             txtbTenTrang.Text = "Ví điện tử";
+            Tg_Btn.IsChecked = false;
         }
 
         private void ThongTinCaNhan_Click(object sender, RoutedEventArgs e)
         {
             contentControlHienThi.Content = new ThongTinCaNhanUC(kh);
             txtbTenTrang.Text = "Thông tin cá nhân";
+            Tg_Btn.IsChecked = false;
         }
 
         private void MuaDo_Click(object sender, RoutedEventArgs e)
         {
             contentControlHienThi.Content = new MuaDoUC(kh);
             txtbTenTrang.Text = "Mua đồ";
+            Tg_Btn.IsChecked = false;
         }
 
         private void QuanLy_Click(object sender, RoutedEventArgs e)
         {
             contentControlHienThi.Content = new QuanLyUC();
             txtbTenTrang.Text = "Quản lý";
+            Tg_Btn.IsChecked = false;
         }
 
         private void Thoat_Click(object sender, RoutedEventArgs e)
@@ -109,6 +115,7 @@ namespace TraoDoiDo
             Thoat f = new Thoat();
             f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             f.ShowDialog();
+            Tg_Btn.IsChecked = false;
         }
 
         private void mainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -118,8 +125,8 @@ namespace TraoDoiDo
         }
         public void LoadWindow()
         {
-            lblTenNguoiDung.Text = kh.HoTen;
-            lblTienNguoiDung.Text = kh.Tien + " VND";
+            txtbTenNguoiDung.Text = kh.HoTen;
+            txtbTienNguoiDung.Text = kh.Tien + " đ";
         }
     }
 }

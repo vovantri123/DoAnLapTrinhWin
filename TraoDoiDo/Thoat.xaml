@@ -18,7 +18,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Grid Background="#673ab7">
+    <Grid Background="{StaticResource GridBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <local:ThanhDieuKhien Tag="" Margin="0,-4,0,0" />
+            <local:ThanhDieuKhienUC Tag="" Margin="0,-4,0,0" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -76,10 +76,16 @@
                 <Button
                     x:Name="btnCo"
                     Width="100"
-                    Margin="60,0,0,20"
-                    Background="#FF8316C0"
+                    Margin="60,0,0,20" 
                     Click="btnCo_Click"
                     Content="Có">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
+                            <GradientStop Color="#FF8100B0" Offset="0"/>
+                            <GradientStop Color="#FFA32FE5" Offset="0.6"/>
+                            <GradientStop Color="#FFC236E6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
                     <Button.BorderBrush>
                         <SolidColorBrush Color="White" />
                     </Button.BorderBrush>
@@ -99,9 +105,15 @@
                 <Button
                     x:Name="btnKhong"
                     Width="100"
-                    Margin="0,0,60,20"
-                    Background="#FF8316C0"
-                    Content="Không" Click="btnKhong_Click">
+                    Margin="0,0,60,20" 
+                    Content="Không">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
+                            <GradientStop Color="#FF8100B0" Offset="0"/>
+                            <GradientStop Color="#FFA32FE5" Offset="0.6"/>
+                            <GradientStop Color="#FFC236E6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
                     <Button.BorderBrush>
                         <SolidColorBrush Color="White" />
                     </Button.BorderBrush>

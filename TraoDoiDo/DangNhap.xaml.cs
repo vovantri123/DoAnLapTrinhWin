@@ -43,8 +43,8 @@ namespace TraoDoiDo
             }
             else
             {
-                MessageBox.Show("Đăng nhập thành công");
-                this.Hide();
+                //MessageBox.Show("Đăng nhập thành công");
+                //this.Hide();
                 NguoiDung f = new NguoiDung(kh);
                 f.Show();
             }

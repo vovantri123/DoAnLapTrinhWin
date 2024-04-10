@@ -40,8 +40,7 @@
                             Grid.Column="0"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                            <ComboBox 
-                                
+                            <ComboBox
                                 Width="120"
                                 Margin="20,10,20,0"
                                 materialDesign:HintAssist.FloatingOffset="0, -18"
@@ -83,6 +82,12 @@
                                 <ListView.Resources>
                                     <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                                 </ListView.Resources>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="Background" Value="#ffffff" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView>
                                         <GridView.ColumnHeaderContainerStyle>
@@ -138,6 +143,8 @@
                                                 <DataTemplate>
                                                     <Button
                                                         x:Name="btnDuyet"
+                                                        BorderBrush="White"
+                                                        BorderThickness="1"
                                                         Click="btnDuyet_Click"
                                                         Content="Ẩn" />
                                                 </DataTemplate>
@@ -147,7 +154,10 @@
                                         <GridViewColumn Width="80" Header="Xóa">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Content="Xóa" />
+                                                    <Button
+                                                        BorderBrush="White"
+                                                        BorderThickness="1"
+                                                        Content="Xóa" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -254,6 +264,12 @@
                                 <ListView.Resources>
                                     <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                                 </ListView.Resources>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="Background" Value="#ffffff" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView>
                                         <GridView.ColumnHeaderContainerStyle>
@@ -301,6 +317,8 @@
                                                 <DataTemplate>
                                                     <Button
                                                         x:Name="btnSua"
+                                                        BorderBrush="White"
+                                                        BorderThickness="1"
                                                         Click="btnSua_Click"
                                                         Content="Sửa" />
                                                 </DataTemplate>
@@ -311,6 +329,8 @@
                                                 <DataTemplate>
                                                     <Button
                                                         x:Name="btnXoa"
+                                                        BorderBrush="White"
+                                                        BorderThickness="1"
                                                         Click="btnXoa_Click"
                                                         Content="Xóa" />
                                                 </DataTemplate>

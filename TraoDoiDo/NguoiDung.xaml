@@ -9,10 +9,9 @@
     x:Name="mainWindow"
     Title="Trao đổi đồ"
     Width="1270"
-    Height="850"
+    Height="840"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
-    Loaded="mainWindow_Loaded"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -164,7 +163,7 @@
                     Margin="10,0,0,0"
                     Source="HinhCuaToi/Icons/iconShop94.png" />
             </Grid>
-            <local:ThanhDieuKhien Grid.Column="1" Tag="{Binding Title, ElementName=mainWindow}" />
+            <local:ThanhDieuKhienUC Grid.Column="1" Tag="{Binding Title, ElementName=mainWindow}" />
 
         </Grid>
 
@@ -203,34 +202,11 @@
                         Grid.Row="0"
                         Grid.ColumnSpan="2"
                         Height="75"
-                        Background="#673ab7">
+                        Background="{StaticResource GridBackgroundBrush}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
-                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-
-                        <materialDesign:Chip
-                            Grid.Column="1"
-                            Width="Auto"
-                            HorizontalAlignment="Left"
-                            Click="ThongTinCaNhan_Click"
-                            Style="{StaticResource MaterialDesignOutlineChip}">
-                            <materialDesign:Chip.Icon>
-                                <Image x:Name="imgNguoiDung" Source="/HinhCuaToi/Avatar1.png" />
-                            </materialDesign:Chip.Icon>
-                            <StackPanel>
-                                <TextBlock
-                                    Width="Auto"
-                                    x:Name="lblTenNguoiDung"
-                                    FontSize="13"
-                                    Foreground="White" />
-                                <TextBlock
-                                    x:Name="lblTienNguoiDung"
-                                    FontSize="13"
-                                    Foreground="White" />
-                            </StackPanel>
-                        </materialDesign:Chip>
-
                         <TextBlock
                             x:Name="txtbTenTrang"
                             Grid.Column="0"
@@ -241,6 +217,32 @@
                             Foreground="White"
                             Style="{StaticResource MaterialDesignButtonTextBlock}"
                             Text="Tên trang hiện tại" />
+                        <materialDesign:Chip
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            BorderBrush="#FFF7F1F1"
+                            Click="ThongTinCaNhan_Click"
+                            Style="{StaticResource MaterialDesignOutlineChip}">
+                            <materialDesign:Chip.Icon>
+                                <Image
+                                    x:Name="imgNguoiDung"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Source="/HinhCuaToi/Avatar1.png" />
+                            </materialDesign:Chip.Icon>
+                            <StackPanel>
+                                <TextBlock
+                                    x:Name="txtbTenNguoiDung"
+                                    Foreground="White"
+                                    Text="Harry Potter" />
+                                <TextBlock
+                                    x:Name="txtbTienNguoiDung"
+                                    Foreground="White"
+                                    Text="1.200.000 VNĐ" />
+                            </StackPanel>
+                        </materialDesign:Chip>
+
+
                     </Grid>
 
                     <ContentControl
@@ -261,8 +263,13 @@
             <Grid
                 x:Name="nav_pnl"
                 Width="65"
-                HorizontalAlignment="Left"
-                Background="#FF9934D0">
+                HorizontalAlignment="Left">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#FF7070D6" />
+                        <GradientStop Offset="1" Color="#FF9918BB" />
+                    </LinearGradientBrush>
+                </Grid.Background>
 
                 <StackPanel x:Name="st_pnl">
 
