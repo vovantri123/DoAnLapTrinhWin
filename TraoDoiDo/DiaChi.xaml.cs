@@ -70,6 +70,8 @@ namespace TraoDoiDo
                     gioHangDao.Xoa(gioHang);
                 }
                 double tienTT = Convert.ToDouble(ngDung.Tien) - Convert.ToDouble(tongThanhToan);
+                if (Convert.ToDouble(tongThanhToan) == 0)
+                    MessageBox.Show("Xin hãy chọn món đồ thanh toán", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (tienTT < 0)
                     MessageBox.Show("Số tiền trong tài khoản của bạn không đủ vui lòng nạp thêm!!!!", "Thông báo",MessageBoxButton.OK, MessageBoxImage.Information);
                 else

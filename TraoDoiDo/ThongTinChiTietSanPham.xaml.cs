@@ -37,6 +37,7 @@ namespace TraoDoiDo
         SanPham sanPham = new SanPham();
         SanPham sp = new SanPham();
         SanPhamDao spDao = new SanPhamDao();
+        KhacHangDao khDao = new KhacHangDao();
         private List<string> danhSachAnh = new List<string>();
 
         private int currentIndex = -1;
@@ -123,15 +124,12 @@ namespace TraoDoiDo
 
         #endregion
 
-
-        private KhacHangDao khDao = new KhacHangDao();
         private void LoadThongTinNguoiDang(object sender, RoutedEventArgs e)
         {
-             
-            //KhachHang kh = khDao.TimKiemTienBangId(idNguoiDang);
-             
-
-
+            string linkAnh = khDao.TimKiemLinkAnh(idNguoiDang);
+            imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(linkAnh)));
+            List<string> listNgDang = spDao.timKiemIdNguoiDang(idNguoiDang);
+            txtbTenNguoiDang.Text = listNgDang[1];
         }
 
 

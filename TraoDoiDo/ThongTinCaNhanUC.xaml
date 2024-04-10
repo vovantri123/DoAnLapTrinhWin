@@ -132,7 +132,7 @@
                             materialDesign:HintAssist.Hint="Ngày sinh"
                             SelectedDate="{Binding NgaySinh, StringFormat='dd/MM/yyyy'}"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                            Text="Format" />
+                            />
                     </StackPanel>
                     <StackPanel
                         Grid.Row="2"

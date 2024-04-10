@@ -56,6 +56,11 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"SELECT {nguoiDungTien} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{id}' ";
             return dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungTien}");
         }
+        public string TimKiemLinkAnh(string id)
+        {
+            string sqlStr = $@"SELECT {nguoiDungAnh} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{id}' ";
+            return dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungAnh}");
+        }
         public string TimKiemBangId(string id)
         {
             string sqlStr = $"SELECT * FROM {nguoiDungHeader} WHERE {nguoiDungID}='{id}'";

@@ -1,34 +1,56 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\",
+  "WorkspaceRootPath": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinwinnewcn\\traodoido\\thongtinnguoidang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\thongtinnguoidang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__mssqllocaldb/TraoDoiDo/True/SqlTable/dbo.NguoiDung.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinwinnewcn\\traodoido\\database\\danhgianguoidungdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\database\\danhgianguoidungdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinhwin\\traodoido\\thongtinchitietsanpham.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\thongtinchitietsanpham.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\traodoido\\dangdouc.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\dangdouc.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__mssqllocaldb/TraoDoiDo/True/SqlTable/dbo.SanPham.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinwinnewcn\\traodoido\\napruttien.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\napruttien.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\database\\sanphamdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\database\\sanphamdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\traodoido\\nguoidung.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\nguoidung.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\nguoidung.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinwinnewcn\\traodoido\\database\\trangthaidonhangdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\database\\trangthaidonhangdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\thongtinnguoidang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\thongtinnguoidang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinwinnewcn\\traodoido\\database\\sanphamdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\database\\sanphamdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinhwin\\traodoido\\thongtincanhanuc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\thongtincanhanuc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinhwin\\traodoido\\diachi.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\diachi.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|c:\\doanlaptrinhwintdd\\doanlaptrinhwin\\traodoido\\thongtinchitietsanpham.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\thongtinchitietsanpham.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\database\\danhgianguoidungdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\database\\danhgianguoidungdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\dangdouc.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\dangdouc.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\napruttien.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\napruttien.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\traodoido\\database\\trangthaidonhangdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\database\\trangthaidonhangdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -75,90 +97,157 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "dbo.NguoiDung [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__mssqllocaldb/TraoDoiDo/True/SqlTable/dbo.NguoiDung.sql",
+              "ToolTip": "dbo.NguoiDung [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-04-10T16:06:37.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dbo.SanPham [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__mssqllocaldb/TraoDoiDo/True/SqlTable/dbo.SanPham.sql",
+              "ToolTip": "dbo.SanPham [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-04-10T16:05:36.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ThongTinChiTietSanPham.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinChiTietSanPham.xaml.cs",
+              "RelativeDocumentMoniker": "TraoDoiDo\\ThongTinChiTietSanPham.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinChiTietSanPham.xaml.cs",
+              "RelativeToolTip": "TraoDoiDo\\ThongTinChiTietSanPham.xaml.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAAAH0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T15:48:53.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ThongTinChiTietSanPham.xaml",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinChiTietSanPham.xaml",
+              "RelativeDocumentMoniker": "TraoDoiDo\\ThongTinChiTietSanPham.xaml",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinChiTietSanPham.xaml",
+              "RelativeToolTip": "TraoDoiDo\\ThongTinChiTietSanPham.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-10T15:48:45.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DiaChi.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\DiaChi.xaml.cs",
+              "RelativeDocumentMoniker": "TraoDoiDo\\DiaChi.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\DiaChi.xaml.cs",
+              "RelativeToolTip": "TraoDoiDo\\DiaChi.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEcAAABgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T15:41:50.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ThongTinCaNhanUC.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinCaNhanUC.xaml.cs",
+              "RelativeDocumentMoniker": "TraoDoiDo\\ThongTinCaNhanUC.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinCaNhanUC.xaml.cs",
+              "RelativeToolTip": "TraoDoiDo\\ThongTinCaNhanUC.xaml.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAD4AAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T15:14:21.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ThongTinNguoiDang.xaml.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\ThongTinNguoiDang.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinNguoiDang.xaml.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\ThongTinNguoiDang.xaml.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\ThongTinNguoiDang.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\ThongTinNguoiDang.xaml.cs",
               "RelativeToolTip": "TraoDoiDo\\ThongTinNguoiDang.xaml.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAIwBMAAAARAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAcwBcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T09:49:16.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "NapRutTien.xaml.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\NapRutTien.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\NapRutTien.xaml.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\NapRutTien.xaml.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\NapRutTien.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\NapRutTien.xaml.cs",
               "RelativeToolTip": "TraoDoiDo\\NapRutTien.xaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAG8AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T12:00:12.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T12:00:12.449Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "TrangThaiDonHangDao.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\Database\\TrangThaiDonHangDao.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\Database\\TrangThaiDonHangDao.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\Database\\TrangThaiDonHangDao.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\Database\\TrangThaiDonHangDao.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\Database\\TrangThaiDonHangDao.cs",
               "RelativeToolTip": "TraoDoiDo\\Database\\TrangThaiDonHangDao.cs",
               "ViewState": "AQIAACoAAAAAAAAAAAAowD4AAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T10:27:53.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T10:27:53.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "SanPhamDao.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\Database\\SanPhamDao.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\Database\\SanPhamDao.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\Database\\SanPhamDao.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\Database\\SanPhamDao.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\Database\\SanPhamDao.cs",
               "RelativeToolTip": "TraoDoiDo\\Database\\SanPhamDao.cs",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAAAI0AAABHAAAA",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAnwGcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T08:42:20.895Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "DanhGiaNguoiDungDao.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\Database\\DanhGiaNguoiDungDao.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\Database\\DanhGiaNguoiDungDao.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\Database\\DanhGiaNguoiDungDao.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\Database\\DanhGiaNguoiDungDao.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\Database\\DanhGiaNguoiDungDao.cs",
               "RelativeToolTip": "TraoDoiDo\\Database\\DanhGiaNguoiDungDao.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAgwDIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T07:51:43.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T07:51:43.467Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "DangDoUC.xaml.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\DangDoUC.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\DangDoUC.xaml.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\DangDoUC.xaml.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\DangDoUC.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\DangDoUC.xaml.cs",
               "RelativeToolTip": "TraoDoiDo\\DangDoUC.xaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAOECAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T13:46:49.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-09T13:46:49.456Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "NguoiDung.xaml.cs",
-              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\NguoiDung.xaml.cs",
+              "DocumentMoniker": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\NguoiDung.xaml.cs",
               "RelativeDocumentMoniker": "TraoDoiDo\\NguoiDung.xaml.cs",
-              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinWinNewCN\\TraoDoiDo\\NguoiDung.xaml.cs",
+              "ToolTip": "C:\\DoAnLapTrinhWinTDD\\DoAnLapTrinhWin\\TraoDoiDo\\NguoiDung.xaml.cs",
               "RelativeToolTip": "TraoDoiDo\\NguoiDung.xaml.cs",
-              "ViewState": "AQIAAGoAAAAAAAAAAAA3wHQAAAA8AAAA",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAYwHQAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-09T14:04:12.029Z",
               "EditorCaption": ""
