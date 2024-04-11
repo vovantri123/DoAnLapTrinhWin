@@ -1,7 +1,9 @@
 ﻿using System.Windows;
+using System;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
+using System.Windows.Navigation;
 namespace TraoDoiDo
 {
     /// <summary>
@@ -28,8 +30,30 @@ namespace TraoDoiDo
 
         private void btnDang_Click(object sender, RoutedEventArgs e)
         {
-            themThongTinVaoCSDL();
-            themAnhVaMoTaVaoCSDL();
+            bool coAnh = false;
+            bool coTT = false;
+            try
+            {
+                themThongTinVaoCSDL();
+                coTT = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            try
+            {
+                themAnhVaMoTaVaoCSDL();
+                coAnh = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            if (coAnh && coTT)
+            {
+                MessageBox.Show("Đăng đồ thành công");
+            }
         }
         private void themAnhVaMoTaVaoCSDL()
         {
@@ -50,6 +74,7 @@ namespace TraoDoiDo
                 else
                     continue;
             }
+            
         }
         private void themThongTinVaoCSDL()
         {

@@ -168,12 +168,12 @@
     <Compile Include="ViDienTuUC.xaml.cs">
       <DependentUpon>ViDienTuUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\HoTroMatKhau.cs" />
-    <Compile Include="ViewModels\KiemTraDinhDang.cs" />
-    <Compile Include="ViewModels\ThongTinKhachHangViewModel.cs" />
-    <Compile Include="ViewModels\ThuocTinhViewModel.cs" />
-    <Compile Include="ViewModels\XuLyTienIch.cs" />
-    <Compile Include="ViewModels\XuLyAnh.cs" />
+    <Compile Include="Utilities\HoTroMatKhau.cs" />
+    <Compile Include="Utilities\KiemTraDinhDang.cs" />
+    <Compile Include="Utilities\ThongTinKhachHangViewModel.cs" />
+    <Compile Include="Utilities\ThuocTinhViewModel.cs" />
+    <Compile Include="Utilities\XuLyTienIch.cs" />
+    <Compile Include="Utilities\XuLyAnh.cs" />
     <Page Include="DangDoUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

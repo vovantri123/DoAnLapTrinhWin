@@ -57,8 +57,8 @@ namespace TraoDoiDo
             txtEmail.Text = kh.Email;
             cbGioiTinh.Text = kh.GioiTinh; 
              
-            DateTime selectedDate = DateTime.ParseExact(kh.NgaySinh,"dd/MM/yyyy",null);
-            dtpNgaySinh.SelectedDate = selectedDate;
+            //DateTime selectedDate = DateTime.ParseExact(kh.NgaySinh,"dd/MM/yyyy",null);
+            //dtpNgaySinh.SelectedDate = selectedDate;
 
             imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\
+C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\
 TraoDoiDo
 none
 false
 DEBUG;TRACE
-C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\App.xaml
+C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\App.xaml
 25-2035964371
 
-60-1617604690
-191175777561
+60572512550
+191173825349
 DangDoUC.xaml;DangDo_Dang.xaml;DangDo_Sua.xaml;DangKy.xaml;DangKyUC.xaml;DangNhap.xaml;DanhGia.xaml;DiaChi.xaml;LyDoTraHangUC.xaml;MainWindow.xaml;MuaDoUC.xaml;NapRutTien.xaml;NguoiDung.xaml;QuanLyUC.xaml;QuenMatKhau.xaml;TangGiamUC.xaml;ThanhDieuKhienUC.xaml;ThemAnhKhiDangUC.xaml;Thoat.xaml;ThongTinCaNhanUC.xaml;ThongTinChiTietSanPham.xaml;ThongTinNguoiDang.xaml;TrangChuUC.xaml;SanPhamUC.xaml;ViDienTuUC.xaml;
 
-False
+True
 

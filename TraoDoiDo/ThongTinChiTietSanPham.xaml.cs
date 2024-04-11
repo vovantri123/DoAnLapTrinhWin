@@ -37,6 +37,7 @@ namespace TraoDoiDo
         SanPham sanPham = new SanPham();
         SanPham sp = new SanPham();
         SanPhamDao spDao = new SanPhamDao();
+        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         KhacHangDao khDao = new KhacHangDao();
         private List<string> danhSachAnh = new List<string>();
 
@@ -63,6 +64,7 @@ namespace TraoDoiDo
             Loaded += LoadThongTinSanPham;
             Loaded += btnAnhSau_Click;
             Loaded += LoadThongTinNguoiDang;
+          
             sanPham = sp;
         }
 
@@ -251,6 +253,8 @@ namespace TraoDoiDo
         {
             try
             {
+                List<string> listSP = spDao.timKiemToanBoBangId(sp.Id);
+                idNguoiMua = quanLyDonHangDao.timIdNguoiMua(listSP[1], listSP[0]);
                 GioHang gioHang = new GioHang(idNguoiMua, idSanPham, txtbSoLuongHienTai.Text);
                 GioHangDao gioHangDao = new GioHangDao();
                 gioHangDao.Xoa(gioHang);
