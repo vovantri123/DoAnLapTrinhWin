@@ -23,7 +23,7 @@ namespace TraoDoiDo
     public partial class DangNhap : Window
     {
         private TaiKhoanDao tkDao = new TaiKhoanDao();
-        private KhacHangDao khDao = new KhacHangDao();
+        private NguoiDungDao nguoiDao = new NguoiDungDao();
         public DangNhap()
         {
             InitializeComponent();
@@ -31,12 +31,12 @@ namespace TraoDoiDo
 
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password.ToString(), null);
-            TaiKhoan taiKhoanMoi = tkDao.TimKiemBangTen(taiKhoan.TenDangNhap);
-            List<string> listNguoiDung = khDao.TimKiemBangTenDangNhap(taiKhoan.TenDangNhap);
-            string tienNguoiDung = khDao.TimKiemTienBangId(taiKhoanMoi.IDNguoiDung);
-            KhachHang kh = new KhachHang(taiKhoanMoi.IDNguoiDung, listNguoiDung[0], listNguoiDung[2].ToString(), listNguoiDung[4].ToString(), listNguoiDung[1].ToString(), listNguoiDung[6].ToString(), listNguoiDung[3].ToString(), listNguoiDung[5].ToString(), listNguoiDung[7].ToString(), taiKhoanMoi, tienNguoiDung);
-            if (taiKhoanMoi == null || !string.Equals(taiKhoan.MatKhau, taiKhoanMoi.MatKhau))
+
+            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password.ToString(), null); 
+            NguoiDung nguoi = nguoiDao.TimKiemBangTenDangNhap(taiKhoan.TenDangNhap, taiKhoan.MatKhau); // Tuy trả về thông tin người dùng nhưng thiếu cái (idNguoi, TaiKhoan ; tiền)
+            
+
+            if (nguoi == null || !string.Equals(taiKhoan.MatKhau, taiKhoan.MatKhau))
             {
                 MessageBox.Show("Tài khoản sai! Vui lòng đăng nhập lại");
                 return;
@@ -45,7 +45,7 @@ namespace TraoDoiDo
             {
                 //MessageBox.Show("Đăng nhập thành công");
                 //this.Hide();
-                NguoiDung f = new NguoiDung(kh);
+                MainWindow f = new MainWindow(nguoi);
                 f.Show();
             }
         }

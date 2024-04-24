@@ -42,7 +42,7 @@ namespace TraoDoiDo
             try
             {
                 // Xóa dữ liệu  khỏi bảng TrangThaiDonHang
-                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(idNguoiMua,idSP,null,null,null,"Đã trả hàng");
+                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(idNguoiMua,idSP,null,null,null,"Đã trả hàng",null, null, null, null, null, null, null,null);
                 trangThaiDonHangDao.CapNhat(trangThaiDonHang);
                 coTT = true;    
             }

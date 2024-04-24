@@ -13,14 +13,14 @@ namespace TraoDoiDo
     {
         private int soLuongAnh = 0;
         private ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100]; //Khi dùng thì phải khai báo là DanhSachAnhVaMoTa[i] = new ThemAnhKhiDangUC();
-        KhachHang ngDung = new KhachHang();
+        NguoiDung ngDung = new NguoiDung();
         XuLyAnh xuLyAnh = new XuLyAnh();
         public DangDo_Dang()
         {
             InitializeComponent();
             Loaded += btnThemAnh_Click;
         }
-        public DangDo_Dang(KhachHang kh)
+        public DangDo_Dang(NguoiDung kh)
         {
             InitializeComponent();
             Loaded += btnThemAnh_Click;
@@ -85,7 +85,7 @@ namespace TraoDoiDo
                     tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
                     break;
                 }
-            SanPham sanPham = new SanPham(txtbIdSanPham.Text, ngDung.Id, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text, txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), "0");
+            SanPham sanPham = new SanPham(txtbIdSanPham.Text, ngDung.Id, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text, txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), "0", null);
             SanPhamDao sanPhamDao = new SanPhamDao();
             sanPhamDao.Them(sanPham);
         }

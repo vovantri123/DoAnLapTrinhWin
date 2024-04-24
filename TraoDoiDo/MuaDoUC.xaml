@@ -128,7 +128,7 @@
                             HorizontalScrollBarVisibility="Auto"
                             VerticalScrollBarVisibility="Auto">
 
-                            <ListView x:Name="lsvGioHang">
+                            <ListView x:Name="lsvGioHang" SelectionMode="Multiple">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -148,12 +148,12 @@
                                         <GridViewColumn Width="40" Header="">
                                             <GridViewColumn.HeaderTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox x:Name="checkBoxTong" Click="ChonTatCaCacDong_Click" />
+                                                    <CheckBox x:Name="checkBoxTong" Checked="ChonTatCaCacDong_Click" />
                                                 </DataTemplate>
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox Click="TinhTienCuaNhungDongDuocChon" IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                                                    <CheckBox Checked="TinhTienCuaNhungDongDuocChon" Unchecked="TinhTienCuaNhungDongDuocChon"  IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>

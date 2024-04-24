@@ -9,14 +9,28 @@ namespace TraoDoiDo.Database
 {
     public class QuanLyDonHangDao:ThuocTinhDao
     {
-        public List<List<string>> TimKiemTheoIdNguoiDang(string idNguoiDang,string trangThai)
+        //List<string> dongKetQua;
+        List<List<string>> bangKetQua;
+        public List<QuanLyDonHang> TimKiemTheoIdNguoiDang(string idNguoiDang,string trangThai)
         {
-            string sqlStr = $@" SELECT {sanPhamHeader}.{sanPhamID}, {sanPhamHeader}.{sanPhamTen}, {sanPhamHeader}.{sanPhamAnh}, {trangThaiHeader}.{trangThaiSoLuongMua}, {sanPhamHeader}.{sanPhamGiaBan}, {sanPhamHeader}.{sanPhamPhiShip}, {trangThaiHeader}.{trangThaiTongThanhToan}, {quanLyHeader}.{quanLyLyDo}, {quanLyHeader}.{quanLyIdNguoiMua}"+
+            string sqlStr = $@" SELECT {sanPhamHeader}.{sanPhamID},{quanLyHeader}.{quanLyIdNguoiMua}, {sanPhamHeader}.{sanPhamTen}, {sanPhamHeader}.{sanPhamAnh}, {trangThaiHeader}.{trangThaiSoLuongMua}, {sanPhamHeader}.{sanPhamGiaBan}, {sanPhamHeader}.{sanPhamPhiShip}, {trangThaiHeader}.{trangThaiTongThanhToan}, {quanLyHeader}.{quanLyLyDo}"+
                     $" FROM {quanLyHeader} INNER JOIN {nguoiDungHeader} ON {quanLyHeader}.{quanLyIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID} INNER JOIN {sanPhamHeader} ON {quanLyHeader}.{quanLyIdSanPham} = {sanPhamHeader}.{sanPhamID} "+
                     $" INNER JOIN {trangThaiHeader} ON {quanLyHeader}.{quanLyIdNguoiMua} = {trangThaiHeader}.{trangThaiIdNguoiMua} and  {quanLyHeader}.{quanLyIdSanPham} = {trangThaiHeader}.{trangThaiIdSanPham} "+
                     $" WHERE {quanLyHeader}.{quanLyIdNguoiDang} = '{idNguoiDang}' and {quanLyHeader}.{quanLyTrangThai}=N'{trangThai}' ";
-            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
-        }
+            List<QuanLyDonHang> dsDonHang = new List<QuanLyDonHang> ();
+            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            foreach(var dong in bangKetQua)
+            {
+                QuanLyDonHang donHang = new QuanLyDonHang("", idNguoiDang, dong[1], dong[0],"", dong[8], dong[2], dong[3], dong[4], dong[5], dong[6], dong[7]); 
+                
+               
+                
+                dsDonHang.Add(donHang);
+            }
+
+            return dsDonHang;
+        }  
+
         public void Them(QuanLyDonHang ql)
         {
             string sqlStr = $"INSERT INTO {quanLyHeader} ({quanLyIdNguoiDang},{quanLyIdNguoiMua},{quanLyIdSanPham},{quanLyTrangThai},{quanLyLyDo})"
@@ -42,12 +56,12 @@ namespace TraoDoiDo.Database
                         WHERE {quanLyIdNguoiMua} = '{ql.IdNguoiMua}' AND {quanLyIdSanPham} = '{ql.IdSanPham}'";
             dbConnection.ThucThi(sqlStr);
         }
-        public string timIdNguoiDang(string idNguoiMua,string idSanPham)
+        public string timIdNguoiDangTheoIdNguoiMuaVaIdSanPham(string idNguoiMua,string idSanPham)
         {
             string sqlStr = $@"SELECT {quanLyHeader}.{quanLyIdNguoiDang} FROM {quanLyHeader} WHERE {quanLyHeader}.{quanLyIdNguoiMua} = '{idNguoiMua}' AND {quanLyHeader}.{quanLyIdSanPham} = '{idSanPham}' ";
             return dbConnection.LayMotDoiTuong(sqlStr, $"{quanLyIdNguoiDang}");
         }
-        public string timIdNguoiMua(string idNguoiDang,string idSanPham)
+        public string timIdNguoiMuaTheoIdNguoiDangVaIdSanPham(string idNguoiDang,string idSanPham)
         {
             string sqlStr = $@"SELECT {quanLyHeader}.{quanLyIdNguoiMua} FROM {quanLyHeader} WHERE {quanLyHeader}.{quanLyIdNguoiDang} = '{idNguoiDang}' AND {quanLyHeader}.{quanLyIdSanPham} = '{idSanPham}' ";
             return dbConnection.LayMotDoiTuong(sqlStr, $"{quanLyIdNguoiMua}");

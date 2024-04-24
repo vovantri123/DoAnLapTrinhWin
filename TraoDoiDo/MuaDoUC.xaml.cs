@@ -29,12 +29,12 @@ namespace TraoDoiDo
         private int soLuongSP = 0;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
-        KhachHang ngDung = new KhachHang();
+        NguoiDung ngDung = new NguoiDung(); //Người mua
         SanPhamDao sanPhamDao = new SanPhamDao();
         GioHangDao gioHangDao = new GioHangDao();
         TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        List<List<string>> listSp = new List<List<string>>();
+        List<TrangThaiDonHang> dsSanPhamDeThanhToan = new List<TrangThaiDonHang>(); 
         public MuaDoUC()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace TraoDoiDo
             Loaded += GioHang_Load; //TAB2
             Loaded += TrangThaiDonHang_Load; //TAB3
         } 
-        public MuaDoUC(KhachHang kh)
+        public MuaDoUC(NguoiDung kh)
         {
             InitializeComponent();
             Loaded += MuaSam_Load; // TAB1
@@ -150,22 +150,25 @@ namespace TraoDoiDo
             try
             {
                 conn.Open();
-                List<List<string>> listSanPham = new List<List<string>>();
-                listSanPham = sanPhamDao.LoadSanPham(ngDung.Id);
+               
+                List<SanPham> dsSanPham = sanPhamDao.LoadSanPham(ngDung.Id); // Đây là idNguoiMua 
 
-                foreach(var list in listSanPham)
+                foreach(var dong in dsSanPham)
                 {
                     int yeuThich = 0;
-                    if (!string.IsNullOrEmpty(list[8])) //Neu nguoi mua co trong bang yeu thich (tức đang yêu thich một sản phẩm nào đó)
+                  
+                    if (!string.IsNullOrEmpty(dong.IdNguoiMua)) // Id người mua này của bảng yêu thích ,Neu nguoi mua co trong bang yeu thich (tức đang yêu thich một sản phẩm nào đó)
                     {
                         yeuThich = 1;
+
                     }
-                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
+                    
+                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngDung.Id); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
-                    DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = list[0].ToString();
-                    DanhSachSanPham[soLuongSP].txtbTen.Text = list[1];
+                    DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = dong.Id;
+                    DanhSachSanPham[soLuongSP].txtbTen.Text = dong.Ten;
 
-                    string tenFileAnh = list[2];
+                    string tenFileAnh = dong.LinkAnh;
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
@@ -174,18 +177,16 @@ namespace TraoDoiDo
                     // Gán BitmapImage tới Source của Image control
                     DanhSachSanPham[soLuongSP].imgSP.Source = bitmap;
 
-                    DanhSachSanPham[soLuongSP].txtbGiaGoc.Text = list[3];
-                    DanhSachSanPham[soLuongSP].txtbGiaBan.Text = list[4];
-                    DanhSachSanPham[soLuongSP].txtbNoiBan.Text = list[5];
-                    DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = list[6];
-                    DanhSachSanPham[soLuongSP].idNguoiDang = list[7].ToString();
-                    DanhSachSanPham[soLuongSP].idNguoiMua = ngDung.Id;
-                    DanhSachSanPham[soLuongSP].txtbLoai.Text = list[9];
+                    DanhSachSanPham[soLuongSP].txtbGiaGoc.Text = dong.GiaGoc;
+                    DanhSachSanPham[soLuongSP].txtbGiaBan.Text = dong.GiaBan;
+                    DanhSachSanPham[soLuongSP].txtbNoiBan.Text = dong.NoiBan;
+                    DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = dong.LuotXem;
+                    DanhSachSanPham[soLuongSP].idNguoiDang = dong.IdNguoiDang;
+                    DanhSachSanPham[soLuongSP].txtbLoai.Text = dong.Loai;
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
                     DanhSachSanPham[soLuongSP].Margin = new Thickness(8);
-                    DanhSachSanPham[soLuongSP].idNguoiMua = ngDung.Id;
                     wpnlHienThi.Children.Add(DanhSachSanPham[soLuongSP]);
                     soLuongSP++;
                 }
@@ -207,7 +208,7 @@ namespace TraoDoiDo
                     if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
                     {
                         int yeuThich = 0;
-                        SanPhamUC spTam = new SanPhamUC(yeuThich);
+                        SanPhamUC spTam = new SanPhamUC(yeuThich, ngDung.Id);
                         spTam = DanhSachSanPham[i];
                         DanhSachSanPham[i] = DanhSachSanPham[j];
                         DanhSachSanPham[j] = spTam;
@@ -232,24 +233,22 @@ namespace TraoDoiDo
         {
             try
             {
-                List<List<string>> listSanPham = new List<List<string>>();
-                listSanPham = gioHangDao.timThongTinSanPham(ngDung.Id);
+                List<GioHang> dsGioHang = gioHangDao.timThongTinSanPhamTheoIDNguoiMua(ngDung.Id);
                 lsvGioHang.Items.Clear();
-                foreach(var list in listSanPham)
+                foreach(var dong in dsGioHang)
                 {
-                    string tenFileAnh =list[2];
+                    string tenFileAnh =dong.AnhSP;
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
 
-                    int soLuong = Convert.ToInt32(list[6]); // số lượng Tổng
-                    int soLuongDaBan = Convert.ToInt32(list[7]);
+                    int soLuong = Convert.ToInt32(dong.SoLuongTong); // số lượng Tổng
+                    int soLuongDaBan = Convert.ToInt32(dong.SoLuongDaBan);
                     string trangThai = "";
                     
                     if (soLuongDaBan >= soLuong)
                         trangThai = "Hết hàng";
                     else
                         trangThai = "Còn hàng";
-                    SanPham sanPham = new SanPham(list[0], ngDung.Id, list[1], linkAnhBia, null, list[6], list[7], null, list[3], list[4], trangThai, null, null, null, null, null, null);
-                    lsvGioHang.Items.Add(new { IdSP = sanPham.Id, TenSP = sanPham.Ten, LinkAnhBia = linkAnhBia, Gia = sanPham.GiaBan, PhiShip = sanPham.PhiShip, SoLuongMua = list[5], TrangThaiConHayHet = trangThai });
+                    lsvGioHang.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.Ten, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TrangThaiConHayHet = trangThai });
                 }
             }
             catch (Exception ex)
@@ -276,9 +275,8 @@ namespace TraoDoiDo
                     if (MessageBox.Show("Bạn có chắc chắn muốn xóa mục đã chọn?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         try
-                        {
-                            GioHang gioHang = new GioHang(ngDung.Id, dataItem.IdSP,dataItem.SoLuongMua);
-                            gioHangDao.Xoa(gioHang);
+                        { 
+                            gioHangDao.Xoa(dataItem.IdSP, ngDung.Id);
                         }
                         catch (Exception ex)
                         {
@@ -311,7 +309,7 @@ namespace TraoDoiDo
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            DiaChi f = new DiaChi(ngDung,listSp);
+            DiaChi f = new DiaChi(ngDung, dsSanPhamDeThanhToan); //truyền vào người mua
             f.tongThanhToan = txtbTongThanhToan.Text;
             f.ShowDialog();
         }
@@ -360,32 +358,43 @@ namespace TraoDoiDo
 
         private void TinhTienCuaNhungDongDuocChon(object sender, RoutedEventArgs e)
         {
-            int tongTienhang = 0;
-            int tongTienShip = 0;
-            List<string> listID = new List<string>();
-            string[] mang = new string[6]; 
+            double tongTienHang = 0;
+            double tongTienShip = 0;
+            double tongThanhToan = 0;
             foreach (var dongDuocChon in lsvGioHang.SelectedItems)
             {
-                dynamic item = dongDuocChon;
-                int gia = Convert.ToInt32(item.Gia);
-                int phiShip = Convert.ToInt32(item.PhiShip);
-                int soLuongMua = Convert.ToInt32(item.SoLuongMua);
-                string idSP = item.IdSP;
-                tongTienhang += gia * soLuongMua;
-                tongTienShip += phiShip;
-                mang[0] = ngDung.Id;
-                mang[1] = item.IdSP;
-                mang[2] = soLuongMua.ToString();
-                mang[3] = (tongTienhang + tongTienShip).ToString();
-                mang[4] = DateTime.Now.ToString();
-                mang[5] = "Chờ xác nhận";
-                listID.AddRange(mang);
-                listSp.Add(listID);
+                dynamic dong = dongDuocChon;
+
+                string idSP = dong.IdSP;
+                string tenSP = dong.TenSP;
+
+                string giaBan = dong.Gia;
+                string phiShip = dong.PhiShip;
+                string soLuongMua = dong.SoLuongMua;
+                //Không cần cột Ảnh (tên cũng k cần ha j á, lấy cho zui :))
+
+
+                string ngayThanhToan = DateTime.Now.ToString("dd/MM/yyyy");
+                string trangThai = "Chờ xác nhận";
+
+                 
+                tongTienHang += Convert.ToDouble(giaBan) * Convert.ToInt32(soLuongMua);
+                tongTienShip += Convert.ToDouble(phiShip); 
+
+                tongThanhToan = tongTienHang + tongTienShip;
+
+                //mang[0] = ngDung.Id;
+                //mang[1] = item.IdSP;
+                //mang[2] = soLuongMua.ToString();
+                //mang[3] = (tongTienhang + tongTienShip).ToString();
+                //mang[4] = DateTime.Now.ToString();
+                //mang[5] = "Chờ xác nhận"; 
+                dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngDung.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip, null, null, null, null));
             }
 
-            txtbTongTienHang.Text = tongTienhang.ToString();
+            txtbTongTienHang.Text = tongTienHang.ToString();
             txtbTongTienShip.Text = tongTienShip.ToString();
-            txtbTongThanhToan.Text = (tongTienhang + tongTienShip).ToString();
+            txtbTongThanhToan.Text = tongThanhToan.ToString();
         }
         #endregion
 
@@ -402,11 +411,8 @@ namespace TraoDoiDo
         {
             try
             {
-                //Load Form TrangThaiDonHang
-                List<List<string>> listTrangThaiDon = new List<List<string>>();
-                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,null,null,null,null,trangthai);
-                // Sử dụng list<string> truy xuất list[0] thay cho getString
-                listTrangThaiDon = trangThaiDonHangDao.LoadTrangThaiDonHang(trangThaiDonHang);
+                //Load Form TrangThaiDonHang 
+                List<TrangThaiDonHang> dsTrangThaiDon = trangThaiDonHangDao.LoadTrangThaiDonHang(ngDung.Id, trangthai);
 
                 if (tenLsv == "lsvChoNguoiBanXacNhan")
                     lsvChoNguoiBanXacNhan.Items.Clear();
@@ -415,17 +421,17 @@ namespace TraoDoiDo
                 else if (tenLsv == "lsvDaNhan")
                     lsvDaNhan.Items.Clear();
 
-                foreach(var list in listTrangThaiDon)
+                foreach(var dong in dsTrangThaiDon)
                 {
-                    string tenFileAnh = list[2];
+                    string tenFileAnh = dong.AnhSP;
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
 
                     if (tenLsv == "lsvChoNguoiBanXacNhan")
-                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = list[0], TenSP = list[1], LinkAnhBia = linkAnhBia, Gia = list[4], PhiShip = list[5], SoLuongMua = list[3], TongThanhToan = list[6], Ngay = list[7] });
+                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua =dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });
                     else if (tenLsv == "lsvChoGiaoHang")
-                        lsvChoGiaoHang.Items.Add(new { IdSP = list[0], TenSP = list[1], LinkAnhBia = linkAnhBia, Gia = list[4], PhiShip = list[5], SoLuongMua = list[3], TongThanhToan = list[6], Ngay = list[7] });
+                        lsvChoGiaoHang.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });
                     else if (tenLsv == "lsvDaNhan")
-                        lsvDaNhan.Items.Add(new { IdSP = list[0], TenSP = list[1], LinkAnhBia = linkAnhBia, Gia = list[4], PhiShip = list[5], SoLuongMua = list[3], TongThanhToan = list[6], Ngay = list[7] });
+                        lsvDaNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
                 }
@@ -455,7 +461,7 @@ namespace TraoDoiDo
                         try
                         {
                             // Xóa dữ liệu từ bảng TrangThaiDongHang
-                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,null);
+                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,null, null, null, null, null, null, null, null, null);
                             trangThaiDonHangDao.Xoa(trangThaiDonHang);
 
                             // Xóa dữ liệu  khỏi bảng QuanLyDonHang 
@@ -500,7 +506,7 @@ namespace TraoDoiDo
                         try
                         {
                             conn.Open();
-                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,"Đã nhận");
+                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,"Đã nhận", null, null, null, null, null, null, null, null);
                             trangThaiDonHangDao.CapNhat(trangThaiDonHang);
 
                             QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null,null,ngDung.Id,dataItem.IdSP,"Đã giao",null);
@@ -544,10 +550,9 @@ namespace TraoDoiDo
 
                     try
                     {
-                        List<string> listSanPham = new List<string>();
-                        listSanPham = sanPhamDao.timKiemIdNguoiDang(dataItem.IdSP);
-                        f.idNguoiDang = listSanPham[0].ToString();
-                        f.txtbTenNguoiDang.Text = listSanPham[1];
+                        NguoiDung nguoiDang = sanPhamDao.timKiemNguoiDangTheoIdSP(dataItem.IdSP);
+                        f.idNguoiDang = nguoiDang.Id;
+                        f.txtbTenNguoiDang.Text = nguoiDang.HoTen;
                     }
                     catch (Exception ex)
                     {

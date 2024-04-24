@@ -11,9 +11,9 @@ namespace TraoDoiDo.ViewModels
 {
     public class ThongTinKhachHangViewModel : ThuocTinhViewModel
     {
-        private KhachHang khachHang = new KhachHang();
+        private NguoiDung khachHang = new NguoiDung();
 
-        public KhachHang KhachHangThongTin { get => khachHang; set => khachHang = value; }
+        public NguoiDung KhachHangThongTin { get => khachHang; set => khachHang = value; }
 
         public string TenDangNhap { get => khachHang.TaiKhoan.TenDangNhap; set { khachHang.TaiKhoan.TenDangNhap = value; OnPropertyChanged(); } }
         public string MatKhau { get => khachHang.TaiKhoan.MatKhau; set { khachHang.TaiKhoan.MatKhau = value; OnPropertyChanged(); } }
@@ -32,7 +32,7 @@ namespace TraoDoiDo.ViewModels
         {
 
         }
-        public ThongTinKhachHangViewModel(KhachHang kh)
+        public ThongTinKhachHangViewModel(NguoiDung kh)
         {
             khachHang = kh;
         }

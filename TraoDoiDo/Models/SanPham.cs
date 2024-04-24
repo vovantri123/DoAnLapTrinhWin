@@ -3,7 +3,7 @@
     public class SanPham
     {
         private string id;
-        private string idNguoi;
+        private string idNguoiDang;
         private string ten;
         private string linkAnhBia;
         private string loai;
@@ -19,9 +19,10 @@
         private string moTaChung;
         private string phanTramMoi;
         private string luotXem;
-
+        private string idNguoiMua;
+        private QuanLyDonHang quanLyDonHang;
         public SanPham() { }
-        public SanPham(string id, string idNguoi, string ten, string linkAnhBia, string loai, string soLuong, string soLuongDaBan, string giaGoc, string giaBan, string phiShip, string trangThai, string noiBan, string xuatXu, string ngayMua, string moTaChung, string phanTramMoi,string luotXem)
+        public SanPham(string id, string idNguoiDang, string ten, string linkAnhBia, string loai, string soLuong, string soLuongDaBan, string giaGoc, string giaBan, string phiShip, string trangThai, string noiBan, string xuatXu, string ngayMua, string moTaChung, string phanTramMoi, string luotXem, string idNguoiMua)
         {
             this.id = id;
             this.ten = ten;
@@ -38,8 +39,9 @@
             this.ngayMua = ngayMua;
             this.moTaChung = moTaChung;
             this.phanTramMoi = phanTramMoi;
-            this.idNguoi = idNguoi;
+            this.idNguoiDang = idNguoiDang;
             this.luotXem = luotXem;
+            this.idNguoiMua = idNguoiMua;
         }
 
         public string Id { get => id; set => id = value; }
@@ -57,7 +59,9 @@
         public string NgayMua { get => ngayMua; set => ngayMua = value; }
         public string MoTaChung { get => moTaChung; set => moTaChung = value; }
         public string PhanTramMoi { get => phanTramMoi; set => phanTramMoi = value; }
-        public string IdNguoi { get => idNguoi; set => idNguoi = value; }
+        public string IdNguoiDang { get => idNguoiDang; set => idNguoiDang = value; }
         public string LuotXem { get => luotXem; set => luotXem = value; }
+        public QuanLyDonHang QuanLyDonHang { get => quanLyDonHang; set => quanLyDonHang = value; }
+        public string IdNguoiMua { get => idNguoiMua; set => idNguoiMua = value; }
     }
 }

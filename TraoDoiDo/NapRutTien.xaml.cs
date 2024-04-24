@@ -26,14 +26,16 @@ namespace TraoDoiDo
         public string nguonTienDen = "";
         public string nguonTienTu = "";
         public string thoiGianGiaoDich = "";
-        KhachHang ngDung = new KhachHang();
-        KhacHangDao ngDungDao = new KhacHangDao();
+        NguoiDung ngDung = new NguoiDung();
+        NguoiDungDao ngDungDao = new NguoiDungDao();
+
+
         public NapRutTien()
         {
             InitializeComponent();
             this.DataContext = this;
         }
-        public NapRutTien(KhachHang kh)
+        public NapRutTien(NguoiDung kh)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -60,14 +62,15 @@ namespace TraoDoiDo
             try
             {
                 soTienNap = tinhTien();
-                nguonTienTu = "Ví điện tử";
-                nguonTienDen = chonNguonTien();
+                nguonTienTu = chonNguonTien();
+                nguonTienDen = "Ví điện tử";
                 thoiGianGiaoDich = DateTime.Now.ToString();
                 double soTienNguoiDung = Convert.ToDouble(ngDungDao.TimKiemTienBangId(ngDung.Id));
+                double soTienSauNap = soTienNguoiDung + soTienNap;
+
                 GiaoDich giaoDich = new GiaoDich(null, ngDung.Id, txtbTieuDe.Text, soTienNap.ToString(), nguonTienTu, nguonTienDen, thoiGianGiaoDich);
                 GiaoDichDao giaoDichDao = new GiaoDichDao();
-                double soTienSauNap = soTienNguoiDung + soTienNap;
-                ngDungDao.CapNhatSoTien(soTienSauNap.ToString(), ngDung.Id);
+                giaoDichDao.CapNhatSoTien(soTienSauNap.ToString(), ngDung.Id);
                 giaoDichDao.Them(giaoDich);
                 coNapTien = true;
             }
@@ -77,7 +80,7 @@ namespace TraoDoiDo
             }
             finally
             {
-                NguoiDung fNguoiDung = new NguoiDung();
+                MainWindow fNguoiDung = new MainWindow();
                 fNguoiDung.LoadWindow();
             }
             if (coNapTien)
@@ -90,14 +93,15 @@ namespace TraoDoiDo
             try
             {
                 soTienRut = tinhTien();
-                nguonTienTu = chonNguonTien();
-                nguonTienDen = "Ví điện tử";
+                nguonTienTu = "Ví điện tử";
+                nguonTienDen = chonNguonTien();
                 thoiGianGiaoDich = DateTime.Now.ToString();
                 double soTienNguoiDung = Convert.ToDouble(ngDungDao.TimKiemTienBangId(ngDung.Id));
+                double soTienSauRut = soTienNguoiDung - soTienRut;
+
                 GiaoDich giaoDich = new GiaoDich(null, ngDung.Id, txtbTieuDe.Text, soTienRut.ToString(), nguonTienTu, nguonTienDen, thoiGianGiaoDich);
                 GiaoDichDao giaoDichDao = new GiaoDichDao();
-                double soTienSauRut = soTienNguoiDung - soTienRut;
-                ngDungDao.CapNhatSoTien(soTienSauRut.ToString(), ngDung.Id);
+                giaoDichDao.CapNhatSoTien(soTienSauRut.ToString(), ngDung.Id);
                 giaoDichDao.Them(giaoDich);
                 coRutTien = true;
             }
@@ -107,11 +111,11 @@ namespace TraoDoiDo
             }
             finally
             {
-                NguoiDung fNguoiDung = new NguoiDung();
+                MainWindow fNguoiDung = new MainWindow();
                 fNguoiDung.LoadWindow();
             }
             if (coRutTien)
-                MessageBox.Show("Nạp tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Rút tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -173,6 +177,14 @@ namespace TraoDoiDo
             {
                 nguonTien = "Sacombank";
             }
+            if (rbtnACB.IsChecked == true)
+            {
+                nguonTien = "ACB";
+            }
+            if (rbtnTPBank.IsChecked == true)
+            {
+                nguonTien = "TPBank";
+            }
             if (rbtnTechcombank.IsChecked == true)
             {
                 nguonTien = "Techcombank";
@@ -193,9 +205,14 @@ namespace TraoDoiDo
             {
                 nguonTien = "VPBank";
             }
-            if (rbtnTPBank.IsChecked == true)
+            
+            if (rbtnAgribank.IsChecked == true)
             {
-                nguonTien = "TPBank";
+                nguonTien = "Agribank";
+            }
+            if (rbtnBaoViet.IsChecked == true)
+            {
+                nguonTien = "BAOVIET Bank";
             }
             if (rbtnVietA.IsChecked == true)
             {

@@ -19,13 +19,13 @@ namespace TraoDoiDo
     {
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        KhachHang nguoiDung = new KhachHang();
-        List<List<string>> listSanPham = new List<List<string>>();
+        NguoiDung nguoiDung = new NguoiDung();
+        List<SanPham> dsSanPham;
         SanPhamDao sanPhamDao = new SanPhamDao();
         MoTaHangHoaDao moTaDao = new MoTaHangHoaDao();
-        QuanLyDonHangDao quanLyDao = new QuanLyDonHangDao();
+        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         TrangThaiDonHangDao trangThaiHangDao = new TrangThaiDonHangDao();
-        DanhGiaNguoiDungDao danhGiaNguoiDungDao = new DanhGiaNguoiDungDao();
+        DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
 
         public DangDoUC()
         {
@@ -35,7 +35,7 @@ namespace TraoDoiDo
             Loaded += ThongKe_Load;
         }
 
-        public DangDoUC(KhachHang kh)
+        public DangDoUC(NguoiDung kh)
         {
             InitializeComponent();
             Loaded += QuanLySanPham_Load;
@@ -48,18 +48,29 @@ namespace TraoDoiDo
         {
             HienThi_QuanLySanPham();
         }
+
+        private void HienThi_QuanLySanPham()
+        {
+            lsvQuanLySanPham.Items.Clear();
+            dsSanPham = sanPhamDao.timKiemBangId(nguoiDung.Id.ToString());
+            foreach (var sanPham in dsSanPham)
+            { 
+                string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
+                lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
+            }
+        }
+
+
         private void txbTiemKiem_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                lsvQuanLySanPham.Items.Clear();
-                List<List<string>> listSP = new List<List<string>>();
+                lsvQuanLySanPham.Items.Clear(); 
                 if (txbTimKiem.Text == null)
                     HienThi_QuanLySanPham();
-                listSP = sanPhamDao.timKiemBangTen(txbTimKiem.Text.Trim(), nguoiDung.Id);
-                foreach (var list in listSP)
+                dsSanPham = sanPhamDao.timKiemBangTen(txbTimKiem.Text.Trim(), nguoiDung.Id);
+                foreach (var sanPham in dsSanPham)
                 {
-                    SanPham sanPham = new SanPham(list[0], nguoiDung.Id, list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9], null, null, null, null, null,"0");
                     string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
                     lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
                 }
@@ -68,26 +79,22 @@ namespace TraoDoiDo
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void cbLocLoai_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox comboBox = sender as ComboBox;
-           
+            ComboBox comboBox = sender as ComboBox; 
             try
             {
-                lsvQuanLySanPham.Items.Clear();
-                List<List<string>> listSP = new List<List<string>>();
+                lsvQuanLySanPham.Items.Clear(); 
                 string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
                 if (string.Equals(selectedItemContent, "Tất cả"))
                     HienThi_QuanLySanPham();
                 else
                 {
-                    listSP = sanPhamDao.timKiemBangLoai(selectedItemContent, nguoiDung.Id);
-                    foreach (var list in listSP)
+                    dsSanPham = sanPhamDao.timKiemBangLoai(selectedItemContent, nguoiDung.Id);
+                    foreach (var sanPham in dsSanPham)
                     {
-                        SanPham sanPham = new SanPham(list[0], nguoiDung.Id, list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9], null, null, null, null, null,"0");
                         string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
                         lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
                     }
@@ -101,21 +108,7 @@ namespace TraoDoiDo
         }
 
        
-        
-        private void HienThi_QuanLySanPham()
-        {
-
-            lsvQuanLySanPham.Items.Clear();
-            listSanPham = sanPhamDao.timKiemBangId(nguoiDung.Id.ToString());
-            foreach (var list in listSanPham)
-            {
-
-                SanPham sanPham = new SanPham(list[0], nguoiDung.Id, list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9], null, null, null, null, null,"0");
-                string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
-                lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
-            }
-        }
-
+      
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             // Lấy button được click
@@ -183,13 +176,12 @@ namespace TraoDoiDo
             return parentT ?? FindAncestor<T>(parent);
         }
         private int timIdMaxTrongBangSanPham()
-        {
-            List<string> list = new List<string>();
-            list = sanPhamDao.timKiemId();
+        { 
+            List<string> danhSachId = sanPhamDao.timKiemId();
             int max = 0;
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < danhSachId.Count; i++)
             {
-                int value = Convert.ToInt32(list[i]);
+                int value = Convert.ToInt32(danhSachId[i]);
                 if (value > max)
                 {
                     max = value;
@@ -230,32 +222,27 @@ namespace TraoDoiDo
                     //Đổ dữ liệu qua form sửa_BEGIN
                     try
                     {
-                        //Đổ thông tin lên
-
-                        List<string> listSanPham = new List<string>();
-                        listSanPham = sanPhamDao.timKiemToanBoBangId(dataItem.Id);
-                        SanPham sanPham = new SanPham(listSanPham[0], listSanPham[1], listSanPham[2], listSanPham[3],listSanPham[4], listSanPham[5], listSanPham[6], listSanPham[7], listSanPham[8], listSanPham[9], listSanPham[10], listSanPham[11], listSanPham[12], listSanPham[13], listSanPham[15], listSanPham[14], listSanPham[16]);
-                        f = new DangDo_Sua(sanPham);
-                        List<List<string>> moTaList = new List<List<string>>();
-                        moTaList = moTaDao.TimKiemBangId(dataItem.Id);
+                        //Đổ thông tin lên 
+                        SanPham sp = sanPhamDao.timKiemToanBoBangId(dataItem.Id);
+                        f = new DangDo_Sua(sp); 
+                        List<MoTaHangHoa> dsMoTaHangHoa = moTaDao.TimKiemBangId(dataItem.Id);
 
                         //Đổ ảnh và mô tả lên
-                        foreach(var list in  moTaList)
+                        foreach(var moTaHangHoa in dsMoTaHangHoa) // i : item, tí tìm cái tên khác để đặt
                         {
-                                f.DanhSachAnhVaMoTa[f.soLuongAnh] = new ThemAnhKhiDangUC();
+                            f.DanhSachAnhVaMoTa[f.soLuongAnh] = new ThemAnhKhiDangUC();
+                             
+                            f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = moTaHangHoa.LinkAnh; // Rãnh sửa thuộc tính LinkAnh thành TenFileAnh
 
-                                string tenFileAnh = list[0].ToString();
-                                f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = tenFileAnh;
+                            string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(moTaHangHoa.LinkAnh);
+                            f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbDuongDanAnh.Text = duongDanAnh;
 
-                                string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
-                                f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbDuongDanAnh.Text = duongDanAnh;
-                                f.DanhSachAnhVaMoTa[f.soLuongAnh].imgAnhSP.Source = new BitmapImage(new Uri(duongDanAnh));
+                            f.DanhSachAnhVaMoTa[f.soLuongAnh].imgAnhSP.Source = new BitmapImage(new Uri(duongDanAnh));
+                             
+                            f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbMoTa.Text = moTaHangHoa.MoTa;
 
-                                string moTa = list[1].ToString();
-                                f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbMoTa.Text = moTa;
-
-                                f.wpnlChuaAnh.Children.Add(f.DanhSachAnhVaMoTa[f.soLuongAnh]);
-                                f.soLuongAnh++;
+                            f.wpnlChuaAnh.Children.Add(f.DanhSachAnhVaMoTa[f.soLuongAnh]);
+                            f.soLuongAnh++;
                         }
                     }
                     catch (Exception ex)
@@ -291,8 +278,8 @@ namespace TraoDoiDo
         {
             try
             {
-                List<List<string>> listQuanLy = new List<List<string>>();
-                listQuanLy = quanLyDao.TimKiemTheoIdNguoiDang(nguoiDung.Id, trangthai);
+                List<QuanLyDonHang> dsQuanLyDonHang = new List<QuanLyDonHang>();
+                dsQuanLyDonHang = quanLyDonHangDao.TimKiemTheoIdNguoiDang(nguoiDung.Id, trangthai);
                 if (tenLsv == "lsvChoDongGoi")
                     lsvChoDongGoi.Items.Clear();
                 else if (tenLsv == "lsvDangGiao")
@@ -302,23 +289,19 @@ namespace TraoDoiDo
                 else if (tenLsv == "lsvDonHangBiHoanTra")
                     lsvDonHangBiHoanTra.Items.Clear();
 
-                foreach(var list in listQuanLy)
+                foreach(var dong in dsQuanLyDonHang)
                 {
-                    string tenFileAnh = list[2];
+                    string tenFileAnh = dong.LinkAnhBia;
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
 
                     if (tenLsv == "lsvChoDongGoi")
-                        lsvChoDongGoi.Items.Add(new { IdSP = list[0], IdNguoiMua = list[8], TenSP = list[1], LinkAnhBia = linkAnhBia, SoLuongMua = list[3], Gia = list[4], PhiShip = list[5], TongTien = list[6] });
+                        lsvChoDongGoi.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien});
                     else if (tenLsv == "lsvDangGiao")
-                        lsvDangGiao.Items.Add(new { IdSP = list[0], IdNguoiMua = list[8], TenSP = list[1], LinkAnhBia = linkAnhBia, SoLuongMua = list[3], Gia = list[4], PhiShip = list[5], TongTien = list[6] });
+                        lsvDangGiao.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien });
                     else if (tenLsv == "lsvDaGiao")
-                        lsvDaGiao.Items.Add(new { IdSP = list[0], IdNguoiMua = list[8], TenSP = list[1], LinkAnhBia = linkAnhBia, SoLuongMua = list[3], Gia = list[4], PhiShip = list[5], TongTien = list[6] });
+                        lsvDaGiao.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien });
                     else if (tenLsv == "lsvDonHangBiHoanTra")
-                    {
-                        lsvDonHangBiHoanTra.Items.Add(new { IdSP = list[0], IdNguoiMua = list[8], TenSP = list[1], LinkAnhBia = linkAnhBia, SoLuongMua = list[3], Gia = list[4], PhiShip = list[5], TongTien = list[6], LyDoTraHang = list[7] });
-                    }
-                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                    //lsvQuanLySanPham.Items.Add(sanPham);
+                        lsvDonHangBiHoanTra.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien, LyDoTraHang = dong.LyDo });
                 }
             }
             catch (Exception ex)
@@ -346,15 +329,12 @@ namespace TraoDoiDo
                     DiaChi f = new DiaChi();
                     try
                     {
-                        List<List<string>> listMoTa = new List<List<string>>();
-                        listMoTa = trangThaiHangDao.TimKiemTheoId(dataItem.IdNguoiMua, dataItem.IdSP);
-                        f.txtbTieuDe.Text = "Địa chỉ khách hàng";
-                        foreach (var list in  listMoTa)
-                        {
-                            KhachHang kh = new KhachHang(dataItem.IdNguoiMua, list[0], null, null, null, list[2], list[1], list[3],null,null,null);
-                            f = new DiaChi(kh);
-                        }
-                        
+                        //Cái dưới chưa tối ưu lắm
+                        TrangThaiDonHang thongTinNguoiMua =  trangThaiHangDao.TimThongTinNguoiMuaTheoIdNguoiMuaVaIdSanPham(dataItem.IdNguoiMua, dataItem.IdSP);
+                        f.txtbTieuDe.Text = "Địa chỉ khách hàng"; 
+
+                        NguoiDung kh = new NguoiDung(dataItem.IdNguoiMua, thongTinNguoiMua.HoTen, null, null, null, thongTinNguoiMua.Email, thongTinNguoiMua.Sdt, thongTinNguoiMua.DiaChi,null,null,null);
+                        f = new DiaChi(kh); 
                     }
                     catch (Exception ex)
                     {
@@ -371,12 +351,8 @@ namespace TraoDoiDo
                         f.btnXacNhanThanhToan.Visibility = Visibility.Collapsed;
                         f.Show();
                     }
-
-
                 }
             }
-
-
         }
         private void btnGuiHang_Click(object sender, RoutedEventArgs e)
         {
@@ -398,7 +374,7 @@ namespace TraoDoiDo
                     try
                     {
                         QuanLyDonHang quanLy = new QuanLyDonHang(null,null,dataItem.IdNguoiMua,dataItem.IdSP,"Đang giao",null);
-                        quanLyDao.CapNhat(quanLy);
+                        quanLyDonHangDao.CapNhat(quanLy);
 
                     }
                     catch (Exception ex)
@@ -442,11 +418,11 @@ namespace TraoDoiDo
                 int soLuong3Sao = 0;
                 int soLuong4Sao = 0;
                 int soLuong5Sao = 0;
-                List<List<string>> listSoSao = danhGiaNguoiDungDao.TinhSoSao(nguoiDung.Id);
-                foreach(var list in listSoSao)
+                List<DanhGiaNguoiDang> dsSoLuotDanhGiaTheoTungSoSao = danhGiaNguoiDungDao.DemSoLuotDanhGiaTheoTungSoSao(nguoiDung.Id);
+                foreach(var dong in dsSoLuotDanhGiaTheoTungSoSao)
                 {
-                    int soSao = Convert.ToInt32(list[0].ToString());
-                    int soLuongDanhGia = Convert.ToInt32(list[1]);
+                    int soSao = Convert.ToInt32(dong.SoSao);
+                    int soLuongDanhGia = Convert.ToInt32(dong.SoLuotDanhGia);
                     switch (soSao)
                     {
                         case 1:
@@ -497,19 +473,19 @@ namespace TraoDoiDo
             try
             {
                 List<string> dsNhan = new List<string>();
-                List<int> dsSoLuongDaBan = new List<int>();
-                List<int> dsSoLuongTong = new List<int>();
-                List<List<string>> listSLDaBan = sanPhamDao.tinhSoLuongSPDaBan(nguoiDung.Id);
+                List<int> dsCotSoLuongDaBan = new List<int>();
+                List<int> dsCotSoLuongTong = new List<int>();
+                List<SanPham> dsSLDaBan = sanPhamDao.LoadThongSoSanPhamDeThongKe(nguoiDung.Id);
                
-                foreach(var list in listSLDaBan)
+                foreach(var dong in dsSLDaBan)
                 {
-                    string ten = list[0];
-                    int soLuongDaban = Convert.ToInt32(list[1]);
-                    int soLuongTong = Convert.ToInt32(list[2]);
+                    string ten = dong.Ten;
+                    int soLuongDaban = Convert.ToInt32(dong.SoLuongDaBan);
+                    int soLuongTong = Convert.ToInt32(dong.SoLuong);
 
                     dsNhan.Add(ten);
-                    dsSoLuongDaBan.Add(soLuongDaban);
-                    dsSoLuongTong.Add(soLuongTong);
+                    dsCotSoLuongDaBan.Add(soLuongDaban);
+                    dsCotSoLuongTong.Add(soLuongTong);
                 }
 
                 // Tạo 2 cột cạnh nhau
@@ -518,7 +494,7 @@ namespace TraoDoiDo
                      new ColumnSeries
                      {
                          Title = "Số lượng đã bán",
-                         Values = new ChartValues<int>(dsSoLuongDaBan),
+                         Values = new ChartValues<int>(dsCotSoLuongDaBan),
 
                          Fill = Brushes.LightSkyBlue, // Màu của cột số lượng đã bán
                          ScalesYAt = 0 // Đặt cột này ở trục Y thứ nhất
@@ -527,7 +503,7 @@ namespace TraoDoiDo
                      new ColumnSeries
                      {
                          Title = "Số lượng tổng",
-                         Values = new ChartValues<int>(dsSoLuongTong),
+                         Values = new ChartValues<int>(dsCotSoLuongTong),
                          Fill = Brushes.Teal, // Màu của cột số lượng tổng
                          ScalesYAt = 0 // Đặt cột này ở trục Y thứ hai
                      }
@@ -565,17 +541,17 @@ namespace TraoDoiDo
             try
             {
                 List<string> dsNhan = new List<string>();
-                List<int> dsDoanhThu = new List<int>();
-                List<List<string>> listTiLeDoanhThu = sanPhamDao.tinhDoanhThuTheoSanPham(nguoiDung.Id);
+                List<int> dsCotDoanhThu = new List<int>();
+                List<SanPham> dsTiLeDoanhThu = sanPhamDao.LoadThongSoSanPhamDeThongKe(nguoiDung.Id);
                 
-                foreach(var list in listTiLeDoanhThu)
+                foreach(var dong in dsTiLeDoanhThu)
                 {
-                    string ten = list[0];
-                    int soLuongDaban = Convert.ToInt32(list[1]);
-                    int giaBan = Convert.ToInt32(list[2]);
+                    string ten = dong.Ten;
+                    int soLuongDaban = Convert.ToInt32(dong.SoLuongDaBan);
+                    int giaBan = Convert.ToInt32(dong.GiaBan);
                     int doanhThu = soLuongDaban * giaBan;
                     dsNhan.Add(ten);
-                    dsDoanhThu.Add(doanhThu);
+                    dsCotDoanhThu.Add(doanhThu);
                 }
 
                 // Tạo SeriesCollection cho biểu đồ PieChart
@@ -587,7 +563,7 @@ namespace TraoDoiDo
                     TiLePhanTramDoanhThuTheoSanPham_SC.Add(new PieSeries
                     {
                         Title = dsNhan[i], // Tên sản phẩm
-                        Values = new ChartValues<int> { dsDoanhThu[i] } // Doanh thu tương ứng với sản phẩm
+                        Values = new ChartValues<int> { dsCotDoanhThu[i] } // Doanh thu tương ứng với sản phẩm
 
                     });
                 }
@@ -608,25 +584,25 @@ namespace TraoDoiDo
             try
             {
                 List<string> dsNhan = new List<string>();
-                List<int> dsDoanhThu = new List<int>();
-                List<List<string>> listDoanhThu = sanPhamDao.tinhDoanhThuTheoSanPham(nguoiDung.Id);
+                List<int> dsCotDoanhThu = new List<int>();
+                List<SanPham> dsDoanhThuSanPham = sanPhamDao.LoadThongSoSanPhamDeThongKe(nguoiDung.Id);
 
-                foreach(var list in listDoanhThu)
+                foreach(var dong in dsDoanhThuSanPham)
                 {
-                    string ten = list[0];
-                    int soLuongDaban = Convert.ToInt32(list[1]);
-                    int giaBan = Convert.ToInt32(list[2]);
+                    string ten = dong.Ten;
+                    int soLuongDaban = Convert.ToInt32(dong.SoLuongDaBan);
+                    int giaBan = Convert.ToInt32(dong.GiaBan);
                     int doanhThu = soLuongDaban * giaBan;
 
                     dsNhan.Add(ten);
-                    dsDoanhThu.Add(doanhThu);
+                    dsCotDoanhThu.Add(doanhThu);
                 }
                 SeriesCollection DoanhThuTheoSanPham_SC = new SeriesCollection
                 {
                      new ColumnSeries
                      {
                          Title = "Doanh thu",
-                         Values = new ChartValues<int> (dsDoanhThu)
+                         Values = new ChartValues<int> (dsCotDoanhThu)
                      }
                 };
 
@@ -662,11 +638,11 @@ namespace TraoDoiDo
             try
             {
                 int tongDoanhThu = 0;
-                List<List<string>> listTongDoanhThu = sanPhamDao.tinhDoanhThu(nguoiDung.Id);
-                foreach(var list in listTongDoanhThu)
+                List<SanPham> dsTongDoanhThu = sanPhamDao.LoadThongSoSanPhamDeThongKe(nguoiDung.Id);
+                foreach(var dong in dsTongDoanhThu)
                 {
-                    int soLuongDaBan = Convert.ToInt32(list[0]);
-                    int giaBan = Convert.ToInt32(list[1]);
+                    int soLuongDaBan = Convert.ToInt32(dong.SoLuongDaBan);
+                    int giaBan = Convert.ToInt32(dong.GiaBan);
                     tongDoanhThu += soLuongDaBan * giaBan;
                 }
                 txtbTongDoanhThu.Text = tongDoanhThu.ToString();
@@ -680,14 +656,14 @@ namespace TraoDoiDo
         {
             try
             {
-                int tongSanPhamDaBan = 0;
-                List<List<string>> listTongSLDaBan = sanPhamDao.tinhTongSLDaBan(nguoiDung.Id);
+                int tongSLSanPhamDaBan = 0;
+                List<SanPham> dsTongSLDaBan = sanPhamDao.LoadThongSoSanPhamDeThongKe(nguoiDung.Id);
 
-                foreach(var list in listTongSLDaBan)
+                foreach(var dong in dsTongSLDaBan)
                 {
-                    tongSanPhamDaBan += Convert.ToInt32(list[1]);
+                    tongSLSanPhamDaBan += Convert.ToInt32(dong.SoLuongDaBan);
                 }
-                txtbTongSoLuongSanPhamDaBan.Text = tongSanPhamDaBan.ToString();
+                txtbTongSoLuongSanPhamDaBan.Text = tongSLSanPhamDaBan.ToString();
             }
             catch (Exception ex)
             {
@@ -697,13 +673,8 @@ namespace TraoDoiDo
         private void LoadTongKhachHang()
         {
             try
-            {
-                List<List<string>> listTongKhachHang = trangThaiHangDao.tinhTongKhachHang(nguoiDung.Id);
-                
-                foreach(var list in listTongKhachHang)
-                {
-                    txtbTongSoLuongKhachHang.Text = list[1].ToString();
-                }
+            { 
+                txtbTongSoLuongKhachHang.Text = sanPhamDao.tinhTongKhachHang(nguoiDung.Id); 
             }
             catch (Exception ex)
             {

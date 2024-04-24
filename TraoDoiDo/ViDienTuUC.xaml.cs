@@ -26,18 +26,17 @@ namespace TraoDoiDo
     public partial class ViDienTuUC : UserControl
     {
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        KhachHang nguoiDung = new KhachHang();
-        KhacHangDao nguoiDungDao = new KhacHangDao();
+        NguoiDung nguoiDung = new NguoiDung();
+        NguoiDungDao nguoiDungDao = new NguoiDungDao();
         GiaoDich gd;
         GiaoDichDao gdDao = new GiaoDichDao();
         List<string> listTienNap = new List<string>();
-        List<string> listTienRut = new List<string>();
-        List<List<string>> listGiaoDich = new List<List<string>>();
+        List<string> listTienRut = new List<string>(); 
         public ViDienTuUC()
         {
             InitializeComponent();
         }
-        public ViDienTuUC(KhachHang kh)
+        public ViDienTuUC(NguoiDung kh)
         {
             InitializeComponent();
             nguoiDung = kh;
@@ -77,12 +76,9 @@ namespace TraoDoiDo
         {
             try
             {
-                listGiaoDich = gdDao.TimKiemGiaoDichBangId(nguoiDung.Id);
-                foreach(var list in listGiaoDich)
-                {
-                    gd = new GiaoDich(list[0], nguoiDung.Id, list[1], list[2], list[3], list[4], list[5]);
-                    lsvLichSuGiaoDich.Items.Add(new { Id = gd.Id, Type = gd.LoaiGiaoDich, Money = gd.SoTien, Initial = gd.TuNguonTien, End = gd.DenNguonTien, Date = gd.NgayGiaoDich });
-                }
+                List<GiaoDich> dsGiaoDich = gdDao.LoadDSGiaoDichTheoIdNguoiDung(nguoiDung.Id);
+                foreach(var dong in dsGiaoDich)
+                    lsvLichSuGiaoDich.Items.Add(new { Id = dong.Id, Type = dong.LoaiGiaoDich, Money = dong.SoTien, Initial = dong.TuNguonTien, End = dong.DenNguonTien, Date = dong.NgayGiaoDich });
             }
             catch (Exception ex)
             {

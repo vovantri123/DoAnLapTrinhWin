@@ -18,11 +18,20 @@ namespace TraoDoiDo.Database
             dbConnection.ThucThi(sqlStr);
         }
 
-        public List<List<string>> TimKiemBangId(string id)
+        public List<MoTaHangHoa> TimKiemBangId(string id)
         {
             string sqlStr = $"SELECT {moTaSanPhamHeader}.{moTaSanPhamLinkAnh}, {moTaSanPhamHeader}.{moTaSanPhamMoTa} FROM {sanPhamHeader} INNER JOIN {moTaSanPhamHeader}"+
                        $" ON {sanPhamHeader}.{sanPhamID} = {moTaSanPhamHeader}.{sanPhamID} WHERE {sanPhamHeader}.{sanPhamID} = '{id}' ";
-            return dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
-        }
+
+            List<MoTaHangHoa> dsMoTaHangHoa = new List<MoTaHangHoa>();
+            List<List<string>> bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+
+            foreach (var dong in bangKetQua)
+            {
+                MoTaHangHoa mt = new MoTaHangHoa(null, null, dong[0], dong[1]);
+                dsMoTaHangHoa.Add(mt);
+            }
+            return dsMoTaHangHoa;
+        } 
     }
 }

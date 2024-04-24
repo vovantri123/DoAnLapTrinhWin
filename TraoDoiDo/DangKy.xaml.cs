@@ -33,9 +33,9 @@ namespace TraoDoiDo
 
             TaiKhoanDao tkDao = new TaiKhoanDao();
             TaiKhoan tk = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, null);
-            KhachHang khachHang = new KhachHang(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageDaiDien.Tag.ToString(), tk, "");
+            NguoiDung khachHang = new NguoiDung(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageDaiDien.Tag.ToString(), tk, "");
             ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(khachHang);
-            KhacHangDao khachHangDao = new KhacHangDao();
+            NguoiDungDao khachHangDao = new NguoiDungDao();
             bool check = ttkh.kiemTraCacTextBox();
             if (check)
             {

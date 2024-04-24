@@ -93,12 +93,12 @@
     <Compile Include="DanhGia.xaml.cs">
       <DependentUpon>DanhGia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Database\DanhGiaNguoiDungDao.cs" />
+    <Compile Include="Database\DanhGiaNguoiDangDao.cs" />
     <Compile Include="Database\DanhMucYeuThichDao.cs" />
     <Compile Include="Database\DbConnection.cs" />
     <Compile Include="Database\GiaoDichDao.cs" />
     <Compile Include="Database\GioHangDao.cs" />
-    <Compile Include="Database\KhachHangDao.cs" />
+    <Compile Include="Database\NguoiDungDao.cs" />
     <Compile Include="Database\MoTaAnhSanPhamDao.cs" />
     <Compile Include="Database\MoTaHangHoaDao.cs" />
     <Compile Include="Database\QuanLyDonHangDao.cs" />
@@ -112,14 +112,14 @@
     <Compile Include="LyDoTraHangUC.xaml.cs">
       <DependentUpon>LyDoTraHangUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\DanhGiaNguoiDung.cs" />
+    <Compile Include="Models\DanhGiaNguoiDang.cs" />
     <Compile Include="Models\DanhMucYeuThich.cs" />
     <Compile Include="Models\GiaoDich.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\MoTaAnhSanPham.cs" />
+    <Compile Include="Models\NguoiDung.cs" />
     <Compile Include="Models\QuanLyDonHang.cs" />
     <Compile Include="Models\SanPham.cs" />
-    <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\MoTaHangHoa.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\TrangThaiDonHang.cs" />
@@ -128,9 +128,6 @@
     </Compile>
     <Compile Include="NapRutTien.xaml.cs">
       <DependentUpon>NapRutTien.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NguoiDung.xaml.cs">
-      <DependentUpon>NguoiDung.xaml</DependentUpon>
     </Compile>
     <Compile Include="QuanLyUC.xaml.cs">
       <DependentUpon>QuanLyUC.xaml</DependentUpon>
@@ -230,10 +227,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NapRutTien.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NguoiDung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -375,9 +368,6 @@
     <Resource Include="HinhCuaToi\SanPham\IPad\IPadGen6_3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HinhCuaToi\MayAnhNikon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="HinhCuaToi\SacDuPhong.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -388,9 +378,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HinhCuaToi\ThungMayPC.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="HinhCuaToi\LoaPinoer.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HinhCuaToi\tiviThung.jpg" />

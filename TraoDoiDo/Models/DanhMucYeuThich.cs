@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TraoDoiDo.Models
 {
-    public class DanhMucYeuThich
+    public class DanhMucYeuThich // Thấy k cần
     {
         private string idNguoiMua;
         private string idSanPham;

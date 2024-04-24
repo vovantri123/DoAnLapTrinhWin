@@ -31,15 +31,15 @@ namespace TraoDoiDo
         {
             try
             {
-                KhacHangDao khacHangDao = new KhacHangDao();
+                NguoiDungDao khacHangDao = new NguoiDungDao();
                 string mk = "";
                 if (kiemTra.kiemTraEmail(txtThongTinTaiKhoan.Text))
                 {
-                    mk = khacHangDao.TimKiemBangEmail(txtThongTinTaiKhoan.Text);
+                    mk = khacHangDao.TimKiemMatKhauBangEmail(txtThongTinTaiKhoan.Text);
                 }
                 if (kiemTra.kiemTraSoDienThoai(txtThongTinTaiKhoan.Text))
                 {
-                    mk = khacHangDao.TimKiemBangSdt(txtThongTinTaiKhoan.Text);
+                    mk = khacHangDao.TimKiemMatKhauBangSdt(txtThongTinTaiKhoan.Text);
                 }
                 if (!string.IsNullOrWhiteSpace(mk))
                     MessageBox.Show($"Mật khẩu của khách hàng là: {mk}");

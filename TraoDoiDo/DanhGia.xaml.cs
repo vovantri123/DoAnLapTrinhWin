@@ -24,7 +24,7 @@ namespace TraoDoiDo
     {
         public string idNguoiDang;
         public string idNguoiMua;
-        DanhGiaNguoiDungDao danhGiaNguoiDungDao = new DanhGiaNguoiDungDao();
+        DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
         public DanhGia()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace TraoDoiDo
         {
             bool coXoa = false;
             bool coThem = false;
-            DanhGiaNguoiDung danhGiaNguoiDung = new DanhGiaNguoiDung(idNguoiDang, idNguoiMua, ratingBarSoSao.Value.ToString(), txtbDanhGia.Text);
+            DanhGiaNguoiDang danhGiaNguoiDung = new DanhGiaNguoiDang(idNguoiDang, null, idNguoiMua, null,ratingBarSoSao.Value.ToString(), txtbDanhGia.Text, null, null);
             try
             {
                 danhGiaNguoiDungDao.Xoa(danhGiaNguoiDung);

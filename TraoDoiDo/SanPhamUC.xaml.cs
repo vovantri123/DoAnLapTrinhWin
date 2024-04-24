@@ -31,13 +31,16 @@ namespace TraoDoiDo
         public int yeuThich = 0;
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        SanPham sanPham = new SanPham();
+        SanPham sp = new SanPham();
         SanPhamDao sanPhamDao = new SanPhamDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         List<string> listSP = new List<string>();
-        public SanPhamUC(int yeuThich)
+        public SanPhamUC(int yeuThich, string idNguoiMua)
         {
             this.yeuThich = yeuThich;
+            this.idNguoiMua = idNguoiMua;
+           
+
             InitializeComponent();
             if (yeuThich == 0)
             {
@@ -49,24 +52,23 @@ namespace TraoDoiDo
                 btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
                 btnBoYeuThich.Visibility = Visibility.Visible;
             }
-            
+            //MessageBox.Show("id người mua 123:  " + idNguoiMua);
+
         }
         
         private void FSanPhamUC_Loaded(object sender, RoutedEventArgs e)
         {
-            listSP = sanPhamDao.timKiemToanBoBangId(txtbIdSanPham.Text);
-            sanPham = new SanPham(listSP[0], listSP[1], listSP[2],listSP[3].ToString(), listSP[4], listSP[5], listSP[6], listSP[7], listSP[8], listSP[9], listSP[10], listSP[11], listSP[12], listSP[13], listSP[15], listSP[14], txtbSoLuotXem.Text);
-            idNguoiMua = quanLyDonHangDao.timIdNguoiMua(listSP[1], listSP[0]);
+            SanPham sp = sanPhamDao.timKiemToanBoBangId(txtbIdSanPham.Text);
         }
         private void timTenVaSoLuotDanhGiaNguoiDang()
         {
             try
             {
-                DanhGiaNguoiDungDao danhGiaNgDungDao = new DanhGiaNguoiDungDao();
-                List<string> list = new List<string>();
-                list = danhGiaNgDungDao.timTenNguoiDangVaNhanXet(sanPham.IdNguoi);
-                tenNguoiDang = list[0].ToString();
-                soLuotDanhGia = list[1].ToString();
+                DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao(); 
+                DanhGiaNguoiDang danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
+                tenNguoiDang = danhGia.TenNguoiDang;
+                soLuotDanhGia = danhGia.SoLuotDanhGia;
+                 
             }
             catch (Exception ex)
             {
@@ -95,13 +97,16 @@ namespace TraoDoiDo
         {
             timTenVaSoLuotDanhGiaNguoiDang();
             tangSoLuotXemThem1();
-            sanPham = new SanPham(txtbIdSanPham.Text, sanPham.IdNguoi, txtbTen.Text,sanPham.LinkAnh, txtbLoai.Text,sanPham.SoLuong,sanPham.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text,sanPham.PhiShip,sanPham.TrangThai, txtbNoiBan.Text,sanPham.XuatXu,sanPham.NgayMua,sanPham.MoTaChung,sanPham.PhanTramMoi,txtbSoLuotXem.Text);
-            ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sanPham);
+
+        
+            sp = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, sp.LinkAnh, txtbLoai.Text,sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua,sp.MoTaChung, sp.PhanTramMoi,txtbSoLuotXem.Text, idNguoiMua);
+            ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);
             f.idNguoiDang = idNguoiDang;
             f.txtbTenNguoiDang.Text = tenNguoiDang;
             f.txtbSoLuotDanhGia.Text = soLuotDanhGia;
             f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             f.idSanPham = txtbIdSanPham.Text;
+           
             f.idNguoiMua = idNguoiMua;
             f.ShowDialog();
         }

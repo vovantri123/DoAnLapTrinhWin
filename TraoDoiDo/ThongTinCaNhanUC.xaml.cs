@@ -23,7 +23,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinCaNhanUC : UserControl
     {
-        KhachHang kh = new KhachHang();
+        NguoiDung kh = new NguoiDung();
 
         public ThongTinCaNhanUC()
         {
@@ -31,7 +31,7 @@ namespace TraoDoiDo
             this.DataContext = this;
             Loaded += UCThongTinCaNhan_Loaded;
         }
-        public ThongTinCaNhanUC(KhachHang nguoiDung)
+        public ThongTinCaNhanUC(NguoiDung nguoiDung)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -66,8 +66,8 @@ namespace TraoDoiDo
         private void btnCapNhat_Click(object sender, RoutedEventArgs e)
         {
             TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
-            KhachHang nguoiDung = new KhachHang(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageHinhDaiDien.Source.ToString(), taiKhoan, "");
-            KhacHangDao nguoiDungDao = new KhacHangDao();
+            NguoiDung nguoiDung = new NguoiDung(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageHinhDaiDien.Source.ToString(), taiKhoan, "");
+            NguoiDungDao nguoiDungDao = new NguoiDungDao();
             nguoiDungDao.CapNhat(nguoiDung);
         }
 

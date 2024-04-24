@@ -24,29 +24,30 @@ namespace TraoDoiDo
     public partial class DiaChi : Window
     {
         public string tongThanhToan;
-        KhachHang ngDung = new KhachHang(); 
-        KhacHangDao ngDungDao = new KhacHangDao();
+        NguoiDung ngDung = new NguoiDung(); // người tương đối (mua hoặc bán)
+        GiaoDichDao gdichDao = new GiaoDichDao();
+        NguoiDungDao ngDungDao = new NguoiDungDao();
         GioHangDao gioHangDao = new GioHangDao();
         SanPhamDao sanPhamDao = new SanPhamDao();
         TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        List<List<string>> listIdSP = new List<List<string>>();
+        List<TrangThaiDonHang> dsSanPhamDeThanhToan = new List<TrangThaiDonHang>();
         public DiaChi()
         {
             InitializeComponent();
             Loaded += FDiaChi_Loaded;
         } 
-        public DiaChi(KhachHang kh)
+        public DiaChi(NguoiDung kh)
         {
             InitializeComponent();
             ngDung = kh;
             Loaded += FDiaChi_Loaded;
         } 
-        public DiaChi(KhachHang kh, List<List<string>> listId)
+        public DiaChi(NguoiDung kh, List<TrangThaiDonHang> dsSanPhamDeThanhToan)
         {
             InitializeComponent();
             ngDung = kh;
-            listIdSP = listId;
+            this.dsSanPhamDeThanhToan = dsSanPhamDeThanhToan;
             Loaded += FDiaChi_Loaded;
         } 
         
@@ -57,18 +58,20 @@ namespace TraoDoiDo
             try
             {
                 capNhatThongTinCaNhan();
-                foreach (var item in listIdSP)
-                {
-                    GioHang gioHang = new GioHang(ngDung.Id, item[1].ToString(), item[2].ToString());
-                    TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id, item[1].ToString(), item[2].ToString(), item[3].ToString(), item[4].ToString(), item[5].ToString());
-                    List<string> listNguoiDang = sanPhamDao.timKiemIdNguoiDang(item[1].ToString());
-                    QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, listNguoiDang[0], ngDung.Id, item[1].ToString(),"Chờ đóng gói",null);
-                    quanLyDonHangDao.Xoa(quanLyDonHang);
+                foreach (var dong in dsSanPhamDeThanhToan)
+                { 
+                    NguoiDung nguoiDang = sanPhamDao.timKiemNguoiDangTheoIdSP(dong.IdSanPham);
+                    QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, nguoiDang.Id, ngDung.Id, dong.IdSanPham,"Chờ đóng gói",null);
+
+                    quanLyDonHangDao.Xoa(quanLyDonHang); //Xóa trước khi thêm, do ràng buộc unique //quanLyDonHang nay bên phía người bán
                     quanLyDonHangDao.Them(quanLyDonHang);
-                    trangThaiDonHangDao.Xoa(trangThaiDonHang);
-                    trangThaiDonHangDao.Them(trangThaiDonHang);
-                    gioHangDao.Xoa(gioHang);
+
+                    trangThaiDonHangDao.Xoa(dong);  //Trạng thái don hàng bên phía người mua
+                    trangThaiDonHangDao.Them(dong);
+
+                    gioHangDao.Xoa(dong.IdSanPham, dong.IdNguoiMua); // Xóa khỏi giỏ hàng sau khi thanh toán
                 }
+
                 double tienTT = Convert.ToDouble(ngDung.Tien) - Convert.ToDouble(tongThanhToan);
                 if (Convert.ToDouble(tongThanhToan) == 0)
                     MessageBox.Show("Xin hãy chọn món đồ thanh toán", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -76,7 +79,7 @@ namespace TraoDoiDo
                     MessageBox.Show("Số tiền trong tài khoản của bạn không đủ vui lòng nạp thêm!!!!", "Thông báo",MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                 {
-                    ngDungDao.CapNhatSoTien(tienTT.ToString(), ngDung.Id);
+                    gdichDao.CapNhatSoTien(tienTT.ToString(), ngDung.Id);
                     co = true;
                 }
             }
@@ -87,28 +90,27 @@ namespace TraoDoiDo
             if (co)
                 MessageBox.Show("Thanh toán thành công");
         }
-        private void capNhatThongTinCaNhan()
+        private void capNhatThongTinCaNhan() // ???????????, không biết sửa sao luôn, tại chưa coi mấy cái model check này
         {
-            KhachHang user = new KhachHang(ngDung.Id,txtHoTen.Text,ngDung.GioiTinh,ngDung.NgaySinh,ngDung.Cmnd,txtEmail.Text,txtSoDienThoai.Text,txtDiaChi.Text,ngDung.Anh,ngDung.TaiKhoan,ngDung.Tien);
+            NguoiDung user = new NguoiDung(ngDung.Id, txtHoTen.Text, ngDung.GioiTinh, ngDung.NgaySinh, ngDung.Cmnd, txtEmail.Text, txtSoDienThoai.Text, txtDiaChi.Text, ngDung.Anh, ngDung.TaiKhoan, ngDung.Tien);
             ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(user);
-            bool check = ttkh.kiemTraCacTextBox();
-            if(check)
-            {
+            //bool check = ttkh.kiemTraCacTextBox();
+            //if(check)
+            //{
                 try
                 {
-                    List<string> listNguoiDung = new List<string>();
                     ngDungDao.CapNhatDiaChi(user);
-                    listNguoiDung = ngDungDao.TimKiemTheoIdNguoi(user);
-                    txtHoTen.Text = listNguoiDung[0];
-                    txtSoDienThoai.Text = listNguoiDung[1];
-                    txtEmail.Text = listNguoiDung[2];
-                    txtDiaChi.Text = listNguoiDung[3];
+                    NguoiDung nguoi  = ngDungDao.TimKiemThongTinTheoIdNguoi(ngDung.Id);
+                    txtHoTen.Text = nguoi.HoTen;
+                    txtSoDienThoai.Text = nguoi.Sdt;
+                    txtEmail.Text = nguoi.Email;
+                    txtDiaChi.Text = nguoi.DiaChi;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            //}
             
         }
 

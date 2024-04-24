@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TraoDoiDo.Database;
+using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
@@ -25,7 +26,7 @@ namespace TraoDoiDo
      
     public partial class ThongTinNguoiDang : Window
     { 
-        DanhGiaNguoiDungDao danhGiaNguoiDungDao = new DanhGiaNguoiDungDao();
+        DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
         public ThongTinNguoiDang(string idNguoiDang)// K dùng constructor mà dùng public int id=1 toàn cục thì sẽ bị fail, do contrustor chạy trước khi gán
         {
             InitializeComponent();
@@ -37,16 +38,13 @@ namespace TraoDoiDo
         {
             try
             {
-                List<List<string>> listThongTinNguoiDang = danhGiaNguoiDungDao.LoadThongTinNguoiDang(idNguoiDang);
-                itemsControlDSDanhGia.Items.Clear();
-                foreach(var list in listThongTinNguoiDang)
-                {
-                    txtHoTen.Text = list[0];
-                    txtSoDienThoai.Text = list[1];
-                    txtEmail.Text = list[2];
-                    txtDiaChi.Text = list[3];
-                    imgNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(list[4])));
-                }
+                NguoiDung nguoiDang = danhGiaNguoiDungDao.LoadThongTinNguoiDang(idNguoiDang);
+                itemsControlDSDanhGia.Items.Clear(); 
+                txtHoTen.Text = nguoiDang.HoTen;
+                txtSoDienThoai.Text = nguoiDang.Sdt;
+                txtEmail.Text = nguoiDang.Email;
+                txtDiaChi.Text = nguoiDang.DiaChi;
+                imgNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDang.Anh))); 
             }
             catch (Exception ex)
             {
@@ -58,11 +56,11 @@ namespace TraoDoiDo
         {
             try
             {
-                List<List<string>> listDanhSachDanhGia = danhGiaNguoiDungDao.LoadDanhSachDanhGia(idNguoiDang);
+                List<DanhGiaNguoiDang> dsDanhGia = danhGiaNguoiDungDao.LoadDanhSachDanhGia(idNguoiDang);
                 itemsControlDSDanhGia.Items.Clear();
-                foreach(var list in listDanhSachDanhGia)
+                foreach(var dong in dsDanhGia)
                 {
-                    itemsControlDSDanhGia.Items.Add(new {Ten = list[0], SoSao = list[1], NhanXet = list[2], LinkAnhDaiDienNguoiDanhGia = XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(list[3])}); 
+                    itemsControlDSDanhGia.Items.Add(new {Ten = dong.TenNguoiMua, SoSao = dong.SoSao, NhanXet = dong.NhanXet, LinkAnhDaiDienNguoiDanhGia = XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(dong.AnhNguoiMua)}); 
                 }
             }
             catch (Exception ex)

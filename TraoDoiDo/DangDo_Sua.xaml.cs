@@ -69,7 +69,7 @@ namespace TraoDoiDo
             try
             {
                 // Xóa dữ liệu cũ khỏi bảng MoTaAnhSanPham
-                MoTaAnhSanPham moTaAnhSP = new MoTaAnhSanPham(txtbIdSanPham.Text, null, null, null);
+                MoTaAnhSanPham moTaAnhSP = new MoTaAnhSanPham(txtbIdSanPham.Text, null, null, null,null);
                 moTaAnhSanPhamDao.Xoa(moTaAnhSP);
                 coMoTa = true;
             }
@@ -88,7 +88,7 @@ namespace TraoDoiDo
                         {
                             if (coSanPham==false)
                             {
-                                MoTaAnhSanPham moTaAnhSP = new MoTaAnhSanPham(txtbIdSanPham.Text, (i + 1).ToString(), DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text, DanhSachAnhVaMoTa[i].txtbMoTa.Text);
+                                MoTaAnhSanPham moTaAnhSP = new MoTaAnhSanPham(txtbIdSanPham.Text, (i + 1).ToString(), null, DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text, DanhSachAnhVaMoTa[i].txtbMoTa.Text);
                                 moTaAnhSanPhamDao.Them(moTaAnhSP);
                                 coSanPham = true;
                             }
@@ -125,8 +125,8 @@ namespace TraoDoiDo
                         break;
                     }
                 string luotXem = sanPhamDao.LayLuotXem(txtbIdSanPham.Text);
-                SanPham sp= new SanPham(txtbIdSanPham.Text, sanPham.IdNguoi, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text,
-                    txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), luotXem);
+                SanPham sp= new SanPham(txtbIdSanPham.Text, sanPham.IdNguoiDang, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text,
+                    txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), luotXem, null);
                 sanPhamDao.CapNhat(sp);
                
             }

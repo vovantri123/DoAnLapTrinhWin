@@ -30,23 +30,23 @@ namespace TraoDoiDo
     public partial class ThongTinChiTietSanPham : Window
     {
         public string idNguoiMua;
+       
         public string idNguoiDang;
         public string idSanPham ;
-        private SanPhamUC[] DanhSachSanPham ;
-        public string linkAnhBiaGlobal = "";
-        SanPham sanPham = new SanPham();
-        SanPham sp = new SanPham();
+        private SanPhamUC[] DanhSachSanPhamUC ;
+        public string linkAnhBia = "";
+        SanPham sanPham = new SanPham(); // sanPham là dùng chung, sp là dùng khi gọi DAO
+        
         SanPhamDao spDao = new SanPhamDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        KhacHangDao khDao = new KhacHangDao();
+        NguoiDungDao khDao = new NguoiDungDao();
         private List<string> danhSachAnh = new List<string>();
 
         private int currentIndex = -1;
         public ObservableCollection<ListViewItem> Items { get; set; }
 
         public ThongTinChiTietSanPham()
-        {
-
+        { 
             InitializeComponent();
             
             Loaded += LoadAnhVaMoTa;
@@ -56,16 +56,17 @@ namespace TraoDoiDo
         }
 
         public ThongTinChiTietSanPham(SanPham sp)
-        {
-
+        { 
+            sanPham = sp;
+         
             InitializeComponent();
             
-            Loaded += LoadAnhVaMoTa;
             Loaded += LoadThongTinSanPham;
+            Loaded += LoadAnhVaMoTa;
             Loaded += btnAnhSau_Click;
             Loaded += LoadThongTinNguoiDang;
+            
           
-            sanPham = sp;
         }
 
         #region THÊM SẢN PHẨM CÙNG LOẠI VÀO MỤC KHÁM PHÁ THÊM
@@ -78,43 +79,42 @@ namespace TraoDoiDo
         {
             try
             {
-                List<List<string>> listSanPhamCungLoai = new List<List<string>>();
-                listSanPhamCungLoai = spDao.LoadSanPhamCungLoai(sp);
-                DanhSachSanPham = new SanPhamUC[listSanPhamCungLoai.Count+1];
+                List<SanPham> dsSanPhamCungLoai = spDao.LoadSanPhamCungLoai(sanPham);
+                DanhSachSanPhamUC = new SanPhamUC[dsSanPhamCungLoai.Count + 1];
                 wpnlHienThiSPCungLoai.Children.Clear();
                 int i = 0;
-                foreach(var list in listSanPhamCungLoai)
+                foreach(var dong in dsSanPhamCungLoai)
                 {
                     int yeuThich = 0;
-                    if (!string.IsNullOrEmpty(list[6])) //Neu nguoi mua co trong bang yeu thich (tức đang yêu thich một sản phẩm nào đó)
+                    if (!string.IsNullOrEmpty(dong.IdNguoiMua)) //Neu nguoi mua co trong bang yeu thich (tức đang yêu thich một sản phẩm nào đó)
                     {
                         yeuThich = 1;
                     }
-                    DanhSachSanPham[i] = new SanPhamUC(yeuThich);
+                    DanhSachSanPhamUC[i] = new SanPhamUC(yeuThich, idNguoiMua);
 
-                    DanhSachSanPham[i].txtbIdSanPham.Text = list[0].ToString();
-                    DanhSachSanPham[i].txtbTen.Text = list[1];
+                    DanhSachSanPhamUC[i].txtbIdSanPham.Text = dong.Id.ToString();
+                    DanhSachSanPhamUC[i].txtbTen.Text = dong.Ten;
 
-                    string tenFileAnh = list[2];
+                    string tenFileAnh = dong.LinkAnh;
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
                     bitmap.UriSource = new Uri(duongDanhAnh);
                     bitmap.EndInit();
                     // Gán BitmapImage tới Source của Image control
-                    DanhSachSanPham[i].imgSP.Source = bitmap;
+                    DanhSachSanPhamUC[i].imgSP.Source = bitmap;
 
-                    DanhSachSanPham[i].txtbGiaGoc.Text = list[3];
-                    DanhSachSanPham[i].txtbGiaBan.Text = list[4];
-                    DanhSachSanPham[i].txtbNoiBan.Text = list[5];
-                    DanhSachSanPham[i].txtbLoai.Text = list[7];
+                    DanhSachSanPhamUC[i].txtbGiaGoc.Text = dong.GiaGoc;
+                    DanhSachSanPhamUC[i].txtbGiaBan.Text = dong.GiaBan;
+                    DanhSachSanPhamUC[i].txtbNoiBan.Text = dong.NoiBan;
+                    DanhSachSanPhamUC[i].txtbLoai.Text = dong.Loai;
 
                     //SanPham sanPham = new SanPham(id, name, imageUrl); 
                     //lsvQuanLySanPham.Items.Add(sanPham);
-                    DanhSachSanPham[i].Margin = new Thickness(8);
-                    DanhSachSanPham[i].btnBoYeuThich.Visibility = Visibility.Collapsed;
-                    DanhSachSanPham[i].btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
-                    wpnlHienThiSPCungLoai.Children.Add(DanhSachSanPham[i]);
+                    DanhSachSanPhamUC[i].Margin = new Thickness(8);
+                    DanhSachSanPhamUC[i].btnBoYeuThich.Visibility = Visibility.Collapsed;
+                    DanhSachSanPhamUC[i].btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
+                    wpnlHienThiSPCungLoai.Children.Add(DanhSachSanPhamUC[i]);
                     i++;
                 }
             }
@@ -130,8 +130,11 @@ namespace TraoDoiDo
         {
             string linkAnh = khDao.TimKiemLinkAnh(idNguoiDang);
             imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(linkAnh)));
-            List<string> listNgDang = spDao.timKiemIdNguoiDang(idNguoiDang);
-            txtbTenNguoiDang.Text = listNgDang[1];
+            
+            DanhGiaNguoiDangDao nguoiDangDao = new DanhGiaNguoiDangDao();
+            DanhGiaNguoiDang nguoiDang = nguoiDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
+            txtbTenNguoiDang.Text = nguoiDang.TenNguoiDang;
+            txtbSoLuotDanhGia.Text = nguoiDang.SoLuotDanhGia;
         }
 
 
@@ -139,15 +142,13 @@ namespace TraoDoiDo
         {
             try
             {
-                List<List<string>> listAnhVaMoTa = new List<List<string>>();
-                listAnhVaMoTa = spDao.LoadAnhVaMoTa(sanPham);
+                List<MoTaAnhSanPham> dsMoTaAnh = spDao.LoadAnhVaMoTa(sanPham);
 
-                foreach (var list in listAnhVaMoTa)
+                foreach (var dong in dsMoTaAnh)
                 {
-                    string linkAnhBia = list[0];
-                    linkAnhBiaGlobal = list[0];
-                    string moTa = list[2];
-                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnh(list[1]);
+                    linkAnhBia = dong.LinkAnhBia; //Cập nhật biến toàn cục(global)    linkAnhBia đã khai báo đầu trang
+                    string moTa = dong.MoTa;
+                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnh(dong.LinkAnhMinhHoa);
                     danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
                     if (moTa.Trim() == "")
                         continue;
@@ -166,10 +167,10 @@ namespace TraoDoiDo
         {
             try
             {
-                List<string> listThongTinSP = spDao.LoadThongTinSanPham(sanPham);
-                sp = new SanPham(sanPham.Id, sanPham.IdNguoi, listThongTinSP[0], linkAnhBiaGlobal, listThongTinSP[1], listThongTinSP[2], listThongTinSP[3], listThongTinSP[4],listThongTinSP[5], listThongTinSP[6],null, listThongTinSP[7], listThongTinSP[8], listThongTinSP[9],listThongTinSP[11], listThongTinSP[10], sanPham.LuotXem);
-                string soLuong = listThongTinSP[2];
-                string soLuongDaBan = listThongTinSP[3];
+               
+                SanPham sp = spDao.LoadThongTinMotSanPhamTheoid(sanPham.Id);
+                string soLuong = sp.SoLuong;
+                string soLuongDaBan = sp.SoLuongDaBan;
                 txtbSoLuongConLai.Text = (Convert.ToInt32(soLuong) - Convert.ToInt32(soLuongDaBan)).ToString();
                 txtbTen.Text = sp.Ten;
                 txtbLoai.Text = sp.Loai;
@@ -187,7 +188,7 @@ namespace TraoDoiDo
                 MessageBox.Show(ex.Message);
             }
             finally
-            {
+            { 
                 LoadSanPhamlenWpnlHienThi(sender, e);
             }
         }
@@ -253,12 +254,13 @@ namespace TraoDoiDo
         {
             try
             {
-                List<string> listSP = spDao.timKiemToanBoBangId(sp.Id);
-                idNguoiMua = quanLyDonHangDao.timIdNguoiMua(listSP[1], listSP[0]);
-                GioHang gioHang = new GioHang(idNguoiMua, idSanPham, txtbSoLuongHienTai.Text);
+                SanPham sp = spDao.timKiemToanBoBangId(sanPham.Id);
+                
+                GioHang gioHang = new GioHang(idNguoiMua, idSanPham, txtbSoLuongHienTai.Text, null, null, null, null, null, null);
                 GioHangDao gioHangDao = new GioHangDao();
-                gioHangDao.Xoa(gioHang);
+                gioHangDao.Xoa(gioHang.IdSanPham, gioHang.IdNguoiMua);
                 gioHangDao.Them(gioHang);
+
             }
             catch (Exception ex)
             {
