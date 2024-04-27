@@ -96,7 +96,6 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\bin\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.AssemblyReference.cache
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Dang.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKy.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKyUC.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangNhap.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DiaChi.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MainWindow.g.cs
@@ -111,7 +110,6 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Dang.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKy.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKyUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangNhap.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DiaChi.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MainWindow.baml
@@ -638,3 +636,7 @@ C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.cspro
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MucXepHangNguoiMuaNhieuNhatUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MucXepHangNguoiMuaNhieuNhatUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\VoucherUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\VoucherUC.baml

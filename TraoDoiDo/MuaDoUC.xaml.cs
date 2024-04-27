@@ -128,13 +128,13 @@ namespace TraoDoiDo
         }
 
 
-        private void cboSapXepTheoYeuThich_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cboSapXep_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
             if (comboBox.SelectedItem != null)
             {
                 string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
-                if (selectedItemContent == "Yêu thích")
+                if (selectedItemContent == "Yêu thích của tôi")
                 {
                     SapXeoTheoYeuThich();
                 }
@@ -171,7 +171,7 @@ namespace TraoDoiDo
                     string tenFileAnh = dong.LinkAnh;
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
                     bitmap.UriSource = new Uri(duongDanhAnh);
                     bitmap.EndInit();
                     // Gán BitmapImage tới Source của Image control
@@ -238,7 +238,7 @@ namespace TraoDoiDo
                 foreach(var dong in dsGioHang)
                 {
                     string tenFileAnh =dong.AnhSP;
-                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
 
                     int soLuong = Convert.ToInt32(dong.SoLuongTong); // số lượng Tổng
                     int soLuongDaBan = Convert.ToInt32(dong.SoLuongDaBan);
@@ -424,7 +424,7 @@ namespace TraoDoiDo
                 foreach(var dong in dsTrangThaiDon)
                 {
                     string tenFileAnh = dong.AnhSP;
-                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
 
                     if (tenLsv == "lsvChoNguoiBanXacNhan")
                         lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua =dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });

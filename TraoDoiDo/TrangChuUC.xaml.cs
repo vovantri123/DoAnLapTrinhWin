@@ -16,9 +16,16 @@ namespace TraoDoiDo
     {
         private List<string> imagePaths = new List<string>
         {
-            "HinhCuaToi/TrangChu2.png",
-            "HinhCuaToi/TrangChu3.png",
-            "HinhCuaToi/TrangChu1.png"
+            "HinhCuaToi/TrangChu/tc5.jpg", 
+            "HinhCuaToi/TrangChu/tc6.jpg", 
+            "HinhCuaToi/TrangChu/tc4.jpg", 
+            "HinhCuaToi/TrangChu/tc1.jpg", 
+            "HinhCuaToi/TrangChu/tc2.png", 
+            "HinhCuaToi/TrangChu/tc3.jpg", 
+            "HinhCuaToi/TrangChu/tc7.jpg", 
+            "HinhCuaToi/TrangChu/tc8.jpg", 
+            "HinhCuaToi/TrangChu/tc9.jpg", 
+            "HinhCuaToi/TrangChu/tc10.jpg",  
             // Add more image paths as needed
         };
 
@@ -33,7 +40,7 @@ namespace TraoDoiDo
             {
                 // Khởi động timer cho slideshow
                 timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1.8); // Thay đổi khoảng thời gian theo ý muốn
+                timer.Interval = TimeSpan.FromSeconds(2.0); // Thay đổi khoảng thời gian theo ý muốn
                 timer.Tick += Timer_Tick;
                 timer.Start();
 

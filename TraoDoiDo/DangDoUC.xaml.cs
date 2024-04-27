@@ -55,7 +55,7 @@ namespace TraoDoiDo
             dsSanPham = sanPhamDao.timKiemBangId(nguoiDung.Id.ToString());
             foreach (var sanPham in dsSanPham)
             { 
-                string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
+                string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
                 lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
             }
         }
@@ -71,7 +71,7 @@ namespace TraoDoiDo
                 dsSanPham = sanPhamDao.timKiemBangTen(txbTimKiem.Text.Trim(), nguoiDung.Id);
                 foreach (var sanPham in dsSanPham)
                 {
-                    string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
+                    string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
                     lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
                 }
             }
@@ -95,7 +95,7 @@ namespace TraoDoiDo
                     dsSanPham = sanPhamDao.timKiemBangLoai(selectedItemContent, nguoiDung.Id);
                     foreach (var sanPham in dsSanPham)
                     {
-                        string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(sanPham.LinkAnh);
+                        string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
                         lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
                     }
                 }
@@ -234,7 +234,7 @@ namespace TraoDoiDo
                              
                             f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = moTaHangHoa.LinkAnh; // Rãnh sửa thuộc tính LinkAnh thành TenFileAnh
 
-                            string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(moTaHangHoa.LinkAnh);
+                            string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(moTaHangHoa.LinkAnh);
                             f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbDuongDanAnh.Text = duongDanAnh;
 
                             f.DanhSachAnhVaMoTa[f.soLuongAnh].imgAnhSP.Source = new BitmapImage(new Uri(duongDanAnh));
@@ -292,7 +292,7 @@ namespace TraoDoiDo
                 foreach(var dong in dsQuanLyDonHang)
                 {
                     string tenFileAnh = dong.LinkAnhBia;
-                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
 
                     if (tenLsv == "lsvChoDongGoi")
                         lsvChoDongGoi.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien});
@@ -445,6 +445,9 @@ namespace TraoDoiDo
 
                 int tongSoLuotDanhGia = soLuong1Sao + soLuong2Sao + soLuong3Sao + soLuong4Sao + soLuong5Sao;
                 txtbSoLuotDanhGia.Text = tongSoLuotDanhGia.ToString();
+                
+                if (tongSoLuotDanhGia == 0)
+                    tongSoLuotDanhGia = 1;
 
                 ratingBar_SoSao.Value = (soLuong1Sao * 1 + soLuong2Sao * 2 + soLuong3Sao * 3 + soLuong4Sao * 4 + soLuong5Sao * 5) / tongSoLuotDanhGia;
                 txtbSoSaoTrungBinh.Text = ratingBar_SoSao.Value.ToString("0.0");
@@ -673,8 +676,10 @@ namespace TraoDoiDo
         private void LoadTongKhachHang()
         {
             try
-            { 
-                txtbTongSoLuongKhachHang.Text = sanPhamDao.tinhTongKhachHang(nguoiDung.Id); 
+            {
+                txtbTongSoLuongKhachHang.Text = "0";
+                if (!string.IsNullOrEmpty(sanPhamDao.tinhTongKhachHang(nguoiDung.Id)))
+                    txtbTongSoLuongKhachHang.Text = sanPhamDao.tinhTongKhachHang(nguoiDung.Id);
             }
             catch (Exception ex)
             {

@@ -57,18 +57,24 @@
                             Grid.Row="0"
                             Width="180"
                             Margin="0,0,0,0">
-                            <Image
-                                x:Name="imageDaiDien"
-                                Margin="0,0,0,0"
-                                Source="HinhCuaToi/Avatar1.png"
-                                Stretch="Fill"
-                                Tag="HinhCuaToi/Avatar1.png" />
+                            <Grid>
+                                <Image
+                                    x:Name="imageDaiDien"
+                                    Margin="0,0,0,0"
+                                    Source="HinhCuaToi/Avatar1.png"
+                                    Stretch="Fill"
+                                    Tag="HinhCuaToi/Avatar1.png" />
+                                <TextBlock x:Name="txtbTenFileAnh" Foreground="Transparent" />
+                                <TextBlock x:Name="txtbDuongDanAnh" Foreground="Transparent" />
+                            </Grid>
+
                         </materialDesign:Card>
                     </Border>
                     <Border Margin="0,200,10,-52" CornerRadius="50">
                         <Button
                             x:Name="btnChonAnh"
                             Margin="58,0,58,0"
+                            Click="btnChonAnh_Click"
                             Content="Chọn ảnh" />
                     </Border>
 
@@ -218,7 +224,7 @@
             <Button
                 x:Name="btnDangKy"
                 Width="140"
-                Height="40" 
+                Height="40"
                 Click="btnDangKy_Click"
                 Content="Đăng ký"
                 FontSize="20" />

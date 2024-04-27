@@ -98,7 +98,7 @@ namespace TraoDoiDo
                     string tenFileAnh = dong.LinkAnh;
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnh(tenFileAnh);
+                    string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
                     bitmap.UriSource = new Uri(duongDanhAnh);
                     bitmap.EndInit();
                     // Gán BitmapImage tới Source của Image control
@@ -148,7 +148,7 @@ namespace TraoDoiDo
                 {
                     linkAnhBia = dong.LinkAnhBia; //Cập nhật biến toàn cục(global)    linkAnhBia đã khai báo đầu trang
                     string moTa = dong.MoTa;
-                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnh(dong.LinkAnhMinhHoa);
+                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(dong.LinkAnhMinhHoa);
                     danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
                     if (moTa.Trim() == "")
                         continue;
@@ -196,7 +196,7 @@ namespace TraoDoiDo
         private void ThongTinNguoiDang_Click(object sender, RoutedEventArgs e)
         {
             ThongTinNguoiDang f = new ThongTinNguoiDang(idNguoiDang.ToString());
-            f.Show();
+            f.ShowDialog();
         }
 
 

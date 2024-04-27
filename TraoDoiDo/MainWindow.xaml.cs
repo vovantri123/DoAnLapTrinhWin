@@ -139,5 +139,12 @@ namespace TraoDoiDo
             txtbTenNguoiDung.Text = kh.HoTen;
             txtbTienNguoiDung.Text = kh.Tien + " đ";
         }
+        private void btnHienThiThongBao_Click(object sender, RoutedEventArgs e)
+        {
+            if (myPopup.IsOpen)
+                myPopup.IsOpen = false;
+            else
+                myPopup.IsOpen = true;
+        }
     }
 }

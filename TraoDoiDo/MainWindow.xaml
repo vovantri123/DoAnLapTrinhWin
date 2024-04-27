@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="mainWindow"
     Title="Trao đổi đồ"
-    Width="1270"
+    Width="1285"
     Height="840"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
@@ -217,30 +217,72 @@
                             Foreground="White"
                             Style="{StaticResource MaterialDesignButtonTextBlock}"
                             Text="Tên trang hiện tại" />
-                        <materialDesign:Chip
+                        <StackPanel
                             Grid.Column="1"
-                            HorizontalAlignment="Center"
-                            BorderBrush="#FFF7F1F1"
-                            Click="ThongTinCaNhan_Click"
-                            Style="{StaticResource MaterialDesignOutlineChip}">
-                            <materialDesign:Chip.Icon>
-                                <Image
-                                    x:Name="imgNguoiDung"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Source="/HinhCuaToi/Avatar1.png" />
-                            </materialDesign:Chip.Icon>
-                            <StackPanel>
-                                <TextBlock
-                                    x:Name="txtbTenNguoiDung"
-                                    Foreground="White"
-                                    Text="Harry Potter" />
-                                <TextBlock
-                                    x:Name="txtbTienNguoiDung"
-                                    Foreground="White"
-                                    Text="1.200.000 VNĐ" />
-                            </StackPanel>
-                        </materialDesign:Chip>
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                           
+                            <materialDesign:Badged
+                                Margin="15,0"
+                                VerticalAlignment="Center"
+                                Badge="1"
+                                BadgeBackground="Red"
+                                BadgeForeground="White">
+                                
+                                <Button
+                                    x:Name="btnHienThiThongBao"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Height="35"
+                                    Click="btnHienThiThongBao_Click"
+                                    Width="32"
+                                    Foreground="Black"
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}" >
+                                   
+                                    <StackPanel Margin="-5">
+                                        
+                                        <materialDesign:PackIcon
+                                            Width="35"
+                                            Height="35"
+                                            Foreground="#ffffff"
+                                            Kind="BellOutline" />
+
+                                    </StackPanel>
+                                </Button>
+                               
+
+                            </materialDesign:Badged>
+                            <Popup x:Name="myPopup" PlacementTarget="{Binding ElementName=btnHienThiThongBao}" Placement="Bottom" Width="Auto" Height="Auto">
+                                <Border Background="LightBlue" BorderBrush="Black" BorderThickness="2">
+                                    <TextBlock Text="Chúc bạn một ngày mới tràn đầy năng lượng và hạnh phúc!" Margin="10"/>
+                                </Border>
+                            </Popup>
+                            <materialDesign:Chip
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                BorderBrush="#FFF7F1F1"
+                                Click="ThongTinCaNhan_Click"
+                                Style="{StaticResource MaterialDesignOutlineChip}">
+                                <materialDesign:Chip.Icon>
+                                    <Image
+                                        x:Name="imgNguoiDung"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Source="/HinhCuaToi/Avatar1.png" />
+                                </materialDesign:Chip.Icon>
+                                <StackPanel>
+                                    <TextBlock
+                                        x:Name="txtbTenNguoiDung"
+                                        Foreground="White"
+                                        Text="Harry Potter" />
+                                    <TextBlock
+                                        x:Name="txtbTienNguoiDung"
+                                        Foreground="White"
+                                        Text="1.200.000 VNĐ" />
+                                </StackPanel>
+                            </materialDesign:Chip>
+                        </StackPanel>
+
 
 
                     </Grid>

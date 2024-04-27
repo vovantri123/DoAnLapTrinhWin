@@ -5,7 +5,7 @@ namespace TraoDoiDo.ViewModels
 {
     public class XuLyAnh
     {
-        public static string layDuongDanToiHinhDaiDien()
+        public static string layDuongDanToiThuMucHinhDaiDien()
         {
             string thuMucHienTai = AppDomain.CurrentDomain.BaseDirectory; // Debug
             string thuMucLui1 = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(thuMucHienTai)); //Bin
@@ -13,7 +13,8 @@ namespace TraoDoiDo.ViewModels
             string thuMucHinhSanPham = System.IO.Path.Combine(thuMucLui2, "MyResources", "Hinh", "HinhDaiDien");
             return thuMucHinhSanPham;
         }
-        public static string layDuongDanToiHinhSanPham()
+
+        public static string layDuongDanToiThuMucHinhSanPham()
         {
             string thuMucHienTai = AppDomain.CurrentDomain.BaseDirectory; // Debug
             string thuMucLui1 = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(thuMucHienTai)); //Bin
@@ -21,17 +22,20 @@ namespace TraoDoiDo.ViewModels
             string thuMucHinhSanPham = System.IO.Path.Combine(thuMucLui2, "MyResources", "Hinh", "HinhSanPham");
             return thuMucHinhSanPham;
         }
-        public static string layDuongDanDayDuToiFileAnh(string tenFileAnh)
+
+        public static string layDuongDanDayDuToiFileAnhSanPham(string tenFileAnh)
         {
-            string thuMucHinhSanPham = layDuongDanToiHinhSanPham();
+            string thuMucHinhSanPham = layDuongDanToiThuMucHinhSanPham();
             return System.IO.Path.Combine(thuMucHinhSanPham, tenFileAnh);
         }
+
         public static string layDuongDanDayDuToiFileAnhDaiDien(string tenFileAnh)
         {
-            string thuMucHinhSanPham = layDuongDanToiHinhDaiDien();
+            string thuMucHinhSanPham = layDuongDanToiThuMucHinhDaiDien();
             return System.IO.Path.Combine(thuMucHinhSanPham, tenFileAnh);
         }
-        public static void LuuAnhVaoThuMuc(string duongDanAnh)
+
+        public static void LuuAnhVaoThuMuc(string duongDanAnh, string tenThuMucMuonLuu) // truyền vào đường dẫn đầy đủ tới file ảnh vừa chọn, chủ yếu lấy tên file từ đường dẫn này, rồi lưu dô project
         {
             try
             {
@@ -42,19 +46,22 @@ namespace TraoDoiDo.ViewModels
                     return;
                 }
 
-                string thuMucHinhCuaToi = layDuongDanToiHinhSanPham();
+                if (tenThuMucMuonLuu == "HinhDaiDien")
+                    tenThuMucMuonLuu = layDuongDanToiThuMucHinhDaiDien();
+                else
+                    tenThuMucMuonLuu = layDuongDanToiThuMucHinhSanPham();
 
                 // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo mới
-                if (!System.IO.Directory.Exists(thuMucHinhCuaToi))
+                if (!System.IO.Directory.Exists(tenThuMucMuonLuu))
                 {
-                    System.IO.Directory.CreateDirectory(thuMucHinhCuaToi);
+                    System.IO.Directory.CreateDirectory(tenThuMucMuonLuu);
                 }
 
                 // Lấy tên tệp ảnh từ đường dẫn
                 string tenFile = System.IO.Path.GetFileName(duongDanAnh);
 
                 // Tạo đường dẫn mới cho tệp ảnh trong thư mục "HinhCuaToi"
-                string duongDanMoi = System.IO.Path.Combine(thuMucHinhCuaToi, tenFile);
+                string duongDanMoi = System.IO.Path.Combine(tenThuMucMuonLuu, tenFile);
 
                 // Kiểm tra xem tệp ảnh đã tồn tại trong thư mục chưa
                 if (System.IO.File.Exists(duongDanMoi))

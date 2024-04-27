@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,42 +31,43 @@ namespace TraoDoiDo
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
-
             TaiKhoanDao tkDao = new TaiKhoanDao();
-            TaiKhoan tk = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, null);
-            NguoiDung khachHang = new NguoiDung(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageDaiDien.Tag.ToString(), tk, "");
-            ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(khachHang);
-            NguoiDungDao khachHangDao = new NguoiDungDao();
-            bool check = ttkh.kiemTraCacTextBox();
-            if (check)
+            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, null);
+            NguoiDung nguoi = new NguoiDung(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, txtbTenFileAnh.Text, taiKhoan, "0");
+            ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(nguoi);
+            NguoiDungDao nguoiDao = new NguoiDungDao();
+            bool checkThongTinHopLe = ttkh.kiemTraCacTextBox();
+            if (checkThongTinHopLe)
+            { 
+                try
+                {
+                    nguoiDao.Them(nguoi);
+                    tkDao.Them(taiKhoan);
+                    XuLyAnh.LuuAnhVaoThuMuc(txtbDuongDanAnh.Text, "HinhDaiDien");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Đăng ký thất bại: " + ex.Message);
+                }
+                MessageBox.Show("Đăng kí thành công");
+            }
+        }
+
+        private void btnChonAnh_Click(object sender, RoutedEventArgs e) //Chọn để hiển thị chứ chưa có lưu dô folder và csdl
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+            if (openFileDialog.ShowDialog() == true)
             {
-                bool addKhachHang = false;
-                bool addTaiKhoan = false;
-                try
-                {
-                    khachHangDao.Them(khachHang);
-                    addKhachHang = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Không thể thêm khách hàng: " + ex.Message);
-                }
-                try
-                {
-                    tkDao.Them(tk);
-                    addTaiKhoan = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Không thể thêm tài khoản: " + ex.Message);
-                }
-                if (addKhachHang && addTaiKhoan)
-                {
-                    MessageBox.Show("Đăng kí thành công");
-                }
+                string selectedFileName = openFileDialog.FileName;
+                imageDaiDien.Source = new BitmapImage(new Uri(selectedFileName));
+                txtbDuongDanAnh.Text = selectedFileName;
+                txtbTenFileAnh.Text = System.IO.Path.GetFileName(selectedFileName);
+
 
             }
-
         }
     }
 }

@@ -67,9 +67,8 @@ namespace TraoDoiDo
                     string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
                     MoTaHangHoa mta = new MoTaHangHoa(id, idAnhMinhHoa, tenFileAnh, moTa);
                     MoTaHangHoaDao mtaDao = new MoTaHangHoaDao();
-                    mtaDao.Them(mta);
-                    string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
-                    XuLyAnh.LuuAnhVaoThuMuc(noiLuAnh);
+                    mtaDao.Them(mta); 
+                    XuLyAnh.LuuAnhVaoThuMuc(DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text,"HinhSanPham");
                 }
                 else
                     continue;

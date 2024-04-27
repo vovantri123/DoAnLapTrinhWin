@@ -97,9 +97,8 @@ namespace TraoDoiDo
                         {
                             MessageBox.Show("Lỗi: " + ex.Message);
                         }
-                        
-                        string noiLuAnh = DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text;
-                        XuLyAnh.LuuAnhVaoThuMuc(noiLuAnh);
+                         
+                        XuLyAnh.LuuAnhVaoThuMuc(DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text, "HinhSanPham");
                     }
                     else
                         continue;

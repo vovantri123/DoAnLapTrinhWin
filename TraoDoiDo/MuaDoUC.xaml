@@ -42,9 +42,30 @@
                                 Grid.Column="0"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
+
+                                <ComboBox
+                                    x:Name="cboSapXep"
+                                    Width="130"
+                                    Margin="0,0,15,0"
+                                    materialDesign:HintAssist.FloatingOffset="0, -18"
+                                    materialDesign:HintAssist.FloatingScale="0.7"
+                                    materialDesign:HintAssist.Hint="Sắp xếp"
+                                    IsEditable="False"
+                                    SelectionChanged="cboSapXep_SelectionChanged"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                    <ComboBoxItem Content="Giá tăng dần" />
+                                    <ComboBoxItem Content="Giả giảm dần" />
+                                    <ComboBoxItem Content="Lượt xem giảm dần" />
+                                    <ComboBoxItem Content="Lượt xem giảm dần" />
+                                    <ComboBoxItem Content="Yêu thích của tôi" />
+                                    <ComboBoxItem Content="Tất cả" />
+                                    <!--  Trong cái tất cả sản phẩm nào mình tìm kiếm nhiều thì ưu tiên hiển thị  -->
+
+                                </ComboBox>
+
                                 <ComboBox
                                     x:Name="cboSapXepTheoLoai"
-                                    Width="120"
+                                    Width="130"
                                     Margin="0,0,15,0"
                                     materialDesign:HintAssist.FloatingOffset="0, -18"
                                     materialDesign:HintAssist.FloatingScale="0.7"
@@ -62,35 +83,32 @@
                                     <ComboBoxItem Content="Tất cả" />
                                 </ComboBox>
 
-                                <ComboBox
-                                    x:Name="cboSapXepTheoYeuThich"
-                                    Width="120"
-                                    Margin="0,0,15,0"
-                                    materialDesign:HintAssist.FloatingOffset="0, -18"
-                                    materialDesign:HintAssist.FloatingScale="0.7"
-                                    materialDesign:HintAssist.Hint="Sắp xếp"
-                                    IsEditable="False"
-                                    SelectionChanged="cboSapXepTheoYeuThich_SelectionChanged"
-                                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                    <ComboBoxItem Content="Yêu thích" />
-                                    <ComboBoxItem Content="Tất cả" />
-                                </ComboBox>
+
 
 
                             </StackPanel>
-                            <TextBox
-                                x:Name="txbTimKiem"
-                                Grid.Column="1"
-                                Width="230"
-                                Height="48"
-                                Margin="0,0,15,0"
-                                HorizontalAlignment="Right"
-                                materialDesign:HintAssist.Hint="Tìm kiếm"
-                                materialDesign:TextFieldAssist.PrefixText="Tên: "
-                                AcceptsReturn="True"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                TextChanged="txbTimKiem_TextChanged"
-                                TextWrapping="Wrap" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+                                <TextBox
+                                    x:Name="txbTimKiem"
+                                    Width="230"
+                                    Height="48"
+                                    Margin="0,0,15,0"
+                                    HorizontalAlignment="Right"
+                                    materialDesign:HintAssist.Hint="Tìm kiếm"
+                                    materialDesign:TextFieldAssist.PrefixText="Tên: "
+                                    AcceptsReturn="True"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    TextChanged="txbTimKiem_TextChanged"
+                                    TextWrapping="Wrap" />
+                                <Button
+                                    Margin="0,0,10,0"
+                                    Panel.ZIndex="0"
+                                    Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <materialDesign:PackIcon Kind="Send" Width="30" Height="30"/>
+                                </Button>
+                            </StackPanel>
+
 
                         </Grid>
 
@@ -115,7 +133,7 @@
 
                 <Grid Margin="16">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="832" />
+                        <ColumnDefinition Width="750" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
@@ -153,13 +171,16 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox Checked="TinhTienCuaNhungDongDuocChon" Unchecked="TinhTienCuaNhungDongDuocChon"  IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                                                    <CheckBox
+                                                        Checked="TinhTienCuaNhungDongDuocChon"
+                                                        IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}"
+                                                        Unchecked="TinhTienCuaNhungDongDuocChon" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
 
                                         <GridViewColumn
-                                            Width="50"
+                                            Width="0"
                                             DisplayMemberBinding="{Binding IdSP}"
                                             Header="Id đồ" />
                                         <GridViewColumn
@@ -187,12 +208,12 @@
                                             DisplayMemberBinding="{Binding SoLuongMua}"
                                             Header="Số lượng mua" />
                                         <GridViewColumn
-                                            Width="100"
+                                            Width="88"
                                             DisplayMemberBinding="{Binding TrangThaiConHayHet}"
                                             Header="Trạng thái" />
 
                                         <!--  Cột "Xóa"  -->
-                                        <GridViewColumn Width="90" Header="Xóa">
+                                        <GridViewColumn Width="68" Header="Xóa">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <Button
@@ -224,12 +245,13 @@
                     <Grid Grid.Column="1" HorizontalAlignment="Center">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid
                             Grid.Row="0"
-                            Width="350"
                             Height="180"
+                            Margin="7,0,0,0"
                             Background="#9359c5">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
@@ -317,6 +339,35 @@
 
                             </StackPanel>
                         </Grid>
+                        <TextBlock
+                            Grid.Row="1"
+                            Margin="18,16,-18,0"
+                            VerticalAlignment="Top"
+                            FontSize="25"
+                            FontWeight="Medium"
+                            Text="Voucher của tôi" />
+                        <ScrollViewer
+                            Grid.Row="2"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+
+                                <WrapPanel
+                                    x:Name="wpnlDSVoucher"
+                                    Width="Auto"
+                                    Height="Auto">
+                                    <local:VoucherUC />
+                                    <local:VoucherUC />
+                                    <local:VoucherUC />
+                                    <local:VoucherUC />
+                                    <local:VoucherUC />
+                                    <local:VoucherUC />
+                                </WrapPanel>
+                            </StackPanel>
+
+
+                            <!--  Các phần tử bên trong WrapPanel  -->
+                        </ScrollViewer>
                     </Grid>
 
                 </Grid>
@@ -649,8 +700,8 @@
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="VerticalContentAlignment" Value="Center" />
-                                              
-    
+
+
                                             </Style>
                                         </ListView.ItemContainerStyle>
                                         <ListView.View>

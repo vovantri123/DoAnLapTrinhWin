@@ -12,21 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
     /// <summary>
-    /// Interaction logic for DangKyUC.xaml
+    /// Interaction logic for Voucher.xaml
     /// </summary>
-    public partial class DangKyUC : UserControl
+    public partial class VoucherUC : UserControl
     {
-        public DangKyUC()
+        public VoucherUC()
         {
             InitializeComponent();
-
-            this.DataContext = new ThongTinKhachHangViewModel();
         }
-
     }
 }

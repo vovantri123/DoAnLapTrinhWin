@@ -51,6 +51,7 @@
                                 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                                 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                 materialDesign:ButtonProgressAssist.Value="-1"
+                                BorderBrush="#FFFFEEFA"
                                 Click="btnThemSanPhamMoi_Click"
                                 Style="{StaticResource MaterialDesignRaisedButton}">
 
@@ -64,6 +65,21 @@
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
+                                <ComboBox
+                                    x:Name="cboSapXep"
+                                    Width="130"
+                                    Margin="0,0,15,0"
+                                    materialDesign:HintAssist.FloatingOffset="0, -18"
+                                    materialDesign:HintAssist.FloatingScale="0.7"
+                                    materialDesign:HintAssist.Hint="Sắp xếp"
+                                    IsEditable="False"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                    <ComboBoxItem Content="Ngày đăng gần nhất" />
+                                    <ComboBoxItem Content="Ngày đăng lâu nhất" />
+                                    <!--  Lâu nhất thì hiện trước  -->
+                                    <ComboBoxItem Content="Tất cả" />
+
+                                </ComboBox>
                                 <ComboBox
                                     x:Name="cbLocLoai"
                                     Width="120"
@@ -175,9 +191,13 @@
                                                 Width="90"
                                                 DisplayMemberBinding="{Binding PhiShip}"
                                                 Header="Phí ship" />
+                                            <GridViewColumn
+                                                Width="90"
+                                                DisplayMemberBinding="{Binding NgayDang}"
+                                                Header="Ngày đăng" />
 
                                             <!--  Cột "Sửa"  -->
-                                            <GridViewColumn Width="120" Header="Operations">
+                                            <GridViewColumn Width="120" Header="Hành động">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
@@ -276,7 +296,7 @@
                                     </ListView.Resources>
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
-                                            <Setter Property="VerticalContentAlignment" Value="Center" /> 
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
                                         </Style>
                                     </ListView.ItemContainerStyle>
                                     <ListView.View>

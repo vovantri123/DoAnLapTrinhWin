@@ -38,7 +38,7 @@ namespace TraoDoiDo.ViewModels
         }
         public bool kiemTraCacTextBox()
         {
-            DateTime ngaySinh = DateTime.ParseExact(NgaySinh, "dd/MM/yyyy", null);
+            //DateTime ngaySinh = DateTime.ParseExact(NgaySinh, "dd/MM/yyyy", null);
             ErrorMessage = "";
             if (string.IsNullOrWhiteSpace(TenDangNhap) || string.IsNullOrWhiteSpace(MatKhau) ||
                 string.IsNullOrWhiteSpace(CMND) || string.IsNullOrWhiteSpace(Email) ||
@@ -50,12 +50,12 @@ namespace TraoDoiDo.ViewModels
                 MessageBox.Show(ErrorMessage);
                 return false;
             }
-            if (!kiemTra.kiemTraNgaySinh(ngaySinh))
-            {
-                ErrorMessage = XuLyTienIch.TinNhanNgaySinhKhongHopLe;
-                MessageBox.Show(ErrorMessage);
-                return false;
-            }
+            //if (!kiemTra.kiemTraNgaySinh(ngaySinh))
+            //{
+            //    ErrorMessage = XuLyTienIch.TinNhanNgaySinhKhongHopLe;
+            //    MessageBox.Show(ErrorMessage);
+            //    return false;
+            //}
             if (!kiemTra.kiemTraEmail(Email))
             {
                 ErrorMessage = XuLyTienIch.TinNhanEmailKhongHopLe;
