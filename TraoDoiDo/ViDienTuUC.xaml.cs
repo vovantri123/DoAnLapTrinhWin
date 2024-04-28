@@ -28,7 +28,7 @@ namespace TraoDoiDo
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         NguoiDung nguoiDung = new NguoiDung();
         NguoiDungDao nguoiDungDao = new NguoiDungDao();
-        GiaoDich gd;
+        //GiaoDich gd;
         GiaoDichDao gdDao = new GiaoDichDao();
         List<string> listTienNap = new List<string>();
         List<string> listTienRut = new List<string>(); 

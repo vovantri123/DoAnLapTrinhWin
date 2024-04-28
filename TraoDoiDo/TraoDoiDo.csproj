@@ -98,11 +98,13 @@
     <Compile Include="Database\NguoiDungDao.cs" />
     <Compile Include="Database\MoTaAnhSanPhamDao.cs" />
     <Compile Include="Database\MoTaHangHoaDao.cs" />
+    <Compile Include="Database\NguoiDungVoucherDao.cs" />
     <Compile Include="Database\QuanLyDonHangDao.cs" />
     <Compile Include="Database\SanPhamDao.cs" />
     <Compile Include="Database\TaiKhoanDao.cs" />
     <Compile Include="Database\ThuocTinhDao.cs" />
     <Compile Include="Database\TrangThaiDonHangDao.cs" />
+    <Compile Include="Database\VoucherDao.cs" />
     <Compile Include="DiaChi.xaml.cs">
       <DependentUpon>DiaChi.xaml</DependentUpon>
     </Compile>
@@ -115,11 +117,13 @@
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\MoTaAnhSanPham.cs" />
     <Compile Include="Models\NguoiDung.cs" />
+    <Compile Include="Models\NguoiDungVoucher.cs" />
     <Compile Include="Models\QuanLyDonHang.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\MoTaHangHoa.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\TrangThaiDonHang.cs" />
+    <Compile Include="Models\Voucher.cs" />
     <Compile Include="MuaDoUC.xaml.cs">
       <DependentUpon>MuaDoUC.xaml</DependentUpon>
     </Compile>
@@ -389,13 +393,15 @@
     <Resource Include="HinhCuaToi\TrangChu\tc6.jpg" />
     <Resource Include="HinhCuaToi\TrangChu\tc7.jpg" />
     <Resource Include="HinhCuaToi\TrangChu\tc8.jpg" />
-    <Resource Include="HinhCuaToi\TrangChu\tc9.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HinhCuaToi\KhungAnh\khung_top1.png" />
     <Resource Include="HinhCuaToi\KhungAnh\khung_top2.png" />
     <Resource Include="HinhCuaToi\KhungAnh\khung_top3.png" />
     <Resource Include="HinhCuaToi\KhungAnh\khung_top45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HinhCuaToi\TrangChu\tc9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

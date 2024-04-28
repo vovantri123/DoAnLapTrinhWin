@@ -371,7 +371,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Phát Voucher">
+            <TabItem Header="Quản lý Voucher">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="250" />
@@ -383,6 +383,7 @@
                         Header="Default Look">
                         <StackPanel>
                             <TextBox
+                                x:Name="txtbIdVoucher"
                                 Margin="20,10,20,0"
                                 materialDesign:HintAssist.Hint="ID voucher"
                                 IsReadOnly="True"
@@ -390,12 +391,14 @@
                                 TextWrapping="Wrap"
                                 VerticalScrollBarVisibility="Auto" />
                             <TextBox
+                                x:Name="txtbTenVoucher"
                                 Margin="20,10,20,0"
                                 materialDesign:HintAssist.Hint="Tên voucher"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 TextWrapping="Wrap"
                                 VerticalScrollBarVisibility="Auto" />
                             <TextBox
+                                x:Name="txtbGiaTri"
                                 Margin="20,10,20,0"
                                 materialDesign:HintAssist.Hint="Giá trị"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -403,8 +406,8 @@
                                 VerticalScrollBarVisibility="Auto" />
 
 
-                            <local:TangGiamUC x:Name="ucTangGiamSoLuongTong" Hint="Số lượt sử dụng tối đa" />
-                            <local:TangGiamUC x:Name="ucTangGiamSoLuongDaBan" Hint="Số lượt đã sử dụng" />
+                            <local:TangGiamUC x:Name="ucTangGiamSoLuotSuDungToiDa" Hint="Số lượt sử dụng tối đa" />
+                            <local:TangGiamUC x:Name="ucTangGiamSoLuotDaSuDung" Hint="Số lượt đã sử dụng" />
 
 
                             <DatePicker
@@ -424,11 +427,21 @@
                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                             <Button
-                                Margin="16"
+                                Margin="16,16,16,0"
                                 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                                 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                 materialDesign:ButtonProgressAssist.Value="-1"
+                                Click="btnDangVoucher_Click"
                                 Content="Đăng"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignOutlinedButton}" />
+                            <Button
+                                Margin="16,16,16,0"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.Value="-1"
+                                Click="btnSuaVoucher_Click"
+                                Content="Sửa"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignOutlinedButton}" />
                         </StackPanel>
@@ -439,7 +452,10 @@
                         Margin="10"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
-                        <ListView x:Name="lsvDSVoucher" ItemsSource="{Binding}">
+                        <ListView
+                            x:Name="lsvQLVoucher"
+                            ItemsSource="{Binding}"
+                            SelectionChanged="lsvQLVoucher_SelectionChanged">
                             <ListView.Resources>
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                             </ListView.Resources>
@@ -460,68 +476,54 @@
                                     </GridView.ColumnHeaderContainerStyle>
                                     <GridViewColumn
                                         Width="50"
-                                        DisplayMemberBinding="{Binding UserId}"
+                                        DisplayMemberBinding="{Binding IdVoucher}"
                                         Header="Id" />
                                     <GridViewColumn
-                                        Width="150"
-                                        DisplayMemberBinding="{Binding FullName}"
+                                        Width="200"
+                                        DisplayMemberBinding="{Binding TenVoucher}"
                                         Header="Tên Voucher" />
                                     <GridViewColumn
                                         Width="90"
-                                        DisplayMemberBinding="{Binding Gender}"
+                                        DisplayMemberBinding="{Binding GiaTri}"
                                         Header="Giá trị" />
                                     <GridViewColumn
                                         Width="140"
-                                        DisplayMemberBinding="{Binding DateOfBirth}"
+                                        DisplayMemberBinding="{Binding SoLuotSuDungToiDa}"
                                         Header="Số lượt sử dụng tối đa" />
 
                                     <GridViewColumn
                                         Width="100"
-                                        DisplayMemberBinding="{Binding Identification}"
+                                        DisplayMemberBinding="{Binding SoLuotDaSuDung}"
                                         Header="Số lượt đã dùng" />
                                     <GridViewColumn
                                         Width="90"
-                                        DisplayMemberBinding="{Binding Email}"
+                                        DisplayMemberBinding="{Binding NgayBatDau}"
                                         Header="Ngày bắt đầu" />
                                     <GridViewColumn
                                         Width="90"
-                                        DisplayMemberBinding="{Binding PhoneNumber}"
+                                        DisplayMemberBinding="{Binding NgayKetThuc}"
                                         Header="Ngày kết thúc" />
                                     <!--  Cột "Sửa"  -->
-                                    <GridViewColumn Width="120" Header="Hành động">
+                                    <GridViewColumn Width="70" Header="Hành động">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button
-                                                        Width="45"
-                                                        Height="45"
-                                                        materialDesign:ButtonAssist.CornerRadius="10"
-                                                        BorderBrush="White"
-                                                        BorderThickness="1"
-                                                        ToolTip="Sửa">
-                                                        <materialDesign:PackIcon
-                                                            Width="15"
-                                                            Height="15"
-                                                            Foreground="White"
-                                                            Kind="PencilOutline" />
-                                                    </Button>
-                                                    <Button
-                                                        Width="45"
-                                                        Height="45"
-                                                        Margin="8,0,0,0"
-                                                        materialDesign:ButtonAssist.CornerRadius="10"
-                                                        Background="#dd4131"
-                                                        BorderBrush="White"
-                                                        BorderThickness="1"
-                                                        ToolTip="Xóa">
-                                                        <materialDesign:PackIcon
-                                                            Width="15"
-                                                            Height="15"
-                                                            Foreground="White"
-                                                            Kind="DeleteOutline" />
-                                                    </Button>
+                                                <Button
+                                                    Width="45"
+                                                    Height="45"
+                                                    Margin="8,0,0,0"
+                                                    materialDesign:ButtonAssist.CornerRadius="10"
+                                                    Background="#dd4131"
+                                                    BorderBrush="White"
+                                                    BorderThickness="1"
+                                                    Click="btnXoaVoucher_Click"
+                                                    ToolTip="Xóa">
+                                                    <materialDesign:PackIcon
+                                                        Width="15"
+                                                        Height="15"
+                                                        Foreground="White"
+                                                        Kind="DeleteOutline" />
+                                                </Button>
 
-                                                </StackPanel>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

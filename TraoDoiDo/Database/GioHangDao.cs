@@ -10,7 +10,7 @@ namespace TraoDoiDo.Database
 {
     public class GioHangDao:ThuocTinhDao
     {
-        List<GioHang> dsGioHang;
+        //List<GioHang> dsGioHang;
         List<List<string>> bangKetQua;
         public void Them(GioHang gioHang)
         {

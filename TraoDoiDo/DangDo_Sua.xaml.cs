@@ -44,8 +44,7 @@ namespace TraoDoiDo
             txtbLoai.Text = sanPham.Loai;
 
             string dateString = sanPham.NgayMua;
-            DateTime selectedDate = DateTime.Parse(dateString);
-            dtpNgayMua.SelectedDate = selectedDate;
+            dtpNgayMua.SelectedDate = DateTime.Parse(dateString);
 
             txtbGiaBan.Text = sanPham.GiaBan;
             txtbGiaGoc.Text = sanPham.GiaGoc;

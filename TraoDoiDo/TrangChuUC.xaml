@@ -80,16 +80,9 @@
                                     x:Name="wpnlDSVoucher"
                                     Width="Auto"
                                     Height="Auto">
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-
-
                                     <!--  Các phần tử bên trong WrapPanel  -->
                                 </WrapPanel>
+
                             </ScrollViewer>
                         </TabItem>
                     </TabControl>
@@ -110,7 +103,10 @@
                         Source="HinhCuaToi/cartoon-woman-pretty.png"
                         Stretch="Uniform" />
                 </Border>
-                <GroupBox Margin="30,10" HorizontalAlignment="Center"  Header="Danh sách người hay mua nhât">
+                <GroupBox
+                    Margin="30,10"
+                    HorizontalAlignment="Center"
+                    Header="Danh sách người hay mua nhât">
                     <StackPanel
                         x:Name="wpnlDSNguoiHayMua"
                         Width="Auto"

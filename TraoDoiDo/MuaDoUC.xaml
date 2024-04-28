@@ -55,7 +55,7 @@
                                     Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                     <ComboBoxItem Content="Giá tăng dần" />
                                     <ComboBoxItem Content="Giả giảm dần" />
-                                    <ComboBoxItem Content="Lượt xem giảm dần" />
+                                    <ComboBoxItem Content="Lượt xem tăng dần" />
                                     <ComboBoxItem Content="Lượt xem giảm dần" />
                                     <ComboBoxItem Content="Yêu thích của tôi" />
                                     <ComboBoxItem Content="Tất cả" />
@@ -105,7 +105,10 @@
                                     Margin="0,0,10,0"
                                     Panel.ZIndex="0"
                                     Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                    <materialDesign:PackIcon Kind="Send" Width="30" Height="30"/>
+                                    <materialDesign:PackIcon
+                                        Width="30"
+                                        Height="30"
+                                        Kind="Send" />
                                 </Button>
                             </StackPanel>
 
@@ -172,9 +175,9 @@
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <CheckBox
-                                                        Checked="TinhTienCuaNhungDongDuocChon"
+                                                        Checked="TinhTienCuaNhungDongDuocChon_Checked"
                                                         IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ListViewItem}}"
-                                                        Unchecked="TinhTienCuaNhungDongDuocChon" />
+                                                        Unchecked="TinhTienCuaNhungDongDuocChon_Checked" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -250,8 +253,8 @@
                         </Grid.RowDefinitions>
                         <Grid
                             Grid.Row="0"
-                            Height="180"
-                            Margin="7,0,0,0"
+                            Height="200"
+                            Margin="10,0,10,0"
                             Background="#9359c5">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
@@ -297,6 +300,32 @@
                                         FontSize="17"
                                         Foreground="White"
                                         Text=" đ" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <!--  Cái textbloc id ngày chủ yếu để xử lý truy vấn sql chứ k cần show  -->
+                                    <TextBlock x:Name="txtbIdVoucher" Visibility="Collapsed" />
+                                    <TextBlock
+                                        Margin="18,3,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="18"
+                                        Foreground="White"
+                                        Text="Giá trị voucher: " />
+                                    <TextBlock
+                                        x:Name="txtbgiaTriVoucher"
+                                        Margin="18,3,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="0" />
+                                    <TextBlock
+                                        Margin="18,3,-18,0"
+                                        VerticalAlignment="Top"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text=" đ" />
+
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
 
@@ -350,23 +379,16 @@
                             Grid.Row="2"
                             HorizontalScrollBarVisibility="Disabled"
                             VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
 
-                                <WrapPanel
-                                    x:Name="wpnlDSVoucher"
-                                    Width="Auto"
-                                    Height="Auto">
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                    <local:VoucherUC />
-                                </WrapPanel>
+                            <StackPanel
+                                x:Name="spnlVoucherCuaToi"
+                                Width="390"
+                                Height="Auto">
+
+                                <!--  Các phần tử bên trong WrapPanel  -->
                             </StackPanel>
 
 
-                            <!--  Các phần tử bên trong WrapPanel  -->
                         </ScrollViewer>
                     </Grid>
 

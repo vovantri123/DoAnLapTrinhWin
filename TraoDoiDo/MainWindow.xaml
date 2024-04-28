@@ -254,7 +254,7 @@
                             </materialDesign:Badged>
                             <Popup x:Name="myPopup" PlacementTarget="{Binding ElementName=btnHienThiThongBao}" Placement="Bottom" Width="Auto" Height="Auto">
                                 <Border Background="LightBlue" BorderBrush="Black" BorderThickness="2">
-                                    <TextBlock Text="Chúc bạn một ngày mới tràn đầy năng lượng và hạnh phúc!" Margin="10"/>
+                                    <TextBlock Text="Chúc bạn một ngày mới tràn đầy năng lượng và hạnh phúc!" FontSize="15" Margin="10"/>
                                 </Border>
                             </Popup>
                             <materialDesign:Chip

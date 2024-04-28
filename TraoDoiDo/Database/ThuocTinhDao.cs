@@ -1,4 +1,6 @@
-﻿namespace TraoDoiDo.Database
+﻿using System.Data;
+
+namespace TraoDoiDo.Database
 {
     public abstract class ThuocTinhDao
     {
@@ -22,15 +24,16 @@
         public const string nguoiDungDiaChi = "DiaChiNguoiDung";
         public const string nguoiDungAnh = "AnhNguoiDung";
         public const string nguoiDungTien = "TienNguoiDung";
+        public const string nguoiDungLoaiSanPhamDangQuanTam = "LoaiSanPhamDangQuanTam";
 
         //Table GiaoDich
         protected const string giaoDichHeader = "GiaoDich";
         public const string giaoDichID = "IdGiaoDich";
-        public const string giaoDichLoai = "loaiGiaoDich";
-        public const string giaoDichSoTien = "soTien";
-        public const string giaoDichTuNguon = "tuNguonGiaoDich";
-        public const string giaoDichDenNguon = "denNguonGiaoDich";
-        public const string giaoDichNgay = "ngayGiaoDich";
+        public const string giaoDichLoai = "LoaiGiaoDich";
+        public const string giaoDichSoTien = "SoTien";
+        public const string giaoDichTuNguon = "TuNguonGiaoDich";
+        public const string giaoDichDenNguon = "DenNguonGiaoDich";
+        public const string giaoDichNgay = "NgayGiaoDich";
 
         //Table SanPham
         protected const string sanPhamHeader = "SanPham";
@@ -51,6 +54,8 @@
         public const string sanPhamPhamTramMoi = "PhanTramMoi";
         public const string sanPhamMoTaChung = "MoTaChung";
         public const string sanPhamSoLuotXem = "SoLuotXem";
+        public const string sanPhamNgayDang = "NgayDang";
+
 
         //Table MoTaAnhSanPham
         protected const string moTaSanPhamHeader = "MoTaAnhSanPham";
@@ -89,6 +94,23 @@
         //Table DanhMucYeuThich
         protected const string danhMucHeader = "DanhMucYeuThich";
         public const string danhMucNguoiMua = "IdNguoiMua";
+
+        //Table Voucher
+        protected const string voucherHeader = "Voucher";
+        public const string voucherIdVoucher = "IdVoucher";
+        public const string voucherTenVoucher = "TenVoucher";
+        public const string voucherGiaTri = "GiaTri";
+        public const string voucherSoLuotSuDungToiDa = "SoLuotSuDungToiDa";
+        public const string voucherSoLuotDaSuDung = "SoLuotDaSuDung";
+        public const string voucherNgayBatDau = "NgayBatDau";
+        public const string voucherNgayKetThuc = "NgayKetThuc";
+
+        //Table NguoiDungVoucher
+        protected const string nguoiDungVoucherHeader = "NguoiDungVoucher";
+        public const string nguoiDungVoucherIdNguoiDung = "IdNguoiDung";
+        public const string nguoiDungVoucherIdVoucher = "IdVoucher";
+
+
 
 
         protected DbConnection dbConnection = new DbConnection();

@@ -13,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes; 
+using System.Windows.Shapes;
+using TraoDoiDo.Models;
+using TraoDoiDo.Database;
 
 namespace TraoDoiDo
 {
@@ -22,6 +24,10 @@ namespace TraoDoiDo
     /// </summary>
     public partial class QuanLyUC : UserControl
     {
+        VoucherDao voucherDao = new VoucherDao();
+        NguoiDungVoucherDao ndvcDao = new NguoiDungVoucherDao();
+
+
         public class Product
         {
             public int Id { get; set; }
@@ -57,7 +63,135 @@ namespace TraoDoiDo
             // Đặt nguồn dữ liệu cho ListView
             lsvQuanLyNguoiDung.ItemsSource = Users;
 
+            Loaded += QuanLyVoucher_Load;
         }
+
+
+        #region TAB1 MUA SẮM
+        private void QuanLyVoucher_Load(object sender, RoutedEventArgs e)
+        {
+            LoadDanhSachVoucer();
+        }
+
+        private void LoadDanhSachVoucer()
+        { 
+            try
+            {
+                List<Voucher> dsVoucher = voucherDao.LoadVoucher();  
+                lsvQLVoucher.ItemsSource = dsVoucher;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void lsvQLVoucher_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Kiểm tra xem có dòng nào được chọn không
+            if (lsvQLVoucher.SelectedItem != null)
+            {
+                // Lấy dữ liệu của dòng được chọn
+                Voucher dongDuocChon = lsvQLVoucher.SelectedItem as Voucher; // Thay YourDataModel bằng kiểu dữ liệu thực tế của bạn
+
+                if (dongDuocChon != null)
+                {
+                    txtbIdVoucher.Text = dongDuocChon.IdVoucher;
+                    txtbTenVoucher.Text = dongDuocChon.TenVoucher;
+                    txtbGiaTri.Text = dongDuocChon.GiaTri;
+                    dtpNgayBatDau.SelectedDate = DateTime.Parse(dongDuocChon.NgayBatDau);
+                    dtpNgayKetThuc.SelectedDate = DateTime.Parse(dongDuocChon.NgayKetThuc);
+                    ucTangGiamSoLuotSuDungToiDa.txtbSoLuong.Text = dongDuocChon.SoLuotSuDungToiDa;
+                    ucTangGiamSoLuotDaSuDung.txtbSoLuong.Text = dongDuocChon.SoLuotDaSuDung;
+                }
+            }
+        }
+        private void btnDangVoucher_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn đăng ?", "Xác nhận đăng", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                try
+                {
+                    voucherDao.Them(new Voucher(txtbIdVoucher.Text, txtbTenVoucher.Text, txtbGiaTri.Text, ucTangGiamSoLuotSuDungToiDa.txtbSoLuong.Text, ucTangGiamSoLuotDaSuDung.txtbSoLuong.Text, dtpNgayBatDau.Text, dtpNgayKetThuc.Text));
+
+                    // Load lại tab QL Voucher
+                    QuanLyVoucher_Load(sender, e);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xảy ra khi sửa sản phẩm: " + ex.Message);
+                }
+        }
+        private void btnSuaVoucher_Click(object sender, RoutedEventArgs e)
+        { 
+            if (MessageBox.Show("Bạn có chắc chắn muốn sửa mục đã chọn?", "Xác nhận sửa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                try
+                {  
+                    voucherDao.Sua(new Voucher(txtbIdVoucher.Text, txtbTenVoucher.Text, txtbGiaTri.Text, ucTangGiamSoLuotSuDungToiDa.txtbSoLuong.Text, ucTangGiamSoLuotDaSuDung.txtbSoLuong.Text, dtpNgayBatDau.Text, dtpNgayKetThuc.Text));  
+
+                    // Load lại tab QL Voucher
+                    QuanLyVoucher_Load(sender, e);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xảy ra khi sửa sản phẩm: " + ex.Message);
+                } 
+        }
+         
+        private void btnXoaVoucher_Click(object sender, RoutedEventArgs e) // truy vấn id trên lsv sẽ hiệu quả hơn thay vì lấy id từ textblock , từ đó ta có thể đặt thuộc tính isReadOnly thành True
+        {
+            // Lấy button được click
+            Button btn = sender as Button; 
+            // Lấy ListViewItem chứa button
+            ListViewItem item = FindAncestor<ListViewItem>(btn);
+
+            if (item != null)
+            {
+                // Lấy dữ liệu của ListViewItem
+                dynamic dataItem = item.DataContext;
+
+                if (dataItem != null)
+                {
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa mục đã chọn?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        try
+                        { 
+                            string idVoucher = dataItem.IdVoucher;
+                            // Xóa dữ liệu từ bảng SanPham
+                            ndvcDao.XoaTheoIdVoucher(idVoucher);
+                            voucherDao.XoaVoucherTheoIdVoucher(idVoucher);
+                            // Load lại tab QL Voucher
+                            QuanLyVoucher_Load(sender, e);
+
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi xảy ra khi xóa sản phẩm: " + ex.Message);
+                        }
+                           
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể xác định dòng chứa nút 'Xóa'.");
+            }
+        }
+
+        // Hàm trợ giúp để tìm thành phần cha của một kiểu cụ thể
+        public static T FindAncestor<T>(DependencyObject dependencyObject) where T : DependencyObject
+        {
+            var parent = VisualTreeHelper.GetParent(dependencyObject);
+
+            if (parent == null)
+                return null;
+
+            var parentT = parent as T;
+            return parentT ?? FindAncestor<T>(parent);
+        }
+
+        #endregion
 
 
         //Tab Quản lý người dùng
@@ -94,5 +228,7 @@ namespace TraoDoiDo
         {
             MessageBox.Show("Nếu chưa duyệt thì chuyển sang đã duyệt\nNếu đã duyệt rồi, thì khi ấn nút này nó báo là sp đã được duyệt(hoặc vô hiệu hóa cái nút được thì càng tốt)");
         }
+
+        
     }
 }

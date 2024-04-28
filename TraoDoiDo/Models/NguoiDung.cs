@@ -1,4 +1,6 @@
-﻿namespace TraoDoiDo.Models
+﻿using System.Net.Http.Headers;
+
+namespace TraoDoiDo.Models
 {
     public class NguoiDung
     {
@@ -13,7 +15,11 @@
         private string anh = "";
         private TaiKhoan taiKhoan = new TaiKhoan();
         private string tien = "";
-         
+
+        private string soLuotMua;
+        
+        public NguoiDung()
+        { }
 
         public NguoiDung(string id, string hoTen, string gioiTinh, string ngaySinh, string cmnd, string email, string sdt, string diaChi, string anh, TaiKhoan taiKhoan, string tien)
         {
@@ -29,10 +35,18 @@
             this.taiKhoan = taiKhoan;
             this.tien = tien;
         } 
+        
+        public NguoiDung(string id, string hoTen, string diaChi, string anh, string soLuotMua)
+        {
+            this.id = id;
+            this.hoTen = hoTen;
+            this.diaChi = diaChi;
+            this.anh = anh;
+            this.SoLuotMua = soLuotMua;
+        }
 
 
-        public NguoiDung ()
-        { }
+        
 
         public string Id { get => id; set => id = value; }
         public string HoTen { get => hoTen; set => hoTen = value; }
@@ -45,5 +59,6 @@
         public string Anh { get => anh; set => anh = value; }
         public string Tien { get => tien; set => tien = value; }
         public TaiKhoan TaiKhoan { get => taiKhoan; set => taiKhoan = value; }
+        public string SoLuotMua { get => soLuotMua; set => soLuotMua = value; }
     }
 }

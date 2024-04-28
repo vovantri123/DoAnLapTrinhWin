@@ -29,12 +29,15 @@ namespace TraoDoiDo
         private int soLuongSP = 0;
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         private SanPhamUC[] DanhSachSanPham = new SanPhamUC[100];
-        NguoiDung ngDung = new NguoiDung(); //Người mua
+        NguoiDung ngMua = new NguoiDung(); //Người mua
         SanPhamDao sanPhamDao = new SanPhamDao();
         GioHangDao gioHangDao = new GioHangDao();
         TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        List<TrangThaiDonHang> dsSanPhamDeThanhToan = new List<TrangThaiDonHang>(); 
+        List<TrangThaiDonHang> dsSanPhamDeThanhToan = new List<TrangThaiDonHang>();
+        VoucherDao voucherDao = new VoucherDao();
+
+        
         public MuaDoUC()
         {
             InitializeComponent();
@@ -42,13 +45,13 @@ namespace TraoDoiDo
             Loaded += GioHang_Load; //TAB2
             Loaded += TrangThaiDonHang_Load; //TAB3
         } 
-        public MuaDoUC(NguoiDung kh)
+        public MuaDoUC(NguoiDung nguoi)
         {
+            ngMua = nguoi; 
             InitializeComponent();
             Loaded += MuaSam_Load; // TAB1
             Loaded += GioHang_Load; //TAB2
             Loaded += TrangThaiDonHang_Load; //TAB3
-            ngDung = kh;
         }
 
         #region TAB1 MUA SẮM
@@ -57,7 +60,77 @@ namespace TraoDoiDo
             LoadSanPhamlenWpnlHienThi();
             SapXepGiamDanTheoSoLuotXem();
             //SapXeoTheoYeuThich();
+        } 
+
+        private void cboSapXep_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox.SelectedItem != null)
+            {
+                string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
+                if (selectedItemContent == "Yêu thích của tôi")
+                {
+                    SapXeoTheoYeuThich();
+                }
+                if (selectedItemContent== "Giá tăng dần")
+                {
+                    SapXepTheoGiaTangDan();
+                }
+                if (selectedItemContent == "Giá giảm dần")
+                {
+                    //SapXepTheoGiaGiamDan();
+                }
+                if (selectedItemContent == "Lượt xem tăng dần")
+                {
+                    //SapXepTheoLuotXemTangDan();
+                }
+                if (selectedItemContent == "Lượt xem giảm dần")
+                {
+                    //SapXepTheoLuotXemGiamDan();
+                }
+
+
+                else
+                {
+                    //SapXepGiamDanTheoSoLuotXem();
+                }
+            }
         }
+        private void SapXepTheoGiaTangDan()
+        {
+            for (int i = 0; i < soLuongSP - 1; i++)
+                for (int j = i + 1; j < soLuongSP; j++)
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text))
+                    { 
+                        SanPhamUC spTam = new SanPhamUC(0, ngMua.Id);
+                        spTam = DanhSachSanPham[i];
+                        DanhSachSanPham[i] = DanhSachSanPham[j];
+                        DanhSachSanPham[j] = spTam;
+                    }
+            wpnlHienThi.Children.Clear();
+            for (int i = 0; i < soLuongSP; i++)
+            {
+                wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+            }
+        }
+        private void SapXepGiamDanTheoSoLuotXem()
+        {
+            for (int i = 0; i < soLuongSP - 1; i++)
+                for (int j = i + 1; j < soLuongSP; j++)
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
+                    { 
+                        SanPhamUC spTam = new SanPhamUC(0, ngMua.Id);
+                        spTam = DanhSachSanPham[i];
+                        DanhSachSanPham[i] = DanhSachSanPham[j];
+                        DanhSachSanPham[j] = spTam;
+                    }
+            wpnlHienThi.Children.Clear();
+            for (int i = 0; i < soLuongSP; i++)
+            {
+                wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+            }
+        }
+
         private void txbTimKiem_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txbTimKiem.Text.Trim() != "")
@@ -128,22 +201,7 @@ namespace TraoDoiDo
         }
 
 
-        private void cboSapXep_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox comboBox = sender as ComboBox;
-            if (comboBox.SelectedItem != null)
-            {
-                string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
-                if (selectedItemContent == "Yêu thích của tôi")
-                {
-                    SapXeoTheoYeuThich();
-                }
-                else
-                {
-                    SapXepGiamDanTheoSoLuotXem();
-                }
-            }
-        }
+        
         private void LoadSanPhamlenWpnlHienThi()
         {
             soLuongSP = 0;
@@ -151,7 +209,7 @@ namespace TraoDoiDo
             {
                 conn.Open();
                
-                List<SanPham> dsSanPham = sanPhamDao.LoadSanPham(ngDung.Id); // Đây là idNguoiMua 
+                List<SanPham> dsSanPham = sanPhamDao.LoadSanPham(ngMua.Id); // Đây là idNguoiMua 
 
                 foreach(var dong in dsSanPham)
                 {
@@ -163,7 +221,7 @@ namespace TraoDoiDo
 
                     }
                     
-                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngDung.Id); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
+                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngMua.Id); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
                     DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = dong.Id;
                     DanhSachSanPham[soLuongSP].txtbTen.Text = dong.Ten;
@@ -201,24 +259,7 @@ namespace TraoDoiDo
                 conn.Close();
             }
         }
-        private void SapXepGiamDanTheoSoLuotXem()
-        {
-            for (int i = 0; i < soLuongSP - 1; i++)
-                for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
-                    {
-                        int yeuThich = 0;
-                        SanPhamUC spTam = new SanPhamUC(yeuThich, ngDung.Id);
-                        spTam = DanhSachSanPham[i];
-                        DanhSachSanPham[i] = DanhSachSanPham[j];
-                        DanhSachSanPham[j] = spTam;
-                    }
-            wpnlHienThi.Children.Clear();
-            for (int i = 0; i < soLuongSP; i++)
-            {
-                wpnlHienThi.Children.Add(DanhSachSanPham[i]);
-            }
-        }
+       
         #endregion
 
         #region TAB2 GIỎ HÀNG
@@ -227,13 +268,49 @@ namespace TraoDoiDo
         private void GioHang_Load(object sender, RoutedEventArgs e)
         {
             LsvGioHang_Load(sender, e);
+            LoadVoucherCuaToi(sender, e);
+        }
+
+        private void vcUC_TextBlockChanged(object sender, VoucherUC.TextBlockChangedEventArgs e)
+        { 
+            // Cập nhật TextBlock trên form cha
+            txtbgiaTriVoucher.Text = e.GiaTriMoi;
+            txtbIdVoucher.Text = e.IdMoi;
+
+            // Gọi hàm cha
+            TinhTien();
+        }
+        private void LoadVoucherCuaToi(object sender, RoutedEventArgs e)
+        {
+            spnlVoucherCuaToi.Children.Clear();
+            try
+            {  
+                List<Voucher> dsVoucher = voucherDao.LoadVoucherTheoIdNguoiMua(ngMua.Id); // DS này lấy từ database
+
+                foreach (var dong in dsVoucher) //Chưa tối ưu nha, cần sửa lại bên voucherUC.cs
+                {
+                    VoucherUC vcUC = new VoucherUC(ngMua.Id, "dùng");
+                    vcUC.txtbTenVoucher.Text = dong.TenVoucher;
+                    vcUC.txtbGiaTri.Text = dong.GiaTri;
+                    vcUC.txtbSoLuotSuDungConLai.Text = (Convert.ToInt32(dong.SoLuotSuDungToiDa) - Convert.ToInt32(dong.SoLuotDaSuDung)).ToString();
+                    vcUC.txtbNGayKetThuc.Text = dong.NgayKetThuc;
+                    vcUC.txtbIdVoucher.Text = dong.IdVoucher;
+                    vcUC.TextBlockChanged += vcUC_TextBlockChanged;
+                     
+                    spnlVoucherCuaToi.Children.Add(vcUC); 
+                } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            } 
         }
 
         private void LsvGioHang_Load(object sender, RoutedEventArgs e)
         {
             try
             {
-                List<GioHang> dsGioHang = gioHangDao.timThongTinSanPhamTheoIDNguoiMua(ngDung.Id);
+                List<GioHang> dsGioHang = gioHangDao.timThongTinSanPhamTheoIDNguoiMua(ngMua.Id);
                 lsvGioHang.Items.Clear();
                 foreach(var dong in dsGioHang)
                 {
@@ -276,7 +353,7 @@ namespace TraoDoiDo
                     {
                         try
                         { 
-                            gioHangDao.Xoa(dataItem.IdSP, ngDung.Id);
+                            gioHangDao.Xoa(dataItem.IdSP, ngMua.Id);
                         }
                         catch (Exception ex)
                         {
@@ -309,8 +386,9 @@ namespace TraoDoiDo
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            DiaChi f = new DiaChi(ngDung, dsSanPhamDeThanhToan); //truyền vào người mua
+            DiaChi f = new DiaChi(ngMua, dsSanPhamDeThanhToan); //truyền vào người mua
             f.tongThanhToan = txtbTongThanhToan.Text;
+            f.idVoucher = txtbIdVoucher.Text;
             f.ShowDialog();
         }
 
@@ -336,7 +414,7 @@ namespace TraoDoiDo
                     }
                 }
             }
-            TinhTienCuaNhungDongDuocChon(sender, e);
+            TinhTien();
         }
         // Phương thức hỗ trợ để tìm kiếm một đối tượng theo kiểu trong một VisualTree
         private T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
@@ -355,8 +433,7 @@ namespace TraoDoiDo
             }
             return null;
         }
-
-        private void TinhTienCuaNhungDongDuocChon(object sender, RoutedEventArgs e)
+        private void TinhTien()
         {
             double tongTienHang = 0;
             double tongTienShip = 0;
@@ -377,25 +454,25 @@ namespace TraoDoiDo
                 string ngayThanhToan = DateTime.Now.ToString("dd/MM/yyyy");
                 string trangThai = "Chờ xác nhận";
 
-                 
+
                 tongTienHang += Convert.ToDouble(giaBan) * Convert.ToInt32(soLuongMua);
-                tongTienShip += Convert.ToDouble(phiShip); 
+                tongTienShip += Convert.ToDouble(phiShip);
 
-                tongThanhToan = tongTienHang + tongTienShip;
+                tongThanhToan = tongTienHang + tongTienShip - Convert.ToInt32(txtbgiaTriVoucher.Text);
 
-                //mang[0] = ngDung.Id;
-                //mang[1] = item.IdSP;
-                //mang[2] = soLuongMua.ToString();
-                //mang[3] = (tongTienhang + tongTienShip).ToString();
-                //mang[4] = DateTime.Now.ToString();
-                //mang[5] = "Chờ xác nhận"; 
-                dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngDung.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip, null, null, null, null));
+
+                dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngMua.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip, null, null, null, null));
             }
 
             txtbTongTienHang.Text = tongTienHang.ToString();
             txtbTongTienShip.Text = tongTienShip.ToString();
             txtbTongThanhToan.Text = tongThanhToan.ToString();
         }
+        private void TinhTienCuaNhungDongDuocChon_Checked(object sender, RoutedEventArgs e)
+        {
+            TinhTien();
+        }
+         
         #endregion
 
 
@@ -412,7 +489,7 @@ namespace TraoDoiDo
             try
             {
                 //Load Form TrangThaiDonHang 
-                List<TrangThaiDonHang> dsTrangThaiDon = trangThaiDonHangDao.LoadTrangThaiDonHang(ngDung.Id, trangthai);
+                List<TrangThaiDonHang> dsTrangThaiDon = trangThaiDonHangDao.LoadTrangThaiDonHang(ngMua.Id, trangthai);
 
                 if (tenLsv == "lsvChoNguoiBanXacNhan")
                     lsvChoNguoiBanXacNhan.Items.Clear();
@@ -461,11 +538,11 @@ namespace TraoDoiDo
                         try
                         {
                             // Xóa dữ liệu từ bảng TrangThaiDongHang
-                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,null, null, null, null, null, null, null, null, null);
+                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,null, null, null, null, null, null, null, null, null);
                             trangThaiDonHangDao.Xoa(trangThaiDonHang);
 
                             // Xóa dữ liệu  khỏi bảng QuanLyDonHang 
-                            QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngDung.Id, dataItem.IdSP, null, null);
+                            QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, dataItem.IdSP, null, null);
                             quanLyDonHangDao.Xoa(quanLyDonHang);
                         }
                         catch (Exception ex)
@@ -506,10 +583,10 @@ namespace TraoDoiDo
                         try
                         {
                             conn.Open();
-                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngDung.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,"Đã nhận", null, null, null, null, null, null, null, null);
+                            TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id,dataItem.IdSP,dataItem.SoLuongMua,dataItem.TongThanhToan,dataItem.Ngay,"Đã nhận", null, null, null, null, null, null, null, null);
                             trangThaiDonHangDao.CapNhat(trangThaiDonHang);
 
-                            QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null,null,ngDung.Id,dataItem.IdSP,"Đã giao",null);
+                            QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null,null,ngMua.Id,dataItem.IdSP,"Đã giao",null);
                             quanLyDonHangDao.CapNhat(quanLyDonHang);
                         }
                         catch (Exception ex)
@@ -532,7 +609,7 @@ namespace TraoDoiDo
         private void btnDanhGia_Click(object sender, RoutedEventArgs e)
         {
             DanhGia f = new DanhGia();
-            f.idNguoiMua = ngDung.Id;
+            f.idNguoiMua = ngMua.Id;
 
             // Lấy button được click
             Button btn = sender as Button;
@@ -576,7 +653,7 @@ namespace TraoDoiDo
 
         private void btnTraHang_Click(object sender, RoutedEventArgs e)
         {
-            ucLyDoTraHang.idNguoiMua = ngDung.Id;
+            ucLyDoTraHang.idNguoiMua = ngMua.Id;
 
             // Lấy button được click
             Button btn = sender as Button;

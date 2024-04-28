@@ -22,7 +22,7 @@ namespace TraoDoiDo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private NguoiDung kh = new NguoiDung();
+        private NguoiDung nguoi = new NguoiDung();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace TraoDoiDo
         }
         public MainWindow(NguoiDung nguoiDung)
         {
-            kh = nguoiDung;
+            nguoi = nguoiDung;
             InitializeComponent();
             TrangChu_Click(Owner, new RoutedEventArgs());
             Loaded += mainWindow_Loaded;
@@ -81,27 +81,27 @@ namespace TraoDoiDo
 
         private void DangDo_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new DangDoUC(kh);
+            contentControlHienThi.Content = new DangDoUC(nguoi);
             txtbTenTrang.Text = "Đăng đồ";
             Tg_Btn.IsChecked = false;
         }
         private void TrangChu_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new TrangChuUC();
+            contentControlHienThi.Content = new TrangChuUC(nguoi.Id);
             txtbTenTrang.Text = "Trang chủ";
             Tg_Btn.IsChecked = false;
         }
 
         private void ViDienTu_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new ViDienTuUC(kh);
+            contentControlHienThi.Content = new ViDienTuUC(nguoi);
             txtbTenTrang.Text = "Ví điện tử";
             Tg_Btn.IsChecked = false;
         }
 
         private void ThongTinCaNhan_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new ThongTinCaNhanUC(kh);
+            contentControlHienThi.Content = new ThongTinCaNhanUC(nguoi);
             txtbTenTrang.Text = "Thông tin cá nhân";
             Tg_Btn.IsChecked = false;
         }
@@ -109,7 +109,7 @@ namespace TraoDoiDo
         private void MuaDo_Click(object sender, RoutedEventArgs e)
         {
 
-            contentControlHienThi.Content = new MuaDoUC(kh);
+            contentControlHienThi.Content = new MuaDoUC(nguoi);
             txtbTenTrang.Text = "Mua đồ";
             Tg_Btn.IsChecked = false;
         }
@@ -132,12 +132,12 @@ namespace TraoDoiDo
         private void mainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadWindow();
-            imgNguoiDung.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
+            imgNguoiDung.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoi.Anh)));
         }
         public void LoadWindow()
         {
-            txtbTenNguoiDung.Text = kh.HoTen;
-            txtbTienNguoiDung.Text = kh.Tien + " đ";
+            txtbTenNguoiDung.Text = nguoi.HoTen;
+            txtbTienNguoiDung.Text = nguoi.Tien + " đ";
         }
         private void btnHienThiThongBao_Click(object sender, RoutedEventArgs e)
         {

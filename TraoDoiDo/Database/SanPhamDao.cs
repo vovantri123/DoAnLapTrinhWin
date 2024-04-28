@@ -31,9 +31,9 @@ namespace TraoDoiDo.Database
         public void CapNhat(SanPham sp)
         {
             string sqlStr = $@"UPDATE {sanPhamHeader} SET {sanPhamTen} = N'{sp.Ten}', {sanPhamAnh} = '{sp.LinkAnh}', {sanPhamLoai} = N'{sp.Loai}', {sanPhamSoLuong} = '{sp.SoLuong}', "+
-                      $" {sanPhamSLDaBan} = '{sp.SoLuongDaBan}', {sanPhamGiaGoc} = '{sp.GiaGoc}', {sanPhamGiaBan} = '{sp.GiaBan}', {sanPhamPhiShip} = '{sp.PhiShip}', "+
-                     $" {sanPhamTrangThai} = N'{sp.TrangThai}', {sanPhamNoiBan} = N'{sp.NoiBan}', {sanPhamXuatXu} = N'{sp.XuatXu}', {sanPhamNgayMua} = '{sp.NgayMua}', "+
-                      $" {sanPhamPhamTramMoi} = '{sp.PhanTramMoi}', {sanPhamMoTaChung} = N'{sp.MoTaChung}' WHERE {sanPhamID} = '{sp.Id}'";
+                        $" {sanPhamSLDaBan} = '{sp.SoLuongDaBan}', {sanPhamGiaGoc} = '{sp.GiaGoc}', {sanPhamGiaBan} = '{sp.GiaBan}', {sanPhamPhiShip} = '{sp.PhiShip}', "+
+                        $" {sanPhamTrangThai} = N'{sp.TrangThai}', {sanPhamNoiBan} = N'{sp.NoiBan}', {sanPhamXuatXu} = N'{sp.XuatXu}', {sanPhamNgayMua} = '{sp.NgayMua}', "+
+                        $" {sanPhamPhamTramMoi} = '{sp.PhanTramMoi}', {sanPhamMoTaChung} = N'{sp.MoTaChung}' WHERE {sanPhamID} = '{sp.Id}'";
             dbConnection.ThucThi(sqlStr);
         }
 
@@ -187,9 +187,9 @@ namespace TraoDoiDo.Database
         public List<SanPham> LoadThongSoSanPhamDeThongKe(string idNguoiDang)   //code là gộp mấy cái đồ thị dô chung, rồi gộp lên 2 ô tổng doanh thu và bán được dô chung, còn tong khach hang thì sài riêng
         {
             string sqlStr = $@"
-            SELECT {sanPhamTen}, {sanPhamSLDaBan}, {sanPhamSoLuong} , {sanPhamGiaBan}, {sanPhamIdNguoiDang}
-            FROM {sanPhamHeader}
-            WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+                SELECT {sanPhamTen}, {sanPhamSLDaBan}, {sanPhamSoLuong} , {sanPhamGiaBan}, {sanPhamIdNguoiDang}
+                FROM {sanPhamHeader}
+                WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
             dsSanPham = new List<SanPham>();
             bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
             foreach (var dong in bangKetQua)
@@ -200,11 +200,11 @@ namespace TraoDoiDo.Database
         public string tinhTongKhachHang(string idNguoiDang) // Tính cái ô Tổng số lượng Khách hàng bên thống kê
         {
             string sqlStr = $@"
-            SELECT DISTINCT COUNT({trangThaiHeader}.{trangThaiIdNguoiMua}) as TongSoKhachHang
-            FROM {trangThaiHeader}
-            INNER JOIN {sanPhamHeader} ON {trangThaiHeader}.{trangThaiIdSanPham} = {sanPhamHeader}.{sanPhamID}
-            GROUP BY {sanPhamHeader}.{sanPhamIdNguoiDang}
-            HAVING {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+                SELECT DISTINCT COUNT({trangThaiHeader}.{trangThaiIdNguoiMua}) as TongSoKhachHang
+                FROM {trangThaiHeader}
+                INNER JOIN {sanPhamHeader} ON {trangThaiHeader}.{trangThaiIdSanPham} = {sanPhamHeader}.{sanPhamID}
+                GROUP BY {sanPhamHeader}.{sanPhamIdNguoiDang}
+                HAVING {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
             return dbConnection.LayMotDoiTuong(sqlStr, "TongSoKhachHang");
         }
     }

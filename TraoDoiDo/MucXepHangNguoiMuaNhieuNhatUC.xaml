@@ -40,7 +40,7 @@
                         Style="{StaticResource MaterialDesignOutlineChip}">
                         <materialDesign:Chip.Icon>
                             <Image
-                                x:Name="imgNguoiDung"
+                                x:Name="imgAnhNguoiMuaNhieuNhat"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Source="/HinhCuaToi/Avatar1.png" />
@@ -56,6 +56,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="10,0,0,0">
                         <TextBlock
+                            x:Name="txtbTenNguoiMuaNhieuNhat"
                             VerticalAlignment="Center"
                             FontSize="14"
                             FontWeight="Medium"
@@ -64,6 +65,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Margin="10,0,0,0">
                         <TextBlock
+                            x:Name="txtbDiaChiNguoiMuaNhieuNhat"
                             VerticalAlignment="Center"
                             FontSize="14"
                             FontWeight="Medium"
