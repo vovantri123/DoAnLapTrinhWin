@@ -137,7 +137,7 @@ namespace TraoDoiDo
         public void LoadWindow()
         {
             txtbTenNguoiDung.Text = nguoi.HoTen;
-            txtbTienNguoiDung.Text = nguoi.Tien + " đ";
+            txtbTienNguoiDung.Text = DinhDangTien(Convert.ToDecimal(nguoi.Tien)) + " đ";
         }
         private void btnHienThiThongBao_Click(object sender, RoutedEventArgs e)
         {
@@ -145,6 +145,10 @@ namespace TraoDoiDo
                 myPopup.IsOpen = false;
             else
                 myPopup.IsOpen = true;
+        }
+        private static string DinhDangTien(decimal t)
+        {
+            return t.ToString("#,0");
         }
     }
 }

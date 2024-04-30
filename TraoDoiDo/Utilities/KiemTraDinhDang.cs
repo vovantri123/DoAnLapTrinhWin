@@ -44,5 +44,9 @@ namespace TraoDoiDo.ViewModels
             int tuoi = today.Year - ngaySinh.Year;
             return tuoi >= TuoiMin;
         }
+        public bool kiemTraNgayMuaSanPham(DateTime ngayMua, DateTime ngayDang)
+        {
+            return ngayMua < ngayDang;
+        }
     }
 }

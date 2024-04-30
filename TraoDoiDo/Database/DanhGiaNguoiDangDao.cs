@@ -49,6 +49,18 @@ namespace TraoDoiDo.Database
                 dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(null, null, null, null, dong[0], null, dong[1], null));
             return dsDanhGiaNguoiDang;
         }
+        public List<DanhGiaNguoiDang> TinhTrungBinhSoSao(string soSaoDau, string soSaoCuoi)
+        {
+            string sqlStr = $@"SELECT {danhGiaHeader}.{quanLyIdNguoiDang}
+                                FROM {danhGiaHeader}
+                                GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang}
+                                HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN {soSaoDau} AND {soSaoCuoi} ";
+            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
+            foreach (var dong in bangKetQua)
+                dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, null, null, null, null));
+            return dsDanhGiaNguoiDang;
+        }
         public NguoiDung LoadThongTinNguoiDang(string idNguoiDang)
         {
             string sqlStr = $@" 

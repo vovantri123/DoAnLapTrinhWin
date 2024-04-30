@@ -15,6 +15,8 @@ namespace TraoDoiDo
         private ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100]; //Khi dùng thì phải khai báo là DanhSachAnhVaMoTa[i] = new ThemAnhKhiDangUC();
         NguoiDung ngDung = new NguoiDung();
         XuLyAnh xuLyAnh = new XuLyAnh();
+        SanPham sp = new SanPham();
+        SanPhamDao sanPhamDao = new SanPhamDao();
         public DangDo_Dang()
         {
             InitializeComponent();
@@ -23,37 +25,23 @@ namespace TraoDoiDo
         public DangDo_Dang(NguoiDung kh)
         {
             InitializeComponent();
+            this.DataContext = this;
             Loaded += btnThemAnh_Click;
             ngDung = kh;
         }
-
-
-        private void btnDang_Click(object sender, RoutedEventArgs e)
+        private void themThongTinVaoCSDL()
         {
-            bool coAnh = false;
-            bool coTT = false;
-            try
-            {
-                themThongTinVaoCSDL();
-                coTT = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            try
-            {
-                themAnhVaMoTaVaoCSDL();
-                coAnh = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            if (coAnh && coTT)
-            {
-                MessageBox.Show("Đăng đồ thành công");
-            }
+            string tenFileAnh = "no_image.jpg";
+            for (int i = 0; i < soLuongAnh; i++)
+                if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
+                {
+                    tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
+                    break;
+                }
+            string ngayHienTai = DateTime.Today.ToShortDateString();
+            string ngayMua = dtpNgayMua.Text;
+            sp = new SanPham(txtbIdSanPham.Text, ngDung.Id, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text, txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, ngayMua, txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), "0", "1", ngayHienTai);
+            //sanPhamDao.Them(sp);
         }
         private void themAnhVaMoTaVaoCSDL()
         {
@@ -67,27 +55,49 @@ namespace TraoDoiDo
                     string moTa = DanhSachAnhVaMoTa[i].txtbMoTa.Text;
                     MoTaHangHoa mta = new MoTaHangHoa(id, idAnhMinhHoa, tenFileAnh, moTa);
                     MoTaHangHoaDao mtaDao = new MoTaHangHoaDao();
-                    mtaDao.Them(mta); 
-                    XuLyAnh.LuuAnhVaoThuMuc(DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text,"HinhSanPham");
+                    mtaDao.Them(mta);
+                    XuLyAnh.LuuAnhVaoThuMuc(DanhSachAnhVaMoTa[i].txtbDuongDanAnh.Text, "HinhSanPham");
                 }
                 else
                     continue;
             }
-            
+
         }
-        private void themThongTinVaoCSDL()
+
+        private void btnDang_Click(object sender, RoutedEventArgs e)
         {
-            string tenFileAnh = "no_image.jpg";
-            for (int i = 0; i < soLuongAnh; i++)
-                if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
+            bool coAnh = false;
+            bool coTT = false;
+            themThongTinVaoCSDL();
+            bool check = sp.kiemTraCacTextBox();
+            if (check)
+            {
+                try
                 {
-                    tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
-                    break;
+                    sanPhamDao.Them(sp);
+                    coTT = true;
                 }
-            SanPham sanPham = new SanPham(txtbIdSanPham.Text, ngDung.Id, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text, txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), "0", null);
-            SanPhamDao sanPhamDao = new SanPhamDao();
-            sanPhamDao.Them(sanPham);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                try
+                {
+                    themAnhVaMoTaVaoCSDL();
+                    coAnh = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                if (coAnh && coTT)
+                {
+                    MessageBox.Show("Đăng đồ thành công");
+                }
+            }
+
         }
+
 
         private void btnThemAnh_Click(object sender, RoutedEventArgs e)
         {

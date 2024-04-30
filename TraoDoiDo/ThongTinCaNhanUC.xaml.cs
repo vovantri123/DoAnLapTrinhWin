@@ -11,11 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 using Microsoft.Win32;
 using TraoDoiDo.ViewModels;
+using System.IO;
 namespace TraoDoiDo
 {
     /// <summary>
@@ -24,7 +24,12 @@ namespace TraoDoiDo
     public partial class ThongTinCaNhanUC : UserControl
     {
         NguoiDung kh = new NguoiDung();
-
+        NguoiDungDao nguoiDungDao = new NguoiDungDao();
+        NguoiDung ngDung = new NguoiDung();
+        TaiKhoan taiKhoan = new TaiKhoan();
+        NguoiDung nguoi = new NguoiDung();
+        TaiKhoanDao tkDao = new TaiKhoanDao();
+        int count = 0;
         public ThongTinCaNhanUC()
         {
             InitializeComponent();
@@ -37,6 +42,7 @@ namespace TraoDoiDo
             this.DataContext = this;
             Loaded += UCThongTinCaNhan_Loaded;
             kh = nguoiDung;
+
         }
 
 
@@ -47,6 +53,46 @@ namespace TraoDoiDo
 
         private void UCThongTinCaNhan_Loaded(object sender, RoutedEventArgs e)
         {
+            taiKhoan = tkDao.TimKiemBangId(kh.Id);
+            ngDung = nguoiDungDao.TimKiemBangId(kh.Id);
+            nguoi = new NguoiDung(ngDung.Id, ngDung.HoTen, ngDung.GioiTinh, ngDung.NgaySinh, ngDung.Cmnd, ngDung.Email, ngDung.Sdt, ngDung.DiaChi, ngDung.Anh, taiKhoan, "0");
+            LoadThongTin(nguoi);
+        }
+
+        private void btnCapNhat_Click(object sender, RoutedEventArgs e)
+        {
+            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
+
+            string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(imageHinhDaiDien.Source.ToString());
+            string tenFileAnh = Path.GetFileName(tenAnh);
+            nguoi = new NguoiDung(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, tenFileAnh, taiKhoan, "0");
+
+            if (nguoi.kiemTraCacTextBox())
+            {
+                nguoiDungDao.CapNhat(nguoi);
+                MessageBox.Show("Cập nhật thành công");
+                LoadThongTin(nguoi);
+            }
+
+        }
+
+        private void btnDoiMatKhau_Click(object sender, RoutedEventArgs e)
+        {
+            taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
+            if (taiKhoan.kiemTraCacTextBox())
+            {
+                tkDao.CapNhat(taiKhoan);
+                MessageBox.Show("Đổi mật khẩu thành công");
+            }
+
+        }
+
+        private void btnChonAnh_Click(object sender, RoutedEventArgs e)
+        {
+            chonAnh();
+        }
+        private void LoadThongTin(NguoiDung kh)
+        {
             txtHoTen.Text = kh.HoTen;
             txtCmnd.Text = kh.Cmnd;
             txtDiaChi.Text = kh.DiaChi;
@@ -55,34 +101,13 @@ namespace TraoDoiDo
             txtTenDangNhap.Text = kh.TaiKhoan.TenDangNhap;
             txtMatKhau.Password = kh.TaiKhoan.MatKhau;
             txtEmail.Text = kh.Email;
-            cbGioiTinh.Text = kh.GioiTinh; 
-             
-            //DateTime selectedDate = DateTime.ParseExact(kh.NgaySinh,"dd/MM/yyyy",null);
-            //dtpNgaySinh.SelectedDate = selectedDate;
+            cbGioiTinh.Text = kh.GioiTinh;
+
+            string selectedDate = kh.NgaySinh;
+            dtpNgaySinh.Text = selectedDate;
 
             imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
         }
-
-        private void btnCapNhat_Click(object sender, RoutedEventArgs e)
-        {
-            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
-            NguoiDung nguoiDung = new NguoiDung(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, imageHinhDaiDien.Source.ToString(), taiKhoan, "");
-            NguoiDungDao nguoiDungDao = new NguoiDungDao();
-            nguoiDungDao.CapNhat(nguoiDung);
-        }
-
-        private void btnDoiMatKhau_Click(object sender, RoutedEventArgs e)
-        {
-            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
-            TaiKhoanDao taiKhoanDao = new TaiKhoanDao();
-            taiKhoanDao.CapNhat(taiKhoan);
-        }
-
-        private void btnChonAnh_Click(object sender, RoutedEventArgs e)
-        {
-            chonAnh();
-        }
-
         public void chonAnh()
         {
             OpenFileDialog file = new OpenFileDialog();

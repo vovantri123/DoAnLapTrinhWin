@@ -71,7 +71,7 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="25"
-                                    Text="120.200.000 đ" />
+                                     />
                             </Grid>
                         </Border>
                     </Grid>

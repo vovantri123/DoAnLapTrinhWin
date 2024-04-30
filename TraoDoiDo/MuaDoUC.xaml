@@ -54,7 +54,7 @@
                                     SelectionChanged="cboSapXep_SelectionChanged"
                                     Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                     <ComboBoxItem Content="Giá tăng dần" />
-                                    <ComboBoxItem Content="Giả giảm dần" />
+                                    <ComboBoxItem Content="Giá giảm dần" />
                                     <ComboBoxItem Content="Lượt xem tăng dần" />
                                     <ComboBoxItem Content="Lượt xem giảm dần" />
                                     <ComboBoxItem Content="Yêu thích của tôi" />

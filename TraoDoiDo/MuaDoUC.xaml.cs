@@ -32,6 +32,7 @@ namespace TraoDoiDo
         NguoiDung ngMua = new NguoiDung(); //Người mua
         SanPhamDao sanPhamDao = new SanPhamDao();
         GioHangDao gioHangDao = new GioHangDao();
+        NguoiDungDao ngDungDao = new NguoiDungDao();
         TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         List<TrangThaiDonHang> dsSanPhamDeThanhToan = new List<TrangThaiDonHang>();
@@ -57,8 +58,9 @@ namespace TraoDoiDo
         #region TAB1 MUA SẮM
         private void MuaSam_Load(object sender, RoutedEventArgs e)
         {
-            LoadSanPhamlenWpnlHienThi();
-            SapXepGiamDanTheoSoLuotXem();
+            SapXepTheoGanDay();
+            //LoadSanPhamlenWpnlHienThi();
+            //SapXepGiamDanTheoSoLuotXem();
             //SapXeoTheoYeuThich();
         } 
 
@@ -68,36 +70,57 @@ namespace TraoDoiDo
             if (comboBox.SelectedItem != null)
             {
                 string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
-                if (selectedItemContent == "Yêu thích của tôi")
+                if (selectedItemContent == "Tất cả")
+                    SapXepTheoGanDay();
+                else if (selectedItemContent == "Yêu thích của tôi")
                 {
                     SapXeoTheoYeuThich();
                 }
-                if (selectedItemContent== "Giá tăng dần")
+                else if (selectedItemContent== "Giá tăng dần")
                 {
                     SapXepTheoGiaTangDan();
                 }
-                if (selectedItemContent == "Giá giảm dần")
+                else if (selectedItemContent == "Giá giảm dần")
                 {
-                    //SapXepTheoGiaGiamDan();
+                    SapXepTheoGiaGiamDan();
                 }
-                if (selectedItemContent == "Lượt xem tăng dần")
+                else if (selectedItemContent == "Lượt xem tăng dần")
                 {
-                    //SapXepTheoLuotXemTangDan();
+                    SapXepTangDanTheoSoLuotXem();
                 }
-                if (selectedItemContent == "Lượt xem giảm dần")
+                else if (selectedItemContent == "Lượt xem giảm dần")
                 {
-                    //SapXepTheoLuotXemGiamDan();
+                    SapXepGiamDanTheoSoLuotXem();
                 }
-
-
                 else
                 {
-                    //SapXepGiamDanTheoSoLuotXem();
+                    SapXepTheoGanDay();
                 }
             }
         }
         private void SapXepTheoGiaTangDan()
         {
+            LoadSanPhamlenWpnlHienThi();
+            wpnlHienThi.Children.Clear();
+            for (int i = 0; i < soLuongSP - 1; i++)
+                for (int j = i + 1; j < soLuongSP; j++)
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text) > Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text))
+                    { 
+                        SanPhamUC spTam = new SanPhamUC(0, ngMua.Id);
+                        spTam = DanhSachSanPham[i];
+                        DanhSachSanPham[i] = DanhSachSanPham[j];
+                        DanhSachSanPham[j] = spTam;
+                    }
+            wpnlHienThi.Children.Clear();
+            for (int i = 0; i < soLuongSP; i++)
+            {
+                wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+            }
+        }
+        private void SapXepTheoGiaGiamDan()
+        {
+            LoadSanPhamlenWpnlHienThi();
+            wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
                     if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text))
@@ -113,8 +136,27 @@ namespace TraoDoiDo
                 wpnlHienThi.Children.Add(DanhSachSanPham[i]);
             }
         }
+        private void SapXepTheoGanDay()
+        {
+            LoadSanPhamlenWpnlHienThi();
+            wpnlHienThi.Children.Clear();
+            string loaiSPGanDay = ngDungDao.TimKiemLoaiSanPhamGanDay(ngMua.Id);
+            for (int i = 0; i < soLuongSP; i++)
+                if (DanhSachSanPham[i].sp.Loai == loaiSPGanDay)
+                {
+                    wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                }
+            for (int i = 0; i < soLuongSP; i++)
+                if (DanhSachSanPham[i].sp.Loai != loaiSPGanDay)
+                {
+                    wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+                }
+
+        }
         private void SapXepGiamDanTheoSoLuotXem()
         {
+            LoadSanPhamlenWpnlHienThi();
+            wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
                     if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
@@ -130,9 +172,30 @@ namespace TraoDoiDo
                 wpnlHienThi.Children.Add(DanhSachSanPham[i]);
             }
         }
+        private void SapXepTangDanTheoSoLuotXem()
+        {
+            LoadSanPhamlenWpnlHienThi();
+            wpnlHienThi.Children.Clear();
+            for (int i = 0; i < soLuongSP - 1; i++)
+                for (int j = i + 1; j < soLuongSP; j++)
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) > Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
+                    { 
+                        SanPhamUC spTam = new SanPhamUC(0, ngMua.Id);
+                        spTam = DanhSachSanPham[i];
+                        DanhSachSanPham[i] = DanhSachSanPham[j];
+                        DanhSachSanPham[j] = spTam;
+                    }
+            wpnlHienThi.Children.Clear();
+            for (int i = 0; i < soLuongSP; i++)
+            {
+                wpnlHienThi.Children.Add(DanhSachSanPham[i]);
+            }
+        }
 
         private void txbTimKiem_TextChanged(object sender, TextChangedEventArgs e)
         {
+            LoadSanPhamlenWpnlHienThi();
+            wpnlHienThi.Children.Clear();
             if (txbTimKiem.Text.Trim() != "")
             {
                 wpnlHienThi.Children.Clear();

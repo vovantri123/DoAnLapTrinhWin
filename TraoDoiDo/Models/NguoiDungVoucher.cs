@@ -2,8 +2,9 @@
 {
     public class NguoiDungVoucher
     {
-        string idVoucher;
-        string idNguoiDung;
+        string idVoucher="";
+        string idNguoiDung="";
+        
 
         public NguoiDungVoucher(string idVoucher, string idNguoiDung)
         {

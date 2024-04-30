@@ -18,7 +18,7 @@ namespace TraoDoiDo
     public partial class DangDoUC : UserControl
     {
 
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        
         NguoiDung nguoiDung = new NguoiDung();
         List<SanPham> dsSanPham;
         SanPhamDao sanPhamDao = new SanPhamDao();
@@ -26,6 +26,8 @@ namespace TraoDoiDo
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         TrangThaiDonHangDao trangThaiHangDao = new TrangThaiDonHangDao();
         DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
+        MoTaHangHoa moTaHangHoa = new MoTaHangHoa();
+        SanPham sanPham = new SanPham();
 
         public DangDoUC()
         {
@@ -107,8 +109,8 @@ namespace TraoDoiDo
 
         }
 
-       
-      
+
+
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             // Lấy button được click
@@ -127,34 +129,36 @@ namespace TraoDoiDo
                 {
                     if (MessageBox.Show("Bạn có chắc chắn muốn xóa mục đã chọn?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        try
-                        {
-                            // Xóa dữ liệu từ bảng SanPham
-                            sanPhamDao.Xoa(dataItem);
-                            // Xóa dữ liệu từ lsvQuanLySanPham
-                            lsvQuanLySanPham.Items.Remove(dataItem);
-                            xoaSp = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Lỗi xảy ra khi xóa sản phẩm: " + ex.Message);
-                        }
+
                         try
                         {
                             // Xóa dữ liệu  khỏi bảng MoTaAnhSanPham
-                            moTaDao.Xoa(dataItem);
+                            moTaHangHoa = new MoTaHangHoa(dataItem.Id, null, null, null);
+                            moTaDao.Xoa(moTaHangHoa);
                             xoaMt = true;
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Lỗi xảy ra khi xóa sản phẩm: " + ex.Message);
                         }
-                        finally
+                        try
                         {
-                            conn.Close();
+                            // Xóa dữ liệu từ bảng SanPham
+                            sanPham = new SanPham(dataItem.Id, nguoiDung.Id, dataItem.Ten, dataItem.LinkAnh, dataItem.Loai, dataItem.SoLuong, dataItem.SoLuongDaBan, dataItem.GiaGoc, dataItem.GiaBan, dataItem.PhiShip, null, null, null, null, null, null, null, null, null);
+                            sanPhamDao.Xoa(sanPham);
+                            // Xóa dữ liệu từ lsvQuanLySanPham
+                            xoaSp = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi xảy ra khi xóa sản phẩm: " + ex.Message);
                         }
                         if (xoaSp && xoaMt)
+                        {
+                            lsvQuanLySanPham.Items.Remove(dataItem);
                             MessageBox.Show("Xóa thành công");
+                        }
+
                     }
                 }
             }
@@ -342,7 +346,7 @@ namespace TraoDoiDo
                     }
                     finally
                     {
-                        conn.Close();
+                        
                         f.cboHinhThucThanhToan.IsEnabled = false;
                         f.txtHoTen.IsReadOnly = true;
                         f.txtDiaChi.IsReadOnly = true;

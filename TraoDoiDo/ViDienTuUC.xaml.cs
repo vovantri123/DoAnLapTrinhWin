@@ -41,6 +41,7 @@ namespace TraoDoiDo
             InitializeComponent();
             nguoiDung = kh;
             imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
+            Loaded += UcViDienTU_Loaded;
         }
 
         private void btnNapTien_Click(object sender, RoutedEventArgs e)
@@ -65,7 +66,9 @@ namespace TraoDoiDo
             {
                 HienThi_GiaoDich();
                 string t = nguoiDungDao.TimKiemTienBangId(nguoiDung.Id);
-                lblSoDu.Text = t;
+                decimal tien = Convert.ToDecimal(t);
+
+                lblSoDu.Text = DinhDangTien(tien);
             }
             catch (Exception ex)
             {
@@ -84,10 +87,11 @@ namespace TraoDoiDo
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
+            
+        }
+        private static string DinhDangTien(decimal t)
+        {
+            return t.ToString("#,0");
         }
         
 

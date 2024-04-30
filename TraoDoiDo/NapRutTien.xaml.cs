@@ -126,7 +126,7 @@ namespace TraoDoiDo
 
         public static string XoaDauCham(string tien)
         {
-            return tien.Replace(".", "");
+            return tien.Replace(",", "");
         }
 
         public double tinhTien()

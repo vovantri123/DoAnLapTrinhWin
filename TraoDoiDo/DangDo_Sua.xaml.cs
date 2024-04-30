@@ -124,17 +124,13 @@ namespace TraoDoiDo
                     }
                 string luotXem = sanPhamDao.LayLuotXem(txtbIdSanPham.Text);
                 SanPham sp= new SanPham(txtbIdSanPham.Text, sanPham.IdNguoiDang, txtbTen.Text, tenFileAnh, txtbLoai.Text, ucTangGiamSoLuongTong.txtbSoLuong.Text, ucTangGiamSoLuongDaBan.txtbSoLuong.Text, txtbGiaGoc.Text,
-                    txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), luotXem, null);
+                    txtbGiaBan.Text, txtbPhiShip.Text, "Đã duyệt", cboNoiBan.Text, cboXuatXu.Text, dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), txtbMoTaChung.Text, progressSlidere_PhanTramMoi.Value.ToString(), luotXem, null,null);
                 sanPhamDao.CapNhat(sp);
                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 

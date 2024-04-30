@@ -19,18 +19,23 @@ namespace TraoDoiDo.Database
             string sql = $"UPDATE {taiKhoanHeader} SET {taiKhoanMatKhau}='{tk.MatKhau}' WHERE {taiKhoanTenDangNhap}='{tk.TenDangNhap}'";
             dbConnection.ThucThi(sql);
         }
+        public void Xoa(string id)
+        {
+            string sql = $"DELETE FROM {taiKhoanHeader} WHERE {taiKhoanIdNguoiDung} = '{id}' ";
+            dbConnection.ThucThi(sql);
+        }
         public TaiKhoan TimKiemBangTenDangNhap(string tenDangNhap)
         {
             string sqlStr = $"SELECT * FROM {taiKhoanHeader} WHERE {taiKhoanTenDangNhap}='{tenDangNhap}'";
             string matKhau = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}");
-            string iDNguoiDung = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanIdNguoiDung}"); 
+            string iDNguoiDung = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanIdNguoiDung}");
             return new TaiKhoan(tenDangNhap, matKhau, iDNguoiDung);
         }
         public TaiKhoan TimKiemBangId(string id)
         {
             string sqlStr = $"SELECT * FROM {taiKhoanHeader} WHERE {taiKhoanIdNguoiDung}='{id}'";
             string ten = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanTenDangNhap}");
-            string mk = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}"); 
+            string mk = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}");
             return new TaiKhoan(ten, mk, id);
         }
     }

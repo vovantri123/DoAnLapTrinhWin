@@ -44,6 +44,7 @@
                                 x:Name="cboSapXep"
                                 Width="130"
                                 Margin="0,0,15,0"
+                                SelectionChanged="cboSapXep_SelectionChanged"
                                 materialDesign:HintAssist.FloatingOffset="0, -18"
                                 materialDesign:HintAssist.FloatingScale="0.7"
                                 materialDesign:HintAssist.Hint="Sắp xếp"
@@ -56,8 +57,10 @@
                             </ComboBox>
 
                             <ComboBox
+                                x:Name="cbLocLoai"
                                 Width="120"
                                 Margin="0,0,15,0"
+                                SelectionChanged="cbLocLoai_SelectionChanged"
                                 materialDesign:HintAssist.FloatingOffset="0, -18"
                                 materialDesign:HintAssist.FloatingScale="0.7"
                                 materialDesign:HintAssist.Hint="Loại"
@@ -77,12 +80,15 @@
 
                         </StackPanel>
                         <TextBox
+                            x:Name="txbTimKiemSanPham"
+                            TextChanged="txbTimKiemSanPham_TextChanged"
                             Grid.Column="1"
                             Width="230"
                             Height="49"
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
                             materialDesign:HintAssist.Hint="Tìm kiếm"
+                            materialDesign:TextFieldAssist.PrefixText="Id: "
                             AcceptsReturn="True"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             TextWrapping="Wrap" />
@@ -179,7 +185,8 @@
                                                             materialDesign:ButtonAssist.CornerRadius="10"
                                                             BorderBrush="White"
                                                             BorderThickness="1"
-                                                            ToolTip="Sửa">
+                                                            ToolTip="Sửa"
+                                                            Click="btnSuaSP_Click">
                                                             <materialDesign:PackIcon
                                                                 Width="15"
                                                                 Height="15"
@@ -194,7 +201,8 @@
                                                             Background="#dd4131"
                                                             BorderBrush="White"
                                                             BorderThickness="1"
-                                                            ToolTip="Xóa">
+                                                            ToolTip="Xóa"
+                                                            Click="btnXoaSP_Click">
                                                             <materialDesign:PackIcon
                                                                 Width="15"
                                                                 Height="15"
@@ -236,23 +244,27 @@
                                 x:Name="cboSapXepNguoi"
                                 Width="130"
                                 Margin="0,0,15,0"
+                                SelectionChanged="cbSoSao_SelectionChanged_1"
                                 materialDesign:HintAssist.FloatingOffset="0, -18"
                                 materialDesign:HintAssist.FloatingScale="0.7"
                                 materialDesign:HintAssist.Hint="Sắp xếp"
                                 IsEditable="False"
                                 Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                <ComboBoxItem Content="Số sao tăng dần" />
-                                <ComboBoxItem Content="Số sao giảm dần" />
+                                <ComboBoxItem Content="Số sao từ 0 đến 2" />
+                                <ComboBoxItem Content="Số sao từ 3 đến 5" />
                                 <ComboBoxItem Content="Tất cả" />
                             </ComboBox>
                         </StackPanel>
                         <TextBox
+                            x:Name="txbTimKiemNguoiDung"
+                            TextChanged="txbTimKiemNguoiDung_TextChanged"
                             Grid.Column="1"
                             Width="230"
                             Height="47"
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
                             materialDesign:HintAssist.Hint="Tìm kiếm"
+                            materialDesign:TextFieldAssist.PrefixText="Id: "
                             AcceptsReturn="True"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             TextWrapping="Wrap" />
@@ -334,7 +346,8 @@
                                                             materialDesign:ButtonAssist.CornerRadius="10"
                                                             BorderBrush="White"
                                                             BorderThickness="1"
-                                                            ToolTip="Sửa">
+                                                            ToolTip="Sửa"
+                                                            Click="btnSua_Click">
                                                             <materialDesign:PackIcon
                                                                 Width="15"
                                                                 Height="15"
@@ -349,7 +362,8 @@
                                                             Background="#dd4131"
                                                             BorderBrush="White"
                                                             BorderThickness="1"
-                                                            ToolTip="Xóa">
+                                                            ToolTip="Xóa"
+                                                            Click="btnXoa_Click">
                                                             <materialDesign:PackIcon
                                                                 Width="15"
                                                                 Height="15"

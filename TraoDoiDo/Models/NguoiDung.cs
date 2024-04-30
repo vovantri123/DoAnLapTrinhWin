@@ -1,8 +1,10 @@
 ﻿using System.Net.Http.Headers;
-
+using System.Windows;
+using TraoDoiDo.ViewModels;
+using System;
 namespace TraoDoiDo.Models
 {
-    public class NguoiDung
+    public class NguoiDung : ThuocTinhViewModel
     {
         private string id = "";
         private string hoTen = "";
@@ -15,9 +17,10 @@ namespace TraoDoiDo.Models
         private string anh = "";
         private TaiKhoan taiKhoan = new TaiKhoan();
         private string tien = "";
+        private string errorMessage = "";
 
-        private string soLuotMua;
-        
+        private string soLuotMua = "0";
+
         public NguoiDung()
         { }
 
@@ -34,8 +37,8 @@ namespace TraoDoiDo.Models
             this.anh = anh;
             this.taiKhoan = taiKhoan;
             this.tien = tien;
-        } 
-        
+        }
+
         public NguoiDung(string id, string hoTen, string diaChi, string anh, string soLuotMua)
         {
             this.id = id;
@@ -44,21 +47,61 @@ namespace TraoDoiDo.Models
             this.anh = anh;
             this.SoLuotMua = soLuotMua;
         }
+        public string Id { get => id; set { id = value; OnPropertyChanged(); } }
+        public string HoTen { get => hoTen; set { hoTen = value; OnPropertyChanged(); } }
+        public string GioiTinh { get => gioiTinh; set { gioiTinh = value; OnPropertyChanged(); } }
+        public string NgaySinh { get => ngaySinh; set { ngaySinh = value; OnPropertyChanged(); } }
+        public string Cmnd { get => cmnd; set { cmnd = value; OnPropertyChanged(); } }
+        public string Email { get => email; set { email = value; OnPropertyChanged(); } }
+        public string Sdt { get => sdt; set { sdt = value; OnPropertyChanged(); } }
+        public string DiaChi { get => diaChi; set { diaChi = value; OnPropertyChanged(); } }
+        public string Anh { get => anh; set { anh = value; OnPropertyChanged(); } }
+        public string Tien { get => tien; set { tien = value; OnPropertyChanged(); } }
+        public TaiKhoan TaiKhoan { get => taiKhoan; set { taiKhoan = value; OnPropertyChanged(); } }
+        public string SoLuotMua { get => soLuotMua; set { soLuotMua = value; OnPropertyChanged(); } }
 
+        //public string ErrorMessage { get => errorMessage; set { errorMessage = value; OnPropertyChanged(); } }
+        KiemTraDinhDang kiemTra = new KiemTraDinhDang();
+        public bool kiemTraCacTextBox()
+        {
 
-        
-
-        public string Id { get => id; set => id = value; }
-        public string HoTen { get => hoTen; set => hoTen = value; }
-        public string GioiTinh { get => gioiTinh; set => gioiTinh = value; }
-        public string NgaySinh { get => ngaySinh; set => ngaySinh = value; }
-        public string Cmnd { get => cmnd; set => cmnd = value; }
-        public string Email { get => email; set => email = value; }
-        public string Sdt { get => sdt; set => sdt = value; }
-        public string DiaChi { get => diaChi; set => diaChi = value; }
-        public string Anh { get => anh; set => anh = value; }
-        public string Tien { get => tien; set => tien = value; }
-        public TaiKhoan TaiKhoan { get => taiKhoan; set => taiKhoan = value; }
-        public string SoLuotMua { get => soLuotMua; set => soLuotMua = value; }
+            errorMessage = "";
+            foreach (var property in typeof(NguoiDung).GetProperties())
+            {
+                var value = property.GetValue(this);
+                if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+                {
+                    errorMessage = XuLyTienIch.TinNhanTrongKhongHopLe;
+                    MessageBox.Show(errorMessage);
+                    return false;
+                }
+            }
+            DateTime ngaySinh = DateTime.ParseExact(NgaySinh, "dd/MM/yyyy", null);
+            if (!kiemTra.kiemTraNgaySinh(ngaySinh))
+            {
+                errorMessage = XuLyTienIch.TinNhanNgaySinhKhongHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
+            if (!kiemTra.kiemTraEmail(Email))
+            {
+                errorMessage = XuLyTienIch.TinNhanEmailKhongHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
+            if (!kiemTra.kiemTraSoDienThoai(Sdt))
+            {
+                errorMessage = XuLyTienIch.TinNhanSdtKhongHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
+            if (!kiemTra.kiemTraCMND(Cmnd))
+            {
+                errorMessage = XuLyTienIch.TinNhanCMNDKhongHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
+            return true;
+        }
     }
 }

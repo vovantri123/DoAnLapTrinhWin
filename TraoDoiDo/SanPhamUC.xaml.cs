@@ -31,7 +31,7 @@ namespace TraoDoiDo
         public int yeuThich = 0;
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        SanPham sp = new SanPham();
+        public SanPham sp = new SanPham();
         SanPhamDao sanPhamDao = new SanPhamDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         List<string> listSP = new List<string>();
@@ -99,7 +99,7 @@ namespace TraoDoiDo
             tangSoLuotXemThem1();
 
         
-            sp = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, sp.LinkAnh, txtbLoai.Text,sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua,sp.MoTaChung, sp.PhanTramMoi,txtbSoLuotXem.Text, idNguoiMua);
+            sp = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, sp.LinkAnh, txtbLoai.Text,sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua,sp.MoTaChung, sp.PhanTramMoi,txtbSoLuotXem.Text, idNguoiMua,sp.NgayDang);
             ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);
             f.idNguoiDang = idNguoiDang;
             f.txtbTenNguoiDang.Text = tenNguoiDang;

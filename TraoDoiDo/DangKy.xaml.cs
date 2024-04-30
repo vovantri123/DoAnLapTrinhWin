@@ -36,7 +36,7 @@ namespace TraoDoiDo
             NguoiDung nguoi = new NguoiDung(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, txtbTenFileAnh.Text, taiKhoan, "0");
             ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(nguoi);
             NguoiDungDao nguoiDao = new NguoiDungDao();
-            bool checkThongTinHopLe = ttkh.kiemTraCacTextBox();
+            bool checkThongTinHopLe = nguoi.kiemTraCacTextBox();
             if (checkThongTinHopLe)
             { 
                 try
