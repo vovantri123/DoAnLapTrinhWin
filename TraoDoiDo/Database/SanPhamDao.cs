@@ -17,14 +17,14 @@ namespace TraoDoiDo.Database
 
         public void Them(SanPham sp)
         {
-            string sqlStr = $@"INSERT INTO SanPham ({sanPhamID},{sanPhamIdNguoiDang},{sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}, {sanPhamNoiBan}, {sanPhamXuatXu}, {sanPhamNgayMua}, {sanPhamPhamTramMoi}, {sanPhamMoTaChung}, {sanPhamSoLuotXem}) 
-                   VALUES ('{sp.Id}','{sp.IdNguoiDang}' , N'{sp.Ten}', '{sp.LinkAnh}', N'{sp.Loai}', '{sp.SoLuong}', '{sp.SoLuongDaBan}', '{sp.GiaGoc}', '{sp.GiaBan}', '{sp.PhiShip}', N'{sp.TrangThai}', N'{sp.NoiBan}', N'{sp.XuatXu}', '{sp.NgayMua}', '{sp.PhanTramMoi}', N'{sp.MoTaChung}','{0}')";
+            string sqlStr = $@"INSERT INTO SanPham ({sanPhamID},{sanPhamIdNguoiDang},{sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}, {sanPhamNoiBan}, {sanPhamXuatXu}, {sanPhamNgayMua}, {sanPhamPhamTramMoi}, {sanPhamMoTaChung}, {sanPhamSoLuotXem}, {sanPhamNgayDang}) 
+                   VALUES ('{sp.Id}','{sp.IdNguoiDang}' , N'{sp.Ten}', '{sp.LinkAnh}', N'{sp.Loai}', '{sp.SoLuong}', '{sp.SoLuongDaBan}', '{sp.GiaGoc}', '{sp.GiaBan}', '{sp.PhiShip}', N'{sp.TrangThai}', N'{sp.NoiBan}', N'{sp.XuatXu}', '{sp.NgayMua}', '{sp.PhanTramMoi}', N'{sp.MoTaChung}','{0}','{sp.NgayDang})";
             dbConnection.ThucThi(sqlStr);
         }
 
-        public void Xoa(SanPham sp)
+        public void Xoa(string idSanPham)
         {
-            string sqlStr = $"DELETE FROM {sanPhamHeader} WHERE {sanPhamID} = {sp.Id}";
+            string sqlStr = $"DELETE FROM {sanPhamHeader} WHERE {sanPhamID} = {idSanPham}";
             dbConnection.ThucThi(sqlStr);
         }
 
@@ -48,7 +48,7 @@ namespace TraoDoiDo.Database
                         ";
 
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
             {
                 dsSanPham.Add(new SanPham(dong[0], null, dong[1], dong[2], dong[6], null, null, dong[3], dong[4], null, null, dong[5], null, null, null, null, null, sp.IdNguoiMua, null));
@@ -67,7 +67,7 @@ namespace TraoDoiDo.Database
                     WHERE {sanPhamHeader}.{sanPhamID} = '{sp.Id}'
                 ";
             dsMoTaAnhSanPham = new List<MoTaAnhSanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
                 dsMoTaAnhSanPham.Add(new MoTaAnhSanPham(null, null, dong[0], dong[1], dong[2]));
 
@@ -81,7 +81,7 @@ namespace TraoDoiDo.Database
                     FROM {sanPhamHeader}
                     WHERE {sanPhamID} = '{idSanPham}' ";
 
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new SanPham(null, null, dongKetQua[0], null, dongKetQua[1], dongKetQua[2], dongKetQua[3], dongKetQua[4], dongKetQua[5], dongKetQua[6], null, dongKetQua[7], dongKetQua[8], dongKetQua[9], dongKetQua[11], dongKetQua[10], null, null, null);
         }
 
@@ -96,7 +96,7 @@ namespace TraoDoiDo.Database
                 ";
 
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
             {
                 dsSanPham.Add(new SanPham(dong[0], dong[7], dong[1], dong[2], dong[8], null, null, dong[3], dong[4], null, null, dong[5], null, null, null, null, dong[6], dong[9], null));
@@ -107,7 +107,7 @@ namespace TraoDoiDo.Database
         public string LayLuotXem(string idSP)
         {
             string sqlStr = $"SELECT {sanPhamSoLuotXem} FROM {sanPhamHeader} WHERE {sanPhamID}='{idSP}'";
-            return dbConnection.LayMotDoiTuong(sqlStr, $"{sanPhamSoLuotXem}");
+            return dbConnection.LayMotGiaTri(sqlStr, $"{sanPhamSoLuotXem}");
         }
 
         public void CapNhatLuotXem(string idSP, int soLuotXem)
@@ -117,12 +117,12 @@ namespace TraoDoiDo.Database
 
         }
 
-        public List<SanPham> timKiemBangId(string idNguoiDang) // Nên sửa tên lại là timDSSanPhamBangId
+        public List<SanPham> LoadDanhSachSanPhamTheoIdNguoiDang(string idNguoiDang) // Nên sửa tên lại là timDSSanPhamBangId
         {
             string sqlStr = $" SELECT {sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}, {sanPhamNgayDang}" +
                 $" FROM {sanPhamHeader} WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
             {
                 dsSanPham.Add(new SanPham(dong[0], idNguoiDang, dong[1], dong[2], dong[3], dong[4], dong[5], dong[6], dong[7], dong[8], dong[9], null, null, null, null, null, null, "0", dong[10]));
@@ -130,19 +130,19 @@ namespace TraoDoiDo.Database
             return dsSanPham;
         }
 
-        public SanPham timKiemToanBoBangId(string id)
+        public SanPham timKiemSanPhamBangId(string id)
         {
             string sqlStr = $" SELECT * FROM {sanPhamHeader} WHERE {sanPhamID} = '{id}' ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new SanPham(dongKetQua[0], dongKetQua[1], dongKetQua[2], dongKetQua[3], dongKetQua[4], dongKetQua[5], dongKetQua[6], dongKetQua[7], dongKetQua[8], dongKetQua[9], dongKetQua[10], dongKetQua[11], dongKetQua[12], dongKetQua[13], dongKetQua[15], dongKetQua[14], dongKetQua[16], null, null);
         }
 
-        public List<SanPham> timKiemBangTen(string ten, string idNguoiDang)
+        public List<SanPham> timKiemDanhSachSanPhamTheoTen(string ten, string idNguoiDang)
         {
             string sqlStr = $" SELECT {sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}" +
                     $" FROM {sanPhamHeader} WHERE {sanPhamTen} LIKE N'{ten}%' AND {sanPhamIdNguoiDang}='{idNguoiDang}'";
 
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsSanPham = new List<SanPham>();
             foreach (var dong in bangKetQua)
             {
@@ -156,7 +156,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $" SELECT {sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}, {sanPhamNgayDang}" +
                     $" FROM {sanPhamHeader} WHERE {sanPhamLoai} LIKE N'{loai}%' AND {sanPhamIdNguoiDang}='{idNguoiDang}'";
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
                 dsSanPham.Add(new SanPham(dong[0], idNguoiDang, dong[1], dong[2], dong[3], dong[4], dong[5], dong[6], dong[7], dong[8], dong[9], null, null, null, null, null, null, "0", dong[10]));
             return dsSanPham;
@@ -166,7 +166,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $" SELECT {sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}, {sanPhamNgayDang}" +
                     $" FROM {sanPhamHeader} WHERE {sanPhamLoai} LIKE N'{loai}%' ";
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
                 dsSanPham.Add(new SanPham(dong[0], null, dong[1], dong[2], dong[3], dong[4], dong[5], dong[6], dong[7], dong[8], dong[9], null, null, null, null, null, null, "0", dong[10]));
             return dsSanPham;
@@ -175,16 +175,16 @@ namespace TraoDoiDo.Database
         {
             string sqlStr = "SELECT IdSanPham, Ten,LinkAnhBia,Loai,SoLuong,SoLuongDaBan,GiaGoc,GiaBan,PhiShip,NgayDang FROM SanPham";
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
                 dsSanPham.Add(new SanPham(dong[0], null, dong[1], dong[2], dong[3], dong[4], dong[5], dong[6], dong[7], dong[8], null, null, null, null, null, null, null, "0", dong[9]));
             return dsSanPham;
         }
 
-        public List<string> timKiemId()
+        public List<List<string>> timKiemDanhSachId()
         {
             string sqlStr = $"SELECT {sanPhamID} FROM {sanPhamHeader}";
-            return dbConnection.LayDanhSachMotDoiTuong(sqlStr, $"{sanPhamID}");
+            return dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
         }
 
         public NguoiDung timKiemNguoiDangTheoIdSP(string idSP)
@@ -194,7 +194,7 @@ namespace TraoDoiDo.Database
                             FROM {sanPhamHeader}
                             INNER JOIN {nguoiDungHeader} ON {sanPhamHeader}.{sanPhamID} = {nguoiDungHeader}.{nguoiDungID}
                             WHERE {sanPhamID} = '{idSP}' ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new NguoiDung(dongKetQua[0], dongKetQua[1], null, null, null, null, null, null, null, null, null);
         }
 
@@ -205,7 +205,7 @@ namespace TraoDoiDo.Database
             FROM {sanPhamHeader}
             WHERE {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
             dsSanPham = new List<SanPham>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
                 dsSanPham.Add(new SanPham(null, dong[4], dong[0], null, null, dong[2], dong[1], null, dong[3], null, null, null, null, null, null, null, null, null, null));
 
@@ -219,7 +219,8 @@ namespace TraoDoiDo.Database
             INNER JOIN {sanPhamHeader} ON {trangThaiHeader}.{trangThaiIdSanPham} = {sanPhamHeader}.{sanPhamID}
             GROUP BY {sanPhamHeader}.{sanPhamIdNguoiDang}
             HAVING {sanPhamIdNguoiDang} = '{idNguoiDang}' ";
-            return dbConnection.LayMotDoiTuong(sqlStr, "TongSoKhachHang");
+            return dbConnection.LayMotGiaTri(sqlStr, "TongSoKhachHang");
         }
+         
     }
 }

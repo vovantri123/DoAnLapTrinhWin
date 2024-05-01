@@ -27,15 +27,15 @@ namespace TraoDoiDo.Database
         public TaiKhoan TimKiemBangTenDangNhap(string tenDangNhap)
         {
             string sqlStr = $"SELECT * FROM {taiKhoanHeader} WHERE {taiKhoanTenDangNhap}='{tenDangNhap}'";
-            string matKhau = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}");
-            string iDNguoiDung = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanIdNguoiDung}");
+            string matKhau = dbConnection.LayMotGiaTri(sqlStr, $"{taiKhoanMatKhau}");
+            string iDNguoiDung = dbConnection.LayMotGiaTri(sqlStr, $"{taiKhoanIdNguoiDung}");
             return new TaiKhoan(tenDangNhap, matKhau, iDNguoiDung);
         }
         public TaiKhoan TimKiemBangId(string id)
         {
             string sqlStr = $"SELECT * FROM {taiKhoanHeader} WHERE {taiKhoanIdNguoiDung}='{id}'";
-            string ten = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanTenDangNhap}");
-            string mk = dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}");
+            string ten = dbConnection.LayMotGiaTri(sqlStr, $"{taiKhoanTenDangNhap}");
+            string mk = dbConnection.LayMotGiaTri(sqlStr, $"{taiKhoanMatKhau}");
             return new TaiKhoan(ten, mk, id);
         }
     }

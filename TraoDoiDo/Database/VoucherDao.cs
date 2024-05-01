@@ -50,7 +50,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"SELECT * FROM {voucherHeader}";
 
             dsVoucher = new List<Voucher>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
             {
                 dsVoucher.Add(new Voucher(dong[0], dong[1], dong[2], dong[3], dong[4], dong[5], dong[6]));
@@ -68,7 +68,7 @@ namespace TraoDoiDo.Database
 ";
 
             dsVoucher = new List<Voucher>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
             {
                 dsVoucher.Add(new Voucher(dong[0], dong[1], dong[2], dong[3], dong[4], dong[5], dong[6]));
@@ -84,7 +84,7 @@ namespace TraoDoiDo.Database
                     WHERE {voucherIdVoucher}='{idVoucher}'
             "; 
 
-            return dbConnection.LayMotDoiTuong(sqlStr,$"{voucherSoLuotDaSuDung}");
+            return dbConnection.LayMotGiaTri(sqlStr,$"{voucherSoLuotDaSuDung}");
         }
         public void TangSoLuotSuDungThem1(string idVoucher) // Tăng số lượt sử dụng thêm 1
         {

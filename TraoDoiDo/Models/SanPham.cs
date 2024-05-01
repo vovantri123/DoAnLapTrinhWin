@@ -26,8 +26,7 @@ namespace TraoDoiDo.Models
         private string luotXem = "";
         private string idNguoiMua = "";
         private string ngayDang = "";
-        private QuanLyDonHang quanLyDonHang;
-        private string errorMessage = "";
+        private QuanLyDonHang quanLyDonHang; 
         public SanPham() { }
         public SanPham(string id, string idNguoiDang, string ten, string linkAnhBia, string loai, string soLuong, string soLuongDaBan, string giaGoc, string giaBan, string phiShip, string trangThai, string noiBan, string xuatXu, string ngayMua, string moTaChung, string phanTramMoi, string luotXem, string idNguoiMua, string ngayDang)
         {
@@ -74,28 +73,29 @@ namespace TraoDoiDo.Models
         public string NgayDang { get => ngayDang; set { ngayDang = value; OnPropertyChanged(); } }
         //public string ErrorMessage { get => errorMessage; set { errorMessage = value; OnPropertyChanged(); } }
         KiemTraDinhDang kiemTra = new KiemTraDinhDang();
-        public bool kiemTraCacTextBox()
-        {
-            errorMessage = "";
-            foreach (var property in typeof(SanPham).GetProperties())
-            {
-                var value = property.GetValue(this);
-                if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
-                {
-                    errorMessage = XuLyTienIch.TinNhanTrongKhongHopLe;
-                    MessageBox.Show(errorMessage);
-                    return false;
-                }
-            }
-            DateTime ngayMua = DateTime.ParseExact(NgayMua, "dd/MM/yyyy", null);
-            DateTime ngayDang = DateTime.ParseExact(NgayDang, "dd/MM/yyyy", null);
-            if (!kiemTra.kiemTraNgayMuaSanPham(ngayMua, ngayDang))
-            {
-                errorMessage = XuLyTienIch.TinNhanNgayMuaHopLe;
-                MessageBox.Show(errorMessage);
-                return false;
-            }
-            return true;
-        }
+        //public bool kiemTraCacTextBox()
+        //{
+        //    string errorMessage = "";
+        //    foreach (var property in typeof(SanPham).GetProperties())
+        //    {
+        //        var value = property.GetValue(this);
+        //        if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+        //        {
+        //            errorMessage = XuLyTienIch.TinNhanTrongKhongHopLe;
+        //            MessageBox.Show(errorMessage);
+        //            return false;
+        //        }
+        //    } 
+
+        //    DateTime ngayMua = DateTime.ParseExact(NgayMua, "d/M/yyyy", null);
+        //    DateTime ngayDang = DateTime.ParseExact(NgayDang, "d/M/yyyy", null);
+        //    if (!kiemTra.kiemTraNgayMuaSanPham(ngayMua, ngayDang))
+        //    {
+        //        errorMessage = XuLyTienIch.TinNhanNgayMuaHopLe;
+        //        MessageBox.Show(errorMessage);
+        //        return false;
+        //    }
+        //    return true;
+        //}
     }
 }

@@ -94,29 +94,11 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\bin\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\System.Data.SqlClient.xml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.AssemblyReference.cache
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Dang.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKy.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangNhap.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DiaChi.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MainWindow.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\QuenMatKhau.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Thoat.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinCaNhanUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinChiTietSanPham.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo_MarkupCompile.cache
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo_MarkupCompile.lref
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Dang.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangKy.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangNhap.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DiaChi.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MainWindow.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\QuenMatKhau.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Thoat.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinCaNhanUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinChiTietSanPham.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.g.resources
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.Properties.Resources.resources
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.GenerateResource.cache
@@ -124,14 +106,6 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CopyComplete
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDoUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MuaDoUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\QuanLyUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TrangChuUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDoUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MuaDoUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\QuanLyUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TrangChuUC.baml
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
@@ -196,16 +170,6 @@ C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CopyComplete
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\LyDoTraHangUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\LyDoTraHangUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThemAnhKhiDangUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThemAnhKhiDangUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\SanPhamUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\SanPhamUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ViDienTuUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ViDienTuUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\NapRutTien.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\NapRutTien.baml
 C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
 C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
@@ -280,12 +244,6 @@ C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CoreCompile
 C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
 C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLTWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Sua.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DangDo_Sua.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DanhGia.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\DanhGia.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinNguoiDang.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThongTinNguoiDang.baml
 C:\DoAnLapTrinhWinTDD\DoAnLTWindowT5\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.AssemblyReference.cache
 C:\DoAnLapTrinhWinTDD\DoAnLTWindowT5\TraoDoiDo\obj\Debug\DangDoUC.g.cs
 C:\DoAnLapTrinhWinTDD\DoAnLTWindowT5\TraoDoiDo\obj\Debug\DangDo_Dang.g.cs
@@ -468,10 +426,6 @@ C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TangGiamU
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThanhDieuKhienUC.g.cs
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TangGiamUC.baml
 C:\Users\vovan\OneDrive\Máy tính\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThanhDieuKhienUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TangGiamUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThanhDieuKhienUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TangGiamUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\ThanhDieuKhienUC.baml
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
@@ -636,10 +590,6 @@ C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.cspro
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLapTrinhWin_BaoCao\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MucXepHangNguoiMuaNhieuNhatUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\MucXepHangNguoiMuaNhieuNhatUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\VoucherUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\VoucherUC.baml
 C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
 C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\bin\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
@@ -722,3 +672,67 @@ C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CoreCo
 C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
 C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\DoAnLapTrinhWinTDD\DoAnLTWINT2New\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDoUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDoUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Dang.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Sua.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_ThongTinSanPhamUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Dang.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Sua.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_ThongTinSanPhamUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangKy.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangNhap.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\MainWindow.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\QuenMatKhau.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangKy.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangNhap.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\MainWindow.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\QuenMatKhau.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\NapRutTien.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\ViDienTuUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\NapRutTien.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\ViDienTuUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\Thoat.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\Thoat.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ThongTinCaNhan\ThongTinCaNhanUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ThongTinCaNhan\ThongTinCaNhanUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DanhGia.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DanhGia.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DiaChi.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\LyDoTraHangUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\MuaDoUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\MucXepHangNguoiMuaNhieuNhatUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\TangGiamUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\ThanhDieuKhienUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\ThemAnhKhiDangUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinChiTietSanPham.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinNguoiDang.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DiaChi.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\LyDoTraHangUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\MuaDoUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\MucXepHangNguoiMuaNhieuNhatUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\TangGiamUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\ThanhDieuKhienUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\ThemAnhKhiDangUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinChiTietSanPham.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinNguoiDang.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLySanPhamUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLySanPhamUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabTrangThaiDonHangUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabTrangThaiDonHangUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.baml

@@ -45,14 +45,13 @@ namespace TraoDoiDo.Database
                     WHERE {nguoiDungID} = '{user.Id}' ";
             dbConnection.ThucThi(sqlStr);
         }
-
-
+         
         public NguoiDung TimKiemThongTinTheoIdNguoi(string idNguoi)
         {
             string sqlStr = $@"SELECT {nguoiDungTen},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi}
                             FROM {nguoiDungHeader} 
                             WHERE {nguoiDungID} = '{idNguoi}' ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
 
             return new NguoiDung(null, dongKetQua[0], null, null, null, dongKetQua[2], dongKetQua[1], dongKetQua[3], null, null, null);
         }
@@ -62,7 +61,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"SELECT {nguoiDungID},{nguoiDungTen},{nguoiDungCMND},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi},{nguoiDungAnh}
                             FROM {nguoiDungHeader} 
                             WHERE {nguoiDungID} = '{idNguoi}' ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new NguoiDung(dongKetQua[0], dongKetQua[1], dongKetQua[3], dongKetQua[4], dongKetQua[2], dongKetQua[6], dongKetQua[5], dongKetQua[7], dongKetQua[8], null, null);
         }
         public List<NguoiDung> LoadNguoiDung()
@@ -70,7 +69,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"SELECT {nguoiDungID},{nguoiDungTen},{nguoiDungCMND},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi}
                             FROM {nguoiDungHeader} ";
             dsNguoi = new List<NguoiDung>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
             {
                 dsNguoi.Add(new NguoiDung(dong[0], dong[1], dong[3], dong[4], dong[2], dong[6], dong[5], dong[7], null, null, null));
@@ -80,7 +79,7 @@ namespace TraoDoiDo.Database
         public string TimKiemLinkAnh(string id)
         {
             string sqlStr = $@"SELECT {nguoiDungAnh} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{id}' ";
-            return dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungAnh}");
+            return dbConnection.LayMotGiaTri(sqlStr, $"{nguoiDungAnh}");
         }
 
         public NguoiDung TimKiemBangTenDangNhap(string tenDangNhap, string matKhau)
@@ -89,31 +88,32 @@ namespace TraoDoiDo.Database
                                FROM {nguoiDungHeader}
                                INNER JOIN {taiKhoanHeader} ON {nguoiDungHeader}.{nguoiDungID} = {taiKhoanHeader}.{taiKhoanIdNguoiDung}
                                WHERE {taiKhoanTenDangNhap}='{tenDangNhap}' AND {taiKhoanMatKhau}='{matKhau}'";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new NguoiDung(dongKetQua[11], dongKetQua[0], dongKetQua[2], dongKetQua[4], dongKetQua[1], dongKetQua[6], dongKetQua[3], dongKetQua[5], dongKetQua[7], new TaiKhoan(dongKetQua[9], dongKetQua[10], dongKetQua[11]), dongKetQua[8]);
         }
 
         public string TimKiemTienBangId(string id)
         {
             string sqlStr = $@"SELECT {nguoiDungTien} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{id}' ";
-            return dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungTien}");
+            return dbConnection.LayMotGiaTri(sqlStr, $"{nguoiDungTien}");
         }
 
         public string TimKiemMatKhauBangEmail(string email)
         {
             string sqlStr = $"SELECT {taiKhoanMatKhau} FROM {taiKhoanHeader} INNER JOIN {nguoiDungHeader} ON {taiKhoanHeader}.{taiKhoanIdNguoiDung} = {nguoiDungHeader}.{nguoiDungID} WHERE {nguoiDungHeader}.{nguoiDungEmail}='{email}'";
-            return dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}");
+            return dbConnection.LayMotGiaTri(sqlStr, $"{taiKhoanMatKhau}");
         }
         public string TimKiemMatKhauBangSdt(string sdt)
         {
             string sqlStr = $"SELECT {taiKhoanMatKhau} FROM {taiKhoanHeader} INNER JOIN {nguoiDungHeader} ON {taiKhoanHeader}.{taiKhoanIdNguoiDung} = {nguoiDungHeader}.{nguoiDungID} WHERE {nguoiDungHeader}.{nguoiDungSdt}='{sdt}'";
-            return dbConnection.LayMotDoiTuong(sqlStr, $"{taiKhoanMatKhau}");
+            return dbConnection.LayMotGiaTri(sqlStr, $"{taiKhoanMatKhau}");
         }
-        public string TimKiemLoaiSanPhamGanDay(string idNguoiMua)
+        public string TimKiemTuKhoaSanPhamDangQuanTamGanDay(string idNguoiMua)
         {
-            string sqlStr = $"SELECT {nguoiDungLoaiSanPhamDangQuanTam} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{idNguoiMua}' ";
-            return dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungLoaiSanPhamDangQuanTam}");
+            string sqlStr = $"SELECT {nguoiDungTuKhoaSanPhamDangQuanTam} FROM {nguoiDungHeader} WHERE {nguoiDungID} = '{idNguoiMua}' ";
+            return dbConnection.LayMotGiaTri(sqlStr, $"{nguoiDungTuKhoaSanPhamDangQuanTam}"); 
         }
+         
         public List<NguoiDung> LoadDanhSachNguoiHayMuaNhat() //Lấy hết, giảm dần từ trên xuống,
         {
             //MessageBox.Show(idNguoiMua + "nè 123");
@@ -126,12 +126,21 @@ namespace TraoDoiDo.Database
                         ORDER BY SoSanPhamDaMua DESC 
 ";
             dsNguoi = new List<NguoiDung>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)
                 dsNguoi.Add(new NguoiDung(dong[0], dong[1], dong[2], dong[3], dong[4]));
 
             //MessageBox.Show(dbConnection.LayMotDoiTuong(sqlStr, $"{nguoiDungAnh}") + "123");
             return dsNguoi;
+        }
+
+        public void CapNhatTuKhoaSanPhamDangQuanTam(NguoiDung nguoiMua, string tuKhoa)
+        {
+            string sqlStr = $@"
+                    UPDATE {nguoiDungHeader}
+                    SET {nguoiDungTuKhoaSanPhamDangQuanTam} = N'{tuKhoa}'  
+                    WHERE {nguoiDungID} = '{nguoiMua.Id}' ";
+            dbConnection.ThucThi(sqlStr);
         }
     }
 }

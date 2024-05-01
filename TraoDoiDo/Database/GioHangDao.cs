@@ -30,7 +30,7 @@ namespace TraoDoiDo.Database
                     FROM {gioHangHeader} INNER JOIN {nguoiDungHeader} ON {gioHangHeader}.{quanLyIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID}
                     INNER JOIN {sanPhamHeader} ON {gioHangHeader}.{sanPhamID} = {sanPhamHeader}.{sanPhamID}
                     WHERE {nguoiDungHeader}.{nguoiDungID} = '{idNguoi}' ";
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             List<GioHang> dsGioHang = new List<GioHang>();
             foreach (var dong in bangKetQua)
                 dsGioHang.Add(new GioHang(idNguoi, dong[0], dong[5], dong[1], dong[2], dong[3], dong[4], dong[6], dong[7]));

@@ -32,7 +32,7 @@ namespace TraoDoiDo.Database
         {
             string sqlStr = $"SELECT {giaoDichID}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay} FROM {giaoDichHeader} WHERE {nguoiDungID}= '{idNguoiDung}' ";
             dsGiaoDich = new List<GiaoDich>();
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach(var dong in bangKetQua)
                 dsGiaoDich.Add(new GiaoDich(dong[0], idNguoiDung, dong[1], dong[2], dong[3], dong[4], dong[5])); 
             return dsGiaoDich;

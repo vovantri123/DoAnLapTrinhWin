@@ -24,7 +24,7 @@ namespace TraoDoiDo.Database
         public const string nguoiDungDiaChi = "DiaChiNguoiDung";
         public const string nguoiDungAnh = "AnhNguoiDung";
         public const string nguoiDungTien = "TienNguoiDung";
-        public const string nguoiDungLoaiSanPhamDangQuanTam = "LoaiSanPhamDangQuanTam";
+        public const string nguoiDungTuKhoaSanPhamDangQuanTam = "TuKhoaSanPhamDangQuanTam";
 
         //Table GiaoDich
         protected const string giaoDichHeader = "GiaoDich";

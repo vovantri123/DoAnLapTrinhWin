@@ -25,7 +25,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $" SELECT distinct {nguoiDungTen}, {nguoiDungSdt}, {nguoiDungEmail}, {nguoiDungDiaChi} FROM {trangThaiHeader}" +
                             $" INNER JOIN {nguoiDungHeader} ON {trangThaiHeader}.{trangThaiIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID}" +
                             $" WHERE {trangThaiHeader}.{trangThaiIdNguoiMua} = '{idNguoiMua}' AND {trangThaiHeader}.{trangThaiIdSanPham} = '{idSanPham}' ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);  
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);  
 
             return new TrangThaiDonHang(null, null, null, null, null, null, null, null, null, null, dongKetQua[0], dongKetQua[1], dongKetQua[2], dongKetQua[3]);
         }
@@ -34,7 +34,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"
                                 UPDATE {trangThaiHeader} 
                                 SET {trangThaiTrangThai} = N'{trangThaiDon.TrangThai}'
-                                WHERE {sanPhamID} = '{trangThaiDon.IdSanPham}' AND {nguoiDungID} = '{trangThaiDon.IdNguoiMua}' ";
+                                WHERE {trangThaiIdSanPham} = '{trangThaiDon.IdSanPham}' AND {trangThaiIdNguoiMua} = '{trangThaiDon.IdNguoiMua}' ";
             dbConnection.ThucThi(sqlStr);
         }
         public void Them(TrangThaiDonHang trangThaiDon)
@@ -56,7 +56,7 @@ namespace TraoDoiDo.Database
                     INNER JOIN {nguoiDungHeader} ON {trangThaiHeader}.{trangThaiIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID}
                     INNER JOIN  {sanPhamHeader} ON {trangThaiHeader}.{trangThaiIdSanPham} = {sanPhamHeader}.{sanPhamID}
                     WHERE {nguoiDungHeader}.{nguoiDungID} = {idNguoiMua} AND {trangThaiHeader}.{trangThaiTrangThai} = N'{trangThai}' ";
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsTrangThaiDonHang = new List<TrangThaiDonHang>();
             foreach (var dong in bangKetQua)
                 dsTrangThaiDonHang.Add(new TrangThaiDonHang(idNguoiMua, dong[0], dong[3], dong[6], dong[7], trangThai, dong[1], dong[2], dong[4], dong[5],null, null, null, null));

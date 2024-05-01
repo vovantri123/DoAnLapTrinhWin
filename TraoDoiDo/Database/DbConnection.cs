@@ -7,7 +7,7 @@ namespace TraoDoiDo.Database
 {
     public class DbConnection
     {
-        private SqlConnection conn;
+        SqlConnection conn;
 
         public DbConnection()
         {
@@ -21,20 +21,12 @@ namespace TraoDoiDo.Database
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sqlStr, conn);
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    co = true;
-
-                    MessageBoxButton messageBox = MessageBoxButton.OK;
-                    if ((messageBox & MessageBoxButton.OK)!=0)
-                    {
-                        MessageBox.Show("Thực thi thành công");
-                    }
-                }
+                if (cmd.ExecuteNonQuery() > 0) 
+                    co = true;  
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Thất bại" + ex);
+                MessageBox.Show("Thực thi thất bại\nLỗi: " + ex);
             }
             finally
             {
@@ -44,23 +36,10 @@ namespace TraoDoiDo.Database
             return co;
         }
       
-
-        public string LayMotDoiTuong(string sqlStr, string tenCot) // chuỗi truy vấn và tên cột cần truy vấn (nói cách khác là trả về 1 ô //Trong 1 cột, lấy ra thuộc tính đầu tiên thỏa sqlStr  (đã xài)
-        {
-            List<string> list = LayDanhSachMotDoiTuong(sqlStr, tenCot);
-            if (list.Count == 0)
-            {
-                return null;
-            }
-            else
-            {
-                return list[0];
-            }
-        }
-
-        public List<string> LayDanhSachMotDoiTuong(string sqlStr, string tenCot)  // Trong một cột, lấy ra các dòng thỏa sqlStr // (chỉ có timIDmax là xài thôi, tìm cách bỏ hàm tìm idmax đi) ; (còn cái  TinhTienNguoiDung) rãnh rãnh bỏ sau
+        public string LayMotGiaTri(string sqlStr, string tenCot) // chuỗi truy vấn và tên cột cần truy vấn (nói cách khác là trả về 1 ô //Trong 1 cột, lấy ra thuộc tính đầu tiên thỏa sqlStr  (đã xài)
         {
             List<string> list = new List<string>();
+
             try
             {
                 conn.Open();
@@ -72,21 +51,25 @@ namespace TraoDoiDo.Database
                 }
                 cmd.Dispose();
                 reader.Close();
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
             finally
-            {
-                conn.Close();
+            { 
+                conn.Close(); 
             }
-            return list;
-        }
 
-        public List<List<T>> LayDanhSachNhieuPhanTu<T>(string sqlStr) // Lấy ra nhiều dòng dữ liệu thỏa sqlStr (Đã xài-Nữa sửa T thành string :v) (đã xài)
+            if (list.Count == 0)
+                return null;
+            return list[0];
+        }
+ 
+        public List<List<T>>LayNhieuDongDuLieu<T>(string sqlStr) // Lấy ra nhiều dòng dữ liệu thỏa sqlStr (Đã xài-Nữa sửa T thành string :v) (đã xài)
         {
-            List<List<T>> listResult = new List<List<T>>(); // T hoặc là int, hoặc là string, hoặc là đối tượng(cho phép lưu nhiều kiểu dữ liệu khác nhau)
+            List<List<T>> bangKetQua = new List<List<T>>(); // T hoặc là int, hoặc là string, hoặc là đối tượng(cho phép lưu nhiều kiểu dữ liệu khác nhau)
 
             try
             {
@@ -96,14 +79,16 @@ namespace TraoDoiDo.Database
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    List<T> list = new List<T>();
+                    List<T> dong = new List<T>();
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        var value = (T)Convert.ChangeType(reader.GetValue(i), typeof(T));
-                        list.Add(value);
+                        var giaTri = (T)Convert.ChangeType(reader.GetValue(i), typeof(T));
+                        dong.Add(giaTri);
                     }
-                    listResult.Add(list);
+                    bangKetQua.Add(dong);
                 }
+                cmd.Dispose();
+                reader.Close();
             }
             catch (Exception ex)
             {
@@ -113,36 +98,13 @@ namespace TraoDoiDo.Database
             {
                 conn.Close();
             }
-            return listResult;
+            return bangKetQua;
         }
 
-        public List<T> LayDanhSach<T>(string sqlStr) // Lấy ra 1 dòng dữ liệu thỏa sqlStr (Đã xài)
+        public List<T>LayMotDongDuLieu<T>(string sqlStr) // Lấy ra 1 dòng dữ liệu thỏa sqlStr (Đã xài)
         {
-            List<T> list = new List<T>();
-            try
-            {
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand(sqlStr, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        var value = (T)Convert.ChangeType(reader.GetValue(i), typeof(T));
-                        list.Add(value);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return list;
+            List<List<T>> bangKetQua = LayNhieuDongDuLieu<T>(sqlStr);
+            return bangKetQua.Count == 0 ? null : bangKetQua[0];
         }
 
     }

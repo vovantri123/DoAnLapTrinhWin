@@ -22,7 +22,7 @@ namespace TraoDoiDo.Database
                     INNER JOIN {danhGiaHeader} ON {nguoiDungHeader}.{nguoiDungID} = {danhGiaHeader}.{quanLyIdNguoiDang}
                     GROUP BY {nguoiDungID},{nguoiDungTen}
                     HAVING {nguoiDungID} = '{idNguoi}' ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new DanhGiaNguoiDang(null, dongKetQua[0], null, null, null, null, dongKetQua[1], null);
         }
         public void Xoa(DanhGiaNguoiDang danhGiaNguoiDung)
@@ -43,7 +43,7 @@ namespace TraoDoiDo.Database
                 FROM {danhGiaHeader}
                 WHERE {sanPhamIdNguoiDang}= '{idNguoiDang}'
                 GROUP BY {danhGiaSoSao} ";
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
                 dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(null, null, null, null, dong[0], null, dong[1], null));
@@ -55,7 +55,7 @@ namespace TraoDoiDo.Database
                                 FROM {danhGiaHeader}
                                 GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang}
                                 HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN {soSaoDau} AND {soSaoCuoi} ";
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
                 dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, null, null, null, null));
@@ -69,7 +69,7 @@ namespace TraoDoiDo.Database
                 INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} 
                 WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} =  '{idNguoiDang}'
                 ";
-            dongKetQua = dbConnection.LayDanhSach<string>(sqlStr);
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             return new NguoiDung(null, dongKetQua[0], null, null, null, dongKetQua[2], dongKetQua[1], dongKetQua[3], dongKetQua[4], null, null);
         }
         public List<DanhGiaNguoiDang> LoadDanhSachDanhGia(string idNguoiDang)
@@ -79,7 +79,7 @@ namespace TraoDoiDo.Database
                 FROM {danhGiaHeader}
                 INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{danhGiaIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID} 
                 WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} = '{idNguoiDang}' ";
-            bangKetQua = dbConnection.LayDanhSachNhieuPhanTu<string>(sqlStr);
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
                 dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(null, null, null, dong[0], dong[1], dong[2], null, dong[3]));     
