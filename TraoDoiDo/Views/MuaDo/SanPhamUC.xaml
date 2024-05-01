@@ -1,4 +1,4 @@
-﻿<UserControl x:Name="FSanPhamUC"
+﻿<UserControl
     x:Class="TraoDoiDo.SanPhamUC"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TraoDoiDo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="FSanPhamUC"
     Width="210"
     Height="310"
     Background="{DynamicResource MaterialDesignPaper}"
@@ -16,7 +17,7 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d" Loaded="FSanPhamUC_Loaded">
+    mc:Ignorable="d">
 
     <materialDesign:Card Padding="5" UniformCornerRadius="7">
         <materialDesign:Card.Effect>
@@ -24,7 +25,6 @@
                 BlurRadius="5"
                 Direction="40"
                 Opacity="0.2"
-                
                 ShadowDepth="5"
                 Color="Black" />
         </materialDesign:Card.Effect>
@@ -111,7 +111,7 @@
                             Margin="0,5,0,-1"
                             VerticalAlignment="Bottom"
                             FontSize="16.5"
-                            Text="100.000.000"
+                            Text="100,000,000"
                             TextDecorations="Strikethrough" />
                         <TextBlock
                             Grid.Row="1"
@@ -130,9 +130,9 @@
                             FontSize="18.5"
                             FontWeight="SemiBold"
                             Foreground="#FF673AB7"
-                            Text="70.000.000" />
+                            Text="70,000,000" />
                         <TextBlock
-                            FontSize="18.5" 
+                            FontSize="18.5"
                             FontWeight="SemiBold"
                             Foreground="#FF673AB7"
                             Text=" đ" />

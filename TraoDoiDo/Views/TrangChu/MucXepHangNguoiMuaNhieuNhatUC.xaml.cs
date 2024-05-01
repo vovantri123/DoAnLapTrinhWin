@@ -26,6 +26,7 @@ namespace TraoDoiDo
         {
             InitializeComponent();
         }
+
         public MucXepHangNguoiMuaNhieuNhatUC(NguoiDung nguoi)
         {
             InitializeComponent();
@@ -37,7 +38,6 @@ namespace TraoDoiDo
             imgAnhNguoiMuaNhieuNhat.Source = image;
 
             txtbSoLuotMua.Text = nguoi.SoLuotMua;
-             
         }
     }
 }

@@ -64,9 +64,7 @@ namespace TraoDoiDo
                 string selectedFileName = openFileDialog.FileName;
                 imageDaiDien.Source = new BitmapImage(new Uri(selectedFileName));
                 txtbDuongDanAnh.Text = selectedFileName;
-                txtbTenFileAnh.Text = System.IO.Path.GetFileName(selectedFileName);
-
-
+                txtbTenFileAnh.Text = System.IO.Path.GetFileName(selectedFileName); 
             }
         }
     }

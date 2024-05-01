@@ -137,7 +137,7 @@
                                 Cursor="Hand"
                                 FontSize="12"
                                 Foreground="#FF9A9A9A"
-                                MouseLeftButtonDown="txtQuenMatKhau_Click"
+                                MouseLeftButtonDown="txtbQuenMatKhau_Click"
                                 Text="Quên mật khẩu?" />
                             <Button
                                 x:Name="btnDangNhap"

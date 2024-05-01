@@ -65,7 +65,7 @@
                                     FontSize="25"
                                     Text="SỐ DƯ" />
                                 <TextBlock
-                                    x:Name="lblSoDu"
+                                    x:Name= "txtbSoDu"
                                     Grid.Column="1"
                                     Margin="0"
                                     HorizontalAlignment="Center"

@@ -81,8 +81,8 @@ namespace TraoDoiDo.Views.MuaDo
                     bitmap.EndInit();
                     DanhSachSanPham[soLuongSP].imgSP.Source = bitmap;
 
-                    DanhSachSanPham[soLuongSP].txtbGiaGoc.Text = dong.GiaGoc;
-                    DanhSachSanPham[soLuongSP].txtbGiaBan.Text = dong.GiaBan;
+                    DanhSachSanPham[soLuongSP].txtbGiaGoc.Text = Convert.ToDecimal(dong.GiaGoc).ToString("#,##0");
+                    DanhSachSanPham[soLuongSP].txtbGiaBan.Text = Convert.ToDecimal(dong.GiaBan).ToString("#,##0");
                     DanhSachSanPham[soLuongSP].txtbNoiBan.Text = dong.NoiBan;
                     DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = dong.LuotXem;
                     DanhSachSanPham[soLuongSP].idNguoiDang = dong.IdNguoiDang;

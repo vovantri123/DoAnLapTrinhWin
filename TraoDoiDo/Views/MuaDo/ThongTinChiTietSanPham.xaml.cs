@@ -29,30 +29,22 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinChiTietSanPham : Window
     {
-        public string idNguoiMua;
-       
+        public string idNguoiMua; 
         public string idNguoiDang;
-        public string idSanPham ;
+        public string idSanPham ; 
         private SanPhamUC[] DanhSachSanPhamUC ;
         public string linkAnhBia = "";
-        SanPham sanPham = new SanPham(); // sanPham là dùng chung, sp là dùng khi gọi DAO
-        
-        SanPhamDao spDao = new SanPhamDao();
-        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        NguoiDungDao khDao = new NguoiDungDao();
         private List<string> danhSachAnh = new List<string>();
-
-        private int currentIndex = -1;
-        public ObservableCollection<ListViewItem> Items { get; set; }
-
+        private int indexAnhHienTai = -1;
+         
+        SanPham sanPham; 
+        
+        SanPhamDao spDao = new SanPhamDao(); 
+        NguoiDungDao nguoiDao = new NguoiDungDao();
+         
         public ThongTinChiTietSanPham()
         { 
             InitializeComponent();
-            
-            Loaded += LoadAnhVaMoTa;
-            Loaded += LoadThongTinSanPham;
-            Loaded += btnAnhSau_Click;
-            Loaded += LoadThongTinNguoiDang;
         }
 
         public ThongTinChiTietSanPham(SanPham sp)
@@ -65,17 +57,59 @@ namespace TraoDoiDo
             Loaded += LoadAnhVaMoTa;
             Loaded += btnAnhSau_Click;
             Loaded += LoadThongTinNguoiDang;
-            
-          
         }
 
-        #region THÊM SẢN PHẨM CÙNG LOẠI VÀO MỤC KHÁM PHÁ THÊM
+        private void LoadThongTinSanPham(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SanPham sp = spDao.LoadThongTinMotSanPhamTheoid(sanPham.Id);
+                string soLuong = sp.SoLuong;
+                string soLuongDaBan = sp.SoLuongDaBan;
+                txtbSoLuongConLai.Text = (Convert.ToInt32(soLuong) - Convert.ToInt32(soLuongDaBan)).ToString();
+                txtbTen.Text = sp.Ten;
+                txtbLoai.Text = sp.Loai;
+                txtbGiaGoc.Text = Convert.ToDecimal(sp.GiaGoc).ToString("#,##0");
+                txtbGiaBan.Text = Convert.ToDecimal(sp.GiaBan).ToString("#,##0");
+                txtbPhiShip.Text = Convert.ToDecimal(sp.PhiShip).ToString("#,##0");
+                txtbNoiBan.Text = sp.NoiBan;
+                txtbXuatXu.Text = sp.XuatXu;
+                txtbNgayMua.Text = sp.NgayMua;
+                txtbPhanTramConMoi.Text = sp.PhanTramMoi;
+                txtbMoTaChung.Text = sp.MoTaChung;
 
+                LoadSanPhamlenWpnlHienThiSPCungLoai(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
 
-        
+        private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<MoTaAnhSanPham> dsMoTaAnh = spDao.LoadAnhVaMoTa(sanPham);
 
-
-        private void LoadSanPhamlenWpnlHienThi(object sender, RoutedEventArgs e)
+                foreach (var dong in dsMoTaAnh)
+                {
+                    linkAnhBia = dong.LinkAnhBia; //Cập nhật biến toàn cục linkAnhBia đã khai báo ở đầu
+                    string moTa = dong.MoTa;
+                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(dong.LinkAnhMinhHoa);
+                    danhSachAnh.Add(linkAnhMinhHoa);
+                    if (moTa.Trim() == "")
+                        continue;
+                    lsvThongTinChiTietSP.Items.Add(new { MoTa = "- " + moTa });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+         
+        private void LoadSanPhamlenWpnlHienThiSPCungLoai(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -101,16 +135,13 @@ namespace TraoDoiDo
                     string duongDanhAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
                     bitmap.UriSource = new Uri(duongDanhAnh);
                     bitmap.EndInit();
-                    // Gán BitmapImage tới Source của Image control
                     DanhSachSanPhamUC[i].imgSP.Source = bitmap;
 
-                    DanhSachSanPhamUC[i].txtbGiaGoc.Text = dong.GiaGoc;
-                    DanhSachSanPhamUC[i].txtbGiaBan.Text = dong.GiaBan;
+                    DanhSachSanPhamUC[i].txtbGiaGoc.Text = Convert.ToDecimal(dong.GiaGoc).ToString("#,##0");
+                    DanhSachSanPhamUC[i].txtbGiaBan.Text = Convert.ToDecimal(dong.GiaBan).ToString("#,##0");
                     DanhSachSanPhamUC[i].txtbNoiBan.Text = dong.NoiBan;
                     DanhSachSanPhamUC[i].txtbLoai.Text = dong.Loai;
 
-                    //SanPham sanPham = new SanPham(id, name, imageUrl); 
-                    //lsvQuanLySanPham.Items.Add(sanPham);
                     DanhSachSanPhamUC[i].Margin = new Thickness(8);
                     DanhSachSanPhamUC[i].btnBoYeuThich.Visibility = Visibility.Collapsed;
                     DanhSachSanPhamUC[i].btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
@@ -120,15 +151,13 @@ namespace TraoDoiDo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
-
-        #endregion
-
+         
         private void LoadThongTinNguoiDang(object sender, RoutedEventArgs e)
         {
-            string linkAnh = khDao.TimKiemLinkAnh(idNguoiDang);
+            string linkAnh = nguoiDao.TimKiemLinkAnh(idNguoiDang);
             imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(linkAnh)));
             
             DanhGiaNguoiDangDao nguoiDangDao = new DanhGiaNguoiDangDao();
@@ -136,62 +165,7 @@ namespace TraoDoiDo
             txtbTenNguoiDang.Text = nguoiDang.TenNguoiDang;
             txtbSoLuotDanhGia.Text = nguoiDang.SoLuotDanhGia;
         }
-
-
-        private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                List<MoTaAnhSanPham> dsMoTaAnh = spDao.LoadAnhVaMoTa(sanPham);
-
-                foreach (var dong in dsMoTaAnh)
-                {
-                    linkAnhBia = dong.LinkAnhBia; //Cập nhật biến toàn cục(global)    linkAnhBia đã khai báo đầu trang
-                    string moTa = dong.MoTa;
-                    string linkAnhMinhHoa = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(dong.LinkAnhMinhHoa);
-                    danhSachAnh.Add(linkAnhMinhHoa); //Lấy đường dẫn để bỏ vào hình bên trên
-                    if (moTa.Trim() == "")
-                        continue;
-                    //lsvThongTinChiTietSP.Items.Add(new { LinkAnhMinhHoa = linkAnhMinhHoa, MoTa = moTa });
-                    lsvThongTinChiTietSP.Items.Add(new { MoTa = "- " + moTa }); 
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void LoadThongTinSanPham(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-               
-                SanPham sp = spDao.LoadThongTinMotSanPhamTheoid(sanPham.Id);
-                string soLuong = sp.SoLuong;
-                string soLuongDaBan = sp.SoLuongDaBan;
-                txtbSoLuongConLai.Text = (Convert.ToInt32(soLuong) - Convert.ToInt32(soLuongDaBan)).ToString();
-                txtbTen.Text = sp.Ten;
-                txtbLoai.Text = sp.Loai;
-                txtbGiaGoc.Text = sp.GiaGoc;
-                txtbGiaBan.Text = sp.GiaBan;
-                txtbPhiShip.Text = sp.PhiShip;
-                txtbNoiBan.Text = sp.NoiBan;
-                txtbXuatXu.Text = sp.XuatXu;
-                txtbNgayMua.Text = sp.NgayMua;
-                txtbPhanTramConMoi.Text = sp.PhanTramMoi;
-                txtbMoTaChung.Text = sp.MoTaChung;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            { 
-                LoadSanPhamlenWpnlHienThi(sender, e);
-            }
-        }
+         
 
         private void ThongTinNguoiDang_Click(object sender, RoutedEventArgs e)
         {
@@ -200,13 +174,12 @@ namespace TraoDoiDo
         }
 
 
-        private void DisplayImage()
-        {
-            // Load and display the current image
-            string imagePath = danhSachAnh[currentIndex];
+        private void HienThiAnh()
+        { 
+            string duongDanAnh = danhSachAnh[indexAnhHienTai];
             BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(imagePath);
+            bitmapImage.UriSource = new Uri(duongDanAnh);
             bitmapImage.EndInit();
 
             imgAnhSP.Source = bitmapImage;
@@ -217,17 +190,11 @@ namespace TraoDoiDo
         {
             if (danhSachAnh.Count > 0)
             {
-                // Move to the previous image
-                currentIndex--;
+                indexAnhHienTai--;
+                if (indexAnhHienTai < 0) 
+                    indexAnhHienTai = danhSachAnh.Count - 1;
 
-                // Check if we have reached the beginning of the list
-                if (currentIndex < 0)
-                {
-                    // Set currentIndex to the last image index
-                    currentIndex = danhSachAnh.Count - 1;
-                }
-
-                DisplayImage();
+                HienThiAnh();
             }
         }
 
@@ -235,17 +202,12 @@ namespace TraoDoiDo
         {
             if (danhSachAnh.Count > 0)
             {
-                // Move to the next image
-                currentIndex++;
+                indexAnhHienTai++;
 
-                // Check if we have reached the end of the list
-                if (currentIndex >= danhSachAnh.Count)
-                {
-                    // Set currentIndex back to the first image index
-                    currentIndex = 0;
-                }
+                if (indexAnhHienTai >= danhSachAnh.Count) 
+                    indexAnhHienTai = 0;
 
-                DisplayImage();
+                HienThiAnh();
             }
         }
 
@@ -260,16 +222,12 @@ namespace TraoDoiDo
                 GioHangDao gioHangDao = new GioHangDao();
                 gioHangDao.Xoa(gioHang.IdSanPham, gioHang.IdNguoiMua);
                 gioHangDao.Them(gioHang);
-
+                this.Close(); 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                this.Close();
-            }
+                MessageBox.Show("Lỗi: " + ex.Message);
+            } 
         }
 
         private void btnTang_Click(object sender, RoutedEventArgs e)
@@ -280,9 +238,7 @@ namespace TraoDoiDo
                 n += 1;
             }
 
-            txtbSoLuongHienTai.Text = n.ToString();
-
-
+            txtbSoLuongHienTai.Text = n.ToString(); 
         }
 
         private void btnGiam_Click(object sender, RoutedEventArgs e)

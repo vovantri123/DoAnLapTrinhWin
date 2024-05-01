@@ -26,16 +26,16 @@ namespace TraoDoiDo
         private NguoiDung nguoi = new NguoiDung();
         public MainWindow()
         {
-            InitializeComponent();
-            TrangChu_Click(Owner, new RoutedEventArgs());
-            Loaded += mainWindow_Loaded;
+            InitializeComponent(); 
         }
+
         public MainWindow(NguoiDung nguoiDung)
         {
             nguoi = nguoiDung;
             InitializeComponent();
             TrangChu_Click(Owner, new RoutedEventArgs());
             Loaded += mainWindow_Loaded;
+            ucThanhDieuKhien.btn_close.Click += hienThiDangNhap;
         }
       
 
@@ -137,9 +137,11 @@ namespace TraoDoiDo
         }
         public void LoadWindow()
         {
-            txtbTenNguoiDung.Text = nguoi.HoTen;
-            txtbTienNguoiDung.Text = DinhDangTien(Convert.ToDecimal(nguoi.Tien)) + " đ";
+            txtbTenNguoiDung.Text = nguoi.HoTen; 
+            txtbTienNguoiDung.Text = Convert.ToDecimal(nguoi.Tien).ToString("#,##0") + " đ";
         }
+         
+
         private void btnHienThiThongBao_Click(object sender, RoutedEventArgs e)
         {
             if (myPopup.IsOpen)
@@ -147,9 +149,11 @@ namespace TraoDoiDo
             else
                 myPopup.IsOpen = true;
         }
-        private static string DinhDangTien(decimal t)
+        
+
+        private void hienThiDangNhap(object sender, RoutedEventArgs e)
         {
-            return t.ToString("#,0");
+            Application.Current.MainWindow.Show();
         }
     }
 }

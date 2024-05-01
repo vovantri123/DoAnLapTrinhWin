@@ -22,7 +22,7 @@ namespace TraoDoiDo.Views.DangDo
     /// <summary>
     /// Interaction logic for TabQuanLySanPham.xaml
     /// </summary>
-    public partial class TabQuanLySanPhamUC : UserControl
+    public partial class TabSanPhamDaDangUC : UserControl
     {
         
         List<SanPham> dsSanPham;
@@ -36,11 +36,11 @@ namespace TraoDoiDo.Views.DangDo
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         TrangThaiDonHangDao trangThaiHangDao = new TrangThaiDonHangDao();
         DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
-        public TabQuanLySanPhamUC()
+        public TabSanPhamDaDangUC()
         {
             InitializeComponent();
         }
-        public TabQuanLySanPhamUC(NguoiDung nguoi)
+        public TabSanPhamDaDangUC(NguoiDung nguoi)
         {
             InitializeComponent();
             Loaded += QuanLySanPham_Load;

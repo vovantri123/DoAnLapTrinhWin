@@ -22,6 +22,7 @@ namespace TraoDoiDo
     public partial class QuenMatKhau : Window
     {
         KiemTraDinhDang kiemTra = new KiemTraDinhDang();
+
         public QuenMatKhau()
         {
             InitializeComponent();
@@ -34,17 +35,14 @@ namespace TraoDoiDo
                 NguoiDungDao khacHangDao = new NguoiDungDao();
                 string mk = "";
                 if (kiemTra.kiemTraEmail(txtThongTinTaiKhoan.Text))
-                {
                     mk = khacHangDao.TimKiemMatKhauBangEmail(txtThongTinTaiKhoan.Text);
-                }
                 if (kiemTra.kiemTraSoDienThoai(txtThongTinTaiKhoan.Text))
-                {
                     mk = khacHangDao.TimKiemMatKhauBangSdt(txtThongTinTaiKhoan.Text);
-                }
+
                 if (!string.IsNullOrWhiteSpace(mk))
                     MessageBox.Show($"Mật khẩu của khách hàng là: {mk}");
                 else
-                    MessageBox.Show($"Không tìm thấy email");
+                    MessageBox.Show($"Không tìm thấy email hoặc số điện thoại");
             }
             catch (Exception ex)
             {

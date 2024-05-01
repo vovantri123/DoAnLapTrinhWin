@@ -38,7 +38,7 @@ namespace TraoDoiDo
             InitializeComponent(); 
             ccTabMuaSam.Content = new TabMuaSamUC(nguoi);
             ccTabGioHang.Content = new TabGioHangUC(nguoi);
-            ccTabTrangThaiDonHang.Content = new TabThongKeUC(nguoi);
+            ccTabTrangThaiDonHang.Content = new TabTrangThaiDonHangUC(nguoi);
         } 
     }
 }

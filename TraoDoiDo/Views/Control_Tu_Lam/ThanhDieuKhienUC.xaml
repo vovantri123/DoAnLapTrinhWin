@@ -47,6 +47,7 @@
                     Orientation="Horizontal">
 
                     <Button
+                        x:Name="btn_minimize"
                         Width="20"
                         Height="20"
                         Margin="7,0,7,0"
@@ -68,6 +69,7 @@
                         ToolTip="Maximize" />
 
                     <Button
+                        x:Name="btn_close"
                         Width="20"
                         Height="20"
                         Margin="7,0,7,0"

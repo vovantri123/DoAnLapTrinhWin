@@ -25,7 +25,7 @@ namespace TraoDoiDo
         public DangDoUC(NguoiDung nguoi)
         {
             InitializeComponent(); 
-            ccTabQuanLySanPham.Content = new TabQuanLySanPhamUC(nguoi);
+            ccTabQuanLySanPham.Content = new TabSanPhamDaDangUC(nguoi);
             ccTabQuanLyDonHang.Content = new TabQuanLyDonHangUC(nguoi);
             ccTabThongKe.Content = new TabThongKeUC(nguoi);
         }  

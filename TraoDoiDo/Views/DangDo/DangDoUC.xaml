@@ -26,7 +26,7 @@
             Width="Auto"
             materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
             materialDesign:ColorZoneAssist.Mode="Custom">
-            <TabItem Header="Quản lý sản phẩm">
+            <TabItem Header="Sản phẩm đã đăng">
                 <ContentControl x:Name="ccTabQuanLySanPham" />
             </TabItem>
             <TabItem Header="Quản lý đơn hàng">

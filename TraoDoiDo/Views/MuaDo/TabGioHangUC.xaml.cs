@@ -74,7 +74,7 @@ namespace TraoDoiDo.Views.Windows
                         trangThai = "Hết hàng";
                     else
                         trangThai = "Còn hàng";
-                    lsvGioHang.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.Ten, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TrangThaiConHayHet = trangThai });
+                    lsvGioHang.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.Ten, LinkAnhBia = linkAnhBia, Gia = Convert.ToDecimal(dong.GiaBan).ToString("#,##0"), PhiShip = Convert.ToDecimal(dong.PhiShip).ToString("#,##0"), SoLuongMua = dong.SoLuongMua, TrangThaiConHayHet = trangThai });
                 }
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace TraoDoiDo.Views.Windows
                     VoucherUC vcUC = new VoucherUC(ngMua.Id);
 
                     vcUC.txtbTenVoucher.Text = dong.TenVoucher;
-                    vcUC.txtbGiaTri.Text = dong.GiaTri;
+                    vcUC.txtbGiaTri.Text = Convert.ToDecimal(dong.GiaTri).ToString("#,##0");
                     vcUC.txtbSoLuotSuDungConLai.Text = (Convert.ToInt32(dong.SoLuotSuDungToiDa) - Convert.ToInt32(dong.SoLuotDaSuDung)).ToString();
                     vcUC.txtbNGayKetThuc.Text = dong.NgayKetThuc;
                     vcUC.txtbIdVoucher.Text = dong.IdVoucher;
@@ -112,7 +112,7 @@ namespace TraoDoiDo.Views.Windows
             }
         }
 
-        private void vcUC_TextBlockChanged(object sender, VoucherUC.TextBlockChangedEventArgs e) //Cho phep voucherUC có thể cập nhật textBlock và gọi hàm của TabGioHangUC
+        private void vcUC_TextBlockChanged(object sender, VoucherUC.TextBlockChangedEventArgs e) //Cho phep voucherUC có thể thay đổi textBlock của cha và gọi hàm của cha
         {
             // Cập nhật TextBlock trên form cha
             txtbgiaTriVoucher.Text = e.GiaTriMoi;
@@ -197,18 +197,18 @@ namespace TraoDoiDo.Views.Windows
                 string trangThai = "Chờ xác nhận";
 
 
-                tongTienHang += Convert.ToDouble(giaBan) * Convert.ToInt32(soLuongMua);
-                tongTienShip += Convert.ToDouble(phiShip);
+                tongTienHang += Convert.ToDouble(giaBan.Replace(",","")) * Convert.ToInt32(soLuongMua.Replace(",", ""));
+                tongTienShip += Convert.ToDouble(phiShip.Replace(",", ""));
 
-                tongThanhToan = tongTienHang + tongTienShip - Convert.ToInt32(txtbgiaTriVoucher.Text);
+                tongThanhToan = tongTienHang + tongTienShip - Convert.ToInt32(txtbgiaTriVoucher.Text.Replace(",",""));
 
 
                 dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngMua.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip, null, null, null, null));
             }
 
-            txtbTongTienHang.Text = tongTienHang.ToString();
-            txtbTongTienShip.Text = tongTienShip.ToString();
-            txtbTongThanhToan.Text = tongThanhToan.ToString();
+            txtbTongTienHang.Text = Convert.ToDecimal(tongTienHang).ToString("#,##0");
+            txtbTongTienShip.Text = Convert.ToDecimal(tongTienShip).ToString("#,##0");
+            txtbTongThanhToan.Text = Convert.ToDecimal(tongThanhToan).ToString("#,##0");
         } 
     }
 }

@@ -27,7 +27,7 @@ namespace TraoDoiDo
     public partial class ThongTinNguoiDang : Window
     { 
         DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
-        public ThongTinNguoiDang(string idNguoiDang)// K dùng constructor mà dùng public int id=1 toàn cục thì sẽ bị fail, do contrustor chạy trước khi gán
+        public ThongTinNguoiDang(string idNguoiDang) 
         {
             InitializeComponent();
             LoadThongTinNguoiDang(idNguoiDang);

@@ -18,14 +18,17 @@ namespace TraoDoiDo
     /// </summary>
     public partial class TrangChuUC : UserControl
     { 
-        private VoucherUC[] DanhSachVoucher = new VoucherUC[150]; //Load lên UI
-        private int soLuongVoucher;
-        VoucherDao voucherDao;
-        NguoiDungDao nguoiDao;
-        TrangThaiDonHangDao trangThaiDonHangDao;
-        private string idNguoiMua;
+        private VoucherUC[] DanhSachVoucher = new VoucherUC[150];
+        private int soLuongVoucher = 0; 
 
-        private List<string> imagePaths = new List<string>
+        private string idNguoiMua;
+        private int indexAnhHienTai = 0;
+        private DispatcherTimer timer;
+
+        VoucherDao voucherDao;
+        NguoiDungDao nguoiDao; 
+
+        private List<string> LishDuongDanAnh = new List<string>
         {
             "/HinhCuaToi/TrangChu/tc5.jpg", 
             "/HinhCuaToi/TrangChu/tc6.jpg", 
@@ -37,17 +40,16 @@ namespace TraoDoiDo
             "/HinhCuaToi/TrangChu/tc7.jpg", 
             "/HinhCuaToi/TrangChu/tc8.jpg",  
             "/HinhCuaToi/TrangChu/tc10.jpg",  
-            // Add more image paths as needed
+            // Thêm nhiều đường dẫn nữa nêu muốn
         }; 
-        private int currentIndex = 0;
-        private DispatcherTimer timer;
+        
 
         public TrangChuUC(string idNguoiMua)
         {
             this.idNguoiMua = idNguoiMua;
             InitializeComponent();
 
-            if (imagePaths.Count > 0)
+            if (LishDuongDanAnh.Count > 0)
             {
                 // Khởi động timer cho slideshow
                 timer = new DispatcherTimer();
@@ -56,7 +58,7 @@ namespace TraoDoiDo
                 timer.Start();
 
                 // Hiển thị ảnh đầu tiên
-                DisplayImage();
+                HienThiAnh();
             }
             LoadVoucherlenWpnlDanhSachVoucher();
             loadDSNGuoiHayMua();
@@ -64,25 +66,26 @@ namespace TraoDoiDo
 
         private void LoadVoucherlenWpnlDanhSachVoucher()
         {
-            soLuongVoucher = 0;
+            
             wpnlDSVoucher.Children.Clear();
             try
             {  
                 voucherDao = new VoucherDao();
-                List<Voucher> dsVoucher = voucherDao.LoadVoucher(); // DS này lấy từ database
+                List<Voucher> dsVoucher = voucherDao.LoadVoucher();  
 
                 foreach (var dong in dsVoucher)
                 {
                     DanhSachVoucher[soLuongVoucher] = new VoucherUC(idNguoiMua);
                     DanhSachVoucher[soLuongVoucher].txtbTenVoucher.Text = dong.TenVoucher;
-                    DanhSachVoucher[soLuongVoucher].txtbGiaTri.Text = dong.GiaTri;
+                    DanhSachVoucher[soLuongVoucher].txtbGiaTri.Text = Convert.ToDecimal(dong.GiaTri).ToString("#,##0");
+                    
                     DanhSachVoucher[soLuongVoucher].txtbSoLuotSuDungConLai.Text = (Convert.ToInt32(dong.SoLuotSuDungToiDa) - Convert.ToInt32(dong.SoLuotDaSuDung)).ToString();
                     DanhSachVoucher[soLuongVoucher].txtbNGayKetThuc.Text = dong.NgayKetThuc;
                     DanhSachVoucher[soLuongVoucher].txtbIdVoucher.Text = dong.IdVoucher;
 
                     DanhSachVoucher[soLuongVoucher].btnDungVoucher.Visibility = Visibility.Collapsed;
 
-                    wpnlDSVoucher.Children.Add(DanhSachVoucher[soLuongVoucher]); //Có thể không cần dùng LIST DanhSachVoucher cũng được, do không có dùng lại như bên mua đồ
+                    wpnlDSVoucher.Children.Add(DanhSachVoucher[soLuongVoucher]); 
                     soLuongVoucher++;
                 }
 
@@ -93,6 +96,7 @@ namespace TraoDoiDo
             } 
           
         } 
+
         public void loadDSNGuoiHayMua()
         {
             int demSoNguoiMuonLoc = 0; 
@@ -105,69 +109,50 @@ namespace TraoDoiDo
                 {
                     if (demSoNguoiMuonLoc >= 5)
                         break;
-                    //MessageBox.Show( + " hehehihi");
+
                     MucXepHangNguoiMuaNhieuNhatUC nguoiHayMuaUC = new MucXepHangNguoiMuaNhieuNhatUC(dong);
                       
                     wpnlDSNguoiHayMua.Children.Add(nguoiHayMuaUC);
                     demSoNguoiMuonLoc++;
                 }
-                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             } 
         }
-
-
-
-
-        // Các phương thức khác của lớp
-        private void DisplayImage()
-        {
-            // Load and display the current image
-            string imagePath = imagePaths[currentIndex];
-            BitmapImage bitmapImage = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+         
+        private void HienThiAnh()
+        { 
+            string duongDanAnh = LishDuongDanAnh[indexAnhHienTai];
+            BitmapImage bitmapImage = new BitmapImage(new Uri(duongDanAnh, UriKind.RelativeOrAbsolute));
             imageControl.Source = bitmapImage;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
-        {
-            // Move to the next image
-            currentIndex = (currentIndex + 1) % imagePaths.Count;
-            DisplayImage();
+        { 
+            indexAnhHienTai = (indexAnhHienTai + 1) % LishDuongDanAnh.Count;
+            HienThiAnh();
         }
-
-        // Sự kiện khi nhấn nút Previous
+         
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Move to the previous image
-            currentIndex--;
+        { 
+            indexAnhHienTai--;
+             
+            if (indexAnhHienTai < 0) 
+                indexAnhHienTai = LishDuongDanAnh.Count - 1; 
 
-            // Check if we have reached the beginning of the list
-            if (currentIndex < 0)
-            {
-                // Set currentIndex to the last image index
-                currentIndex = imagePaths.Count - 1;
-            }
-
-            DisplayImage();
+            HienThiAnh();
         }
-
-        // Sự kiện khi nhấn nút Next
+         
         private void NextButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Move to the next image
-            currentIndex++;
+        { 
+            indexAnhHienTai++;
+             
+            if (indexAnhHienTai >= LishDuongDanAnh.Count) 
+                indexAnhHienTai = 0; 
 
-            // Check if we have reached the end of the list
-            if (currentIndex >= imagePaths.Count)
-            {
-                // Set currentIndex back to the first image index
-                currentIndex = 0;
-            }
-
-            DisplayImage();
+            HienThiAnh();
         }
     }
 }

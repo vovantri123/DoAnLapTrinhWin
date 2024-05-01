@@ -44,11 +44,11 @@ namespace TraoDoiDo.Views.DangDo
         public TabThongKeUC(NguoiDung nguoi)
         {
             InitializeComponent();
-            Loaded += ThongKe_Load;
             nguoiDung = nguoi;
+            ThongKe_Load();
         }
 
-        private void ThongKe_Load(object sender, RoutedEventArgs e)
+        private void ThongKe_Load()
         {
             LoadTongDoanhThu();
             LoadTongSoLuongSanPhamDaBan();
@@ -287,7 +287,8 @@ namespace TraoDoiDo.Views.DangDo
                     int giaBan = Convert.ToInt32(dong.GiaBan);
                     tongDoanhThu += soLuongDaBan * giaBan;
                 }
-                txtbTongDoanhThu.Text = tongDoanhThu.ToString();
+                txtbTongDoanhThu.Text = Convert.ToDecimal(tongDoanhThu).ToString("#,##0");
+
             }
             catch (Exception ex)
             {

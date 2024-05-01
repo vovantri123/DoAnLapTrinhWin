@@ -724,8 +724,6 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.baml
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLySanPhamUC.g.cs
-C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLySanPhamUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.g.cs
@@ -736,3 +734,5 @@ C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\De
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.baml
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.g.cs
 C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabSanPhamDaDangUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabSanPhamDaDangUC.baml

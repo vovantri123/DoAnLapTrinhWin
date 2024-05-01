@@ -21,9 +21,9 @@ namespace TraoDoiDo
     /// Interaction logic for DangNhap.xaml
     /// </summary>
     public partial class DangNhap : Window
-    {
-        private TaiKhoanDao tkDao = new TaiKhoanDao();
-        private NguoiDungDao nguoiDao = new NguoiDungDao();
+    { 
+        NguoiDungDao nguoiDao = new NguoiDungDao();
+
         public DangNhap()
         {
             InitializeComponent();
@@ -33,8 +33,7 @@ namespace TraoDoiDo
         {
             TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password.ToString(), null); 
             NguoiDung nguoi = nguoiDao.TimKiemBangTenDangNhap(taiKhoan.TenDangNhap, taiKhoan.MatKhau); // Tuy trả về thông tin người dùng nhưng thiếu cái (idNguoi, TaiKhoan ; tiền)
-            
-
+             
             if (nguoi == null)
             {
                 MessageBox.Show("Tài khoản sai! Vui lòng đăng nhập lại");
@@ -42,28 +41,22 @@ namespace TraoDoiDo
             }
             else
             {
-                //MessageBox.Show("Đăng nhập thành công");
-                //this.Hide();
+                this.Hide();
                 MainWindow f = new MainWindow(nguoi);
-                f.Show();
+                f.ShowDialog();
             }
         }
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
             DangKy dangKy = new DangKy();
-            dangKy.Show();
+            dangKy.ShowDialog();
         }
 
-        private void btnQuenMatKhau_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void txtQuenMatKhau_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void txtbQuenMatKhau_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             QuenMatKhau quenMK = new QuenMatKhau();
-            quenMK.Show();
+            quenMK.ShowDialog();
         }
     }
 }

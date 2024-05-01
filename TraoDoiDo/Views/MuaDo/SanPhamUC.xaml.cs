@@ -25,23 +25,28 @@ namespace TraoDoiDo
     public partial class SanPhamUC : UserControl
     {
         public string idNguoiDang;
-        public string idNguoiMua;
-        private string tenNguoiDang;
-        private string soLuotDanhGia;
+        public string idNguoiMua; 
         public int yeuThich = 0;
+         
+        SanPham sp;
+        DanhGiaNguoiDang danhGia;
 
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        public SanPham sp = new SanPham();
+        DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao();
         SanPhamDao sanPhamDao = new SanPhamDao();
-        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        List<string> listSP = new List<string>();
+
+        public SanPhamUC()
+        {
+            InitializeComponent();
+        }
+
         public SanPhamUC(int yeuThich, string idNguoiMua)
         {
+            InitializeComponent();
+
             this.yeuThich = yeuThich;
             this.idNguoiMua = idNguoiMua;
-           
-
-            InitializeComponent();
+            sp = sanPhamDao.timKiemSanPhamBangId(txtbIdSanPham.Text);
+             
             if (yeuThich == 0)
             {
                 btnThemVaoYeuThich.Visibility = Visibility.Visible;
@@ -52,63 +57,46 @@ namespace TraoDoiDo
                 btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
                 btnBoYeuThich.Visibility = Visibility.Visible;
             }
-            //MessageBox.Show("id người mua 123:  " + idNguoiMua);
-
         }
-        
-        private void FSanPhamUC_Loaded(object sender, RoutedEventArgs e)
-        {
-            SanPham sp = sanPhamDao.timKiemSanPhamBangId(txtbIdSanPham.Text);
-        }
-        private void timTenVaSoLuotDanhGiaNguoiDang()
-        {
-            try
-            {
-                DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao(); 
-                DanhGiaNguoiDang danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
-                tenNguoiDang = danhGia.TenNguoiDang;
-                soLuotDanhGia = danhGia.SoLuotDanhGia;
-                 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+         
+         
         private void tangSoLuotXemThem1()
-        {
-            int soLuotXem = 0;
-            string idSanPham = txtbIdSanPham.Text;
+        {  
             try
             {
-                //B1 Lấy số lượt xem từ bảng SanPham
-                soLuotXem = Convert.ToInt32(sanPhamDao.LayLuotXem(idSanPham));
-                //B2 Cập nhật số lượt xem
+                string idSanPham = txtbIdSanPham.Text;
+                int soLuotXem = Convert.ToInt32(sanPhamDao.LayLuotXem(idSanPham));
                 sanPhamDao.CapNhatLuotXem(idSanPham, soLuotXem);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
         private void btnThongTinChiTietSanPham_Click(object sender, MouseButtonEventArgs e)
         {
-            timTenVaSoLuotDanhGiaNguoiDang();
-            tangSoLuotXemThem1();
+            try
+            {
+                tangSoLuotXemThem1();
+                danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
 
-        
-            sp = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, sp.LinkAnh, txtbLoai.Text,sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua,sp.MoTaChung, sp.PhanTramMoi,txtbSoLuotXem.Text, idNguoiMua,sp.NgayDang);
-            ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);
-            f.idNguoiDang = idNguoiDang;
-            f.txtbTenNguoiDang.Text = tenNguoiDang;
-            f.txtbSoLuotDanhGia.Text = soLuotDanhGia;
-            f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            f.idSanPham = txtbIdSanPham.Text;
-           
-            f.idNguoiMua = idNguoiMua;
-            f.ShowDialog();
+                sp = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, sp.LinkAnh, txtbLoai.Text, sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua, sp.MoTaChung, sp.PhanTramMoi, txtbSoLuotXem.Text, idNguoiMua, sp.NgayDang);
+                ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);
+                f.idNguoiDang = idNguoiDang;
+                f.txtbTenNguoiDang.Text = danhGia.TenNguoiDang;
+                f.txtbSoLuotDanhGia.Text = danhGia.SoLuotDanhGia;
+                f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                f.idSanPham = txtbIdSanPham.Text;
+
+                f.idNguoiMua = idNguoiMua;
+                f.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+            
         }
 
         private void btnThemVaoYeuThich_Click(object sender, RoutedEventArgs e)
@@ -116,8 +104,7 @@ namespace TraoDoiDo
             btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
             btnBoYeuThich.Visibility = Visibility.Visible;
             try
-            {
-                // Câu lệnh SQL INSERT
+            { 
                 DanhMucYeuThich danhMuc = new DanhMucYeuThich(idNguoiMua, txtbIdSanPham.Text);
                 DanhMucYeuThichDao danhMucDao = new DanhMucYeuThichDao();
                 danhMucDao.Them(danhMuc);
@@ -133,8 +120,7 @@ namespace TraoDoiDo
             btnBoYeuThich.Visibility = Visibility.Collapsed;
             btnThemVaoYeuThich.Visibility = Visibility.Visible;
             try
-            {
-                // Câu lệnh SQL INSERT
+            { 
                 DanhMucYeuThich danhMuc = new DanhMucYeuThich(idNguoiMua, txtbIdSanPham.Text);
                 DanhMucYeuThichDao danhMucDao = new DanhMucYeuThichDao();
                 danhMucDao.Xoa(danhMuc);

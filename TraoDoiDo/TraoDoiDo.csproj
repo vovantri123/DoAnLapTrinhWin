@@ -93,8 +93,8 @@
     <Compile Include="Views\DangDo\TabQuanLyDonHangUC.xaml.cs">
       <DependentUpon>TabQuanLyDonHangUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DangDo\TabQuanLySanPhamUC.xaml.cs">
-      <DependentUpon>TabQuanLySanPhamUC.xaml</DependentUpon>
+    <Compile Include="Views\DangDo\TabSanPhamDaDangUC.xaml.cs">
+      <DependentUpon>TabSanPhamDaDangUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DangDo\TabThongKeUC.xaml.cs">
       <DependentUpon>TabThongKeUC.xaml</DependentUpon>
@@ -222,7 +222,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DangDo\TabQuanLySanPhamUC.xaml">
+    <Page Include="Views\DangDo\TabSanPhamDaDangUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

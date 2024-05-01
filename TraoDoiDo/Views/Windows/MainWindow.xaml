@@ -163,7 +163,10 @@
                     Margin="10,0,0,0"
                     Source="/HinhCuaToi/Icons/iconShop94.png" />
             </Grid>
-            <local:ThanhDieuKhienUC Grid.Column="1" Tag="{Binding Title, ElementName=mainWindow}" />
+            <local:ThanhDieuKhienUC
+                x:Name="ucThanhDieuKhien"
+                Grid.Column="1"
+                Tag="{Binding Title, ElementName=mainWindow}" />
 
         </Grid>
 

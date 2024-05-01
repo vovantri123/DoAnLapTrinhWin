@@ -26,20 +26,21 @@ namespace TraoDoiDo
         public string nguonTienDen = "";
         public string nguonTienTu = "";
         public string thoiGianGiaoDich = "";
-        NguoiDung ngDung = new NguoiDung();
-        NguoiDungDao ngDungDao = new NguoiDungDao();
 
+        NguoiDung ngDung = new NguoiDung();
+        
+        NguoiDungDao ngDungDao = new NguoiDungDao();
 
         public NapRutTien()
         {
             InitializeComponent();
-            this.DataContext = this;
         }
-        public NapRutTien(NguoiDung kh)
+        
+        public NapRutTien(NguoiDung ngDung)
         {
             InitializeComponent();
             this.DataContext = this;
-            ngDung = kh;
+            this.ngDung = ngDung;
         }
 
         private void FNapRutTien_Loaded(object sender, RoutedEventArgs e)
@@ -57,8 +58,7 @@ namespace TraoDoiDo
         }
 
         private void btnNapTien_Click(object sender, RoutedEventArgs e)
-        {
-            bool coNapTien = false;
+        { 
             try
             {
                 soTienNap = tinhTien();
@@ -71,25 +71,20 @@ namespace TraoDoiDo
                 GiaoDich giaoDich = new GiaoDich(null, ngDung.Id, txtbTieuDe.Text, soTienNap.ToString(), nguonTienTu, nguonTienDen, thoiGianGiaoDich);
                 GiaoDichDao giaoDichDao = new GiaoDichDao();
                 giaoDichDao.CapNhatSoTien(soTienSauNap.ToString(), ngDung.Id);
-                giaoDichDao.Them(giaoDich);
-                coNapTien = true;
+                giaoDichDao.Them(giaoDich); 
+
+                MainWindow fNguoiDung = new MainWindow();
+                fNguoiDung.LoadWindow();
+                MessageBox.Show("Nạp tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                MainWindow fNguoiDung = new MainWindow();
-                fNguoiDung.LoadWindow();
-            }
-            if (coNapTien)
-                MessageBox.Show("Nạp tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Lỗi:" + ex.Message);
+            }  
         }
 
         private void btnRutTien_Click(object sender, RoutedEventArgs e)
-        {
-            bool coRutTien = false;
+        { 
             try
             {
                 soTienRut = tinhTien();
@@ -102,20 +97,16 @@ namespace TraoDoiDo
                 GiaoDich giaoDich = new GiaoDich(null, ngDung.Id, txtbTieuDe.Text, soTienRut.ToString(), nguonTienTu, nguonTienDen, thoiGianGiaoDich);
                 GiaoDichDao giaoDichDao = new GiaoDichDao();
                 giaoDichDao.CapNhatSoTien(soTienSauRut.ToString(), ngDung.Id);
-                giaoDichDao.Them(giaoDich);
-                coRutTien = true;
+                giaoDichDao.Them(giaoDich); 
+
+                MainWindow fNguoiDung = new MainWindow();
+                fNguoiDung.LoadWindow();
+                MessageBox.Show("Rút tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                MainWindow fNguoiDung = new MainWindow();
-                fNguoiDung.LoadWindow();
-            }
-            if (coRutTien)
-                MessageBox.Show("Rút tiền thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Lỗi:" + ex.Message);
+            } 
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -125,7 +116,7 @@ namespace TraoDoiDo
         }
 
         public static string XoaDauCham(string tien)
-        {
+        { 
             return tien.Replace(",", "");
         }
 

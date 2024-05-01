@@ -23,22 +23,21 @@ namespace TraoDoiDo
     /// </summary>
     public partial class VoucherUC : UserControl
     {
+        private string idNguoiMua; 
         
-
-
-        private string idNguoiMua;
-        private SqlConnection conn;
         NguoiDungVoucherDao ndvcDao = new NguoiDungVoucherDao();
+
         public VoucherUC()
         {
             InitializeComponent();
         }
+
         public VoucherUC(string idNguoiMua)
         {
-            InitializeComponent();
-            conn = new SqlConnection(Properties.Settings.Default.connStr);
+            InitializeComponent(); 
             this.idNguoiMua = idNguoiMua;  
         }
+
         #region TỪ UC con truyền ngược lên UC cha
         // Tạo lớp hoặc cặp tham số mới để đại diện cho cả hai giá trị
         public class TextBlockChangedEventArgs : EventArgs
@@ -60,14 +59,11 @@ namespace TraoDoiDo
             });
         }
         #endregion
-
-
+         
         private void btnNhanVoucher_Click(object sender, RoutedEventArgs e)
         {
             NguoiDungVoucher ndvc = new NguoiDungVoucher(txtbIdVoucher.Text, idNguoiMua);
             ndvcDao.Them(ndvc);  
-        }
-
-       
+        } 
     }
 }

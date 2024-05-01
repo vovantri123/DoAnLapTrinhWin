@@ -24,57 +24,53 @@ namespace TraoDoiDo
     /// Interaction logic for ViDienTuUC.xaml
     /// </summary>
     public partial class ViDienTuUC : UserControl
-    {
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        NguoiDung nguoiDung = new NguoiDung();
-        NguoiDungDao nguoiDungDao = new NguoiDungDao();
-        //GiaoDich gd;
-        GiaoDichDao gdDao = new GiaoDichDao();
-        List<string> listTienNap = new List<string>();
-        List<string> listTienRut = new List<string>(); 
+    { 
+        NguoiDung nguoiDung;
+
+        NguoiDungDao nguoiDungDao = new NguoiDungDao(); 
+        GiaoDichDao gdDao = new GiaoDichDao(); 
         public ViDienTuUC()
         {
             InitializeComponent();
         }
-        public ViDienTuUC(NguoiDung kh)
+        public ViDienTuUC(NguoiDung nguoiDung)
         {
             InitializeComponent();
-            nguoiDung = kh;
-            imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
+            this.nguoiDung = nguoiDung;
+            imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDung.Anh)));
             Loaded += UcViDienTU_Loaded;
         }
 
         private void btnNapTien_Click(object sender, RoutedEventArgs e)
         {
-            NapRutTien w = new NapRutTien(nguoiDung);
-            w.Show();
+            NapRutTien f = new NapRutTien(nguoiDung);
+            f.ShowDialog();
         }
 
         private void btnRutTien_Click(object sender, RoutedEventArgs e)
         {
-            NapRutTien w = new NapRutTien(nguoiDung);
-            w.txtbTieuDe.Text = "Rút tiền";
-            w.txtbTu.Text = "Rút tiền từ";
-            w.txtbDen.Text = "Đến ngân hàng";
-            w.Show();
+            NapRutTien f = new NapRutTien(nguoiDung);
+            f.txtbTieuDe.Text = "Rút tiền";
+            f.txtbTu.Text = "Rút tiền từ";
+            f.txtbDen.Text = "Đến ngân hàng";
+            f.ShowDialog();
         }
 
         private void UcViDienTU_Loaded(object sender, RoutedEventArgs e)
-        {
-
+        { 
             try
             {
                 HienThi_GiaoDich();
                 string t = nguoiDungDao.TimKiemTienBangId(nguoiDung.Id);
                 decimal tien = Convert.ToDecimal(t);
-
-                lblSoDu.Text = DinhDangTien(tien);
+                txtbSoDu.Text = DinhDangTien(tien);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
+
         private void HienThi_GiaoDich()
         {
             try
@@ -89,6 +85,7 @@ namespace TraoDoiDo
             }
             
         }
+
         private static string DinhDangTien(decimal t)
         {
             return t.ToString("#,0");
