@@ -105,6 +105,15 @@
     <Compile Include="Views\MuaDo\TabTrangThaiDonHangUC.xaml.cs">
       <DependentUpon>TabTrangThaiDonHangUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuanLy\TabQuanLyNguoiDungUC.xaml.cs">
+      <DependentUpon>TabQuanLyNguoiDungUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuanLy\TabQuanLySanPhamUC.xaml.cs">
+      <DependentUpon>TabQuanLySanPhamUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuanLy\TabQuanLyVoucherUC.xaml.cs">
+      <DependentUpon>TabQuanLyVoucherUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\DangKy.xaml.cs">
       <DependentUpon>DangKy.xaml</DependentUpon>
     </Compile>
@@ -235,6 +244,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MuaDo\TabTrangThaiDonHangUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuanLy\TabQuanLyNguoiDungUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuanLy\TabQuanLySanPhamUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuanLy\TabQuanLyVoucherUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

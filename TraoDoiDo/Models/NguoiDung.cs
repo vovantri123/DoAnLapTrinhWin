@@ -45,22 +45,22 @@ namespace TraoDoiDo.Models
             this.hoTen = hoTen;
             this.diaChi = diaChi;
             this.anh = anh;
-            this.SoLuotMua = soLuotMua;
+            this.soLuotMua = soLuotMua;
         }
-        public string Id { get => id; set { id = value; OnPropertyChanged(); } }
-        public string HoTen { get => hoTen; set { hoTen = value; OnPropertyChanged(); } }
-        public string GioiTinh { get => gioiTinh; set { gioiTinh = value; OnPropertyChanged(); } }
-        public string NgaySinh { get => ngaySinh; set { ngaySinh = value; OnPropertyChanged(); } }
-        public string Cmnd { get => cmnd; set { cmnd = value; OnPropertyChanged(); } }
-        public string Email { get => email; set { email = value; OnPropertyChanged(); } }
-        public string Sdt { get => sdt; set { sdt = value; OnPropertyChanged(); } }
-        public string DiaChi { get => diaChi; set { diaChi = value; OnPropertyChanged(); } }
-        public string Anh { get => anh; set { anh = value; OnPropertyChanged(); } }
-        public string Tien { get => tien; set { tien = value; OnPropertyChanged(); } }
-        public TaiKhoan TaiKhoan { get => taiKhoan; set { taiKhoan = value; OnPropertyChanged(); } }
-        public string SoLuotMua { get => soLuotMua; set { soLuotMua = value; OnPropertyChanged(); } }
+        public string Id { get => id; set => id = value; }
+        public string HoTen { get => hoTen; set => hoTen = value; }
+        public string GioiTinh { get => gioiTinh; set => gioiTinh = value; }
+        public string NgaySinh { get => ngaySinh; set => ngaySinh = value; }
+        public string Cmnd { get => cmnd; set => cmnd = value; }
+        public string Email { get => email; set => email = value; }
+        public string Sdt { get => sdt; set => sdt = value; }
+        public string DiaChi { get => diaChi; set => diaChi = value; }
+        public string Anh { get => anh; set => anh = value; }
+        public string Tien { get => tien; set => tien = value; }
+        public TaiKhoan TaiKhoan { get => taiKhoan; set => taiKhoan = value; }
+        public string SoLuotMua { get => soLuotMua; set => soLuotMua = value; }
 
-        //public string ErrorMessage { get => errorMessage; set { errorMessage = value; OnPropertyChanged(); } }
+      
         KiemTraDinhDang kiemTra = new KiemTraDinhDang();
         public bool kiemTraCacTextBox()
         {

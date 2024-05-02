@@ -23,7 +23,9 @@ namespace TraoDoiDo.Database
                     GROUP BY {nguoiDungID},{nguoiDungTen}
                     HAVING {nguoiDungID} = '{idNguoi}' ";
             dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-            return new DanhGiaNguoiDang(null, dongKetQua[0], null, null, null, null, dongKetQua[1], null);
+            if(dongKetQua!=null)
+                return new DanhGiaNguoiDang(null, dongKetQua[0], null, null, null, null, dongKetQua[1], null);
+            return null;
         }
         public void Xoa(DanhGiaNguoiDang danhGiaNguoiDung)
         {

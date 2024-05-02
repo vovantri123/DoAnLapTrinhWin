@@ -30,11 +30,8 @@ namespace TraoDoiDo.Views.MuaDo
         NguoiDung ngMua;
 
         SanPhamDao sanPhamDao = new SanPhamDao();
-        GioHangDao gioHangDao = new GioHangDao();
         NguoiDungDao ngDungDao = new NguoiDungDao();
-        TrangThaiDonHangDao trangThaiDonHangDao = new TrangThaiDonHangDao();
-        QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
-        VoucherDao voucherDao = new VoucherDao();
+        
         public TabMuaSamUC()
         {
             InitializeComponent();
@@ -87,7 +84,7 @@ namespace TraoDoiDo.Views.MuaDo
                     DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = dong.LuotXem;
                     DanhSachSanPham[soLuongSP].idNguoiDang = dong.IdNguoiDang;
                     DanhSachSanPham[soLuongSP].txtbLoai.Text = dong.Loai;
-
+                    DanhSachSanPham[soLuongSP].Margin = new Thickness(8);
                     soLuongSP++;
                 }
 
@@ -138,7 +135,7 @@ namespace TraoDoiDo.Views.MuaDo
             wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text) > Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text))
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text.Replace(".","")) > Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text.Replace(".", "")))
                         HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
 
             LoadToanBoDanhSachSanPhamLenWpnlHienThi();

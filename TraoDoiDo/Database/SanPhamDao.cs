@@ -18,7 +18,7 @@ namespace TraoDoiDo.Database
         public void Them(SanPham sp)
         {
             string sqlStr = $@"INSERT INTO SanPham ({sanPhamID},{sanPhamIdNguoiDang},{sanPhamTen}, {sanPhamAnh}, {sanPhamLoai}, {sanPhamSoLuong}, {sanPhamSLDaBan}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamPhiShip}, {sanPhamTrangThai}, {sanPhamNoiBan}, {sanPhamXuatXu}, {sanPhamNgayMua}, {sanPhamPhamTramMoi}, {sanPhamMoTaChung}, {sanPhamSoLuotXem}, {sanPhamNgayDang}) 
-                   VALUES ('{sp.Id}','{sp.IdNguoiDang}' , N'{sp.Ten}', '{sp.LinkAnh}', N'{sp.Loai}', '{sp.SoLuong}', '{sp.SoLuongDaBan}', '{sp.GiaGoc}', '{sp.GiaBan}', '{sp.PhiShip}', N'{sp.TrangThai}', N'{sp.NoiBan}', N'{sp.XuatXu}', '{sp.NgayMua}', '{sp.PhanTramMoi}', N'{sp.MoTaChung}','{0}','{sp.NgayDang})";
+                   VALUES ('{sp.Id}','{sp.IdNguoiDang}' , N'{sp.Ten}', '{sp.LinkAnh}', N'{sp.Loai}', '{sp.SoLuong}', '{sp.SoLuongDaBan}', '{sp.GiaGoc}', '{sp.GiaBan}', '{sp.PhiShip}', N'{sp.TrangThai}', N'{sp.NoiBan}', N'{sp.XuatXu}', '{sp.NgayMua}', '{sp.PhanTramMoi}', N'{sp.MoTaChung}','{0}','{sp.NgayDang}' )";
             dbConnection.ThucThi(sqlStr);
         }
 
@@ -173,7 +173,7 @@ namespace TraoDoiDo.Database
         }
         public List<SanPham> LoadToanBoSanPham()
         {
-            string sqlStr = "SELECT IdSanPham, Ten,LinkAnhBia,Loai,SoLuong,SoLuongDaBan,GiaGoc,GiaBan,PhiShip,NgayDang FROM SanPham";
+            string sqlStr = $"SELECT {sanPhamID}, {sanPhamTen},{sanPhamAnh},{sanPhamLoai},{sanPhamSoLuong},{sanPhamSLDaBan},{sanPhamGiaGoc},{sanPhamGiaBan},{sanPhamPhiShip},{sanPhamNgayDang} FROM {sanPhamHeader}";
             dsSanPham = new List<SanPham>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua)

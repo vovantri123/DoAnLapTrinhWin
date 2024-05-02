@@ -48,5 +48,11 @@ namespace TraoDoiDo.ViewModels
         {
             return ngayMua < ngayDang;
         }
+        public bool kiemTraSo(string s)
+        {
+            if (long.TryParse(s, out _))
+                return true;
+            return false;
+        }
     }
 }

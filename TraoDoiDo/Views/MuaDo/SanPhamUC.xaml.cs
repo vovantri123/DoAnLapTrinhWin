@@ -30,7 +30,7 @@ namespace TraoDoiDo
          
         SanPham sp;
         DanhGiaNguoiDang danhGia;
-
+        NguoiDung nguoiDang = new NguoiDung();
         DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao();
         SanPhamDao sanPhamDao = new SanPhamDao();
 
@@ -57,6 +57,7 @@ namespace TraoDoiDo
                 btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
                 btnBoYeuThich.Visibility = Visibility.Visible;
             }
+            nguoiDang = sanPhamDao.timKiemNguoiDangTheoIdSP(txtbIdSanPham.Text);
         }
          
          
@@ -79,11 +80,11 @@ namespace TraoDoiDo
             try
             {
                 tangSoLuotXemThem1();
-                danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
+                danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(nguoiDang.Id);
 
-                sp = new SanPham(txtbIdSanPham.Text, idNguoiDang, txtbTen.Text, sp.LinkAnh, txtbLoai.Text, sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua, sp.MoTaChung, sp.PhanTramMoi, txtbSoLuotXem.Text, idNguoiMua, sp.NgayDang);
+                sp = new SanPham(txtbIdSanPham.Text, nguoiDang.Id, txtbTen.Text, sp.LinkAnh, txtbLoai.Text, sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua, sp.MoTaChung, sp.PhanTramMoi, txtbSoLuotXem.Text, idNguoiMua, sp.NgayDang);
                 ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);
-                f.idNguoiDang = idNguoiDang;
+                f.idNguoiDang = nguoiDang.Id;
                 f.txtbTenNguoiDang.Text = danhGia.TenNguoiDang;
                 f.txtbSoLuotDanhGia.Text = danhGia.SoLuotDanhGia;
                 f.WindowStartupLocation = WindowStartupLocation.CenterScreen;

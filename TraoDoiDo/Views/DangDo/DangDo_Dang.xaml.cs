@@ -37,7 +37,7 @@ namespace TraoDoiDo
         {
             try
             { 
-                string tenFileAnh = "no_image.jpg";
+                string tenFileAnh = "";
                 for (int i = 0; i < soLuongAnh; i++)
                     if (DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != null && !string.IsNullOrEmpty(DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text.Trim()) && DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text != "no_image.jpg")
                     {
@@ -46,8 +46,7 @@ namespace TraoDoiDo
                     }
                 string ngayHienTai = DateTime.Today.ToShortDateString();
                 string ngayMua = ucThongTin.dtpNgayMua.Text;
-                sp = new SanPham(ucThongTin.txtbIdSanPham.Text, ngDang.Id, ucThongTin.txtbTen.Text, tenFileAnh, ucThongTin.txtbLoai.Text, ucThongTin.ucTangGiamSoLuongTong.txtbSoLuong.Text, ucThongTin.ucTangGiamSoLuongDaBan.txtbSoLuong.Text, ucThongTin.txtbGiaGoc.Text, ucThongTin.txtbGiaBan.Text, ucThongTin.txtbPhiShip.Text, "Đã duyệt", ucThongTin.cboNoiBan.Text, ucThongTin.cboXuatXu.Text, ngayMua, ucThongTin.txtbMoTaChung.Text, ucThongTin.progressSlidere_PhanTramMoi.Value.ToString(), "0", "1", ngayHienTai);
-                sanPhamDao.Them(sp);
+                sp = new SanPham(ucThongTin.txtbIdSanPham.Text, ngDang.Id, ucThongTin.txtbTen.Text, tenFileAnh, ucThongTin.txtbLoai.Text, ucThongTin.ucTangGiamSoLuongTong.txtbSoLuong.Text, ucThongTin.ucTangGiamSoLuongDaBan.txtbSoLuong.Text, ucThongTin.txtbGiaGoc.Text, ucThongTin.txtbGiaBan.Text, ucThongTin.txtbPhiShip.Text, "Đã duyệt", ucThongTin.cboNoiBan.Text, ucThongTin.cboXuatXu.Text, ngayMua, ucThongTin.txtbMoTaChung.Text, ucThongTin.progressSlidere_PhanTramMoi.Value.ToString(), "0","1", ngayHienTai);
                 
             }
             catch(Exception ex)
@@ -85,13 +84,14 @@ namespace TraoDoiDo
         }
 
         private void btnDang_Click(object sender, RoutedEventArgs e)
-        {  
-            //bool check = sp.kiemTraCacTextBox();
-            //if (check)
+        {
+            themThongTinVaoCSDL();
+            bool check = sp.kiemTraCacTextBox();
+            if (check)
             {
                 try
                 {
-                    themThongTinVaoCSDL();
+                    sanPhamDao.Them(sp);
                     themAnhVaMoTaVaoCSDL();
                     MessageBox.Show("Đăng đồ thành công"); 
                 }

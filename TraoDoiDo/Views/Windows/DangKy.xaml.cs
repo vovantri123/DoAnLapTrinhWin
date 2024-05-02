@@ -23,6 +23,8 @@ namespace TraoDoiDo
     /// </summary>
     public partial class DangKy : Window
     {
+        TaiKhoanDao tkDao = new TaiKhoanDao();
+        NguoiDungDao nguoiDao = new NguoiDungDao();
         public DangKy()
         {
             InitializeComponent();
@@ -31,11 +33,8 @@ namespace TraoDoiDo
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
-            TaiKhoanDao tkDao = new TaiKhoanDao();
-            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, null);
-            NguoiDung nguoi = new NguoiDung(null, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, txtbTenFileAnh.Text, taiKhoan, "0");
-            ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(nguoi);
-            NguoiDungDao nguoiDao = new NguoiDungDao();
+            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, "0");
+            NguoiDung nguoi = new NguoiDung("0", txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, txtbTenFileAnh.Text, taiKhoan, "0");
             bool checkThongTinHopLe = nguoi.kiemTraCacTextBox();
             if (checkThongTinHopLe)
             { 

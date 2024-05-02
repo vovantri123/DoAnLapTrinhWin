@@ -48,54 +48,54 @@ namespace TraoDoiDo.Models
             this.idNguoiDang = idNguoiDang;
             this.luotXem = luotXem;
             this.idNguoiMua = idNguoiMua;
-            this.NgayDang = ngayDang;
+            this.ngayDang = ngayDang;
         }
 
-        public string Id { get => id; set { id = value; OnPropertyChanged(); } }
-        public string Ten { get => ten; set { ten = value; OnPropertyChanged(); } }
-        public string LinkAnh { get => linkAnhBia; set { linkAnhBia = value; OnPropertyChanged(); } }
-        public string Loai { get => loai; set { loai = value; OnPropertyChanged(); } }
-        public string SoLuong { get => soLuong; set { soLuong = value; OnPropertyChanged(); } }
-        public string SoLuongDaBan { get => soLuongDaBan; set { soLuongDaBan = value; OnPropertyChanged(); } }
-        public string GiaGoc { get => giaGoc; set { giaGoc = value; OnPropertyChanged(); } }
-        public string GiaBan { get => giaBan; set { giaBan = value; OnPropertyChanged(); } }
-        public string PhiShip { get => phiShip; set { phiShip = value; OnPropertyChanged(); } }
-        public string TrangThai { get => trangThai; set { trangThai = value; OnPropertyChanged(); } }
-        public string NoiBan { get => noiBan; set { noiBan = value; OnPropertyChanged(); } }
-        public string XuatXu { get => xuatXu; set { xuatXu = value; OnPropertyChanged(); } }
-        public string NgayMua { get => ngayMua; set { ngayMua = value; OnPropertyChanged(); } }
-        public string MoTaChung { get => moTaChung; set { moTaChung = value; OnPropertyChanged(); } }
-        public string PhanTramMoi { get => phanTramMoi; set { phanTramMoi = value; OnPropertyChanged(); } }
-        public string IdNguoiDang { get => idNguoiDang; set { idNguoiDang = value; OnPropertyChanged(); } }
-        public string LuotXem { get => luotXem; set { luotXem = value; OnPropertyChanged(); } }
+        public string Id { get => id; set => id = value;  }
+        public string Ten { get => ten; set => ten = value; }
+        public string LinkAnh { get => linkAnhBia; set => linkAnhBia = value;  }
+        public string Loai { get => loai; set => loai = value;  }
+        public string SoLuong { get => soLuong; set => soLuong = value; }
+        public string SoLuongDaBan { get => soLuongDaBan; set => soLuongDaBan = value; }
+        public string GiaGoc { get => giaGoc; set => giaGoc = value; }
+        public string GiaBan { get => giaBan; set => giaBan = value; }
+        public string PhiShip { get => phiShip; set => phiShip = value; }
+        public string TrangThai { get => trangThai; set => trangThai = value; }
+        public string NoiBan { get => noiBan; set => noiBan = value; }
+        public string XuatXu { get => xuatXu; set => xuatXu = value; }
+        public string NgayMua { get => ngayMua; set => ngayMua = value; }
+        public string MoTaChung { get => moTaChung; set => moTaChung = value; }
+        public string PhanTramMoi { get => phanTramMoi; set => phanTramMoi = value; }
+        public string IdNguoiDang { get => idNguoiDang; set => idNguoiDang = value; }
+        public string LuotXem { get => luotXem; set => luotXem = value; }
         //public QuanLyDonHang QuanLyDonHang { get => quanLyDonHang; set => quanLyDonHang = value; }
-        public string IdNguoiMua { get => idNguoiMua; set { idNguoiMua = value; OnPropertyChanged(); } }
-        public string NgayDang { get => ngayDang; set { ngayDang = value; OnPropertyChanged(); } }
+        public string IdNguoiMua { get => idNguoiMua; set => idNguoiMua = value; }
+        public string NgayDang { get => ngayDang; set => ngayDang = value; }
         //public string ErrorMessage { get => errorMessage; set { errorMessage = value; OnPropertyChanged(); } }
         KiemTraDinhDang kiemTra = new KiemTraDinhDang();
-        //public bool kiemTraCacTextBox()
-        //{
-        //    string errorMessage = "";
-        //    foreach (var property in typeof(SanPham).GetProperties())
-        //    {
-        //        var value = property.GetValue(this);
-        //        if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
-        //        {
-        //            errorMessage = XuLyTienIch.TinNhanTrongKhongHopLe;
-        //            MessageBox.Show(errorMessage);
-        //            return false;
-        //        }
-        //    } 
+        public bool kiemTraCacTextBox()
+        {
+            string errorMessage = "";
+            foreach (var property in typeof(SanPham).GetProperties())
+            {
+                var value = property.GetValue(this);
+                if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+                {
+                    errorMessage = XuLyTienIch.TinNhanTrongKhongHopLe;
+                    MessageBox.Show(errorMessage);
+                    return false;
+                }
+            } 
 
-        //    DateTime ngayMua = DateTime.ParseExact(NgayMua, "d/M/yyyy", null);
-        //    DateTime ngayDang = DateTime.ParseExact(NgayDang, "d/M/yyyy", null);
-        //    if (!kiemTra.kiemTraNgayMuaSanPham(ngayMua, ngayDang))
-        //    {
-        //        errorMessage = XuLyTienIch.TinNhanNgayMuaHopLe;
-        //        MessageBox.Show(errorMessage);
-        //        return false;
-        //    }
-        //    return true;
-        //}
+            DateTime ngayMua = DateTime.ParseExact(NgayMua, "d/M/yyyy", null);
+            DateTime ngayDang = DateTime.ParseExact(NgayDang, "d/M/yyyy", null);
+            if (!kiemTra.kiemTraNgayMuaSanPham(ngayMua, ngayDang))
+            {
+                errorMessage = XuLyTienIch.TinNhanNgayMuaHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
+            return true;
+        }
     }
 }

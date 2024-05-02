@@ -17,8 +17,8 @@ namespace TraoDoiDo.Database
 
         public void Them(NguoiDung user)
         {
-            string sqlStr = $"INSERT INTO {nguoiDungHeader} ({nguoiDungTen},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungCMND},{nguoiDungDiaChi},{nguoiDungEmail},{nguoiDungAnh})"
-                            + $"VALUES (N'{user.HoTen}',N'{user.GioiTinh}','{user.NgaySinh}','{user.Sdt}','{user.Cmnd}',N'{user.DiaChi}','{user.Email}','{user.Anh}')";
+            string sqlStr = $"INSERT INTO {nguoiDungHeader} ({nguoiDungTen},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungCMND},{nguoiDungDiaChi},{nguoiDungEmail},{nguoiDungAnh},{nguoiDungTien})"
+                            + $"VALUES (N'{user.HoTen}',N'{user.GioiTinh}','{user.NgaySinh}','{user.Sdt}','{user.Cmnd}',N'{user.DiaChi}','{user.Email}','{user.Anh}','{user.Tien}')";
             dbConnection.ThucThi(sqlStr);
         }
         public void Xoa(string id)
@@ -89,7 +89,9 @@ namespace TraoDoiDo.Database
                                INNER JOIN {taiKhoanHeader} ON {nguoiDungHeader}.{nguoiDungID} = {taiKhoanHeader}.{taiKhoanIdNguoiDung}
                                WHERE {taiKhoanTenDangNhap}='{tenDangNhap}' AND {taiKhoanMatKhau}='{matKhau}'";
             dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-            return new NguoiDung(dongKetQua[11], dongKetQua[0], dongKetQua[2], dongKetQua[4], dongKetQua[1], dongKetQua[6], dongKetQua[3], dongKetQua[5], dongKetQua[7], new TaiKhoan(dongKetQua[9], dongKetQua[10], dongKetQua[11]), dongKetQua[8]);
+            if(dongKetQua!=null)
+                return new NguoiDung(dongKetQua[11], dongKetQua[0], dongKetQua[2], dongKetQua[4], dongKetQua[1], dongKetQua[6], dongKetQua[3], dongKetQua[5], dongKetQua[7], new TaiKhoan(dongKetQua[9], dongKetQua[10], dongKetQua[11]), dongKetQua[8]);
+            return null;
         }
 
         public string TimKiemTienBangId(string id)
