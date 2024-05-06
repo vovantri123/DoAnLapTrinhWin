@@ -212,6 +212,64 @@ namespace TraoDoiDo.Views.DangDo
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void cboSapXep_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            try
+            {
+                lsvQuanLySanPham.Items.Clear();
+                string selectedItemContent = (comboBox.SelectedItem as ComboBoxItem).Content.ToString().Trim();
+                int index = comboBox.SelectedIndex;
+                if (string.Equals(selectedItemContent, "Tất cả"))
+                    HienThi_QuanLySanPham();
+                else if (index == 0)
+                {
+                    HienThiNgayMuaLau(true);
+                }
+                else
+                {
+                    HienThiNgayMuaLau(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private static int TinhKhoangCachSoNgay(DateTime ngay)
+        {
+            TimeSpan kc = DateTime.Now.Date - ngay.Date;
+            return Math.Abs(kc.Days);
+        }
+        private void HienThiNgayMuaLau(bool kt)
+        {
+            lsvQuanLySanPham.Items.Clear();
+            List<SanPham> dsSanPham = sanPhamDao.LoadToanBoSanPham(nguoiDung.Id);
+            foreach (var sp in dsSanPham)
+            {
+                int soNgay = TinhKhoangCachSoNgay(DateTime.ParseExact(sp.NgayDang, "d/M/yyyy", null));
+                if (kt)
+                {
+                    if (soNgay < 100)
+                    {
+                        string linkAnh = sp.LinkAnh;
+                        string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(linkAnh);
+                        lsvQuanLySanPham.Items.Add(new { Id = sp.Id, Ten = sp.Ten, LinkAnh = tenAnh, Loai = sp.Loai, SoLuong = sp.SoLuong, SoLuongDaBan = sp.SoLuongDaBan, GiaGoc = sp.GiaGoc, GiaBan = sp.GiaBan, PhiShip = sp.PhiShip, NgayDang = sp.NgayDang });
+                    }
+                }
+                else
+                {
+                    if (soNgay >= 100)
+                    {
+                        string linkAnh = sp.LinkAnh;
+                        string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(linkAnh);
+                        lsvQuanLySanPham.Items.Add(new { Id = sp.Id, Ten = sp.Ten, LinkAnh = tenAnh, Loai = sp.Loai, SoLuong = sp.SoLuong, SoLuongDaBan = sp.SoLuongDaBan, GiaGoc = sp.GiaGoc, GiaBan = sp.GiaBan, PhiShip = sp.PhiShip, NgayDang = sp.NgayDang });
+                    }
+                }
+
+            }
+        }
     }
 }
 #endregion

@@ -105,6 +105,9 @@
     <Compile Include="Views\MuaDo\TabTrangThaiDonHangUC.xaml.cs">
       <DependentUpon>TabTrangThaiDonHangUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuanLy\QuanLyDoanhThuNguoiDung.xaml.cs">
+      <DependentUpon>QuanLyDoanhThuNguoiDung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuanLy\TabQuanLyNguoiDungUC.xaml.cs">
       <DependentUpon>TabQuanLyNguoiDungUC.xaml</DependentUpon>
     </Compile>
@@ -244,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MuaDo\TabTrangThaiDonHangUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuanLy\QuanLyDoanhThuNguoiDung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

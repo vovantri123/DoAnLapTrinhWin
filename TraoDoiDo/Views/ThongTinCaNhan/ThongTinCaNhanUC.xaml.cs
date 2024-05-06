@@ -23,57 +23,43 @@ namespace TraoDoiDo
     /// </summary>
     public partial class ThongTinCaNhanUC : UserControl
     {
-        NguoiDung kh = new NguoiDung();
+        NguoiDung nguoiDung;
+        TaiKhoan taiKhoan;
+
         NguoiDungDao nguoiDungDao = new NguoiDungDao();
-        NguoiDung ngDung = new NguoiDung();
-        TaiKhoan taiKhoan = new TaiKhoan();
-        NguoiDung nguoi = new NguoiDung();
         TaiKhoanDao tkDao = new TaiKhoanDao();
-        int count = 0;
+
         public ThongTinCaNhanUC()
         {
             InitializeComponent();
-            this.DataContext = this;
-            Loaded += UCThongTinCaNhan_Loaded;
         }
-        public ThongTinCaNhanUC(NguoiDung nguoiDung)
+
+        public ThongTinCaNhanUC(NguoiDung nguoi)
         {
             InitializeComponent();
             this.DataContext = this;
             Loaded += UCThongTinCaNhan_Loaded;
-            kh = nguoiDung;
-
-        }
-
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            this.nguoiDung = nguoiDungDao.TimKiemBangId(nguoi.Id);
         }
 
         private void UCThongTinCaNhan_Loaded(object sender, RoutedEventArgs e)
         {
-            taiKhoan = tkDao.TimKiemBangId(kh.Id);
-            ngDung = nguoiDungDao.TimKiemBangId(kh.Id);
-            nguoi = new NguoiDung(ngDung.Id, ngDung.HoTen, ngDung.GioiTinh, ngDung.NgaySinh, ngDung.Cmnd, ngDung.Email, ngDung.Sdt, ngDung.DiaChi, ngDung.Anh, taiKhoan, "0");
-            LoadThongTin(nguoi);
+            LoadThongTin(nguoiDung);
         }
 
         private void btnCapNhat_Click(object sender, RoutedEventArgs e)
         {
-            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
+            taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, txtId.Text);
 
             string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(imageHinhDaiDien.Source.ToString());
             string tenFileAnh = Path.GetFileName(tenAnh);
-            nguoi = new NguoiDung(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, tenFileAnh, taiKhoan, "0");
+            nguoiDung = new NguoiDung(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, tenFileAnh, taiKhoan, "0");
 
-            if (nguoi.kiemTraCacTextBox())
+            if (nguoiDung.kiemTraCacTextBox())
             {
-                nguoiDungDao.CapNhat(nguoi);
+                nguoiDungDao.CapNhat(nguoiDung);
                 MessageBox.Show("Cập nhật thành công");
-                LoadThongTin(nguoi);
             }
-
         }
 
         private void btnDoiMatKhau_Click(object sender, RoutedEventArgs e)
@@ -84,31 +70,9 @@ namespace TraoDoiDo
                 tkDao.CapNhat(taiKhoan);
                 MessageBox.Show("Đổi mật khẩu thành công");
             }
-
         }
 
         private void btnChonAnh_Click(object sender, RoutedEventArgs e)
-        {
-            chonAnh();
-        }
-        private void LoadThongTin(NguoiDung kh)
-        {
-            txtHoTen.Text = kh.HoTen;
-            txtCmnd.Text = kh.Cmnd;
-            txtDiaChi.Text = kh.DiaChi;
-            txtId.Text = kh.Id;
-            txtSdt.Text = kh.Sdt;
-            txtTenDangNhap.Text = kh.TaiKhoan.TenDangNhap;
-            txtMatKhau.Password = kh.TaiKhoan.MatKhau;
-            txtEmail.Text = kh.Email;
-            cbGioiTinh.Text = kh.GioiTinh;
-
-            string selectedDate = kh.NgaySinh;
-            dtpNgaySinh.Text = selectedDate;
-
-            imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(kh.Anh)));
-        }
-        public void chonAnh()
         {
             OpenFileDialog file = new OpenFileDialog();
             file.Filter = "Image files(*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files(*.*)|*.*";
@@ -118,6 +82,24 @@ namespace TraoDoiDo
                 BitmapImage hinh = new BitmapImage(new Uri(imagePath));
                 imageHinhDaiDien.Source = hinh;
             }
+        }
+
+        private void LoadThongTin(NguoiDung nguoi)
+        {
+            txtHoTen.Text = nguoi.HoTen;
+            txtCmnd.Text = nguoi.Cmnd;
+            txtDiaChi.Text = nguoi.DiaChi;
+            txtId.Text = nguoi.Id;
+            txtSdt.Text = nguoi.Sdt;
+            txtTenDangNhap.Text = nguoi.TaiKhoan.TenDangNhap;
+            txtMatKhau.Password = nguoi.TaiKhoan.MatKhau;
+            txtEmail.Text = nguoi.Email;
+            cbGioiTinh.Text = nguoi.GioiTinh;
+
+            string selectedDate = nguoi.NgaySinh;
+            dtpNgaySinh.Text = selectedDate;
+
+            imageHinhDaiDien.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoi.Anh)));
         }
     }
 }

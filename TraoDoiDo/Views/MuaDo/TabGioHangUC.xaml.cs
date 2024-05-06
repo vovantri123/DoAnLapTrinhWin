@@ -200,7 +200,7 @@ namespace TraoDoiDo.Views.Windows
                 tongTienHang += Convert.ToDouble(giaBan.Replace(",","")) * Convert.ToInt32(soLuongMua.Replace(",", ""));
                 tongTienShip += Convert.ToDouble(phiShip.Replace(",", ""));
 
-                tongThanhToan = tongTienHang + tongTienShip - Convert.ToInt32(txtbgiaTriVoucher.Text.Replace(",",""));
+                tongThanhToan = tongTienHang + tongTienShip - Convert.ToDouble(txtbgiaTriVoucher.Text.Replace(",",""));
 
 
                 dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngMua.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip, null, null, null, null));

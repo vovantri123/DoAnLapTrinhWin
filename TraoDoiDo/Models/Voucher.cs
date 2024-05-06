@@ -7,8 +7,8 @@ using System.Windows;
 using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo.Models
-{ 
-    public class Voucher:ThuocTinhViewModel
+{
+    public class Voucher
     {
         private string idVoucher = "";
         private string tenVoucher = "";
@@ -29,13 +29,14 @@ namespace TraoDoiDo.Models
             this.ngayKetThuc = ngayKetThuc;
         }
 
-        public string IdVoucher { get => idVoucher; set { idVoucher = value; OnPropertyChanged(); } }
-        public string TenVoucher { get => tenVoucher; set { tenVoucher = value; OnPropertyChanged(); } }
-        public string GiaTri { get => giaTri; set { giaTri = value; OnPropertyChanged(); } }
-        public string SoLuotSuDungToiDa { get => soLuotSuDungToiDa; set { soLuotSuDungToiDa = value; OnPropertyChanged(); } }
-        public string SoLuotDaSuDung { get => soLuotDaSuDung; set { soLuotDaSuDung = value; OnPropertyChanged(); } }
-        public string NgayBatDau { get => ngayBatDau; set { ngayBatDau = value; OnPropertyChanged(); } }
-        public string NgayKetThuc { get => ngayKetThuc; set { ngayKetThuc = value; OnPropertyChanged(); } }
+        public string IdVoucher { get => idVoucher; set => idVoucher = value; }
+        public string TenVoucher { get => tenVoucher; set => tenVoucher = value; }
+        public string GiaTri { get => giaTri; set => giaTri = value; }
+    
+        public string SoLuotSuDungToiDa { get => soLuotSuDungToiDa; set => soLuotSuDungToiDa = value; }
+        public string SoLuotDaSuDung { get => soLuotDaSuDung; set => soLuotDaSuDung = value; }
+        public string NgayBatDau { get => ngayBatDau; set => ngayBatDau = value; }
+        public string NgayKetThuc { get => ngayKetThuc; set => ngayKetThuc = value; }
         KiemTraDinhDang kiemTra = new KiemTraDinhDang();
         public bool kiemTraCacTextBox()
         {
@@ -50,15 +51,29 @@ namespace TraoDoiDo.Models
                     return false;
                 }
             }
-            DateTime ngayMua = DateTime.ParseExact(NgayBatDau, "dd/MM/yyyy", null);
-            DateTime ngayDang = DateTime.ParseExact(NgayKetThuc, "dd/MM/yyyy", null);
+            DateTime ngayMua = DateTime.ParseExact(NgayBatDau, "d/M/yyyy", null);
+            DateTime ngayDang = DateTime.ParseExact(NgayKetThuc, "d/M/yyyy", null);
             if (!kiemTra.kiemTraNgayMuaSanPham(ngayMua, ngayDang))
             {
                 errorMessage = XuLyTienIch.TinNhanNgayMuaHopLe;
                 MessageBox.Show(errorMessage);
                 return false;
             }
+            if (!kiemTra.kiemTraSo(GiaTri))
+            {
+                errorMessage = XuLyTienIch.TinNhanSoHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
+            if (!kiemTra.kiemTraSoLuong(SoLuotDaSuDung, SoLuotSuDungToiDa))
+            {
+                errorMessage = XuLyTienIch.TinNhanSoLuongHopLe;
+                MessageBox.Show(errorMessage);
+                return false;
+            }
             return true;
         }
-    } 
-} 
+    }
+}
+
+ 

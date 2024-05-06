@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 using TraoDoiDo.Utilities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TraoDoiDo.Views.QuanLy
 {
@@ -109,24 +111,37 @@ namespace TraoDoiDo.Views.QuanLy
             }
 
         }
-
-
-        private void btnDuyet_Click(object sender, RoutedEventArgs e)
+        private void btnXemDoanhThu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Nếu chưa duyệt thì chuyển sang đã duyệt\nNếu đã duyệt rồi, thì khi ấn nút này nó báo là sp đã được duyệt(hoặc vô hiệu hóa cái nút được thì càng tốt)");
+            Button btn = sender as Button;
+            ListViewItem item = HoTroTimPhanTu.FindAncestor<ListViewItem>(btn);
+            if (item != null)
+            {
+                dynamic dataItem = item.DataContext;
+                if (dataItem != null)
+                {
+                    
+                    NguoiDung ngDung = new NguoiDung(dataItem.UserId,dataItem.FullName,dataItem.Gender,dataItem.DateOfBirth,dataItem.Identification,dataItem.Email,dataItem.PhoneNumber,dataItem.Address,null,null,null);
+                    QuanLyDoanhThuNguoiDung f = new QuanLyDoanhThuNguoiDung(ngDung);
+                    f.Show();
+                    
+                }
+            }
+
         }
 
 
-        private void cbSoSao_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
+        
+
+
+       
         private void HienThiNguoiDangUyTien(string soSaoDau, string soSaoCuoi)
         {
             List<DanhGiaNguoiDang> dsDanhGiaSoSao = danhGiaDao.TinhTrungBinhSoSao(soSaoDau, soSaoCuoi);
             foreach (var danhGia in dsDanhGiaSoSao)
             {
                 NguoiDung nguoiDung = danhGiaDao.LoadThongTinNguoiDang(danhGia.IdNguoiDang);
-                lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, Email = nguoiDung.Email });
+                lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, SoSao=danhGia.SoSao,Email = nguoiDung.Email });
             }
         }
 
@@ -167,8 +182,8 @@ namespace TraoDoiDo.Views.QuanLy
                 else
                 {
                     NguoiDung nguoiDung = ngDungDao.TimKiemBangId(txbTimKiemNguoiDung.Text.Trim());
-
-                    lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, Email = nguoiDung.Email });
+                    if(nguoiDung!=null)
+                        lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, Email = nguoiDung.Email });
                 }
 
             }

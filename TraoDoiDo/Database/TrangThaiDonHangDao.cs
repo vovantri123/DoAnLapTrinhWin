@@ -63,8 +63,18 @@ namespace TraoDoiDo.Database
 
             return dsTrangThaiDonHang;
         }
-        
-        
-        
+
+        public List<TrangThaiDonHang> LoadDoThiThongKeDoanhThuTheoNam(string idNguoi, string nam)
+        {
+            string sqlStr = $@"SELECT {sanPhamHeader}.{sanPhamIdNguoiDang},{sanPhamHeader}.{sanPhamID},{trangThaiHeader}.{trangThaiNgay},{trangThaiHeader}.{trangThaiTongThanhToan}
+                            FROM {trangThaiHeader} INNER JOIN {sanPhamHeader} ON {trangThaiHeader}.{trangThaiIdSanPham} = {sanPhamHeader}.{sanPhamID} 
+                            WHERE {sanPhamHeader}.{sanPhamIdNguoiDang} = '{idNguoi}' AND {trangThaiHeader}.{trangThaiTrangThai} = N'Đã nhận' AND YEAR(TRY_CAST({trangThaiHeader}.{trangThaiNgay} AS date)) = '{nam}' ";
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
+            dsTrangThaiDonHang = new List<TrangThaiDonHang>();
+            foreach (var dong in bangKetQua)
+                dsTrangThaiDonHang.Add(new TrangThaiDonHang(dong[0], dong[1], null, dong[3], dong[2], "Đã nhận", null, null, null, null, null, null, null, null));
+            return dsTrangThaiDonHang;
+        }
+
     }
 }

@@ -47,6 +47,7 @@ namespace TraoDoiDo.Views.MuaDo
         {
             LoadDanhSachSanPham();  
             SapXepTheoGanDay();
+            
         }
 
         private void LoadDanhSachSanPham() //Load dữ liệu lên cái mảng DangSachSanPham
@@ -146,7 +147,7 @@ namespace TraoDoiDo.Views.MuaDo
             wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text))
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text.Replace(".", "")) < Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text.Replace(".", "")))
                         HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
 
             LoadToanBoDanhSachSanPhamLenWpnlHienThi();
@@ -157,7 +158,7 @@ namespace TraoDoiDo.Views.MuaDo
             wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text.Replace(".", "")) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text.Replace(".", "")))
                         HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
 
             LoadToanBoDanhSachSanPhamLenWpnlHienThi();
@@ -168,7 +169,7 @@ namespace TraoDoiDo.Views.MuaDo
             wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text) > Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text))
+                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text.Replace(".", "")) > Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text.Replace(".", "")))
                         HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
 
             LoadToanBoDanhSachSanPhamLenWpnlHienThi();
@@ -236,6 +237,16 @@ namespace TraoDoiDo.Views.MuaDo
                 wpnlHienThi.Children.Clear();
                 SapXepTheoGanDay();
             } 
+        }
+        private void txbTimKiem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var trailingIcon = textBox.Template.FindName("PART_TrailingIcon",textBox) as FrameworkElement;
+
+            if (trailingIcon != null && Mouse.DirectlyOver == trailingIcon)
+            {
+                MessageBox.Show("Clicked");
+            }
         }
          
         private void cboLocTheoLoai_SelectionChanged(object sender, SelectionChangedEventArgs e)

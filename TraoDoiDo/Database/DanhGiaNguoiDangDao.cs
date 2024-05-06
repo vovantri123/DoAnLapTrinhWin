@@ -53,16 +53,30 @@ namespace TraoDoiDo.Database
         }
         public List<DanhGiaNguoiDang> TinhTrungBinhSoSao(string soSaoDau, string soSaoCuoi)
         {
-            string sqlStr = $@"SELECT {danhGiaHeader}.{quanLyIdNguoiDang}
+            string sqlStr = $@"SELECT {danhGiaHeader}.{quanLyIdNguoiDang}, AVG(CONVERT(int,{danhGiaHeader}.{danhGiaSoSao})) as SoSaoTB
                                 FROM {danhGiaHeader}
                                 GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang}
-                                HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN {soSaoDau} AND {soSaoCuoi} ";
+                                HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN '{soSaoDau}' AND '{soSaoCuoi}' ";
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
-                dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, null, null, null, null));
+                dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, dong[1], null, null, null));
             return dsDanhGiaNguoiDang;
         }
+        public List<DanhGiaNguoiDang> TrungBinhSoSao()
+        {
+            string sqlStr = $@"SELECT {danhGiaHeader}.{quanLyIdNguoiDang}, AVG(CONVERT(int,{danhGiaHeader}.{danhGiaSoSao})) as SoSaoTB
+                                FROM {danhGiaHeader}
+                                GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang},SoSaoTB
+                               ";
+            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
+            dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
+            foreach (var dong in bangKetQua)
+                dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, dong[1], null, null, null));
+            return dsDanhGiaNguoiDang;
+        }
+        
+
         public NguoiDung LoadThongTinNguoiDang(string idNguoiDang)
         {
             string sqlStr = $@" 
@@ -72,7 +86,9 @@ namespace TraoDoiDo.Database
                 WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} =  '{idNguoiDang}'
                 ";
             dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-            return new NguoiDung(null, dongKetQua[0], null, null, null, dongKetQua[2], dongKetQua[1], dongKetQua[3], dongKetQua[4], null, null);
+            if(dongKetQua!=null)
+                return new NguoiDung(null, dongKetQua[0], null, null, null, dongKetQua[2], dongKetQua[1], dongKetQua[3], dongKetQua[4], null, null);
+            return null;
         }
         public List<DanhGiaNguoiDang> LoadDanhSachDanhGia(string idNguoiDang)
         {

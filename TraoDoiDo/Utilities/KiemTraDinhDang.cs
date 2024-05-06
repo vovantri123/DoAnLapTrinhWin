@@ -54,5 +54,11 @@ namespace TraoDoiDo.ViewModels
                 return true;
             return false;
         }
+        public bool kiemTraSoLuong(string s,string m)
+        {
+            if (Convert.ToInt32(s) <= Convert.ToInt32(m))
+                return true;
+            return false;
+        }
     }
 }

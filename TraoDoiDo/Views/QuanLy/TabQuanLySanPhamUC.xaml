@@ -97,8 +97,8 @@
                 VerticalAlignment="Top"
                 Background="#F2F1F1">
 
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ListView x:Name="lsvQuanLySanPham" Loaded="lsvQuanLySanPham_Loaded">
+                
+                    <ListView x:Name="lsvQuanLySanPham" Loaded="lsvQuanLySanPham_Loaded" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.Resources>
                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                         </ListView.Resources>
@@ -215,7 +215,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </ScrollViewer>
+                
             </Grid>
 
 

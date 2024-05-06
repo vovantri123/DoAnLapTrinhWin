@@ -137,11 +137,11 @@
                         Text="LỊCH SỬ GIAO DỊCH" />
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1" HorizontalAlignment="Center">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ListView x:Name="lsvLichSuGiaoDich">
+            <Grid Grid.Row="1" HorizontalAlignment="Center" >
+
+                <ListView x:Name="lsvLichSuGiaoDich" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.Resources>
-                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
                         </ListView.Resources>
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
@@ -189,7 +189,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </ScrollViewer>
+                
 
             </Grid>
         </Grid>

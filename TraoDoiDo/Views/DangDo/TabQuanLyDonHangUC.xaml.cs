@@ -128,6 +128,8 @@ namespace TraoDoiDo.Views.DangDo
                 {
                     QuanLyDonHang quanLy = new QuanLyDonHang(null, null, duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP, "Đang giao", null);
                     quanLyDonHangDao.CapNhat(quanLy);
+                    TrangThaiDonHang trangThaiDon = new TrangThaiDonHang(duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP, null, null, null, "Chờ giao hàng", null, null, null, null, null, null, null, null);
+                    trangThaiHangDao.CapNhat(trangThaiDon);
                     QuanLyDonHang_Load(sender, e);
                 }
                 catch (Exception ex)

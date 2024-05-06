@@ -39,12 +39,15 @@ namespace TraoDoiDo
             try
             {
                 NguoiDung nguoiDang = danhGiaNguoiDungDao.LoadThongTinNguoiDang(idNguoiDang);
-                itemsControlDSDanhGia.Items.Clear(); 
-                txtHoTen.Text = nguoiDang.HoTen;
-                txtSoDienThoai.Text = nguoiDang.Sdt;
-                txtEmail.Text = nguoiDang.Email;
-                txtDiaChi.Text = nguoiDang.DiaChi;
-                imgNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDang.Anh))); 
+               if (nguoiDang != null)
+                {
+                    itemsControlDSDanhGia.Items.Clear();
+                    txtHoTen.Text = nguoiDang.HoTen;
+                    txtSoDienThoai.Text = nguoiDang.Sdt;
+                    txtEmail.Text = nguoiDang.Email;
+                    txtDiaChi.Text = nguoiDang.DiaChi;
+                    imgNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDang.Anh)));
+                }
             }
             catch (Exception ex)
             {

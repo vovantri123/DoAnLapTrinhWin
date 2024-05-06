@@ -63,6 +63,7 @@
                         materialDesign:HintAssist.FloatingScale="0.7"
                         materialDesign:HintAssist.Hint="Sắp xếp"
                         IsEditable="False"
+                        SelectionChanged="cboSapXep_SelectionChanged"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}">
                         <ComboBoxItem Content="Ngày đăng gần nhất" />
                         <ComboBoxItem Content="Ngày đăng lâu nhất" />

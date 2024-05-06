@@ -46,23 +46,17 @@ namespace TraoDoiDo.Database
             dbConnection.ThucThi(sqlStr);
         }
          
-        public NguoiDung TimKiemThongTinTheoIdNguoi(string idNguoi)
-        {
-            string sqlStr = $@"SELECT {nguoiDungTen},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi}
-                            FROM {nguoiDungHeader} 
-                            WHERE {nguoiDungID} = '{idNguoi}' ";
-            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-
-            return new NguoiDung(null, dongKetQua[0], null, null, null, dongKetQua[2], dongKetQua[1], dongKetQua[3], null, null, null);
-        }
 
         public NguoiDung TimKiemBangId(string idNguoi)
         {
-            string sqlStr = $@"SELECT {nguoiDungID},{nguoiDungTen},{nguoiDungCMND},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi},{nguoiDungAnh}
+            string sqlStr = $@"SELECT {nguoiDungHeader}.{nguoiDungID},{nguoiDungTen},{nguoiDungCMND},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungEmail},{nguoiDungDiaChi},{nguoiDungAnh},{taiKhoanHeader}.{taiKhoanTenDangNhap},{taiKhoanHeader}.{taiKhoanMatKhau},{nguoiDungTien}
                             FROM {nguoiDungHeader} 
-                            WHERE {nguoiDungID} = '{idNguoi}' ";
+                            INNER JOIN {taiKhoanHeader} ON {nguoiDungHeader}.{nguoiDungID} = {taiKhoanHeader}.{taiKhoanIdNguoiDung}
+                            WHERE {nguoiDungHeader}.{nguoiDungID} = '{idNguoi}' ";
             dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-            return new NguoiDung(dongKetQua[0], dongKetQua[1], dongKetQua[3], dongKetQua[4], dongKetQua[2], dongKetQua[6], dongKetQua[5], dongKetQua[7], dongKetQua[8], null, null);
+            if(dongKetQua!=null)
+                return new NguoiDung(dongKetQua[0], dongKetQua[1], dongKetQua[3], dongKetQua[4], dongKetQua[2], dongKetQua[6], dongKetQua[5], dongKetQua[7], dongKetQua[8], new TaiKhoan(dongKetQua[9], dongKetQua[10], dongKetQua[0]), dongKetQua[11]);
+            return null;
         }
         public List<NguoiDung> LoadNguoiDung()
         {
@@ -85,11 +79,11 @@ namespace TraoDoiDo.Database
         public NguoiDung TimKiemBangTenDangNhap(string tenDangNhap, string matKhau)
         {
             string sqlStr = $@"SELECT {nguoiDungTen},{nguoiDungCMND},{nguoiDungGioiTinh},{nguoiDungSdt},{nguoiDungNgaySinh},{nguoiDungDiaChi},{nguoiDungEmail},{nguoiDungAnh}, {nguoiDungTien}, {taiKhoanTenDangNhap}, {taiKhoanMatKhau}, {nguoiDungHeader}.{nguoiDungID} 
-                               FROM {nguoiDungHeader}
-                               INNER JOIN {taiKhoanHeader} ON {nguoiDungHeader}.{nguoiDungID} = {taiKhoanHeader}.{taiKhoanIdNguoiDung}
-                               WHERE {taiKhoanTenDangNhap}='{tenDangNhap}' AND {taiKhoanMatKhau}='{matKhau}'";
+                       FROM {nguoiDungHeader}
+                       INNER JOIN {taiKhoanHeader} ON {nguoiDungHeader}.{nguoiDungID} = {taiKhoanHeader}.{taiKhoanIdNguoiDung}
+                       WHERE {taiKhoanTenDangNhap}= '{tenDangNhap}' AND {taiKhoanMatKhau}= '{matKhau}' ";
             dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-            if(dongKetQua!=null)
+            if (dongKetQua != null)
                 return new NguoiDung(dongKetQua[11], dongKetQua[0], dongKetQua[2], dongKetQua[4], dongKetQua[1], dongKetQua[6], dongKetQua[3], dongKetQua[5], dongKetQua[7], new TaiKhoan(dongKetQua[9], dongKetQua[10], dongKetQua[11]), dongKetQua[8]);
             return null;
         }

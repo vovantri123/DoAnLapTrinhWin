@@ -83,7 +83,7 @@ namespace TraoDoiDo
                     vcDao.TangSoLuotSuDungThem1(ndvc.IdVoucher);
                 }
 
-                double tienTT = Convert.ToDouble(ngDung.Tien) - Convert.ToDouble(tongThanhToan);
+                double tienTT = Convert.ToDouble(ngDungDao.TimKiemBangId(ngDung.Id)) - Convert.ToDouble(tongThanhToan);
                 if (Convert.ToDouble(tongThanhToan) == 0)
                     MessageBox.Show("Xin hãy chọn món đồ thanh toán", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (tienTT < 0)
@@ -100,17 +100,17 @@ namespace TraoDoiDo
             }
             
         }
-        private void capNhatThongTinCaNhan() // ???????????, không biết sửa sao luôn, tại chưa coi mấy cái model check này
+        private void capNhatThongTinCaNhan() 
         {
             NguoiDung user = new NguoiDung(ngDung.Id, txtHoTen.Text, ngDung.GioiTinh, ngDung.NgaySinh, ngDung.Cmnd, txtEmail.Text, txtSoDienThoai.Text, txtDiaChi.Text, ngDung.Anh, ngDung.TaiKhoan, ngDung.Tien);
-            ThongTinKhachHangViewModel ttkh = new ThongTinKhachHangViewModel(user);
-            //bool check = ttkh.kiemTraCacTextBox();
-            //if(check)
-            //{
+            
+            bool check = user.kiemTraCacTextBox();
+            if(check)
+            {
                 try
                 {
                     ngDungDao.CapNhatDiaChi(user);
-                    NguoiDung nguoi  = ngDungDao.TimKiemThongTinTheoIdNguoi(ngDung.Id);
+                    NguoiDung nguoi  = ngDungDao.TimKiemBangId(ngDung.Id);
                     txtHoTen.Text = nguoi.HoTen;
                     txtSoDienThoai.Text = nguoi.Sdt;
                     txtEmail.Text = nguoi.Email;
@@ -120,7 +120,7 @@ namespace TraoDoiDo
                 {
                     MessageBox.Show(ex.Message);
                 }
-            //}
+            }
         }
 
         private void FDiaChi_Loaded(object sender, RoutedEventArgs e)

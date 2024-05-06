@@ -5,7 +5,7 @@ using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo.Models
 {
-    public class SanPham : ThuocTinhViewModel
+    public class SanPham 
     {
         private string id = "";
         private string idNguoiDang = "";

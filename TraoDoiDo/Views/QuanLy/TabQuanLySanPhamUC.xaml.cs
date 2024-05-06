@@ -72,7 +72,7 @@ namespace TraoDoiDo.Views.QuanLy
             List<SanPham> dsSanPham = sanPhamDao.LoadToanBoSanPham();
             foreach (var sp in dsSanPham)
             {
-                int soNgay = TinhKhoangCachSoNgay(DateTime.ParseExact(sp.NgayDang, "dd/MM/yyyy", null));
+                int soNgay = TinhKhoangCachSoNgay(DateTime.ParseExact(sp.NgayDang, "d/M/yyyy", null));
                 if (kt)
                 {
                     if (soNgay < 100)
@@ -129,8 +129,12 @@ namespace TraoDoiDo.Views.QuanLy
                 else
                 {
                     SanPham sanPham = sanPhamDao.timKiemSanPhamBangId(txbTimKiemSanPham.Text.Trim());
-                    string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
-                    lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
+                    if (sanPham != null)
+                    {
+                        string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
+                        lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id.ToString(), Ten = sanPham.Ten.ToString(), LinkAnh = tenAnh, Loai = sanPham.Loai.ToString(), SoLuong = sanPham.SoLuong.ToString(), SoLuongDaBan = sanPham.SoLuongDaBan.ToString(), GiaGoc = sanPham.GiaGoc.ToString(), GiaBan = sanPham.GiaBan.ToString(), PhiShip = sanPham.PhiShip.ToString() });
+                    }
+                    
 
                 }
 

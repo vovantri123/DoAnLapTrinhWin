@@ -4,7 +4,7 @@ using TraoDoiDo.ViewModels;
 using System;
 namespace TraoDoiDo.Models
 {
-    public class NguoiDung : ThuocTinhViewModel
+    public class NguoiDung
     {
         private string id = "";
         private string hoTen = "";
@@ -76,7 +76,7 @@ namespace TraoDoiDo.Models
                     return false;
                 }
             }
-            DateTime ngaySinh = DateTime.ParseExact(NgaySinh, "dd/MM/yyyy", null);
+            DateTime ngaySinh = DateTime.ParseExact(NgaySinh, "d/M/yyyy", null);
             if (!kiemTra.kiemTraNgaySinh(ngaySinh))
             {
                 errorMessage = XuLyTienIch.TinNhanNgaySinhKhongHopLe;
