@@ -46,8 +46,7 @@ namespace TraoDoiDo.Views.DangDo
             Loaded += QuanLySanPham_Load;
             nguoiDung = nguoi;
         }
-         
-        #region TAB1 QUẢN LÝ SẢN PHẨM
+          
         private void QuanLySanPham_Load(object sender, RoutedEventArgs e) //Form load của Tab1
         {
             HienThi_QuanLySanPham();
@@ -68,7 +67,7 @@ namespace TraoDoiDo.Views.DangDo
         {
             DangDo_Dang f = new DangDo_Dang(nguoiDung);
 
-            f.ucThongTin.txtbIdSanPham.Text = (timIdMaxTrongBangSanPham() + 1).ToString();
+            f.ucThongTin.txtbIdSanPham.Text = (sanPhamDao.timKiemIdMax() + 1).ToString();
 
             // Load lại lsvQuanLySanPham sau khi (thêm sản phẩm và đóng cái DangDo_Dang)
             f.Closed += (s, ev) =>
@@ -77,22 +76,7 @@ namespace TraoDoiDo.Views.DangDo
             };
             f.ShowDialog();
         }
-
-        private int timIdMaxTrongBangSanPham()
-        {
-            List<List<string>> danhSachId = sanPhamDao.timKiemDanhSachId();
-            int maxId = 0;
-            foreach (var dong in danhSachId)
-            {
-                int id = Convert.ToInt32(dong[0]);
-                if (maxId < id)
-                {
-                    maxId = id;
-                }
-            }
-            return maxId;
-        }
-
+          
         private void btnSuaDo_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button; // Lấy button được click 
@@ -113,7 +97,7 @@ namespace TraoDoiDo.Views.DangDo
                     {
                         f.DanhSachAnhVaMoTa[f.soLuongAnh] = new ThemAnhKhiDangUC();
 
-                        f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = dong.LinkAnh; // Rãnh sửa thuộc tính LinkAnh thành TenFileAnh
+                        f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = dong.LinkAnh; 
 
                         string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(dong.LinkAnh);
                         f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbDuongDanAnh.Text = duongDanAnh;
@@ -165,52 +149,37 @@ namespace TraoDoiDo.Views.DangDo
                 }
             }
         }
-
-        
-
+         
         private void txbTiemKiem_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
+        { 
+            lsvQuanLySanPham.Items.Clear();
+            if (txbTimKiem.Text == null)
+                HienThi_QuanLySanPham();
+                 
+            foreach (var sanPham in dsSanPham)
             {
-                lsvQuanLySanPham.Items.Clear();
-                if (txbTimKiem.Text == null)
-                    HienThi_QuanLySanPham();
-                dsSanPham = sanPhamDao.timKiemDanhSachSanPhamTheoTen(txbTimKiem.Text.Trim(), nguoiDung.Id);
-                foreach (var sanPham in dsSanPham)
+                if(sanPham.Ten.ToLower().Contains(txbTimKiem.Text.Trim().ToLower()))
                 {
-                    string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
-                    lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = tenAnh, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip });
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                    string duongDanDayDu = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
+                    lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip });
+                }    
+            } 
         }
 
         private void cbLocLoai_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox comboBox = sender as ComboBox;
-            try
-            {
-                lsvQuanLySanPham.Items.Clear();
-                string mucDaChon = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
-                if (string.Equals(mucDaChon, "Tất cả"))
-                    HienThi_QuanLySanPham();
-                else
-                {
-                    dsSanPham = sanPhamDao.timKiemBangLoai(mucDaChon, nguoiDung.Id);
-                    foreach (var sanPham in dsSanPham)
+            ComboBox comboBox = sender as ComboBox; 
+            lsvQuanLySanPham.Items.Clear();
+            string mucDaChon = (comboBox.SelectedItem as ComboBoxItem).Content.ToString();
+            if (string.Equals(mucDaChon, "Tất cả"))
+                HienThi_QuanLySanPham();
+            else
+                foreach (var sanPham in dsSanPham)
+                    if (sanPham.Loai.ToLower().Contains(mucDaChon.Trim().ToLower()))
                     {
-                        string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
-                        lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = tenAnh, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                        string duongDanDayDu = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
+                        lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip });
+                    } 
         }
 
         private void cboSapXep_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -271,5 +240,4 @@ namespace TraoDoiDo.Views.DangDo
             }
         }
     }
-}
-#endregion
+} 

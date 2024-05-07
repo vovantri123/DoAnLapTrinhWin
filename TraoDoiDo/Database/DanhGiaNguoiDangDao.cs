@@ -13,7 +13,6 @@ namespace TraoDoiDo.Database
         List<List<string>> bangKetQua;
         List<DanhGiaNguoiDang> dsDanhGiaNguoiDang; 
 
-
         public DanhGiaNguoiDang timTenNguoiDangVaNhanXet(string idNguoi)
         {
             string sqlStr = $@"
@@ -27,17 +26,20 @@ namespace TraoDoiDo.Database
                 return new DanhGiaNguoiDang(null, dongKetQua[0], null, null, null, null, dongKetQua[1], null);
             return null;
         }
+
+        public void Them(DanhGiaNguoiDang danhGiaNguoiDung)
+        {
+            string sqlStr = $@" INSERT INTO {danhGiaHeader} ({sanPhamIdNguoiDang}, {danhGiaIdNguoiMua} ,{danhGiaSoSao}, {danhGiaNhanXet})  
+                                VALUES ({danhGiaNguoiDung.IdNguoiDang}, {danhGiaNguoiDung.IdNguoiMua}, N'{danhGiaNguoiDung.SoSao}', N'{danhGiaNguoiDung.NhanXet}')";
+            dbConnection.ThucThi(sqlStr);
+        }
+
         public void Xoa(DanhGiaNguoiDang danhGiaNguoiDung)
         {
             string sqlStr = $@" DELETE {danhGiaHeader} WHERE {sanPhamIdNguoiDang} = {danhGiaNguoiDung.IdNguoiDang} AND {danhGiaIdNguoiMua} = {danhGiaNguoiDung.IdNguoiMua}";
             dbConnection.ThucThi(sqlStr);
         }
-        public void Them(DanhGiaNguoiDang danhGiaNguoiDung)
-        {
-            string sqlStr = $@" INSERT INTO {danhGiaHeader} ({sanPhamIdNguoiDang}, {danhGiaIdNguoiMua} ,{danhGiaSoSao}, {danhGiaNhanXet})  
-                                        VALUES ({danhGiaNguoiDung.IdNguoiDang}, {danhGiaNguoiDung.IdNguoiMua}, N'{danhGiaNguoiDung.SoSao}', N'{danhGiaNguoiDung.NhanXet}')";
-            dbConnection.ThucThi(sqlStr);
-        }
+         
         public List<DanhGiaNguoiDang> DemSoLuotDanhGiaTheoTungSoSao(string idNguoiDang)
         {
             string sqlStr = $@"
@@ -53,10 +55,11 @@ namespace TraoDoiDo.Database
         }
         public List<DanhGiaNguoiDang> TinhTrungBinhSoSao(string soSaoDau, string soSaoCuoi)
         {
-            string sqlStr = $@"SELECT {danhGiaHeader}.{quanLyIdNguoiDang}, AVG(CONVERT(int,{danhGiaHeader}.{danhGiaSoSao})) as SoSaoTB
-                                FROM {danhGiaHeader}
-                                GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang}
-                                HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN '{soSaoDau}' AND '{soSaoCuoi}' ";
+            string sqlStr = $@"
+                            SELECT {danhGiaHeader}.{quanLyIdNguoiDang}, AVG(CONVERT(int,{danhGiaHeader}.{danhGiaSoSao})) as SoSaoTB
+                            FROM {danhGiaHeader}
+                            GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang}
+                            HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN '{soSaoDau}' AND '{soSaoCuoi}' ";
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
@@ -76,7 +79,6 @@ namespace TraoDoiDo.Database
             return dsDanhGiaNguoiDang;
         }
         
-
         public NguoiDung LoadThongTinNguoiDang(string idNguoiDang)
         {
             string sqlStr = $@" 
@@ -90,6 +92,7 @@ namespace TraoDoiDo.Database
                 return new NguoiDung(null, dongKetQua[0], null, null, null, dongKetQua[2], dongKetQua[1], dongKetQua[3], dongKetQua[4], null, null);
             return null;
         }
+
         public List<DanhGiaNguoiDang> LoadDanhSachDanhGia(string idNguoiDang)
         {
             string sqlStr = $@" 

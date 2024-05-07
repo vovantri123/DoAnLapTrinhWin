@@ -89,8 +89,7 @@
                         materialDesign:HintAssist.Hint="Tìm kiếm"
                         materialDesign:TextFieldAssist.HasTrailingIcon="True"
                         materialDesign:TextFieldAssist.PrefixText="Tên: "
-                        materialDesign:TextFieldAssist.TrailingIcon="Search"
-                        
+                        materialDesign:TextFieldAssist.TrailingIcon="Search" 
                         AcceptsReturn="True"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         TextChanged="txbTimKiem_TextChanged"

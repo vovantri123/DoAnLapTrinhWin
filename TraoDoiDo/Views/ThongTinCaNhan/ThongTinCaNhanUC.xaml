@@ -131,8 +131,7 @@
                             materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
                             materialDesign:HintAssist.Hint="Ngày sinh"
                             SelectedDate="{Binding NgaySinh, StringFormat='dd/MM/yyyy'}"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                            />
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                     </StackPanel>
                     <StackPanel
                         Grid.Row="2"
@@ -237,13 +236,10 @@
                         Width="300"
                         Height="38"
                         VerticalAlignment="Bottom"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                        materialDesign:ButtonProgressAssist.Value="-1"
+                        materialDesign:ButtonAssist.CornerRadius="7"
+                        BorderBrush="#FFFFEEFA"
                         Click="btnCapNhat_Click"
-                        Content="Cập nhật thông tin"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                        Content="Cập nhật thông tin" />
                 </Grid>
             </Grid>
 
@@ -278,13 +274,11 @@
                     Grid.Row="1"
                     Width="120"
                     Margin="0,10,0,0"
-                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                    materialDesign:ButtonProgressAssist.Value="-1"
                     Click="btnChonAnh_Click"
                     Content="Chọn ảnh"
+                    FontWeight="Bold"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedButton}" />
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Margin="0,15,0,0">
@@ -346,20 +340,21 @@
                         materialDesign:HintAssist.Hint="Mật khẩu"
                         materialDesign:TextFieldAssist.HasClearButton="True"
                         materialDesign:TextFieldAssist.UnderlineBrush="#673ab7"
-                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                        Background="Transparent"
+                        Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
                 </StackPanel>
                 <Button
                     x:Name="btnDoiMatKhau"
                     Grid.Column="2"
                     Width="150"
                     Height="38"
-                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                    materialDesign:ButtonProgressAssist.Value="-1"
+                    Margin="124,43,124,25"
+                    materialDesign:ButtonAssist.CornerRadius="7"
+                    BorderBrush="#FFFFEEFA"
                     Click="btnDoiMatKhau_Click"
                     Content="Đổi mật khẩu"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="124,43,124,25" />
+                    Style="{StaticResource MaterialDesignRaisedButton}" />
             </Grid>
         </Grid>
     </Grid>

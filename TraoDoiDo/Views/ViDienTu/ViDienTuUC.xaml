@@ -65,7 +65,7 @@
                                     FontSize="25"
                                     Text="SỐ DƯ" />
                                 <TextBlock
-                                    x:Name= "txtbSoDu"
+                                    x:Name="txtbSoDu"
                                     Grid.Column="1"
                                     Margin="0"
                                     HorizontalAlignment="Center"
@@ -83,10 +83,7 @@
                             Margin="5,10,5,0"
                             VerticalAlignment="Center"
                             materialDesign:ButtonAssist.CornerRadius="10"
-                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                            materialDesign:ButtonProgressAssist.Value="-1"
-                            Background="DeepSkyBlue"
+                            Background="#2F9CFA"
                             Click="btnNapTien_Click"
                             FontSize="23">
                             <TextBlock
@@ -104,10 +101,7 @@
                             Margin="5,5,5,0"
                             VerticalAlignment="Center"
                             materialDesign:ButtonAssist.CornerRadius="10"
-                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                            materialDesign:ButtonProgressAssist.Value="-1"
-                            Background="DeepSkyBlue"
+                            Background="#2F9CFA"
                             Click="btnRutTien_Click"
                             FontSize="23">
                             <TextBlock
@@ -137,59 +131,59 @@
                         Text="LỊCH SỬ GIAO DỊCH" />
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1" HorizontalAlignment="Center" >
+            <Grid Grid.Row="1" HorizontalAlignment="Center">
 
                 <ListView x:Name="lsvLichSuGiaoDich" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ListView.Resources>
-                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
-                        </ListView.Resources>
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="VerticalContentAlignment" Value="Center" />
-                                <Setter Property="Height" Value="28" />
-                                <Setter Property="Background" Value="#ffffff" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.View>
-                            <GridView>
-                                <GridView.ColumnHeaderContainerStyle>
-                                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                                        <Setter Property="Background" Value="LightBlue" />
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <Setter Property="FontWeight" Value="Bold" />
-                                    </Style>
-                                </GridView.ColumnHeaderContainerStyle>
-                                <GridViewColumn
-                                    Width="120"
-                                    DisplayMemberBinding="{Binding Id}"
-                                    Header="Số Id giao dịch" />
-                                <GridViewColumn
-                                    Width="200"
-                                    DisplayMemberBinding="{Binding Type}"
-                                    Header="Loại giao dịch" />
+                    <ListView.Resources>
+                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
+                    </ListView.Resources>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Height" Value="28" />
+                            <Setter Property="Background" Value="#ffffff" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+                            <GridViewColumn
+                                Width="120"
+                                DisplayMemberBinding="{Binding Id}"
+                                Header="Số Id giao dịch" />
+                            <GridViewColumn
+                                Width="200"
+                                DisplayMemberBinding="{Binding Type}"
+                                Header="Loại giao dịch" />
 
-                                <GridViewColumn
-                                    Width="170"
-                                    DisplayMemberBinding="{Binding Money}"
-                                    Header="Số tiền" />
+                            <GridViewColumn
+                                Width="170"
+                                DisplayMemberBinding="{Binding Money}"
+                                Header="Số tiền" />
 
-                                <GridViewColumn
-                                    Width="110"
-                                    DisplayMemberBinding="{Binding Initial}"
-                                    Header="Từ nguồn tiền" />
-                                <GridViewColumn
-                                    Width="110"
-                                    DisplayMemberBinding="{Binding End}"
-                                    Header="Đến nguồn tiền" />
-                                <GridViewColumn
-                                    Width="120"
-                                    DisplayMemberBinding="{Binding Date}"
-                                    Header="Ngày giao dịch" />
+                            <GridViewColumn
+                                Width="110"
+                                DisplayMemberBinding="{Binding Initial}"
+                                Header="Từ nguồn tiền" />
+                            <GridViewColumn
+                                Width="110"
+                                DisplayMemberBinding="{Binding End}"
+                                Header="Đến nguồn tiền" />
+                            <GridViewColumn
+                                Width="120"
+                                DisplayMemberBinding="{Binding Date}"
+                                Header="Ngày giao dịch" />
 
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
 
             </Grid>
         </Grid>

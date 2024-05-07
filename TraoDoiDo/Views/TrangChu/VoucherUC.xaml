@@ -127,7 +127,8 @@
                             <Button
                                 x:Name="btnDungVoucher"
                                 Margin="0,0,5,0"
-                                materialDesign:ButtonAssist.CornerRadius="10"
+                                materialDesign:ButtonAssist.CornerRadius="7"
+                                BorderBrush="#FFFFEEFA"
                                 Click="btnDungVoucher_Click"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignRaisedButton}">
@@ -137,7 +138,8 @@
                             <Button
                                 x:Name="btnNhanVoucher"
                                 Margin="0,0,5,0"
-                                materialDesign:ButtonAssist.CornerRadius="10"
+                                materialDesign:ButtonAssist.CornerRadius="7"
+                                BorderBrush="#FFFFEEFA"
                                 Click="btnNhanVoucher_Click"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignRaisedButton}">

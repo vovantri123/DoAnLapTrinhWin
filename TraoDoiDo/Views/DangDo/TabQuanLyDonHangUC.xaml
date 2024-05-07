@@ -17,8 +17,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
-    <Grid>
-
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -465,9 +464,5 @@
                 </ScrollViewer>
             </Expander>
         </Grid>
-
-    </Grid>
-
-
-
+    </ScrollViewer>
 </UserControl>

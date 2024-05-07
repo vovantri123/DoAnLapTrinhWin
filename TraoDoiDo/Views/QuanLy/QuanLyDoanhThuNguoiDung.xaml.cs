@@ -143,7 +143,7 @@ namespace TraoDoiDo.Views.QuanLy
                 for (int i = 1; i <= 12; i++)
                 {
 
-                    int soLuongKH = Convert.ToInt32(sanPhamDao.tinhTongKhachHangTheoNam(idNguoi, nam, i.ToString()));
+                    int soLuongKH = Convert.ToInt32(sanPhamDao.TinhTongKhachHangTheoNam(idNguoi, nam, i.ToString()));
                     dsCotSoKH.Add(soLuongKH);
                 }
 
@@ -184,7 +184,7 @@ namespace TraoDoiDo.Views.QuanLy
                 for(int i=1;i<=12;i++)
                 {
 
-                    int soLuongKH = Convert.ToInt32(sanPhamDao.tinhTongKhachHangTheoNam(idNguoi, nam, i.ToString()));
+                    int soLuongKH = Convert.ToInt32(sanPhamDao.TinhTongKhachHangTheoNam(idNguoi, nam, i.ToString()));
                     dsCotSoLuongKH.Add(soLuongKH);
                 }
 

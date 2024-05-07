@@ -37,11 +37,12 @@ namespace TraoDoiDo
         private List<string> danhSachAnh = new List<string>();
         private int indexAnhHienTai = -1;
          
-        SanPham sanPham; 
+        SanPham sp; 
         
         SanPhamDao spDao = new SanPhamDao(); 
         NguoiDungDao nguoiDao = new NguoiDungDao();
-         
+        MoTaAnhSanPhamDao moTaAnhSanPhamDao = new MoTaAnhSanPhamDao();
+
         public ThongTinChiTietSanPham()
         { 
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace TraoDoiDo
 
         public ThongTinChiTietSanPham(SanPham sp)
         { 
-            sanPham = sp;
+            this.sp = sp;
          
             InitializeComponent();
             
@@ -62,8 +63,7 @@ namespace TraoDoiDo
         private void LoadThongTinSanPham(object sender, RoutedEventArgs e)
         {
             try
-            {
-                SanPham sp = spDao.LoadThongTinMotSanPhamTheoid(sanPham.Id);
+            { 
                 string soLuong = sp.SoLuong;
                 string soLuongDaBan = sp.SoLuongDaBan;
                 txtbSoLuongConLai.Text = (Convert.ToInt32(soLuong) - Convert.ToInt32(soLuongDaBan)).ToString();
@@ -89,8 +89,8 @@ namespace TraoDoiDo
         private void LoadAnhVaMoTa(object sender, RoutedEventArgs e)
         {
             try
-            {
-                List<MoTaAnhSanPham> dsMoTaAnh = spDao.LoadAnhVaMoTa(sanPham);
+            { 
+                List<MoTaAnhSanPham> dsMoTaAnh = moTaAnhSanPhamDao.LoadAnhVaMoTa(sp);
 
                 foreach (var dong in dsMoTaAnh)
                 {
@@ -113,18 +113,13 @@ namespace TraoDoiDo
         {
             try
             {
-                List<SanPham> dsSanPhamCungLoai = spDao.LoadSanPhamCungLoai(sanPham);
+                List<SanPham> dsSanPhamCungLoai = spDao.LoadSanPhamCungLoai(sp);
                 DanhSachSanPhamUC = new SanPhamUC[dsSanPhamCungLoai.Count + 1];
                 wpnlHienThiSPCungLoai.Children.Clear();
                 int i = 0;
                 foreach(var dong in dsSanPhamCungLoai)
-                {
-                    int yeuThich = 0;
-                    if (!string.IsNullOrEmpty(dong.IdNguoiMua)) //Neu nguoi mua co trong bang yeu thich (tức đang yêu thich một sản phẩm nào đó)
-                    {
-                        yeuThich = 1;
-                    }
-                    DanhSachSanPhamUC[i] = new SanPhamUC(yeuThich, idNguoiMua);
+                { 
+                    DanhSachSanPhamUC[i] = new SanPhamUC(0, idNguoiMua, dong.IdNguoiDang);
 
                     DanhSachSanPhamUC[i].txtbIdSanPham.Text = dong.Id.ToString();
                     DanhSachSanPhamUC[i].txtbTen.Text = dong.Ten;
@@ -157,13 +152,17 @@ namespace TraoDoiDo
          
         private void LoadThongTinNguoiDang(object sender, RoutedEventArgs e)
         {
+            
             string linkAnh = nguoiDao.TimKiemLinkAnh(idNguoiDang);
             imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(linkAnh)));
             
-            DanhGiaNguoiDangDao nguoiDangDao = new DanhGiaNguoiDangDao();
-            DanhGiaNguoiDang nguoiDang = nguoiDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
-            txtbTenNguoiDang.Text = nguoiDang.TenNguoiDang;
-            txtbSoLuotDanhGia.Text = nguoiDang.SoLuotDanhGia;
+            DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao();   
+            DanhGiaNguoiDang danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(idNguoiDang);
+
+            if (danhGia == null)
+                txtbSoLuotDanhGia.Text = "0";
+            else
+                txtbSoLuotDanhGia.Text = danhGia.SoLuotDanhGia;
         }
          
 
@@ -215,9 +214,7 @@ namespace TraoDoiDo
         private void btnThemVaoGioHang_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                SanPham sp = spDao.timKiemSanPhamBangId(sanPham.Id);
-                
+            { 
                 GioHang gioHang = new GioHang(idNguoiMua, idSanPham, txtbSoLuongHienTai.Text, null, null, null, null, null, null);
                 GioHangDao gioHangDao = new GioHangDao();
                 gioHangDao.Xoa(gioHang.IdSanPham, gioHang.IdNguoiMua);

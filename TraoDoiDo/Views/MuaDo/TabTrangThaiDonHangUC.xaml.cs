@@ -150,7 +150,7 @@ namespace TraoDoiDo.Views.MuaDo
             {
                 try
                 {
-                    NguoiDung nguoiDang = sanPhamDao.timKiemNguoiDangTheoIdSP(duLieuCuaDongChuaButton.IdSP);
+                    NguoiDung nguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(duLieuCuaDongChuaButton.IdSP);
                     DanhGia f = new DanhGia(ngMua.Id, nguoiDang.Id);
                     f.txtbTenNguoiDang.Text = nguoiDang.HoTen;
                     f.ShowDialog();

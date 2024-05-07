@@ -128,9 +128,8 @@ namespace TraoDoiDo
                         tenFileAnh = DanhSachAnhVaMoTa[i].txtbTenFileAnh.Text;
                         break;
                     }
-                string luotXem = sanPhamDao.LayLuotXem(ucThongTin.txtbIdSanPham.Text);
                 SanPham sp= new SanPham(ucThongTin.txtbIdSanPham.Text, sanPham.IdNguoiDang, ucThongTin.txtbTen.Text, tenFileAnh, ucThongTin.txtbLoai.Text, ucThongTin.ucTangGiamSoLuongTong.txtbSoLuong.Text, ucThongTin.ucTangGiamSoLuongDaBan.txtbSoLuong.Text, ucThongTin.txtbGiaGoc.Text,
-                    ucThongTin.txtbGiaBan.Text, ucThongTin.txtbPhiShip.Text, "Đã duyệt", ucThongTin.cboNoiBan.Text, ucThongTin.cboXuatXu.Text, ucThongTin.dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), ucThongTin.txtbMoTaChung.Text, ucThongTin.progressSlidere_PhanTramMoi.Value.ToString(), luotXem, null,null);
+                    ucThongTin.txtbGiaBan.Text, ucThongTin.txtbPhiShip.Text, "Đã duyệt", ucThongTin.cboNoiBan.Text, ucThongTin.cboXuatXu.Text, ucThongTin.dtpNgayMua.SelectedDate.Value.ToString("dd/MM/yyyy"), ucThongTin.txtbMoTaChung.Text, ucThongTin.progressSlidere_PhanTramMoi.Value.ToString(), null, null,null);
                 sanPhamDao.CapNhat(sp);
                
             }

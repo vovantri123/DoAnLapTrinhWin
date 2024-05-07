@@ -66,9 +66,9 @@ namespace TraoDoiDo.Views.MuaDo
                         yeuThich = 1;
                     }
 
-                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngMua.Id); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
+                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngMua.Id, dong.IdNguoiDang); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
-                    DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = dong.Id;
+                    DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = dong.Id; 
                     DanhSachSanPham[soLuongSP].txtbTen.Text = dong.Ten;
 
                     string tenFileAnh = dong.LinkAnh;
@@ -83,7 +83,8 @@ namespace TraoDoiDo.Views.MuaDo
                     DanhSachSanPham[soLuongSP].txtbGiaBan.Text = Convert.ToDecimal(dong.GiaBan).ToString("#,##0");
                     DanhSachSanPham[soLuongSP].txtbNoiBan.Text = dong.NoiBan;
                     DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = dong.LuotXem;
-                    DanhSachSanPham[soLuongSP].idNguoiDang = dong.IdNguoiDang;
+                    DanhSachSanPham[soLuongSP].idNguoiDang = dong.IdNguoiDang; 
+                        //MessageBox.Show("Id người đăng" + DanhSachSanPham[soLuongSP].idNguoiDang);
                     DanhSachSanPham[soLuongSP].txtbLoai.Text = dong.Loai;
                     DanhSachSanPham[soLuongSP].Margin = new Thickness(8);
                     soLuongSP++;

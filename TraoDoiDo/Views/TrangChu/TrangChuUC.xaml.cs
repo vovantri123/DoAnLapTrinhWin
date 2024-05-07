@@ -107,7 +107,7 @@ namespace TraoDoiDo
                 List<NguoiDung> dsNguoiHayMua = nguoiDao.LoadDanhSachNguoiHayMuaNhat();
                 foreach (var dong in dsNguoiHayMua)
                 {
-                    if (demSoNguoiMuonLoc >= 5)
+                    if (demSoNguoiMuonLoc >= 3)
                         break;
 
                     MucXepHangNguoiMuaNhieuNhatUC nguoiHayMuaUC = new MucXepHangNguoiMuaNhieuNhatUC(dong);

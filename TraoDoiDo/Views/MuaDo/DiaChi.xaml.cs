@@ -42,12 +42,14 @@ namespace TraoDoiDo
         {
             InitializeComponent();
         } 
+
         public DiaChi(NguoiDung kh)
         {
             InitializeComponent();
             ngDung = kh;
             Loaded += FDiaChi_Loaded;
         } 
+
         public DiaChi(NguoiDung kh, List<TrangThaiDonHang> dsSanPhamDeThanhToan)
         {
             InitializeComponent();
@@ -56,7 +58,6 @@ namespace TraoDoiDo
             Loaded += FDiaChi_Loaded;
         } 
         
-
         private void btnXacNhanThanhToan_Click(object sender, RoutedEventArgs e)
         { 
             try
@@ -64,7 +65,7 @@ namespace TraoDoiDo
                 capNhatThongTinCaNhan();
                 foreach (var dong in dsSanPhamDeThanhToan)
                 {
-                    NguoiDung nguoiDang = sanPhamDao.timKiemNguoiDangTheoIdSP(dong.IdSanPham);
+                    NguoiDung nguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(dong.IdSanPham);
                     QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, nguoiDang.Id, ngDung.Id, dong.IdSanPham, "Chờ đóng gói", null);
 
                     quanLyDonHangDao.Xoa(quanLyDonHang); //Xóa trước khi thêm, do ràng buộc unique //quanLyDonHang nay bên phía Người Bán
@@ -83,7 +84,7 @@ namespace TraoDoiDo
                     vcDao.TangSoLuotSuDungThem1(ndvc.IdVoucher);
                 }
 
-                double tienTT = Convert.ToDouble(ngDungDao.TimKiemBangId(ngDung.Id)) - Convert.ToDouble(tongThanhToan);
+                double tienTT = Convert.ToDouble(ngDungDao.TimKiemTienBangId(ngDung.Id)) - Convert.ToDouble(tongThanhToan);
                 if (Convert.ToDouble(tongThanhToan) == 0)
                     MessageBox.Show("Xin hãy chọn món đồ thanh toán", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (tienTT < 0)

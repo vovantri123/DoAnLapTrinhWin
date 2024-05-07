@@ -33,18 +33,20 @@ namespace TraoDoiDo
         NguoiDung nguoiDang = new NguoiDung();
         DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao();
         SanPhamDao sanPhamDao = new SanPhamDao();
+        NguoiDungDao nguoiDao = new NguoiDungDao();
 
         public SanPhamUC()
         {
             InitializeComponent();
         }
 
-        public SanPhamUC(int yeuThich, string idNguoiMua)
+        public SanPhamUC(int yeuThich, string idNguoiMua, string idNguoiDang)
         {
             InitializeComponent();
 
             this.yeuThich = yeuThich;
             this.idNguoiMua = idNguoiMua;
+            this.idNguoiDang = idNguoiDang;
             sp = sanPhamDao.timKiemSanPhamBangId(txtbIdSanPham.Text);
              
             if (yeuThich == 0)
@@ -57,7 +59,7 @@ namespace TraoDoiDo
                 btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
                 btnBoYeuThich.Visibility = Visibility.Visible;
             }
-            nguoiDang = sanPhamDao.timKiemNguoiDangTheoIdSP(txtbIdSanPham.Text);
+            nguoiDang = nguoiDao.TimKiemBangId(idNguoiDang); 
         }
          
          
@@ -76,17 +78,16 @@ namespace TraoDoiDo
         }
 
         private void btnThongTinChiTietSanPham_Click(object sender, MouseButtonEventArgs e)
-        {
+        { 
             try
             {
                 tangSoLuotXemThem1();
-                danhGia = danhGiaNgDangDao.timTenNguoiDangVaNhanXet(nguoiDang.Id);
+                
 
                 sp = new SanPham(txtbIdSanPham.Text, nguoiDang.Id, txtbTen.Text, sp.LinkAnh, txtbLoai.Text, sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua, sp.MoTaChung, sp.PhanTramMoi, txtbSoLuotXem.Text, idNguoiMua, sp.NgayDang);
                 ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);
                 f.idNguoiDang = nguoiDang.Id;
-                f.txtbTenNguoiDang.Text = danhGia.TenNguoiDang;
-                f.txtbSoLuotDanhGia.Text = danhGia.SoLuotDanhGia;
+                f.txtbTenNguoiDang.Text = nguoiDang.HoTen; 
                 f.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 f.idSanPham = txtbIdSanPham.Text;
 

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo
 {
@@ -24,6 +25,8 @@ namespace TraoDoiDo
     {
         public string idNguoiDang;
         public string idNguoiMua;
+
+        NguoiDungDao nguoiDao = new NguoiDungDao();
         DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
 
         public DanhGia()
@@ -35,7 +38,8 @@ namespace TraoDoiDo
         {
             InitializeComponent();
             this.idNguoiMua = idNguoiMua;
-            this.idNguoiDang = idNguoiDang;
+            this.idNguoiDang = idNguoiDang; 
+            imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDao.TimKiemBangId(idNguoiDang).Anh)));
         }
 
         private void btnGuiDanhGia_Click(object sender, RoutedEventArgs e)

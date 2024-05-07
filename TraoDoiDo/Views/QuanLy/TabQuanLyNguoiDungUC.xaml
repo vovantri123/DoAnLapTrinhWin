@@ -79,7 +79,7 @@
                     ItemsSource="{Binding}"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListView.Resources>
-                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
                     </ListView.Resources>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

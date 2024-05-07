@@ -20,6 +20,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
+
         <local:DangDo_ThongTinSanPhamUC
             x:Name="ucThongTin"
             Height="850"

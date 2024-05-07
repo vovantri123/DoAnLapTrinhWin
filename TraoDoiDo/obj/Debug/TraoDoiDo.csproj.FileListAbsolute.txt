@@ -840,3 +840,11 @@ C:\DoAnLapTrinhWinTDD\DoAnLTWinT5ChieuNew\TraoDoiDo\obj\Debug\Views\QuanLy\TabQu
 C:\DoAnLapTrinhWinTDD\DoAnLTWinT5ChieuNew\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.baml
 C:\DoAnLapTrinhWinTDD\DoAnLTWinT5ChieuNew\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.g.cs
 C:\DoAnLapTrinhWinTDD\DoAnLTWinT5ChieuNew\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyNguoiDungUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLySanPhamUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.g.cs
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyNguoiDungUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLySanPhamUC.baml
+C:\Users\vovan\OneDrive\Máy tính\doAnLTWindow\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.baml

@@ -318,8 +318,9 @@ namespace TraoDoiDo.Views.DangDo
             try
             {
                 txtbTongSoLuongKhachHang.Text = "0";
-                if (!string.IsNullOrEmpty(sanPhamDao.tinhTongKhachHang(nguoiDung.Id)))
-                    txtbTongSoLuongKhachHang.Text = sanPhamDao.tinhTongKhachHang(nguoiDung.Id);
+                string tongKhachHang = sanPhamDao.TinhTongKhachHang(nguoiDung.Id);
+                if (!string.IsNullOrEmpty(tongKhachHang))
+                    txtbTongSoLuongKhachHang.Text = tongKhachHang;
             }
             catch (Exception ex)
             {

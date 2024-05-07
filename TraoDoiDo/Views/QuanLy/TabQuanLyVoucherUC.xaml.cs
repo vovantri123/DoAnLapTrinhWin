@@ -35,7 +35,10 @@ namespace TraoDoiDo.Views.QuanLy
             this.nguoiDung = nguoiDung;
             Loaded += FQuanLyVoucher_Loaded;
         }
-        
+        private void FQuanLyVoucher_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadDanhSachVoucer();
+        }
 
         private void LoadDanhSachVoucer()
         {
@@ -55,17 +58,17 @@ namespace TraoDoiDo.Views.QuanLy
             if (lsvQLVoucher.SelectedItem != null)
             {
                 // Lấy dữ liệu của dòng được chọn
-                Voucher dongDuocChon = lsvQLVoucher.SelectedItem as Voucher; // Thay YourDataModel bằng kiểu dữ liệu thực tế của bạn
+                Voucher duLieuCuadongDuocChon = lsvQLVoucher.SelectedItem as Voucher;  
 
-                if (dongDuocChon != null)
+                if (duLieuCuadongDuocChon != null)
                 {
-                    txtbIdVoucher.Text = dongDuocChon.IdVoucher;
-                    txtbTenVoucher.Text = dongDuocChon.TenVoucher;
-                    txtbGiaTri.Text = dongDuocChon.GiaTri;
-                    dtpNgayBatDau.SelectedDate = DateTime.Parse(dongDuocChon.NgayBatDau);
-                    dtpNgayKetThuc.SelectedDate = DateTime.Parse(dongDuocChon.NgayKetThuc);
-                    ucTangGiamSoLuotSuDungToiDa.txtbSoLuong.Text = dongDuocChon.SoLuotSuDungToiDa;
-                    ucTangGiamSoLuotDaSuDung.txtbSoLuong.Text = dongDuocChon.SoLuotDaSuDung;
+                    txtbIdVoucher.Text = duLieuCuadongDuocChon.IdVoucher;
+                    txtbTenVoucher.Text = duLieuCuadongDuocChon.TenVoucher;
+                    txtbGiaTri.Text = duLieuCuadongDuocChon.GiaTri;
+                    dtpNgayBatDau.SelectedDate = DateTime.Parse(duLieuCuadongDuocChon.NgayBatDau);
+                    dtpNgayKetThuc.SelectedDate = DateTime.Parse(duLieuCuadongDuocChon.NgayKetThuc);
+                    ucTangGiamSoLuotSuDungToiDa.txtbSoLuong.Text = duLieuCuadongDuocChon.SoLuotSuDungToiDa;
+                    ucTangGiamSoLuotDaSuDung.txtbSoLuong.Text = duLieuCuadongDuocChon.SoLuotDaSuDung;
                 }
             }
         }
@@ -116,50 +119,34 @@ namespace TraoDoiDo.Views.QuanLy
         }
 
         private void btnXoaVoucher_Click(object sender, RoutedEventArgs e) // truy vấn id trên lsv sẽ hiệu quả hơn thay vì lấy id từ textblock , từ đó ta có thể đặt thuộc tính isReadOnly thành True
-        {
-            // Lấy button được click
-            Button btn = sender as Button;
-            // Lấy ListViewItem chứa button
-            
-            ListViewItem item = HoTroTimPhanTu.FindAncestor<ListViewItem>(btn);
+        { 
+            Button btn = sender as Button;  
+            ListViewItem dongChuaButton = HoTroTimPhanTu.FindAncestor<ListViewItem>(btn);
+             
+            dynamic duLieuCuaDongDuocChon = dongChuaButton.DataContext;
 
-            if (item != null)
+            if (duLieuCuaDongDuocChon != null)
             {
-                // Lấy dữ liệu của ListViewItem
-                dynamic dataItem = item.DataContext;
-
-                if (dataItem != null)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa mục đã chọn?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa mục đã chọn?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    try
                     {
-                        try
-                        {
-                            string idVoucher = dataItem.IdVoucher;
-                            // Xóa dữ liệu từ bảng SanPham
-                            ndvcDao.XoaTheoIdVoucher(idVoucher);
-                            voucherDao.XoaVoucherTheoIdVoucher(idVoucher);
-                            // Load lại tab QL Voucher
-                            FQuanLyVoucher_Loaded(sender, e);
+                        string idVoucher = duLieuCuaDongDuocChon.IdVoucher;
+                        // Xóa dữ liệu từ bảng SanPham
+                        ndvcDao.XoaTheoIdVoucher(idVoucher);
+                        voucherDao.XoaVoucherTheoIdVoucher(idVoucher);
+                        // Load lại tab QL Voucher
+                        FQuanLyVoucher_Loaded(sender, e);
 
-
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Lỗi xảy ra khi xóa sản phẩm: " + ex.Message);
-                        }
 
                     }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Không thể xác định dòng chứa nút 'Xóa'.");
-            }
-        }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi xảy ra khi xóa sản phẩm: " + ex.Message);
+                    }
 
-        private void FQuanLyVoucher_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoadDanhSachVoucer();   
-        }
+                }
+            } 
+        } 
     }
 }

@@ -97,125 +97,128 @@
                 VerticalAlignment="Top"
                 Background="#F2F1F1">
 
-                
-                    <ListView x:Name="lsvQuanLySanPham" Loaded="lsvQuanLySanPham_Loaded" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ListView.Resources>
-                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
-                        </ListView.Resources>
 
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="VerticalContentAlignment" Value="Center" />
-                                <Setter Property="Background" Value="#ffffff" />
-                                <!--  Border color  -->
-                            </Style>
-                        </ListView.ItemContainerStyle>
+                <ListView
+                    x:Name="lsvQuanLySanPham"
+                    Loaded="lsvQuanLySanPham_Loaded"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListView.Resources>
+                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
+                    </ListView.Resources>
 
-                        <ListView.View>
-                            <GridView>
-                                <GridView.ColumnHeaderContainerStyle>
-                                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                                        <Setter Property="Background" Value="LightBlue" />
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <Setter Property="FontWeight" Value="Bold" />
-                                    </Style>
-                                </GridView.ColumnHeaderContainerStyle>
-                                <GridViewColumn
-                                    Width="45"
-                                    DisplayMemberBinding="{Binding Id}"
-                                    Header="Id đồ" />
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#ffffff" />
+                            <!--  Border color  -->
+                        </Style>
+                    </ListView.ItemContainerStyle>
 
-                                <GridViewColumn Width="200" Header="Tên đồ">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Ten}" TextWrapping="Wrap" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                    <ListView.View>
+                        <GridView>
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+                            <GridViewColumn
+                                Width="45"
+                                DisplayMemberBinding="{Binding Id}"
+                                Header="Id đồ" />
 
-                                <!--  Ảnh  -->
-                                <GridViewColumn Width="120" Header="Ảnh">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Image Source="{Binding LinkAnh}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn
-                                    Width="120"
-                                    DisplayMemberBinding="{Binding Loai}"
-                                    Header="Loại" />
-                                <GridViewColumn
-                                    Width="80"
-                                    DisplayMemberBinding="{Binding SoLuong}"
-                                    Header="Số lượng" />
-                                <GridViewColumn
-                                    Width="85"
-                                    DisplayMemberBinding="{Binding SoLuongDaBan}"
-                                    Header="Đã bán" />
-                                <GridViewColumn
-                                    Width="90"
-                                    DisplayMemberBinding="{Binding GiaGoc}"
-                                    Header="Giá gốc" />
-                                <GridViewColumn
-                                    Width="90"
-                                    DisplayMemberBinding="{Binding GiaBan}"
-                                    Header="Giá bán" />
-                                <GridViewColumn
-                                    Width="90"
-                                    DisplayMemberBinding="{Binding PhiShip}"
-                                    Header="Phí ship" />
-                                <GridViewColumn
-                                    Width="90"
-                                    DisplayMemberBinding="{Binding NgayDang}"
-                                    Header="Ngày đăng" />
+                            <GridViewColumn Width="200" Header="Tên đồ">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Ten}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                                <!--  Cột "Sửa"  -->
-                                <GridViewColumn Width="120" Header="Hành động">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button
-                                                    Width="45"
-                                                    Height="45"
-                                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                                    BorderBrush="White"
-                                                    BorderThickness="1"
-                                                    Click="btnSuaSP_Click"
-                                                    ToolTip="Sửa">
-                                                    <materialDesign:PackIcon
-                                                        Width="15"
-                                                        Height="15"
-                                                        Foreground="White"
-                                                        Kind="PencilOutline" />
-                                                </Button>
-                                                <Button
-                                                    Width="45"
-                                                    Height="45"
-                                                    Margin="8,0,0,0"
-                                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                                    Background="#dd4131"
-                                                    BorderBrush="White"
-                                                    BorderThickness="1"
-                                                    Click="btnXoaSP_Click"
-                                                    ToolTip="Xóa">
-                                                    <materialDesign:PackIcon
-                                                        Width="15"
-                                                        Height="15"
-                                                        Foreground="White"
-                                                        Kind="DeleteOutline" />
-                                                </Button>
+                            <!--  Ảnh  -->
+                            <GridViewColumn Width="120" Header="Ảnh">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding LinkAnh}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn
+                                Width="120"
+                                DisplayMemberBinding="{Binding Loai}"
+                                Header="Loại" />
+                            <GridViewColumn
+                                Width="80"
+                                DisplayMemberBinding="{Binding SoLuong}"
+                                Header="Số lượng" />
+                            <GridViewColumn
+                                Width="85"
+                                DisplayMemberBinding="{Binding SoLuongDaBan}"
+                                Header="Đã bán" />
+                            <GridViewColumn
+                                Width="90"
+                                DisplayMemberBinding="{Binding GiaGoc}"
+                                Header="Giá gốc" />
+                            <GridViewColumn
+                                Width="90"
+                                DisplayMemberBinding="{Binding GiaBan}"
+                                Header="Giá bán" />
+                            <GridViewColumn
+                                Width="90"
+                                DisplayMemberBinding="{Binding PhiShip}"
+                                Header="Phí ship" />
+                            <GridViewColumn
+                                Width="90"
+                                DisplayMemberBinding="{Binding NgayDang}"
+                                Header="Ngày đăng" />
 
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <!--  Cột "Sửa"  -->
+                            <GridViewColumn Width="120" Header="Hành động">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                Width="45"
+                                                Height="45"
+                                                materialDesign:ButtonAssist.CornerRadius="10"
+                                                BorderBrush="White"
+                                                BorderThickness="1"
+                                                Click="btnSuaSP_Click"
+                                                ToolTip="Sửa">
+                                                <materialDesign:PackIcon
+                                                    Width="15"
+                                                    Height="15"
+                                                    Foreground="White"
+                                                    Kind="PencilOutline" />
+                                            </Button>
+                                            <Button
+                                                Width="45"
+                                                Height="45"
+                                                Margin="8,0,0,0"
+                                                materialDesign:ButtonAssist.CornerRadius="10"
+                                                Background="#dd4131"
+                                                BorderBrush="White"
+                                                BorderThickness="1"
+                                                Click="btnXoaSP_Click"
+                                                ToolTip="Xóa">
+                                                <materialDesign:PackIcon
+                                                    Width="15"
+                                                    Height="15"
+                                                    Foreground="White"
+                                                    Kind="DeleteOutline" />
+                                            </Button>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
 
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
             </Grid>
 
 
