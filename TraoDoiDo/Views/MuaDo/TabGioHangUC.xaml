@@ -27,7 +27,6 @@
             Margin="10,0,10,10"
             BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="2">
-
             <ListView
                 x:Name="lsvGioHang"
                 Grid.Column="0"
@@ -144,6 +143,12 @@
                 Background="#9359c5">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
+                        <TextBox
+                            x:Name="txbTienNguoiDung"
+                            Foreground="Transparent"
+                            IsEnabled="False"
+                            TextChanged="txbTienNguoiDung_TextChanged"
+                            Visibility="Collapsed" />
                         <TextBlock
                             Margin="18,16,-18,0"
                             VerticalAlignment="Top"

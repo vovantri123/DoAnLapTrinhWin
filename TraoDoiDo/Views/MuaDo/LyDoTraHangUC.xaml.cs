@@ -41,7 +41,7 @@ namespace TraoDoiDo
         { 
             try
             {
-                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(idNguoiMua,idSP,null,null,null,"Đã trả hàng",null, null, null, null, null, null, null,null);
+                TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(idNguoiMua,idSP,null,null,null,"Đã trả hàng",null, null, null, null);
                 trangThaiDonHangDao.CapNhat(trangThaiDonHang);
                 QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, idNguoiMua, idSP, "Bị hoàn trả", timLyDoDuocChon());
                 quanLyDonHangDao.CapNhatTraHang(quanLyDonHang); 

@@ -37,8 +37,7 @@ namespace TraoDoiDo
             Loaded += mainWindow_Loaded;
             ucThanhDieuKhien.btn_close.Click += hienThiDangNhap;
         }
-      
-
+         
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
@@ -64,14 +63,12 @@ namespace TraoDoiDo
         }
 
         private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //img_bg.Opacity = 1;
+        { 
             lopPhu.Visibility = Visibility.Collapsed;
         }
 
         private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
-        {
-            //img_bg.Opacity = 0.3;
+        { 
             lopPhu.Visibility = Visibility.Visible;
         }
 
@@ -93,9 +90,16 @@ namespace TraoDoiDo
             Tg_Btn.IsChecked = false;
         }
 
+        private void MainWindow_ViDienTuUCGoi(object sender, ViDienTuUC.ThamSoThayDoi e)
+        {
+            txtbTienNguoiDung.Text = e.SoTienMoi;
+        }
+
         private void ViDienTu_Click(object sender, RoutedEventArgs e)
         {
-            contentControlHienThi.Content = new ViDienTuUC(nguoi);
+            ViDienTuUC vdt = new ViDienTuUC(nguoi);
+            vdt.SuKienGoiChaKhiTienNguoiDungThayDoi += MainWindow_ViDienTuUCGoi;
+            contentControlHienThi.Content = vdt;
             txtbTenTrang.Text = "Ví điện tử";
             Tg_Btn.IsChecked = false;
         }
@@ -107,10 +111,16 @@ namespace TraoDoiDo
             Tg_Btn.IsChecked = false;
         }
 
+        private void MainWindow_MuaDoTuUCGoi(object sender, MuaDoUC.ThamSoThayDoi e)
+        {
+            txtbTienNguoiDung.Text = e.SoTienMoi;
+        }
+
         private void MuaDo_Click(object sender, RoutedEventArgs e)
         {
-
-            contentControlHienThi.Content = new MuaDoUC(nguoi);
+            MuaDoUC md = new MuaDoUC(nguoi);
+            md.SuKienGoiChaKhiTienNguoiDungThayDoi += MainWindow_MuaDoTuUCGoi;
+            contentControlHienThi.Content = md;
             txtbTenTrang.Text = "Mua đồ";
             Tg_Btn.IsChecked = false;
         }
@@ -135,13 +145,13 @@ namespace TraoDoiDo
             LoadWindow();
             imgNguoiDung.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoi.Anh)));
         }
+
         public void LoadWindow()
         {
             txtbTenNguoiDung.Text = nguoi.HoTen; 
             txtbTienNguoiDung.Text = Convert.ToDecimal(nguoi.Tien).ToString("#,##0") + " đ";
         }
-         
-
+          
         private void btnHienThiThongBao_Click(object sender, RoutedEventArgs e)
         {
             if (myPopup.IsOpen)

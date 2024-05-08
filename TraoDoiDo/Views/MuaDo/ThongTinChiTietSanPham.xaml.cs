@@ -153,7 +153,7 @@ namespace TraoDoiDo
         private void LoadThongTinNguoiDang(object sender, RoutedEventArgs e)
         {
             
-            string linkAnh = nguoiDao.TimKiemLinkAnh(idNguoiDang);
+            string linkAnh = nguoiDao.TimKiemTenAnhDaiDienTheoIdNguoi(idNguoiDang);
             imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(linkAnh)));
             
             DanhGiaNguoiDangDao danhGiaNgDangDao = new DanhGiaNguoiDangDao();   
@@ -219,6 +219,7 @@ namespace TraoDoiDo
                 GioHangDao gioHangDao = new GioHangDao();
                 gioHangDao.Xoa(gioHang.IdSanPham, gioHang.IdNguoiMua);
                 gioHangDao.Them(gioHang);
+                MessageBox.Show("Sản phẩm đã được thêm vào giỏ hàng");
                 this.Close(); 
             }
             catch (Exception ex)

@@ -38,21 +38,21 @@ namespace TraoDoiDo
             this.idNguoiMua = idNguoiMua;  
         }
 
-        #region TỪ UC con truyền ngược lên UC cha
+        #region Từ con gọi cha
         // Tạo lớp hoặc cặp tham số mới để đại diện cho cả hai giá trị
-        public class TextBlockChangedEventArgs : EventArgs
+        public class ThamSoThayDoi : EventArgs
         {
             public string GiaTriMoi { get; set; }
             public string IdMoi { get; set; }
         }
 
-        // Sự kiện được phát ra khi TextBlock thay đổi
-        public event EventHandler<TextBlockChangedEventArgs> TextBlockChanged;
+        // Sự kiện cho phép thay đổi giá trị textBlock của cha (kèm theo gọi hàm của cha)
+        public event EventHandler<ThamSoThayDoi> SuKienGoiChaKhiClickVaoDungVoucher;
 
         private void btnDungVoucher_Click(object sender, RoutedEventArgs e)
         {
-            // Lấy giá trị từ TextBox và gửi đến form cha
-            TextBlockChanged?.Invoke(this, new TextBlockChangedEventArgs
+            // Lấy giá trị từ textblock bên voucher và gửi đến form cha là TabGioHangUC
+            SuKienGoiChaKhiClickVaoDungVoucher?.Invoke(this, new ThamSoThayDoi
             {
                 GiaTriMoi = txtbGiaTri.Text,
                 IdMoi = txtbIdVoucher.Text
@@ -63,7 +63,9 @@ namespace TraoDoiDo
         private void btnNhanVoucher_Click(object sender, RoutedEventArgs e)
         {
             NguoiDungVoucher ndvc = new NguoiDungVoucher(txtbIdVoucher.Text, idNguoiMua);
-            ndvcDao.Them(ndvc);  
+            ndvcDao.Xoa(ndvc);
+            ndvcDao.Them(ndvc);
+            MessageBox.Show("Bạn đã nhận được voucher");
         } 
     }
 }

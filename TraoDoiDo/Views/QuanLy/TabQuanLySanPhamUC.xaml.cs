@@ -128,7 +128,7 @@ namespace TraoDoiDo.Views.QuanLy
                     HienThi_QuanLySanPham();
                 else
                 {
-                    SanPham sanPham = sanPhamDao.timKiemSanPhamBangId(txbTimKiemSanPham.Text.Trim());
+                    SanPham sanPham = sanPhamDao.timKiemSanPhamBangIdSanPham(txbTimKiemSanPham.Text.Trim());
                     if (sanPham != null)
                     {
                         string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
@@ -178,7 +178,7 @@ namespace TraoDoiDo.Views.QuanLy
             {
                 dynamic dataItem = item.DataContext;
                 //Đổ thông tin sản phẩm lên DangDo_Sua
-                SanPham sp = sanPhamDao.timKiemSanPhamBangId(dataItem.Id);
+                SanPham sp = sanPhamDao.timKiemSanPhamBangIdSanPham(dataItem.Id);
                 DangDo_Sua f = new DangDo_Sua(sp);
 
                 //Đổ ảnh và mô tả lên DangDo_Sua
@@ -187,7 +187,7 @@ namespace TraoDoiDo.Views.QuanLy
                 {
                     f.DanhSachAnhVaMoTa[f.soLuongAnh] = new ThemAnhKhiDangUC();
 
-                    f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = dong.LinkAnh; // Rãnh sửa thuộc tính LinkAnh thành TenFileAnh
+                    f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbTenFileAnh.Text = dong.LinkAnh;  
 
                     string duongDanAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(dong.LinkAnh);
                     f.DanhSachAnhVaMoTa[f.soLuongAnh].txtbDuongDanAnh.Text = duongDanAnh;
@@ -223,13 +223,6 @@ namespace TraoDoiDo.Views.QuanLy
                 }
             }
 
-        }
-
-        
-
-        private void lsvQuanLySanPham_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
+        }  
     }
 }

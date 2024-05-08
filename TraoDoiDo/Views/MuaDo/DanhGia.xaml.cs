@@ -39,7 +39,7 @@ namespace TraoDoiDo
             InitializeComponent();
             this.idNguoiMua = idNguoiMua;
             this.idNguoiDang = idNguoiDang; 
-            imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDao.TimKiemBangId(idNguoiDang).Anh)));
+            imgAnhNguoiDang.Source = new BitmapImage(new Uri(XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(nguoiDao.TimNguoiBangIdNguoi(idNguoiDang).Anh)));
         }
 
         private void btnGuiDanhGia_Click(object sender, RoutedEventArgs e)

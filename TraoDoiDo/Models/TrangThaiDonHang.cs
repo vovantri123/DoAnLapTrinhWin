@@ -17,16 +17,11 @@ namespace TraoDoiDo.Models
         private string tenSanPham;
         private string anhSP;
         private string giaBan;
-        private string phiShip;
-
-        private string hoTen; //Nguoimua
-        private string sdt;
-        private string email;
-        private string diaChi;
+        private string phiShip; 
 
         public TrangThaiDonHang() { }
 
-        public TrangThaiDonHang(string idNguoiMua, string idSanPham, string soLuongMua, string tongThanhToan, string ngay, string trangThai, string tenSanPham, string anhSP, string giaBan, string phiShip, string hoTen, string sdt, string email, string diaChi)
+        public TrangThaiDonHang(string idNguoiMua, string idSanPham, string soLuongMua, string tongThanhToan, string ngay, string trangThai, string tenSanPham, string anhSP, string giaBan, string phiShip)
         {
             this.IdNguoiMua = idNguoiMua;
             this.IdSanPham = idSanPham;
@@ -37,11 +32,7 @@ namespace TraoDoiDo.Models
             this.TenSanPham = tenSanPham;
             this.AnhSP = anhSP;
             this.GiaBan = giaBan;
-            this.PhiShip = phiShip;
-            this.HoTen = hoTen;
-            this.Sdt = sdt;
-            this.Email = email;
-            this.DiaChi = diaChi;
+            this.PhiShip = phiShip; 
         }
 
         public string IdNguoiMua { get => idNguoiMua; set => idNguoiMua = value; }
@@ -53,10 +44,6 @@ namespace TraoDoiDo.Models
         public string TenSanPham { get => tenSanPham; set => tenSanPham = value; }
         public string AnhSP { get => anhSP; set => anhSP = value; }
         public string GiaBan { get => giaBan; set => giaBan = value; }
-        public string PhiShip { get => phiShip; set => phiShip = value; }
-        public string HoTen { get => hoTen; set => hoTen = value; }
-        public string Sdt { get => sdt; set => sdt = value; }
-        public string Email { get => email; set => email = value; }
-        public string DiaChi { get => diaChi; set => diaChi = value; }
+        public string PhiShip { get => phiShip; set => phiShip = value; } 
     }
 }

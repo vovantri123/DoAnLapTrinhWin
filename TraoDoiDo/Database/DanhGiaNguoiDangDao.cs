@@ -12,80 +12,88 @@ namespace TraoDoiDo.Database
         List<string> dongKetQua;
         List<List<string>> bangKetQua;
         List<DanhGiaNguoiDang> dsDanhGiaNguoiDang; 
-
-        public DanhGiaNguoiDang timTenNguoiDangVaNhanXet(string idNguoi)
-        {
-            string sqlStr = $@"
-                    SELECT {nguoiDungTen}, COUNT({danhGiaNhanXet}) as SLNhanXet
-                    FROM {nguoiDungHeader}
-                    INNER JOIN {danhGiaHeader} ON {nguoiDungHeader}.{nguoiDungID} = {danhGiaHeader}.{quanLyIdNguoiDang}
-                    GROUP BY {nguoiDungID},{nguoiDungTen}
-                    HAVING {nguoiDungID} = '{idNguoi}' ";
-            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
-            if(dongKetQua!=null)
-                return new DanhGiaNguoiDang(null, dongKetQua[0], null, null, null, null, dongKetQua[1], null);
-            return null;
-        }
-
+         
         public void Them(DanhGiaNguoiDang danhGiaNguoiDung)
         {
-            string sqlStr = $@" INSERT INTO {danhGiaHeader} ({sanPhamIdNguoiDang}, {danhGiaIdNguoiMua} ,{danhGiaSoSao}, {danhGiaNhanXet})  
-                                VALUES ({danhGiaNguoiDung.IdNguoiDang}, {danhGiaNguoiDung.IdNguoiMua}, N'{danhGiaNguoiDung.SoSao}', N'{danhGiaNguoiDung.NhanXet}')";
+            string sqlStr = $@" 
+                INSERT INTO {danhGiaHeader} ({danhGiaIdNguoiDang}, {danhGiaIdNguoiMua} ,{danhGiaSoSao}, {danhGiaNhanXet})  
+                VALUES ({danhGiaNguoiDung.IdNguoiDang}, {danhGiaNguoiDung.IdNguoiMua}, N'{danhGiaNguoiDung.SoSao}', N'{danhGiaNguoiDung.NhanXet}')
+            ";
             dbConnection.ThucThi(sqlStr);
         }
 
         public void Xoa(DanhGiaNguoiDang danhGiaNguoiDung)
         {
-            string sqlStr = $@" DELETE {danhGiaHeader} WHERE {sanPhamIdNguoiDang} = {danhGiaNguoiDung.IdNguoiDang} AND {danhGiaIdNguoiMua} = {danhGiaNguoiDung.IdNguoiMua}";
+            string sqlStr = $@" 
+                DELETE {danhGiaHeader} 
+                WHERE {danhGiaIdNguoiDang} = {danhGiaNguoiDung.IdNguoiDang} AND {danhGiaIdNguoiMua} = {danhGiaNguoiDung.IdNguoiMua}
+            ";
             dbConnection.ThucThi(sqlStr);
         }
-         
+
+        public DanhGiaNguoiDang timTenNguoiDangVaNhanXet(string idNguoi)
+        {
+            string sqlStr = $@"
+                SELECT {nguoiDungTen}, COUNT({danhGiaNhanXet}) as SLNhanXet
+                FROM {nguoiDungHeader}
+                INNER JOIN {danhGiaHeader} ON {nguoiDungHeader}.{nguoiDungID} = {danhGiaHeader}.{danhGiaIdNguoiDang}
+                GROUP BY {nguoiDungID},{nguoiDungTen}
+                HAVING {nguoiDungID} = '{idNguoi}' 
+            ";
+            dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
+            if (dongKetQua != null)
+                return new DanhGiaNguoiDang(null, dongKetQua[0], null, null, null, null, dongKetQua[1], null);
+            return null;
+        }
+
         public List<DanhGiaNguoiDang> DemSoLuotDanhGiaTheoTungSoSao(string idNguoiDang)
         {
             string sqlStr = $@"
                 SELECT {danhGiaSoSao}, COUNT({danhGiaIdNguoiMua}) 
                 FROM {danhGiaHeader}
-                WHERE {sanPhamIdNguoiDang}= '{idNguoiDang}'
-                GROUP BY {danhGiaSoSao} ";
+                WHERE {danhGiaIdNguoiDang}= '{idNguoiDang}'
+                GROUP BY {danhGiaSoSao} 
+            ";
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
                 dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(null, null, null, null, dong[0], null, dong[1], null));
             return dsDanhGiaNguoiDang;
         }
+
         public List<DanhGiaNguoiDang> TinhTrungBinhSoSao(string soSaoDau, string soSaoCuoi)
         {
             string sqlStr = $@"
-                            SELECT {danhGiaHeader}.{quanLyIdNguoiDang}, AVG(CONVERT(int,{danhGiaHeader}.{danhGiaSoSao})) as SoSaoTB
-                            FROM {danhGiaHeader}
-                            GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang}
-                            HAVING AVG(CONVERT(int,{danhGiaSoSao})) BETWEEN '{soSaoDau}' AND '{soSaoCuoi}' ";
+                SELECT {danhGiaHeader}.{danhGiaIdNguoiDang}, ROUND(AVG(CONVERT(FLOAT,{danhGiaHeader}.{danhGiaSoSao})),2) as SoSaoTB
+                FROM {danhGiaHeader}
+                GROUP BY {danhGiaHeader}.{danhGiaIdNguoiDang}
+                HAVING AVG(CONVERT(FLOAT,{danhGiaSoSao})) BETWEEN '{soSaoDau}' AND '{soSaoCuoi}' 
+            ";
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)
                 dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, dong[1], null, null, null));
             return dsDanhGiaNguoiDang;
         }
-        public List<DanhGiaNguoiDang> TrungBinhSoSao()
+
+        public string TinhTrungBinhSoSaoTheoIdNguoiDang(string idNguoiDang)
         {
-            string sqlStr = $@"SELECT {danhGiaHeader}.{quanLyIdNguoiDang}, AVG(CONVERT(int,{danhGiaHeader}.{danhGiaSoSao})) as SoSaoTB
-                                FROM {danhGiaHeader}
-                                GROUP BY {danhGiaHeader}.{quanLyIdNguoiDang},SoSaoTB
-                               ";
-            bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
-            dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
-            foreach (var dong in bangKetQua)
-                dsDanhGiaNguoiDang.Add(new DanhGiaNguoiDang(dong[0], null, null, null, dong[1], null, null, null));
-            return dsDanhGiaNguoiDang;
+            string sqlStr = $@"
+                SELECT ROUND(AVG(CONVERT(FLOAT,{danhGiaSoSao})),2) AS SoSaoTB
+                FROM {danhGiaHeader}
+                GROUP BY {danhGiaIdNguoiDang}
+                HAVING {danhGiaIdNguoiDang} = {idNguoiDang}
+            "; 
+            return dbConnection.LayMotGiaTri(sqlStr, "SoSaoTB");
         }
-        
+
         public NguoiDung LoadThongTinNguoiDang(string idNguoiDang)
         {
             string sqlStr = $@" 
                 SELECT distinct {nguoiDungTen}, {nguoiDungSdt}, {nguoiDungEmail}, {nguoiDungDiaChi}, {nguoiDungHeader}.{nguoiDungAnh} 
                 FROM {danhGiaHeader}
                 INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} 
-                WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} =  '{idNguoiDang}'
+                WHERE {danhGiaHeader}.{danhGiaIdNguoiDang} =  '{idNguoiDang}'
                 ";
             dongKetQua = dbConnection.LayMotDongDuLieu<string>(sqlStr);
             if(dongKetQua!=null)
@@ -99,7 +107,7 @@ namespace TraoDoiDo.Database
                 SELECT {nguoiDungHeader}.{nguoiDungTen}, {danhGiaHeader}.{danhGiaSoSao}, {danhGiaHeader}.{danhGiaNhanXet}, {nguoiDungHeader}.{nguoiDungAnh} 
                 FROM {danhGiaHeader}
                 INNER JOIN {nguoiDungHeader} ON {danhGiaHeader}.{danhGiaIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID} 
-                WHERE {danhGiaHeader}.{sanPhamIdNguoiDang} = '{idNguoiDang}' ";
+                WHERE {danhGiaHeader}.{danhGiaIdNguoiDang} = '{idNguoiDang}' ";
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             dsDanhGiaNguoiDang = new List<DanhGiaNguoiDang>();
             foreach (var dong in bangKetQua)

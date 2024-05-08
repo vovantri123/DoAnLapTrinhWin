@@ -15,21 +15,19 @@ namespace TraoDoiDo.Database
                    VALUES ('{ndvc.IdNguoiDung}', '{ndvc.IdVoucher}')";
             dbConnection.ThucThi(sqlStr);
         }
+
         public void Xoa(NguoiDungVoucher ndvc) //Xóa theo cả id NguoiDung và Id voucher
         {
             string sqlStr = $@" DELETE FROM {nguoiDungVoucherHeader}
                 WHERE {nguoiDungVoucherIdNguoiDung} = '{ndvc.IdNguoiDung}' AND {nguoiDungVoucherIdVoucher} = '{ndvc.IdVoucher}'";
             dbConnection.ThucThi(sqlStr);
-        }
-        
+        } 
 
         public void XoaTheoIdVoucher(string idVoucher) //Xóa theo cả id NguoiDung và Id voucher
         {
             string sqlStr = $@" DELETE FROM {nguoiDungVoucherHeader}
                 WHERE {nguoiDungVoucherIdVoucher} = '{idVoucher}'";
             dbConnection.ThucThi(sqlStr);
-        }
-        
-
+        } 
     }
 }

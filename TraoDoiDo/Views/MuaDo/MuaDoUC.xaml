@@ -21,20 +21,27 @@
     mc:Ignorable="d">
 
     <Grid>
+        <TextBox
+            x:Name="txbTienNguoiDung"
+            Foreground="Transparent"
+            IsEnabled="False"
+            TextChanged="txbTienNguoiDung_TextChanged"
+            Visibility="Collapsed" />
         <TabControl
             Width="Auto"
             materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
             materialDesign:ColorZoneAssist.Mode="Custom">
-            <TabItem Header="Mua sắm">
+            <TabItem x:Name="TabItemMuaSam" Header="Mua sắm">
                 <ContentControl x:Name="ccTabMuaSam" />
             </TabItem>
-            <TabItem Header="Giỏ hàng">
+            <TabItem x:Name="TabItemGioHang" Header="Giỏ hàng">
                 <ContentControl x:Name="ccTabGioHang" />
             </TabItem>
-            <TabItem Header="Trạng thái đơn hàng">
+            <TabItem x:Name="TabItemTrangThaiDonHang" Header="Trạng thái đơn hàng">
                 <ContentControl x:Name="ccTabTrangThaiDonHang" />
             </TabItem>
         </TabControl>
+
 
     </Grid>
 </UserControl>

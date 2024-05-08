@@ -88,7 +88,7 @@ namespace TraoDoiDo.Views.DangDo
                 try
                 {
                     //Load thông tin sản phẩm lên 
-                    SanPham sp = sanPhamDao.timKiemSanPhamBangId(duLieuCuaDongChuaButton.Id);
+                    SanPham sp = sanPhamDao.timKiemSanPhamBangIdSanPham(duLieuCuaDongChuaButton.Id);
                     DangDo_Sua f = new DangDo_Sua(sp);
                     List<MoTaHangHoa> dsMoTaHangHoa = moTaDao.TimKiemDanhSachAnhVaMoTaBangId(duLieuCuaDongChuaButton.Id);
 
@@ -214,7 +214,7 @@ namespace TraoDoiDo.Views.DangDo
         private void HienThiNgayMuaLau(bool kt)
         {
             lsvQuanLySanPham.Items.Clear();
-            List<SanPham> dsSanPham = sanPhamDao.LoadToanBoSanPham(nguoiDung.Id);
+            List<SanPham> dsSanPham = sanPhamDao.LoadDanhSachSanPhamTheoIdNguoiDang(nguoiDung.Id);
             foreach (var sp in dsSanPham)
             {
                 int soNgay = TinhKhoangCachSoNgay(DateTime.ParseExact(sp.NgayDang, "d/M/yyyy", null));

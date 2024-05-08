@@ -39,9 +39,10 @@ namespace TraoDoiDo.Views.QuanLy
         public TabQuanLyNguoiDungUC(NguoiDung nguoiDung)
         {
             InitializeComponent();
-            this.nguoiDung = nguoiDung;
+            this.nguoiDung = nguoiDung; 
             Loaded += FQuanLyNguoiDung_Loaded;
         }
+
         private void HienThi_QuanLyNguoiDung()
         {
             try
@@ -50,9 +51,11 @@ namespace TraoDoiDo.Views.QuanLy
                 dsNguoiDung = ngDungDao.LoadNguoiDung();
                 foreach (var nguoiDung in dsNguoiDung)
                 {
-
+                    string soSaoTrungBinh = danhGiaDao.TinhTrungBinhSoSaoTheoIdNguoiDang(nguoiDung.Id);
+                    if (string.IsNullOrEmpty(soSaoTrungBinh))
+                        soSaoTrungBinh = "0";
                     listNguoiDung.Add(nguoiDung);
-                    lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, Email = nguoiDung.Email });
+                    lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, Email = nguoiDung.Email, SoSao = soSaoTrungBinh });
                 }
             }
             catch (Exception ex)
@@ -60,10 +63,7 @@ namespace TraoDoiDo.Views.QuanLy
                 MessageBox.Show(ex.Message);
             }
         }
-
-        //Tab Quản lý người dùng
-
-
+         
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -124,17 +124,11 @@ namespace TraoDoiDo.Views.QuanLy
                     NguoiDung ngDung = new NguoiDung(dataItem.UserId,dataItem.FullName,dataItem.Gender,dataItem.DateOfBirth,dataItem.Identification,dataItem.Email,dataItem.PhoneNumber,dataItem.Address,null,null,null);
                     QuanLyDoanhThuNguoiDung f = new QuanLyDoanhThuNguoiDung(ngDung);
                     f.Show();
-                    
                 }
             }
 
         }
 
-
-        
-
-
-       
         private void HienThiNguoiDangUyTien(string soSaoDau, string soSaoCuoi)
         {
             List<DanhGiaNguoiDang> dsDanhGiaSoSao = danhGiaDao.TinhTrungBinhSoSao(soSaoDau, soSaoCuoi);
@@ -144,13 +138,7 @@ namespace TraoDoiDo.Views.QuanLy
                 lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, SoSao=danhGia.SoSao,Email = nguoiDung.Email });
             }
         }
-
-
-        private void cbNgayMua_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
+         
         private void cbSoSao_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
@@ -181,7 +169,7 @@ namespace TraoDoiDo.Views.QuanLy
                     HienThi_QuanLyNguoiDung();
                 else
                 {
-                    NguoiDung nguoiDung = ngDungDao.TimKiemBangId(txbTimKiemNguoiDung.Text.Trim());
+                    NguoiDung nguoiDung = ngDungDao.TimNguoiBangIdNguoi(txbTimKiemNguoiDung.Text.Trim());
                     if(nguoiDung!=null)
                         lsvQuanLyNguoiDung.Items.Add(new { UserId = nguoiDung.Id, FullName = nguoiDung.HoTen, Identification = nguoiDung.Cmnd, Gender = nguoiDung.GioiTinh, PhoneNumber = nguoiDung.Sdt, DateOfBirth = nguoiDung.NgaySinh, Address = nguoiDung.DiaChi, Email = nguoiDung.Email });
                 }

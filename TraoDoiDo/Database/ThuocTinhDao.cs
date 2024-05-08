@@ -6,13 +6,13 @@ namespace TraoDoiDo.Database
     {
         // Class này dùng để truy cập các thuộc tính của bảng dể hơn khi chỉ cần sửa ở đây
 
-        // Table TaiKhoan
+        // Bảng TaiKhoan
         protected const string taiKhoanHeader = "TaiKhoan";
+        public const string taiKhoanIdNguoiDung = "IdNguoiDung";
         public const string taiKhoanTenDangNhap = "TenDangNhap";
         public const string taiKhoanMatKhau = "MatKhau";
-        public const string taiKhoanIdNguoiDung = "IdNguoiDung";
 
-        // Table NguoiDung
+        // Bảng NguoiDung
         protected const string nguoiDungHeader = "NguoiDung";
         public const string nguoiDungID = "IdNguoiDung";
         public const string nguoiDungTen = "HoTenNguoiDung";
@@ -26,7 +26,7 @@ namespace TraoDoiDo.Database
         public const string nguoiDungTien = "TienNguoiDung";
         public const string nguoiDungTuKhoaSanPhamDangQuanTam = "TuKhoaSanPhamDangQuanTam";
 
-        //Table GiaoDich
+        //Bảng GiaoDich
         protected const string giaoDichHeader = "GiaoDich";
         public const string giaoDichID = "IdGiaoDich";
         public const string giaoDichLoai = "LoaiGiaoDich";
@@ -35,7 +35,7 @@ namespace TraoDoiDo.Database
         public const string giaoDichDenNguon = "DenNguonGiaoDich";
         public const string giaoDichNgay = "NgayGiaoDich";
 
-        //Table SanPham
+        //Bảng SanPham
         protected const string sanPhamHeader = "SanPham";
         public const string sanPhamID = "IdSanPham";
         public const string sanPhamIdNguoiDang = "IdNguoiDang";
@@ -56,19 +56,22 @@ namespace TraoDoiDo.Database
         public const string sanPhamSoLuotXem = "SoLuotXem";
         public const string sanPhamNgayDang = "NgayDang";
 
-
-        //Table MoTaAnhSanPham
+        //Bảng MoTaAnhSanPham
         protected const string moTaSanPhamHeader = "MoTaAnhSanPham";
+        public const string moTaSanPhamIdSanPham = "IdSanPham";
         public const string moTaSanPhamIdAnh = "IdAnhMinhHoa";
         public const string moTaSanPhamLinkAnh = "LinkAnhMinhHoa";
         public const string moTaSanPhamMoTa = "MoTa";
 
-        //Table GioHang
+        //Bảng GioHang
         protected const string gioHangHeader = "GioHang";
+        protected const string gioHangIdNguoiMua = "IdNguoiMua";
+        protected const string gioHangIdSanPham = "IdSanPham"; 
         public const string gioHangSoLuongMua = "SoLuongMua";
 
-        //Table DanhGiaNguoiDung
+        //Bảng DanhGiaNguoiDang
         protected const string danhGiaHeader = "DanhGiaNguoiDang";
+        public const string danhGiaIdNguoiDang= "IdNguoiDang";
         public const string danhGiaIdNguoiMua = "IdNguoiMua";
         public const string danhGiaSoSao = "SoSao";
         public const string danhGiaNhanXet = "NhanXet";
@@ -82,7 +85,7 @@ namespace TraoDoiDo.Database
         public const string trangThaiNgay = "Ngay";
         public const string trangThaiTrangThai = "TrangThai";
 
-        //Table QuanLyDonHang
+        //Bảng QuanLyDonHang
         protected const string quanLyHeader = "QuanLyDonHang";
         public const string quanLyIdDonHang = "IdDonHang";
         public const string quanLyIdNguoiDang = "IdNguoiDang";
@@ -91,11 +94,12 @@ namespace TraoDoiDo.Database
         public const string quanLyTrangThai = "TrangThai";
         public const string quanLyLyDo = "LyDoTraHang";
 
-        //Table DanhMucYeuThich
+        //Bảng DanhMucYeuThich
         protected const string danhMucHeader = "DanhMucYeuThich";
-        public const string danhMucNguoiMua = "IdNguoiMua";
+        public const string danhMucIdNguoiMua = "IdNguoiMua";
+        public const string danhMucIdSanPham = "IdSanPham";
 
-        //Table Voucher
+        //Bảng Voucher
         protected const string voucherHeader = "Voucher";
         public const string voucherIdVoucher = "IdVoucher";
         public const string voucherTenVoucher = "TenVoucher";
@@ -105,12 +109,10 @@ namespace TraoDoiDo.Database
         public const string voucherNgayBatDau = "NgayBatDau";
         public const string voucherNgayKetThuc = "NgayKetThuc";
 
-        //Table NguoiDungVoucher
+        //Bảng NguoiDungVoucher
         protected const string nguoiDungVoucherHeader = "NguoiDungVoucher";
         public const string nguoiDungVoucherIdNguoiDung = "IdNguoiDung";
         public const string nguoiDungVoucherIdVoucher = "IdVoucher";
-
-
 
 
         protected DbConnection dbConnection = new DbConnection();

@@ -55,7 +55,7 @@ namespace TraoDoiDo.Views.MuaDo
             soLuongSP = 0;
             try
             {
-                List<SanPham> dsSanPham = sanPhamDao.LoadSanPham(ngMua.Id);
+                List<SanPham> dsSanPham = sanPhamDao.LoadSanPhamTheoIdNguoiMua(ngMua.Id);
 
                 foreach (var dong in dsSanPham)
                 {

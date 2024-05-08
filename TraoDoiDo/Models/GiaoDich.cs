@@ -37,5 +37,12 @@ namespace TraoDoiDo.Models
         public string DenNguonTien { get => denNguonTien; set => denNguonTien = value; }
         public string NgayGiaoDich { get => ngayGiaoDich; set => ngayGiaoDich = value; }
         public string IdNguoiDung { get => idNguoiDung; set => idNguoiDung = value; }
+
+        public static bool KiemTraHopLe(double soTien, string nguonTien)
+        {
+            if(soTien <= 0 || string.IsNullOrEmpty(nguonTien))
+                return false;
+            return true;
+        }
     }
 }

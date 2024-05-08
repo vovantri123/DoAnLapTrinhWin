@@ -32,6 +32,7 @@ namespace TraoDoiDo.Views.DangDo
 
         SanPhamDao sanPhamDao = new SanPhamDao();
         MoTaHangHoaDao moTaDao = new MoTaHangHoaDao();
+        NguoiDungDao nguoiDao = new NguoiDungDao();
         QuanLyDonHangDao quanLyDonHangDao = new QuanLyDonHangDao();
         TrangThaiDonHangDao trangThaiHangDao = new TrangThaiDonHangDao();
         DanhGiaNguoiDangDao danhGiaNguoiDungDao = new DanhGiaNguoiDangDao();
@@ -89,8 +90,7 @@ namespace TraoDoiDo.Views.DangDo
                 MessageBox.Show(ex.Message);
             }
         }
-
-
+         
         private void btnDiaChiGuiHang_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -100,14 +100,13 @@ namespace TraoDoiDo.Views.DangDo
             if (duLieuCuaDongChuaButton != null)
             {
                 try
-                {
-                    //Cái dưới chưa tối ưu lắm
-                    TrangThaiDonHang thongTinNguoiMua = trangThaiHangDao.TimThongTinNguoiMuaTheoIdNguoiMuaVaIdSanPham(duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP);
-                    NguoiDung nguoi = new NguoiDung(duLieuCuaDongChuaButton.IdNguoiMua, thongTinNguoiMua.HoTen, null, null, null, thongTinNguoiMua.Email, thongTinNguoiMua.Sdt, thongTinNguoiMua.DiaChi, null, null, null);
+                { 
+                    NguoiDung nguoi = nguoiDao.TimThongTinNguoiMuaDeGuihang(duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP);
 
                     DiaChi f = new DiaChi(nguoi);
                     f.txtbTieuDe.Text = "Địa chỉ khách hàng";
                     f.btnXacNhanThanhToan.Visibility = Visibility.Collapsed;
+                    f.Height = 318;
                     f.ShowDialog();
                 }
                 catch (Exception ex)
@@ -128,7 +127,7 @@ namespace TraoDoiDo.Views.DangDo
                 {
                     QuanLyDonHang quanLy = new QuanLyDonHang(null, null, duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP, "Đang giao", null);
                     quanLyDonHangDao.CapNhat(quanLy);
-                    TrangThaiDonHang trangThaiDon = new TrangThaiDonHang(duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP, null, null, null, "Chờ giao hàng", null, null, null, null, null, null, null, null);
+                    TrangThaiDonHang trangThaiDon = new TrangThaiDonHang(duLieuCuaDongChuaButton.IdNguoiMua, duLieuCuaDongChuaButton.IdSP, null, null, null, "Chờ giao hàng", null, null, null, null);
                     trangThaiHangDao.CapNhat(trangThaiDon);
                     QuanLyDonHang_Load(sender, e);
                 }

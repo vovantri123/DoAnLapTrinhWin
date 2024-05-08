@@ -98,7 +98,7 @@ namespace TraoDoiDo.Views.MuaDo
                 {
                     try
                     { 
-                        TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id, duLieuCuaDongChuaButton.IdSP, duLieuCuaDongChuaButton.SoLuongMua, duLieuCuaDongChuaButton.TongThanhToan, duLieuCuaDongChuaButton.Ngay, null, null, null, null, null, null, null, null, null);
+                        TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id, duLieuCuaDongChuaButton.IdSP, duLieuCuaDongChuaButton.SoLuongMua, duLieuCuaDongChuaButton.TongThanhToan, duLieuCuaDongChuaButton.Ngay, null, null, null, null, null);
                         trangThaiDonHangDao.Xoa(trangThaiDonHang);
                          
                         QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, duLieuCuaDongChuaButton.IdSP, null, null);
@@ -125,7 +125,7 @@ namespace TraoDoiDo.Views.MuaDo
                 {
                     try
                     {
-                        TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id, duLieuCuaDongChuaButton.IdSP, duLieuCuaDongChuaButton.SoLuongMua, duLieuCuaDongChuaButton.TongThanhToan, duLieuCuaDongChuaButton.Ngay, "Đã nhận", null, null, null, null, null, null, null, null);
+                        TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id, duLieuCuaDongChuaButton.IdSP, duLieuCuaDongChuaButton.SoLuongMua, duLieuCuaDongChuaButton.TongThanhToan, duLieuCuaDongChuaButton.Ngay, "Đã nhận", null, null, null, null);
                         trangThaiDonHangDao.CapNhat(trangThaiDonHang);
 
                         QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, duLieuCuaDongChuaButton.IdSP, "Đã giao", null);

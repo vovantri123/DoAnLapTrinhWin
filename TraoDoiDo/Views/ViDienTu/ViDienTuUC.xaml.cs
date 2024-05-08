@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
+using static TraoDoiDo.VoucherUC;
 
 namespace TraoDoiDo
 {
@@ -41,23 +42,18 @@ namespace TraoDoiDo
             Loaded += UcViDienTU_Loaded;
         }
 
-        private void btnNapTien_Click(object sender, RoutedEventArgs e)
+        #region Từ con gọi cha 
+        public class ThamSoThayDoi : EventArgs
         {
-            NapRutTien f = new NapRutTien(nguoiDung);
-            f.ShowDialog();
+            public string SoTienMoi { get; set; } 
         }
-
-        private void btnRutTien_Click(object sender, RoutedEventArgs e)
-        {
-            NapRutTien f = new NapRutTien(nguoiDung);
-            f.txtbTieuDe.Text = "Rút tiền";
-            f.txtbTu.Text = "Rút tiền từ";
-            f.txtbDen.Text = "Đến ngân hàng";
-            f.ShowDialog();
-        }
+         
+        public event EventHandler<ThamSoThayDoi> SuKienGoiChaKhiTienNguoiDungThayDoi;
+         
+        #endregion
 
         private void UcViDienTU_Loaded(object sender, RoutedEventArgs e)
-        { 
+        {
             try
             {
                 HienThi_GiaoDich();
@@ -71,6 +67,39 @@ namespace TraoDoiDo
             }
         }
 
+        private void btnNapTien_Click(object sender, RoutedEventArgs e)
+        {
+            NapRutTien f = new NapRutTien(nguoiDung); 
+
+            f.Closed += (s, ev) =>
+            {
+                UcViDienTU_Loaded(sender, e);
+                SuKienGoiChaKhiTienNguoiDungThayDoi?.Invoke(this, new ThamSoThayDoi
+                {
+                    SoTienMoi = txtbSoDu.Text
+                });
+            };
+            f.ShowDialog();
+        }
+
+        private void btnRutTien_Click(object sender, RoutedEventArgs e)
+        {
+            NapRutTien f = new NapRutTien(nguoiDung);
+            f.txtbTieuDe.Text = "Rút tiền";
+            f.txtbTu.Text = "Rút tiền từ";
+            f.txtbDen.Text = "Đến ngân hàng";
+
+            f.Closed += (s, ev) =>
+            {
+                UcViDienTU_Loaded(sender, e);
+                SuKienGoiChaKhiTienNguoiDungThayDoi?.Invoke(this, new ThamSoThayDoi
+                {
+                    SoTienMoi = txtbSoDu.Text
+                });
+            };
+            f.ShowDialog(); 
+        }
+         
         private void HienThi_GiaoDich()
         {
             try

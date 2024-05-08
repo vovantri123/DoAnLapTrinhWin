@@ -12,25 +12,35 @@ namespace TraoDoiDo.Database
     public class GiaoDichDao : ThuocTinhDao
     {
         List<GiaoDich> dsGiaoDich;
-        //List<string> dongKetQua;
+        List<string> dongKetQua;
         List<List<string>> bangKetQua;
 
         public void Them(GiaoDich gd)
         {
-            string sqlStr = $"INSERT INTO {giaoDichHeader} ({taiKhoanIdNguoiDung}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay})"
-                            + $"VALUES ('{gd.IdNguoiDung}',N'{gd.LoaiGiaoDich}','{gd.SoTien}',N'{gd.TuNguonTien}',N'{gd.DenNguonTien}','{gd.NgayGiaoDich}')";
+            string sqlStr = $@"
+                INSERT INTO {giaoDichHeader} ({taiKhoanIdNguoiDung}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay})
+                VALUES ('{gd.IdNguoiDung}',N'{gd.LoaiGiaoDich}','{gd.SoTien}',N'{gd.TuNguonTien}',N'{gd.DenNguonTien}','{gd.NgayGiaoDich}')
+            ";
             dbConnection.ThucThi(sqlStr);
         }
 
         public void CapNhatSoTien(string soTien, string idNguoiDung)
         {
-            string sqlStr = $@"UPDATE {nguoiDungHeader} SET {nguoiDungTien} = '{soTien}' WHERE {nguoiDungID} = '{idNguoiDung}' ";
+            string sqlStr = $@"
+                UPDATE {nguoiDungHeader} 
+                SET {nguoiDungTien} = '{soTien}' 
+                WHERE {nguoiDungID} = '{idNguoiDung}' 
+            ";
             dbConnection.ThucThi(sqlStr);
         }
 
         public List<GiaoDich> LoadDSGiaoDichTheoIdNguoiDung(string idNguoiDung)
         {
-            string sqlStr = $"SELECT {giaoDichID}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay} FROM {giaoDichHeader} WHERE {nguoiDungID}= '{idNguoiDung}' ";
+            string sqlStr = $@"
+                SELECT {giaoDichID}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay} 
+                FROM {giaoDichHeader} 
+                WHERE {nguoiDungID}= '{idNguoiDung}' 
+            ";
             dsGiaoDich = new List<GiaoDich>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach(var dong in bangKetQua)

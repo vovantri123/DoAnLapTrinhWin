@@ -268,7 +268,7 @@
                                     <TextBlock
                                         Margin="10"
                                         FontSize="15"
-                                        Text="Chúc bạn một ngày mới tràn đầy năng lượng và hạnh phúc!" />
+                                        Text="Chúc bạn ngày mới tràn đầy năng lượng và hạnh phúc!" />
                                 </Border>
                             </Popup>
                             <materialDesign:Chip

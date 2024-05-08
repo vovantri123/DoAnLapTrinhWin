@@ -250,12 +250,9 @@
                             materialDesign:HintAssist.FloatingScale="0.7"
                             materialDesign:HintAssist.Hint="Năm"
                             IsEditable="False"
+                            Loaded="cboNam_Loaded"
                             SelectionChanged="cboNam_SelectionChanged"
-                            Style="{StaticResource MaterialDesignOutlinedComboBox}" Loaded="cboNam_Loaded">
-                            
-
-
-                        </ComboBox>
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}" />
 
                     </StackPanel>
 

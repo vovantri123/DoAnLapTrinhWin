@@ -32,7 +32,7 @@ namespace TraoDoiDo
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
             TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password.ToString(), null); 
-            NguoiDung nguoi = nguoiDao.TimKiemBangTenDangNhap(taiKhoan.TenDangNhap, taiKhoan.MatKhau); // Tuy trả về thông tin người dùng nhưng thiếu cái (idNguoi, TaiKhoan ; tiền)
+            NguoiDung nguoi = nguoiDao.TimKiemNguoiBangTenDangNhap(taiKhoan.TenDangNhap, taiKhoan.MatKhau); // Tuy trả về thông tin người dùng nhưng thiếu cái (idNguoi, TaiKhoan ; tiền)
              
             if (nguoi == null)
             {
@@ -57,6 +57,14 @@ namespace TraoDoiDo
         {
             QuenMatKhau quenMK = new QuenMatKhau();
             quenMK.ShowDialog();
+        }
+
+        private void btnDangNhap_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnDangNhap_Click(sender, e);
+            }
         }
     }
 }

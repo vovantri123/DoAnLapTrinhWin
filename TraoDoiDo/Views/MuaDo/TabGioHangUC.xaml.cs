@@ -49,6 +49,24 @@ namespace TraoDoiDo.Views.Windows
             Loaded += GioHang_Load;
         }
 
+        #region Từ con gọi cha 
+        public class ThamSoThayDoi : EventArgs
+        {
+            public string SoTienMoi { get; set; }
+        }
+
+        public event EventHandler<ThamSoThayDoi> SuKien_TabGioHang_GoiChaKhiTienNguoiDungThayDoi;
+
+        #endregion
+
+        private void txbTienNguoiDung_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SuKien_TabGioHang_GoiChaKhiTienNguoiDungThayDoi?.Invoke(this, new ThamSoThayDoi
+            {
+                SoTienMoi = txbTienNguoiDung.Text
+            });
+        }
+
         private void GioHang_Load(object sender, RoutedEventArgs e)
         {
             LsvGioHang_Load(sender, e);
@@ -100,7 +118,7 @@ namespace TraoDoiDo.Views.Windows
                     vcUC.txtbNGayKetThuc.Text = dong.NgayKetThuc;
                     vcUC.txtbIdVoucher.Text = dong.IdVoucher;
 
-                    vcUC.TextBlockChanged += vcUC_TextBlockChanged;
+                    vcUC.SuKienGoiChaKhiClickVaoDungVoucher += TabGioHangUC_Cho_UC_Con_Goi;
                     vcUC.btnNhanVoucher.Visibility = Visibility.Collapsed;
 
                     spnlVoucherCuaToi.Children.Add(vcUC);
@@ -112,7 +130,7 @@ namespace TraoDoiDo.Views.Windows
             }
         }
 
-        private void vcUC_TextBlockChanged(object sender, VoucherUC.TextBlockChangedEventArgs e) //Cho phep voucherUC có thể thay đổi textBlock của cha và gọi hàm của cha
+        private void TabGioHangUC_Cho_UC_Con_Goi(object sender, VoucherUC.ThamSoThayDoi e) //Cho phep voucherUC có thể thay đổi textBlock của cha và gọi hàm của cha
         {
             // Cập nhật TextBlock trên form cha
             txtbgiaTriVoucher.Text = e.GiaTriMoi;
@@ -144,7 +162,13 @@ namespace TraoDoiDo.Views.Windows
         {
             DiaChi f = new DiaChi(ngMua, dsSanPhamDeThanhToan); 
             f.tongThanhToan = txtbTongThanhToan.Text;
-            f.idVoucher = txtbIdVoucher.Text;
+            f.idVoucher = txtbIdVoucher.Text;  
+
+            f.Closed += (s, ev) =>
+            {
+                GioHang_Load(sender, e);
+                txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id);
+            };
             f.ShowDialog();
         }
 
@@ -203,12 +227,15 @@ namespace TraoDoiDo.Views.Windows
                 tongThanhToan = tongTienHang + tongTienShip - Convert.ToDouble(txtbgiaTriVoucher.Text.Replace(",",""));
 
 
-                dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngMua.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip, null, null, null, null));
+                dsSanPhamDeThanhToan.Add(new TrangThaiDonHang(ngMua.Id, idSP, soLuongMua, tongThanhToan.ToString(), ngayThanhToan, trangThai, tenSP, null, giaBan, phiShip));
             }
 
             txtbTongTienHang.Text = Convert.ToDecimal(tongTienHang).ToString("#,##0");
             txtbTongTienShip.Text = Convert.ToDecimal(tongTienShip).ToString("#,##0");
             txtbTongThanhToan.Text = Convert.ToDecimal(tongThanhToan).ToString("#,##0");
-        } 
+        }
+         
+
+        
     }
 }

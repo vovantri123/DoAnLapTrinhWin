@@ -61,38 +61,41 @@ namespace TraoDoiDo
         private void btnXacNhanThanhToan_Click(object sender, RoutedEventArgs e)
         { 
             try
-            {
-                capNhatThongTinCaNhan();
-                foreach (var dong in dsSanPhamDeThanhToan)
-                {
-                    NguoiDung nguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(dong.IdSanPham);
-                    QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, nguoiDang.Id, ngDung.Id, dong.IdSanPham, "Chờ đóng gói", null);
-
-                    quanLyDonHangDao.Xoa(quanLyDonHang); //Xóa trước khi thêm, do ràng buộc unique //quanLyDonHang nay bên phía Người Bán
-                    quanLyDonHangDao.Them(quanLyDonHang);
-
-                    trangThaiDonHangDao.Xoa(dong);  //Trạng thái don hàng bên phía Người Mua
-                    trangThaiDonHangDao.Them(dong);
-
-                    gioHangDao.Xoa(dong.IdSanPham, dong.IdNguoiMua); // Xóa khỏi giỏ hàng sau khi thanh toán
-                }
-
-                if (!string.IsNullOrEmpty(idVoucher))
-                {
-                    NguoiDungVoucher ndvc = new NguoiDungVoucher(idVoucher, ngDung.Id); 
-                    ndvcDao.Xoa(ndvc);
-                    vcDao.TangSoLuotSuDungThem1(ndvc.IdVoucher);
-                }
-
+            { 
                 double tienTT = Convert.ToDouble(ngDungDao.TimKiemTienBangId(ngDung.Id)) - Convert.ToDouble(tongThanhToan);
                 if (Convert.ToDouble(tongThanhToan) == 0)
                     MessageBox.Show("Xin hãy chọn món đồ thanh toán", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                if (tienTT < 0)
+                else if (tienTT < 0)
                     MessageBox.Show("Số tiền trong tài khoản của bạn không đủ vui lòng nạp tiền thêm!!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                 {
+                    capNhatThongTinCaNhan();
+                    foreach (var dong in dsSanPhamDeThanhToan)
+                    {
+                        NguoiDung nguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(dong.IdSanPham);
+                        QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, nguoiDang.Id, ngDung.Id, dong.IdSanPham, "Chờ đóng gói", null);
+
+                        quanLyDonHangDao.Xoa(quanLyDonHang); //Xóa trước khi thêm, do ràng buộc unique //quanLyDonHang nay bên phía Người Bán
+                        quanLyDonHangDao.Them(quanLyDonHang);
+
+                        trangThaiDonHangDao.Xoa(dong);  //Trạng thái don hàng bên phía Người Mua
+                        trangThaiDonHangDao.Them(dong);
+
+                        gioHangDao.Xoa(dong.IdSanPham, dong.IdNguoiMua); // Xóa khỏi giỏ hàng sau khi thanh toán
+                        sanPhamDao.TangSoLuongDaBanThem1(dong.IdSanPham);
+                    }
+
+                    if (!string.IsNullOrEmpty(idVoucher))
+                    {
+                        NguoiDungVoucher ndvc = new NguoiDungVoucher(idVoucher, ngDung.Id);
+                        ndvcDao.Xoa(ndvc);
+                        vcDao.TangSoLuotSuDungThem1(ndvc.IdVoucher);
+                        
+                    }
+
                     gdichDao.CapNhatSoTien(tienTT.ToString(), ngDung.Id);
                     MessageBox.Show("Thanh toán thành công");
+                    this.Close();
                 }  
             }
             catch (Exception ex)
@@ -110,8 +113,8 @@ namespace TraoDoiDo
             {
                 try
                 {
-                    ngDungDao.CapNhatDiaChi(user);
-                    NguoiDung nguoi  = ngDungDao.TimKiemBangId(ngDung.Id);
+                    ngDungDao.CapNhat(user);
+                    NguoiDung nguoi  = ngDungDao.TimNguoiBangIdNguoi(ngDung.Id);
                     txtHoTen.Text = nguoi.HoTen;
                     txtSoDienThoai.Text = nguoi.Sdt;
                     txtEmail.Text = nguoi.Email;

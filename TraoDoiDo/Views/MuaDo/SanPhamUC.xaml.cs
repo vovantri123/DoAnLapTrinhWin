@@ -47,7 +47,7 @@ namespace TraoDoiDo
             this.yeuThich = yeuThich;
             this.idNguoiMua = idNguoiMua;
             this.idNguoiDang = idNguoiDang;
-            sp = sanPhamDao.timKiemSanPhamBangId(txtbIdSanPham.Text);
+            sp = sanPhamDao.timKiemSanPhamBangIdSanPham(txtbIdSanPham.Text);
              
             if (yeuThich == 0)
             {
@@ -59,7 +59,7 @@ namespace TraoDoiDo
                 btnThemVaoYeuThich.Visibility = Visibility.Collapsed;
                 btnBoYeuThich.Visibility = Visibility.Visible;
             }
-            nguoiDang = nguoiDao.TimKiemBangId(idNguoiDang); 
+            nguoiDang = nguoiDao.TimNguoiBangIdNguoi(idNguoiDang); 
         }
          
          
@@ -67,9 +67,8 @@ namespace TraoDoiDo
         {  
             try
             {
-                string idSanPham = txtbIdSanPham.Text;
-                int soLuotXem = Convert.ToInt32(sanPhamDao.LayLuotXem(idSanPham));
-                sanPhamDao.CapNhatLuotXem(idSanPham, soLuotXem);
+                string idSanPham = txtbIdSanPham.Text; 
+                sanPhamDao.TangLuotXemThem1(idSanPham);
             }
             catch (Exception ex)
             {
@@ -82,7 +81,6 @@ namespace TraoDoiDo
             try
             {
                 tangSoLuotXemThem1();
-                
 
                 sp = new SanPham(txtbIdSanPham.Text, nguoiDang.Id, txtbTen.Text, sp.LinkAnh, txtbLoai.Text, sp.SoLuong, sp.SoLuongDaBan, txtbGiaGoc.Text, txtbGiaBan.Text, sp.PhiShip, sp.TrangThai, txtbNoiBan.Text, sp.XuatXu, sp.NgayMua, sp.MoTaChung, sp.PhanTramMoi, txtbSoLuotXem.Text, idNguoiMua, sp.NgayDang);
                 ThongTinChiTietSanPham f = new ThongTinChiTietSanPham(sp);

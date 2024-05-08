@@ -98,10 +98,7 @@
                 Background="#F2F1F1">
 
 
-                <ListView
-                    x:Name="lsvQuanLySanPham"
-                    Loaded="lsvQuanLySanPham_Loaded"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="lsvQuanLySanPham" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListView.Resources>
                         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
                     </ListView.Resources>

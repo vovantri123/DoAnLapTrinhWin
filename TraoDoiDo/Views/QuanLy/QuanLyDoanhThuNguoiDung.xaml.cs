@@ -62,15 +62,13 @@ namespace TraoDoiDo.Views.QuanLy
 
                 }
 
-                // Tạo SeriesCollection cho biểu đồ PieChart
                 SeriesCollection TiLePhanTramDoanhThuTheoSanPham_SC = new SeriesCollection();
 
-                // Tạo các Slice (phần chia) cho PieChart từ dữ liệu
                 for (int i = 0; i < dsNhan.Count; i++)
                 {
                     TiLePhanTramDoanhThuTheoSanPham_SC.Add(new PieSeries
                     {
-                        Title = dsNhan[i], // Tên sản phẩm
+                        Title = dsNhan[i], 
                         Values = new ChartValues<int> { dsCotDoanhThu[i] } // Doanh thu tương ứng với sản phẩm
 
                     });
@@ -107,15 +105,13 @@ namespace TraoDoiDo.Views.QuanLy
 
                 }
 
-                // Tạo SeriesCollection cho biểu đồ PieChart
                 SeriesCollection TiLePhanTramDoanhThuTheoSanPham_SC = new SeriesCollection();
 
-                // Tạo các Slice (phần chia) cho PieChart từ dữ liệu
                 for (int i = 0; i < dsNhan.Count; i++)
                 {
                     TiLePhanTramDoanhThuTheoSanPham_SC.Add(new PieSeries
                     {
-                        Title = dsNhan[i], // Tên sản phẩm
+                        Title = dsNhan[i],  
                         Values = new ChartValues<int> { dsCotSoLuongDaBan[i] } // Doanh thu tương ứng với sản phẩm
 
                     });
@@ -147,15 +143,13 @@ namespace TraoDoiDo.Views.QuanLy
                     dsCotSoKH.Add(soLuongKH);
                 }
 
-                // Tạo SeriesCollection cho biểu đồ PieChart
                 SeriesCollection TiLePhanTramDoanhThuTheoSanPham_SC = new SeriesCollection();
 
-                // Tạo các Slice (phần chia) cho PieChart từ dữ liệu
                 for (int i = 0; i < dsNhan.Count; i++)
                 {
                     TiLePhanTramDoanhThuTheoSanPham_SC.Add(new PieSeries
                     {
-                        Title = dsNhan[i], // Tên sản phẩm
+                        Title = dsNhan[i], 
                         Values = new ChartValues<int> { dsCotSoKH[i] } // Doanh thu tương ứng với sản phẩm
 
                     });
@@ -183,12 +177,10 @@ namespace TraoDoiDo.Views.QuanLy
 
                 for(int i=1;i<=12;i++)
                 {
-
                     int soLuongKH = Convert.ToInt32(sanPhamDao.TinhTongKhachHangTheoNam(idNguoi, nam, i.ToString()));
                     dsCotSoLuongKH.Add(soLuongKH);
                 }
 
-                // Tạo 2 cột cạnh nhau
                 SeriesCollection SoLuongKH_SC = new SeriesCollection
                 {
                      new ColumnSeries
@@ -196,14 +188,12 @@ namespace TraoDoiDo.Views.QuanLy
                          Title = "Số lượng khách hàng",
                          Values = new ChartValues<int>(dsCotSoLuongKH),
 
-                         Fill = Brushes.Cyan, // Màu của cột số lượng đã bán
+                         Fill = Brushes.Cyan,  
                          ScalesYAt = 0
-
                      },
 
                 };
 
-                // Đặt dữ liệu vào Chart
                 chart_SoLuongKhachHang.Series = SoLuongKH_SC;
 
                 var xAxis = new LiveCharts.Wpf.Axis
@@ -220,7 +210,7 @@ namespace TraoDoiDo.Views.QuanLy
                 {
                     Title = "Số lượng",
                     FontSize = 9.5,
-                    LabelFormatter = value => value.ToString("#,##0") // Định dạng label cho trục Y thứ nhất
+                    LabelFormatter = value => value.ToString("#,##0")  
                 };
                 chart_SoLuongKhachHang.AxisY.Add(yAxis);
                 txtbTongSoLuongKhachHang.Text = Convert.ToDecimal(dsCotSoLuongKH.Sum()).ToString("#,##0");
@@ -255,7 +245,6 @@ namespace TraoDoiDo.Views.QuanLy
                     dsCotSoLuongDaBan[thang - 1] += Convert.ToInt32(dong.SoLuongDaBan);
                 }
 
-                // Tạo 2 cột cạnh nhau
                 SeriesCollection DoanhThuTheoSanPham_SC = new SeriesCollection
                 {
                      new ColumnSeries
@@ -263,14 +252,13 @@ namespace TraoDoiDo.Views.QuanLy
                          Title = "Số lượng đã bán",
                          Values = new ChartValues<int>(dsCotSoLuongDaBan),
 
-                         Fill = Brushes.LightSkyBlue, // Màu của cột số lượng đã bán
+                         Fill = Brushes.LightSkyBlue,  
                          ScalesYAt = 0
 
                      },
 
                 };
-
-                // Đặt dữ liệu vào Chart
+                 
                 chart_SoLuongSanPhamDaBan.Series = DoanhThuTheoSanPham_SC;
 
                 var xAxis = new LiveCharts.Wpf.Axis
@@ -287,7 +275,7 @@ namespace TraoDoiDo.Views.QuanLy
                 {
                     Title = "Số lượng",
                     FontSize = 9.5,
-                    LabelFormatter = value => value.ToString("#,##0") // Định dạng label cho trục Y thứ nhất
+                    LabelFormatter = value => value.ToString("#,##0")  
                 };
                 chart_SoLuongSanPhamDaBan.AxisY.Add(yAxis);
                 txtbTongSoLuongSanPhamDaBan.Text = Convert.ToDecimal(dsCotSoLuongDaBan.Sum()).ToString("#,##0");
@@ -322,16 +310,15 @@ namespace TraoDoiDo.Views.QuanLy
             
 
             SeriesCollection DoanhThuTheoSanPham_SC = new SeriesCollection
-                    {
-                         new ColumnSeries
-                         {
-                             Title = "Doanh thu",
-                             Values = new ChartValues<int> (dsCotDoanhThu)
-                         }
-                    };
+            {
+                new ColumnSeries
+                {
+                    Title = "Doanh thu",
+                    Values = new ChartValues<int> (dsCotDoanhThu)
+                }
+            };
 
-
-            // Đặt dữ liệu vào Chart
+             
             chart_TongDoanhThuTheoSanPham.Series = DoanhThuTheoSanPham_SC;
 
             var xAxis = new LiveCharts.Wpf.Axis
@@ -347,7 +334,7 @@ namespace TraoDoiDo.Views.QuanLy
             {
                 Title = "Doanh thu",
                 FontSize = 9.5,
-                LabelFormatter = value => value.ToString("#,##0,##0") // Định dạng label
+                LabelFormatter = value => value.ToString("#,##0,##0")  
             };
             chart_TongDoanhThuTheoSanPham.AxisY.Add(yAxis);
             txtbDoanhThuCaoNhat.Text = Convert.ToDecimal(dsCotDoanhThu.Sum()).ToString("#,##0");
@@ -388,7 +375,7 @@ namespace TraoDoiDo.Views.QuanLy
         }
 
         private void FQuanLyDoanhThu_Loaded(object sender, RoutedEventArgs e)
-        {
+        { 
             LoadTiLeDoanhThuTheoNam(nguoiDung.Id, "2024");
             LoadDoanhThuTheoNam(nguoiDung.Id, "2024");
             LoadSoLuongSanPhamDaBan(nguoiDung.Id, "2024");

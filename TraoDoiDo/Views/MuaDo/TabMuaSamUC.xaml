@@ -79,7 +79,6 @@
 
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-
                     <TextBox
                         x:Name="txbTimKiem"
                         Width="230"
@@ -89,12 +88,12 @@
                         materialDesign:HintAssist.Hint="Tìm kiếm"
                         materialDesign:TextFieldAssist.HasTrailingIcon="True"
                         materialDesign:TextFieldAssist.PrefixText="Tên: "
-                        materialDesign:TextFieldAssist.TrailingIcon="Search" 
+                        materialDesign:TextFieldAssist.TrailingIcon="Search"
                         AcceptsReturn="True"
+                        PreviewMouseRightButtonUp="txbTimKiem_PreviewMouseLeftButtonUp"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         TextChanged="txbTimKiem_TextChanged"
-                        TextWrapping="Wrap" 
-                        PreviewMouseRightButtonUp="txbTimKiem_PreviewMouseLeftButtonUp"/>
+                        TextWrapping="Wrap" />
                     <Button
                         x:Name="btnXacNhanTimKiem"
                         Margin="0,0,10,0"

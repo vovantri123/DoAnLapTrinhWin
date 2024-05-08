@@ -39,7 +39,7 @@ namespace TraoDoiDo
             InitializeComponent();
             this.DataContext = this;
             Loaded += UCThongTinCaNhan_Loaded;
-            this.nguoiDung = nguoiDungDao.TimKiemBangId(nguoi.Id);
+            this.nguoiDung = nguoiDungDao.TimNguoiBangIdNguoi(nguoi.Id);
         }
 
         private void UCThongTinCaNhan_Loaded(object sender, RoutedEventArgs e)

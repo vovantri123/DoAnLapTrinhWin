@@ -31,12 +31,11 @@ namespace TraoDoiDo.Database
             finally
             {
                 conn.Close();
-            }   
-                  
+            }    
             return co;
         }
       
-        public string LayMotGiaTri(string sqlStr, string tenCot) // chuỗi truy vấn và tên cột cần truy vấn (nói cách khác là trả về 1 ô //Trong 1 cột, lấy ra thuộc tính đầu tiên thỏa sqlStr  (đã xài)
+        public string LayMotGiaTri(string sqlStr, string tenCot) //Trong 1 cột, lấy ra thuộc tính đầu tiên thỏa sqlStr  (đã xài)
         {
             List<string> list = new List<string>();
 
@@ -67,7 +66,7 @@ namespace TraoDoiDo.Database
             return list[0];
         }
  
-        public List<List<T>>LayNhieuDongDuLieu<T>(string sqlStr) // Lấy ra nhiều dòng dữ liệu thỏa sqlStr (Đã xài-Nữa sửa T thành string :v) (đã xài)
+        public List<List<T>>LayNhieuDongDuLieu<T>(string sqlStr) // Lấy ra nhiều dòng dữ liệu thỏa sqlStr 
         {
             List<List<T>> bangKetQua = new List<List<T>>(); // T hoặc là int, hoặc là string, hoặc là đối tượng(cho phép lưu nhiều kiểu dữ liệu khác nhau)
 
@@ -101,7 +100,7 @@ namespace TraoDoiDo.Database
             return bangKetQua;
         }
 
-        public List<T>LayMotDongDuLieu<T>(string sqlStr) // Lấy ra 1 dòng dữ liệu thỏa sqlStr (Đã xài)
+        public List<T>LayMotDongDuLieu<T>(string sqlStr) // Lấy ra 1 dòng dữ liệu thỏa sqlStr 
         {
             List<List<T>> bangKetQua = LayNhieuDongDuLieu<T>(sqlStr);
             return bangKetQua.Count == 0 ? null : bangKetQua[0];

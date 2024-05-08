@@ -10,26 +10,34 @@ namespace TraoDoiDo.Database
 {
     public class GioHangDao:ThuocTinhDao
     {
-        //List<GioHang> dsGioHang;
         List<List<string>> bangKetQua;
+
         public void Them(GioHang gioHang)
         {
             string sqlStr = $@"
-                    INSERT INTO {gioHangHeader} ({quanLyIdNguoiMua},{sanPhamID}, {gioHangSoLuongMua})  
-                    VALUES ('{gioHang.IdNguoiMua}', '{gioHang.IdSanPham}','{gioHang.SoLuongMua}') ";
+                INSERT INTO {gioHangHeader} ({gioHangIdNguoiMua}, {gioHangIdSanPham}, {gioHangSoLuongMua})  
+                VALUES ('{gioHang.IdNguoiMua}', '{gioHang.IdSanPham}','{gioHang.SoLuongMua}') 
+            ";
             dbConnection.ThucThi(sqlStr);
         }
+
         public void Xoa(string idSP, string idNguoiMua)
         {
-            string strSql = $@"DELETE FROM GioHang WHERE IdNguoiMua= '{idNguoiMua}' AND IdSanPham = '{idSP}' ";
+            string strSql = $@"
+                DELETE FROM {gioHangHeader} 
+                WHERE {gioHangIdNguoiMua}= '{idNguoiMua}' AND {gioHangIdSanPham} = '{idSP}' 
+            ";
             dbConnection.ThucThi(strSql);
         }
+
         public List<GioHang> timThongTinSanPhamTheoIDNguoiMua(string idNguoi)
         {
-            string sqlStr = $@" SELECT {gioHangHeader}.{sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamGiaBan}, {sanPhamPhiShip}, {gioHangHeader}.{gioHangSoLuongMua}, {sanPhamSoLuong}, {sanPhamSLDaBan} 
-                    FROM {gioHangHeader} INNER JOIN {nguoiDungHeader} ON {gioHangHeader}.{quanLyIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID}
-                    INNER JOIN {sanPhamHeader} ON {gioHangHeader}.{sanPhamID} = {sanPhamHeader}.{sanPhamID}
-                    WHERE {nguoiDungHeader}.{nguoiDungID} = '{idNguoi}' ";
+            string sqlStr = $@" 
+                SELECT {gioHangHeader}.{gioHangIdSanPham}, {sanPhamTen}, {sanPhamAnh}, {sanPhamGiaBan}, {sanPhamPhiShip}, {gioHangHeader}.{gioHangSoLuongMua}, {sanPhamSoLuong}, {sanPhamSLDaBan} 
+                FROM {gioHangHeader} INNER JOIN {nguoiDungHeader} ON {gioHangHeader}.{quanLyIdNguoiMua} = {nguoiDungHeader}.{nguoiDungID}
+                INNER JOIN {sanPhamHeader} ON {gioHangHeader}.{gioHangIdSanPham} = {sanPhamHeader}.{sanPhamID}
+                WHERE {nguoiDungHeader}.{nguoiDungID} = '{idNguoi}' 
+            ";
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             List<GioHang> dsGioHang = new List<GioHang>();
             foreach (var dong in bangKetQua)

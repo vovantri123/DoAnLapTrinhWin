@@ -11,14 +11,19 @@ namespace TraoDoiDo.Database
     {
         public void Them(DanhMucYeuThich danhMuc)
         {
-            string sqlStr = $@"INSERT INTO {danhMucHeader} ({danhMucNguoiMua},{sanPhamID}) 
-                   VALUES ('{danhMuc.IdNguoiMua}', '{danhMuc.IdSanPham}')";
+            string sqlStr = $@"
+                INSERT INTO {danhMucHeader} ({danhMucIdNguoiMua},{danhMucIdSanPham})  
+                VALUES ('{danhMuc.IdNguoiMua}', '{danhMuc.IdSanPham}')
+            ";
             dbConnection.ThucThi(sqlStr);
         }
+
         public void Xoa(DanhMucYeuThich danhMuc)
         {
-            string sqlStr = $@" DELETE FROM {danhMucHeader} 
-                WHERE {danhMucNguoiMua} = '{danhMuc.IdNguoiMua}' AND {sanPhamID} = '{danhMuc.IdSanPham}'";
+            string sqlStr = $@" 
+                DELETE FROM {danhMucHeader} 
+                WHERE {danhMucIdNguoiMua} = '{danhMuc.IdNguoiMua}' AND {danhMucIdSanPham} = '{danhMuc.IdSanPham}'
+            ";
             dbConnection.ThucThi(sqlStr);
         }
     }
