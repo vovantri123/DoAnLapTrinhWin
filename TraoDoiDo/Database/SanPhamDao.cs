@@ -215,11 +215,20 @@ namespace TraoDoiDo.Database
             return dbConnection.LayMotGiaTri(sqlStr, "TongSoKhachHang");
         }
 
-        public void TangSoLuongDaBanThem1(string idSanPham)
+        public void TangSoLuongDaBanThem1(string idSanPham,int soLuongMua)
         {
             string sqlStr = $@" 
                 UPDATE {sanPhamHeader}  
-                SET {sanPhamSLDaBan} = CONVERT(INT,{sanPhamSLDaBan})+1
+                SET {sanPhamSLDaBan} = CONVERT(INT,{sanPhamSLDaBan})+{soLuongMua}
+                WHERE {sanPhamID} = {idSanPham}
+            ";
+            dbConnection.ThucThi(sqlStr);
+        }
+        public void GiamSoLuongDaBan(string idSanPham, int soLuongMua)
+        {
+            string sqlStr = $@" 
+                UPDATE {sanPhamHeader}  
+                SET {sanPhamSLDaBan} = CONVERT(INT,{sanPhamSLDaBan})-{soLuongMua}
                 WHERE {sanPhamID} = {idSanPham}
             ";
             dbConnection.ThucThi(sqlStr);

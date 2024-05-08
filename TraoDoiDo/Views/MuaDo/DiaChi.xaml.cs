@@ -82,7 +82,7 @@ namespace TraoDoiDo
                         trangThaiDonHangDao.Them(dong);
 
                         gioHangDao.Xoa(dong.IdSanPham, dong.IdNguoiMua); // Xóa khỏi giỏ hàng sau khi thanh toán
-                        sanPhamDao.TangSoLuongDaBanThem1(dong.IdSanPham);
+                        sanPhamDao.TangSoLuongDaBanThem1(dong.IdSanPham,Convert.ToInt32(dong.SoLuongMua));
                     }
 
                     if (!string.IsNullOrEmpty(idVoucher))

@@ -50,10 +50,10 @@ namespace TraoDoiDo
 
         public ThongTinChiTietSanPham(SanPham sp)
         { 
-            this.sp = sp;
+            
          
             InitializeComponent();
-            
+            this.sp = sp;
             Loaded += LoadThongTinSanPham;
             Loaded += LoadAnhVaMoTa;
             Loaded += btnAnhSau_Click;
@@ -119,7 +119,7 @@ namespace TraoDoiDo
                 int i = 0;
                 foreach(var dong in dsSanPhamCungLoai)
                 { 
-                    DanhSachSanPhamUC[i] = new SanPhamUC(0, idNguoiMua, dong.IdNguoiDang);
+                    DanhSachSanPhamUC[i] = new SanPhamUC(0, idNguoiMua, dong.IdNguoiDang,dong.Id);
 
                     DanhSachSanPhamUC[i].txtbIdSanPham.Text = dong.Id.ToString();
                     DanhSachSanPhamUC[i].txtbTen.Text = dong.Ten;

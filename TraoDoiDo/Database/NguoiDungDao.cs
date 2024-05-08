@@ -203,10 +203,18 @@ namespace TraoDoiDo.Database
         {
             string sqlStr = $@"
                 UPDATE {nguoiDungHeader} 
-                SET {nguoiDungTien} = CONVERT(FLOAT, {nguoiDungTien}) + {soTienCongThem}
+                SET {nguoiDungTien} = CONVERT(FLOAT,{nguoiDungTien}) + CONVERT(FLOAT,{soTienCongThem})
                 WHERE {nguoiDungID}='{idNguoiMua}'
             ";
             dbConnection.ThucThi(sqlStr);
+        }
+        public int timKiemIdMax()
+        {
+            string sqlStr = $@"
+                SELECT MAX({nguoiDungID}) AS IdMax 
+                FROM {nguoiDungHeader}
+            ";
+            return Convert.ToInt32(dbConnection.LayMotGiaTri(sqlStr, "IdMax"));
         }
     }
 }

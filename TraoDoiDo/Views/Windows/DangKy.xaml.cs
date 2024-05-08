@@ -33,8 +33,9 @@ namespace TraoDoiDo
 
         private void btnDangKy_Click(object sender, RoutedEventArgs e)
         {
-            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, "0");
-            NguoiDung nguoi = new NguoiDung("0", txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, txtbTenFileAnh.Text, taiKhoan, "0");
+            string id = (nguoiDao.timKiemIdMax() + 1).ToString();
+            TaiKhoan taiKhoan = new TaiKhoan(txtTenDangNhap.Text, txtMatKhau.Password, id);
+            NguoiDung nguoi = new NguoiDung(id, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCMND.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, txtbTenFileAnh.Text, taiKhoan, "0");
             bool checkThongTinHopLe = nguoi.kiemTraCacTextBox();
             if (checkThongTinHopLe)
             { 

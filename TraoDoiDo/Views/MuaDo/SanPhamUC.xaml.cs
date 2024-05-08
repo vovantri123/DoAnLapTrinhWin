@@ -25,7 +25,7 @@ namespace TraoDoiDo
     public partial class SanPhamUC : UserControl
     {
         public string idNguoiDang;
-        public string idNguoiMua; 
+        public string idNguoiMua;
         public int yeuThich = 0;
          
         SanPham sp;
@@ -40,14 +40,15 @@ namespace TraoDoiDo
             InitializeComponent();
         }
 
-        public SanPhamUC(int yeuThich, string idNguoiMua, string idNguoiDang)
+        public SanPhamUC(int yeuThich, string idNguoiMua, string idNguoiDang,string idSanPham)
         {
             InitializeComponent();
 
             this.yeuThich = yeuThich;
             this.idNguoiMua = idNguoiMua;
             this.idNguoiDang = idNguoiDang;
-            sp = sanPhamDao.timKiemSanPhamBangIdSanPham(txtbIdSanPham.Text);
+         
+            sp = sanPhamDao.timKiemSanPhamBangIdSanPham(idSanPham);
              
             if (yeuThich == 0)
             {

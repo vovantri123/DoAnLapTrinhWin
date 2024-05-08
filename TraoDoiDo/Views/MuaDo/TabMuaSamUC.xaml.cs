@@ -66,7 +66,7 @@ namespace TraoDoiDo.Views.MuaDo
                         yeuThich = 1;
                     }
 
-                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngMua.Id, dong.IdNguoiDang); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
+                    DanhSachSanPham[soLuongSP] = new SanPhamUC(yeuThich, ngMua.Id, dong.IdNguoiDang,dong.Id); // Khởi tạo mỗi phần tử của mảng (KHÔNG CÓ LÀ LỖI)
 
                     DanhSachSanPham[soLuongSP].txtbIdSanPham.Text = dong.Id; 
                     DanhSachSanPham[soLuongSP].txtbTen.Text = dong.Ten;

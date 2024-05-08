@@ -115,15 +115,21 @@ namespace TraoDoiDo.Views.MuaDo
                 if (MessageBox.Show("Bạn có chắc là muốn hủy đặt hàng 0_o\nĐơn hàng mà bạn hủy sẽ được hoàn tiền", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     try
-                    { 
+                    {
+                        string tongtt = duLieuCuaDongChuaButton.TongThanhToan;
                         TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang(ngMua.Id, duLieuCuaDongChuaButton.IdSP, duLieuCuaDongChuaButton.SoLuongMua, duLieuCuaDongChuaButton.TongThanhToan, duLieuCuaDongChuaButton.Ngay, null, null, null, null, null);
                         trangThaiDonHangDao.Xoa(trangThaiDonHang);
                          
                         QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, duLieuCuaDongChuaButton.IdSP, null, null);
                         quanLyDonHangDao.Xoa(quanLyDonHang);
+
+                        sanPhamDao.GiamSoLuongDaBan(duLieuCuaDongChuaButton.IdSP, Convert.ToInt32(duLieuCuaDongChuaButton.SoLuongMua));
+
                         TrangThaiDonHang_Load(sender, e);
-                        ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, duLieuCuaDongChuaButton.TongThanhToan);
+                        ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, tongtt.Replace(".",""));
+
                         txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id); 
+                        
                     }
                     catch (Exception ex)
                     {
@@ -197,6 +203,7 @@ namespace TraoDoiDo.Views.MuaDo
                 ucLyDoTraHang.DrawerClosed += (btnSender, args) =>
                 { 
                     LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
+
                     ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, duLieuCuaDongChuaButton.TongThanhToan);
                     txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id);
                 };
