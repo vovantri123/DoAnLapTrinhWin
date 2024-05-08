@@ -22,6 +22,7 @@ using System.Xml.Linq;
 using TraoDoiDo.Views.DangDo;
 using TraoDoiDo.Views.MuaDo;
 using TraoDoiDo.Views.Windows;
+
 namespace TraoDoiDo
 {
     /// <summary>

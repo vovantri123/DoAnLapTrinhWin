@@ -82,7 +82,7 @@ namespace TraoDoiDo
                         trangThaiDonHangDao.Them(dong);
 
                         gioHangDao.Xoa(dong.IdSanPham, dong.IdNguoiMua); // Xóa khỏi giỏ hàng sau khi thanh toán
-                        sanPhamDao.TangSoLuongDaBanThem1(dong.IdSanPham,Convert.ToInt32(dong.SoLuongMua));
+                        sanPhamDao.TangSoLuongDaBan(dong.IdSanPham,Convert.ToInt32(dong.SoLuongMua));
                     }
 
                     if (!string.IsNullOrEmpty(idVoucher))
@@ -102,8 +102,8 @@ namespace TraoDoiDo
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            
         }
+
         private void capNhatThongTinCaNhan() 
         {
             NguoiDung user = new NguoiDung(ngDung.Id, txtHoTen.Text, ngDung.GioiTinh, ngDung.NgaySinh, ngDung.Cmnd, txtEmail.Text, txtSoDienThoai.Text, txtDiaChi.Text, ngDung.Anh, ngDung.TaiKhoan, ngDung.Tien);

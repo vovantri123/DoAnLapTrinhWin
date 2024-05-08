@@ -50,6 +50,7 @@ namespace TraoDoiDo
                 danhGiaNguoiDungDao.Xoa(danhGiaNguoiDung);
                 danhGiaNguoiDungDao.Them(danhGiaNguoiDung);
                 MessageBox.Show("Cảm ơn bạn đã gửi đánh giá\nChúc bạn một ngày thật vui vẻ", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
             }
             catch (Exception ex)
             {

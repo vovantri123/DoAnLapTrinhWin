@@ -105,6 +105,7 @@ namespace TraoDoiDo
             try
             {
                 List<GiaoDich> dsGiaoDich = gdDao.LoadDSGiaoDichTheoIdNguoiDung(nguoiDung.Id);
+                lsvLichSuGiaoDich.Items.Clear();
                 foreach(var dong in dsGiaoDich)
                     lsvLichSuGiaoDich.Items.Add(new { Id = dong.Id, Type = dong.LoaiGiaoDich, Money = Tien.DinhDangTien(dong.SoTien), Initial = dong.TuNguonTien, End = dong.DenNguonTien, Date = dong.NgayGiaoDich });
             }
@@ -114,8 +115,5 @@ namespace TraoDoiDo
             }
             
         }
-         
-        
-
     }
 }

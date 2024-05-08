@@ -145,7 +145,7 @@
                                         IsReadOnly="True"
                                         Value="{Binding SoSao}" />
 
-                                    <TextBlock Margin="35,5,0,0" Text="{Binding NhanXet}" />
+                                    <TextBlock Margin="35,5,0,0" Text="{Binding NhanXet}" TextWrapping="Wrap" />
                                 </StackPanel>
                             </Grid>
                         </Border>

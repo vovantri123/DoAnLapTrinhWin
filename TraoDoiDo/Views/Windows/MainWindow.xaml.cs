@@ -36,6 +36,15 @@ namespace TraoDoiDo
             TrangChu_Click(Owner, new RoutedEventArgs());
             Loaded += MainWindow_Loaded;
             ucThanhDieuKhien.btn_close.Click += HienThiDangNhap;
+            if(nguoiDung.Id == "0")
+            {
+                lviMuaDo.Visibility = Visibility.Collapsed;
+                lviDangDo.Visibility = Visibility.Collapsed;
+                lviViTien.Visibility = Visibility.Collapsed;
+            }    
+            else
+                lviQuanLy.Visibility = Visibility.Collapsed;
+
         }
          
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)

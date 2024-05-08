@@ -126,7 +126,7 @@ namespace TraoDoiDo.Views.MuaDo
                         sanPhamDao.GiamSoLuongDaBan(duLieuCuaDongChuaButton.IdSP, Convert.ToInt32(duLieuCuaDongChuaButton.SoLuongMua));
 
                         TrangThaiDonHang_Load(sender, e);
-                        ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, tongtt.Replace(".",""));
+                        ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, tongtt.Replace(",",""));
 
                         txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id); 
                         
@@ -157,8 +157,8 @@ namespace TraoDoiDo.Views.MuaDo
                         QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, duLieuCuaDongChuaButton.IdSP, "Đã giao", null);
                         quanLyDonHangDao.CapNhat(quanLyDonHang);
                         TrangThaiDonHang_Load(sender, e);
-                        string idNguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(duLieuCuaDongChuaButton.Id).Id; 
-                        ngDungDao.CongThemVaoSoTienHienTai(idNguoiDang, duLieuCuaDongChuaButton.TongThanhToan);
+                        string idNguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(duLieuCuaDongChuaButton.IdSP).Id; 
+                        ngDungDao.CongThemVaoSoTienHienTai(idNguoiDang, duLieuCuaDongChuaButton.TongThanhToan.Replace(",",""));
                     }
                     catch (Exception ex)
                     {
@@ -204,7 +204,7 @@ namespace TraoDoiDo.Views.MuaDo
                 { 
                     LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
 
-                    ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, duLieuCuaDongChuaButton.TongThanhToan);
+                    ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, duLieuCuaDongChuaButton.TongThanhToan.Replace(",", ""));
                     txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id);
                 };
             } 

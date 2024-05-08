@@ -60,7 +60,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"
                 SELECT {sanPhamHeader}.{sanPhamID}, {sanPhamTen}, {sanPhamAnh}, {sanPhamGiaGoc}, {sanPhamGiaBan}, {sanPhamNoiBan} , {sanPhamLoai}, {sanPhamIdNguoiDang}
                 FROM {sanPhamHeader} 
-                WHERE {sanPhamLoai} = N'{sp.Loai}' AND {sanPhamHeader}.{sanPhamID} != '{sp.Id}' AND {sanPhamHeader}.{sanPhamIdNguoiDang} != '{sp.IdNguoiMua}' AND {sanPhamSLDaBan}<{sanPhamSoLuong}
+                WHERE {sanPhamLoai} = N'{sp.Loai}' AND {sanPhamHeader}.{sanPhamID} != '{sp.Id}' AND {sanPhamHeader}.{sanPhamIdNguoiDang} != '{sp.IdNguoiMua}' AND CONVERT(INT,{sanPhamSLDaBan}) < CONVERT(INT,{sanPhamSoLuong})
             "; 
             dsSanPham = new List<SanPham>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
@@ -78,7 +78,7 @@ namespace TraoDoiDo.Database
                 FROM {sanPhamHeader} 
                 INNER JOIN {nguoiDungHeader} ON {sanPhamHeader}.{sanPhamIdNguoiDang} = {nguoiDungHeader}.{nguoiDungID} 
                 LEFT OUTER JOIN {danhMucHeader} ON {danhMucHeader}.{danhMucIdNguoiMua} = '{idNguoiMua}' AND {danhMucHeader}.{sanPhamID} = {sanPhamHeader}.{sanPhamID} 
-                WHERE {sanPhamIdNguoiDang} != '{idNguoiMua}' AND {sanPhamSLDaBan} < {sanPhamSoLuong}
+                WHERE {sanPhamIdNguoiDang} != '{idNguoiMua}' AND CONVERT(INT,{sanPhamSLDaBan}) < CONVERT(INT,{sanPhamSoLuong})
             ";
             dsSanPham = new List<SanPham>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
@@ -215,7 +215,7 @@ namespace TraoDoiDo.Database
             return dbConnection.LayMotGiaTri(sqlStr, "TongSoKhachHang");
         }
 
-        public void TangSoLuongDaBanThem1(string idSanPham,int soLuongMua)
+        public void TangSoLuongDaBan(string idSanPham,int soLuongMua)
         {
             string sqlStr = $@" 
                 UPDATE {sanPhamHeader}  

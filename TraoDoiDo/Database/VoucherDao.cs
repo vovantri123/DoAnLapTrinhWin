@@ -53,7 +53,7 @@ namespace TraoDoiDo.Database
             string sqlStr = $@"
                 SELECT * 
                 FROM {voucherHeader}
-                WHERE {voucherSoLuotDaSuDung} < {voucherSoLuotSuDungToiDa}
+                WHERE CONVERT(INT,{voucherSoLuotDaSuDung}) < CONVERT(INT,{voucherSoLuotSuDungToiDa})
             "; 
             dsVoucher = new List<Voucher>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);

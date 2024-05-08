@@ -84,7 +84,6 @@ namespace TraoDoiDo.Views.MuaDo
                     DanhSachSanPham[soLuongSP].txtbNoiBan.Text = dong.NoiBan;
                     DanhSachSanPham[soLuongSP].txtbSoLuotXem.Text = dong.LuotXem;
                     DanhSachSanPham[soLuongSP].idNguoiDang = dong.IdNguoiDang; 
-                        //MessageBox.Show("Id người đăng" + DanhSachSanPham[soLuongSP].idNguoiDang);
                     DanhSachSanPham[soLuongSP].txtbLoai.Text = dong.Loai;
                     DanhSachSanPham[soLuongSP].Margin = new Thickness(8);
                     soLuongSP++;

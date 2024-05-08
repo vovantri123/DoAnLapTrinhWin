@@ -276,7 +276,6 @@
                                     Height="52"
                                     Margin="2,20,2,18"
                                     materialDesign:ButtonAssist.CornerRadius="4"
-                                    
                                     Click="btnThemVaoGioHang_Click"
                                     FontSize="25">
                                     <Button.Background>
@@ -406,7 +405,7 @@
                                 <Image x:Name="imgAnhNguoiDang" Source="/HinhCuaToi/Avatar1.png" />
                             </materialDesign:Chip.Icon>
                             <StackPanel>
-                                <TextBlock x:Name="txtbTenNguoiDang" Text="Võ Văn Trí"   />
+                                <TextBlock x:Name="txtbTenNguoiDang" Text="Võ Văn Trí" />
                                 <StackPanel Orientation="Horizontal">
 
                                     <TextBlock Text="Đánh giá: " />
@@ -486,7 +485,7 @@
                                                     <TextBlock
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Top"
-                                                        FontSize="20"
+                                                        FontSize="18"
                                                         Text="{Binding MoTa}"
                                                         TextTrimming="None"
                                                         TextWrapping="Wrap" />
@@ -504,7 +503,6 @@
                                         </Style>
 
                                     </GridView.ColumnHeaderContainerStyle>
-
 
                                     <!--  Ảnh  -->
                                     <!--

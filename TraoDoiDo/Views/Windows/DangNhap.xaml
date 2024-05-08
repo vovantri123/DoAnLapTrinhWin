@@ -9,9 +9,9 @@
     Title="DangNhap"
     Width="790"
     Height="440"
-    KeyDown="btnDangNhap_KeyDown"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    KeyDown="btnDangNhap_KeyDown"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -81,7 +81,7 @@
                             <TextBox
                                 x:Name="txtTenDangNhap"
                                 Grid.Column="1"
-                                Width="270" 
+                                Width="270"
                                 Height="47"
                                 Margin="8,11,5,0"
                                 VerticalAlignment="Top"
@@ -116,7 +116,7 @@
                                 materialDesign:HintAssist.Hint="Mật khẩu"
                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                 materialDesign:TextFieldAssist.UnderlineBrush="#673ab7"
-                                Password="1234"
+                                Password="12341234"
                                 Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
                         </Grid>
 

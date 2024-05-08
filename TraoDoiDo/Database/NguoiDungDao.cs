@@ -151,12 +151,12 @@ namespace TraoDoiDo.Database
         public List<NguoiDung> LoadDanhSachNguoiHayMuaNhat() //Lấy hết, giảm dần từ trên xuống
         {
             string sqlStr = $@"
-                SELECT {trangThaiIdNguoiMua}, {nguoiDungTen}, {nguoiDungDiaChi}, {nguoiDungAnh}, COUNT({trangThaiTrangThai}) AS SoSanPhamDaMua
-                FROM {trangThaiHeader}
-                INNER JOIN {nguoiDungHeader} ON {trangThaiIdNguoiMua} = {nguoiDungID}
-                WHERE {trangThaiTrangThai} = N'Đã nhận'  
-                GROUP BY {trangThaiIdNguoiMua}, {nguoiDungTen}, {nguoiDungDiaChi}, {nguoiDungAnh}
-                ORDER BY SoSanPhamDaMua DESC 
+                        SELECT {trangThaiIdNguoiMua}, {nguoiDungTen}, {nguoiDungDiaChi}, {nguoiDungAnh}, COUNT({trangThaiTrangThai}) AS SoSanPhamDaMua
+                        FROM {trangThaiHeader}
+                        INNER JOIN {nguoiDungHeader} ON {trangThaiIdNguoiMua} = {nguoiDungID}
+                        WHERE {trangThaiTrangThai} = N'Đã nhận'  
+                        GROUP BY {trangThaiIdNguoiMua}, {nguoiDungTen}, {nguoiDungDiaChi}, {nguoiDungAnh}
+                        ORDER BY SoSanPhamDaMua DESC 
             ";
             dsNguoi = new List<NguoiDung>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);

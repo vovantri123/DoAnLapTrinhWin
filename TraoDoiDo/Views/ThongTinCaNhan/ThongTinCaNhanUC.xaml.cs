@@ -54,7 +54,7 @@ namespace TraoDoiDo
             string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhDaiDien(imageHinhDaiDien.Source.ToString());
             string tenFileAnh = Path.GetFileName(tenAnh);
             nguoiDung = new NguoiDung(txtId.Text, txtHoTen.Text, cbGioiTinh.Text, dtpNgaySinh.Text, txtCmnd.Text, txtEmail.Text, txtSdt.Text, txtDiaChi.Text, tenFileAnh, taiKhoan, "0");
-
+          
             if (nguoiDung.kiemTraCacTextBox())
             {
                 nguoiDungDao.CapNhat(nguoiDung);
@@ -80,6 +80,7 @@ namespace TraoDoiDo
             {
                 string imagePath = file.FileName;
                 BitmapImage hinh = new BitmapImage(new Uri(imagePath));
+                XuLyAnh.LuuAnhVaoThuMuc(imagePath, "HinhDaiDien");
                 imageHinhDaiDien.Source = hinh;
             }
         }
