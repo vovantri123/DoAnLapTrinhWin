@@ -20,7 +20,12 @@
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
-
+            <TextBox
+                x:Name="txbTienNguoiDung"
+                Foreground="Transparent"
+                IsEnabled="False"
+                TextChanged="txbTienNguoiDung_TextChanged"
+                Visibility="Collapsed" />
             <materialDesign:DrawerHost
                 x:Name="DrawerHost"
                 HorizontalAlignment="Stretch"
@@ -45,6 +50,7 @@
                     </Grid.RowDefinitions>
                     <Expander
                         Grid.Row="0"
+                        MaxHeight="630"
                         Margin="10,5,10,5"
                         Background="#e3f2fd"
                         ExpandDirection="Down"
@@ -71,99 +77,98 @@
                                 </materialDesign:Badged>
                             </StackPanel>
                         </Expander.Header>
-                        <ScrollViewer
+                        <ListView
+                            x:Name="lsvChoNguoiBanXacNhan"
                             HorizontalAlignment="Center"
-                            HorizontalScrollBarVisibility="Auto"
-                            VerticalScrollBarVisibility="Auto">
-                            <ListView x:Name="lsvChoNguoiBanXacNhan">
-                                <ListView.Resources>
-                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
-                                </ListView.Resources>
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.ColumnHeaderContainerStyle>
-                                            <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                <Setter Property="Background" Value="LightBlue" />
-                                                <Setter Property="Foreground" Value="Black" />
-                                                <Setter Property="FontWeight" Value="Bold" />
-                                            </Style>
-                                        </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn
-                                            Width="45"
-                                            DisplayMemberBinding="{Binding IdSP}"
-                                            Header="Id đồ" />
-                                        <GridViewColumn
-                                            Width="130"
-                                            DisplayMemberBinding="{Binding TenSP}"
-                                            Header="Tên đồ" />
-                                        <!--  Ảnh  -->
-                                        <GridViewColumn Width="100" Header="Ảnh">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Image Source="{Binding LinkAnhBia}" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn
-                                            Width="100"
-                                            DisplayMemberBinding="{Binding SoLuongMua}"
-                                            Header="Số lượng mua" />
-                                        <GridViewColumn
-                                            Width="90"
-                                            DisplayMemberBinding="{Binding Gia}"
-                                            Header="Giá" />
-                                        <GridViewColumn
-                                            Width="90"
-                                            DisplayMemberBinding="{Binding PhiShip}"
-                                            Header="Phí ship" />
-                                        <GridViewColumn
-                                            Width="120"
-                                            DisplayMemberBinding="{Binding TongThanhToan}"
-                                            Header="Tổng thanh toán" />
-                                        <GridViewColumn
-                                            Width="145"
-                                            DisplayMemberBinding="{Binding Ngay}"
-                                            Header="Ngày đặt hàng" />
-                                        <!--  Cột "Hủy đặt hàng"  -->
+                            ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">12</sys:Double>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="LightBlue" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn
+                                        Width="45"
+                                        DisplayMemberBinding="{Binding IdSP}"
+                                        Header="Id đồ" />
+                                    <GridViewColumn
+                                        Width="130"
+                                        DisplayMemberBinding="{Binding TenSP}"
+                                        Header="Tên đồ" />
+                                    <!--  Ảnh  -->
+                                    <GridViewColumn Width="100" Header="Ảnh">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LinkAnhBia}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding SoLuongMua}"
+                                        Header="Số lượng mua" />
+                                    <GridViewColumn
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding Gia}"
+                                        Header="Giá" />
+                                    <GridViewColumn
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding PhiShip}"
+                                        Header="Phí ship" />
+                                    <GridViewColumn
+                                        Width="120"
+                                        DisplayMemberBinding="{Binding TongThanhToan}"
+                                        Header="Tổng thanh toán" />
+                                    <GridViewColumn
+                                        Width="145"
+                                        DisplayMemberBinding="{Binding Ngay}"
+                                        Header="Ngày đặt hàng" />
+                                    <!--  Cột "Hủy đặt hàng"  -->
 
-                                        <GridViewColumn Width="120" Header="Hủy đặt hàng">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        x:Name="btnHuyDatHang"
-                                                        Width="45"
-                                                        Height="45"
-                                                        Margin="8,0,0,0"
-                                                        materialDesign:ButtonAssist.CornerRadius="10"
-                                                        Background="#FFC33838"
-                                                        BorderBrush="White"
-                                                        BorderThickness="1"
-                                                        Click="btnHuyDatHang_Click"
-                                                        ToolTip="Hủy đặt hàng">
-                                                        <materialDesign:PackIcon
-                                                            Width="15"
-                                                            Height="15"
-                                                            Foreground="White"
-                                                            Kind="CloseOutline" />
-                                                    </Button>
+                                    <GridViewColumn Width="120" Header="Hủy đặt hàng">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    x:Name="btnHuyDatHang"
+                                                    Width="45"
+                                                    Height="45"
+                                                    Margin="8,0,0,0"
+                                                    materialDesign:ButtonAssist.CornerRadius="10"
+                                                    Background="#FFC33838"
+                                                    BorderBrush="White"
+                                                    BorderThickness="1"
+                                                    Click="btnHuyDatHang_Click"
+                                                    ToolTip="Hủy đặt hàng">
+                                                    <materialDesign:PackIcon
+                                                        Width="15"
+                                                        Height="15"
+                                                        Foreground="White"
+                                                        Kind="CloseOutline" />
+                                                </Button>
 
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </ScrollViewer>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
 
                     </Expander>
                     <Expander
                         Grid.Row="1"
+                        MaxHeight="630"
                         Margin="10,5,10,5"
                         Background="LightGreen"
                         ExpandDirection="Down"
@@ -190,124 +195,124 @@
                                 </materialDesign:Badged>
                             </StackPanel>
                         </Expander.Header>
-                        <ScrollViewer
+
+                        <ListView
+                            x:Name="lsvChoGiaoHang"
                             HorizontalAlignment="Center"
-                            HorizontalScrollBarVisibility="Auto"
-                            VerticalScrollBarVisibility="Auto">
-                            <ListView x:Name="lsvChoGiaoHang">
-                                <ListView.Resources>
-                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
-                                </ListView.Resources>
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                            ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">12</sys:Double>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
 
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.ColumnHeaderContainerStyle>
-                                            <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                <Setter Property="Background" Value="LightBlue" />
-                                                <Setter Property="Foreground" Value="Black" />
-                                                <Setter Property="FontWeight" Value="Bold" />
-                                            </Style>
-                                        </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn
-                                            Width="45"
-                                            DisplayMemberBinding="{Binding IdSP}"
-                                            Header="Id đồ" />
-                                        <GridViewColumn
-                                            Width="130"
-                                            DisplayMemberBinding="{Binding TenSP}"
-                                            Header="Tên đồ" />
-                                        <!--  Ảnh  -->
-                                        <GridViewColumn Width="100" Header="Ảnh">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Image Source="{Binding LinkAnhBia}" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn
-                                            Width="100"
-                                            DisplayMemberBinding="{Binding SoLuongMua}"
-                                            Header="Số lượng mua" />
-                                        <GridViewColumn
-                                            Width="90"
-                                            DisplayMemberBinding="{Binding Gia}"
-                                            Header="Giá" />
-                                        <GridViewColumn
-                                            Width="90"
-                                            DisplayMemberBinding="{Binding PhiShip}"
-                                            Header="Phí ship" />
-                                        <GridViewColumn
-                                            Width="120"
-                                            DisplayMemberBinding="{Binding TongThanhToan}"
-                                            Header="Tổng thanh toán" />
-                                        <GridViewColumn
-                                            Width="145"
-                                            DisplayMemberBinding="{Binding Ngay}"
-                                            Header="Ngày dự kiến nhận hàng" />
-                                        <!--  Cột "btn Đã nhận hàng"  -->
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="LightBlue" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn
+                                        Width="45"
+                                        DisplayMemberBinding="{Binding IdSP}"
+                                        Header="Id đồ" />
+                                    <GridViewColumn
+                                        Width="130"
+                                        DisplayMemberBinding="{Binding TenSP}"
+                                        Header="Tên đồ" />
+                                    <!--  Ảnh  -->
+                                    <GridViewColumn Width="100" Header="Ảnh">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LinkAnhBia}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding SoLuongMua}"
+                                        Header="Số lượng mua" />
+                                    <GridViewColumn
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding Gia}"
+                                        Header="Giá" />
+                                    <GridViewColumn
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding PhiShip}"
+                                        Header="Phí ship" />
+                                    <GridViewColumn
+                                        Width="120"
+                                        DisplayMemberBinding="{Binding TongThanhToan}"
+                                        Header="Tổng thanh toán" />
+                                    <GridViewColumn
+                                        Width="145"
+                                        DisplayMemberBinding="{Binding Ngay}"
+                                        Header="Ngày dự kiến nhận hàng" />
+                                    <!--  Cột "btn Đã nhận hàng"  -->
 
-                                        <GridViewColumn Width="120" Header="Đã nhân hàng">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        Width="45"
-                                                        Height="45"
-                                                        Margin="8,0,0,0"
-                                                        materialDesign:ButtonAssist.CornerRadius="10"
-                                                        BorderBrush="White"
-                                                        BorderThickness="1"
-                                                        Click="btnDaNhanHang_Click"
-                                                        ToolTip="Đã nhận">
-                                                        <materialDesign:PackIcon
-                                                            Width="15"
-                                                            Height="15"
-                                                            Foreground="White"
-                                                            Kind="CheckOutline" />
-                                                    </Button>
+                                    <GridViewColumn Width="120" Header="Đã nhân hàng">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    Width="45"
+                                                    Height="45"
+                                                    Margin="8,0,0,0"
+                                                    materialDesign:ButtonAssist.CornerRadius="10"
+                                                    BorderBrush="White"
+                                                    BorderThickness="1"
+                                                    Click="btnDaNhanHang_Click"
+                                                    ToolTip="Đã nhận">
+                                                    <materialDesign:PackIcon
+                                                        Width="15"
+                                                        Height="15"
+                                                        Foreground="White"
+                                                        Kind="CheckOutline" />
+                                                </Button>
 
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                        <!--  Cột "btn Đã nhận hàng"  -->
-                                        <GridViewColumn Width="120" Header="Trả hàng">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        x:Name="btnTraHang"
-                                                        Width="45"
-                                                        Height="45"
-                                                        Margin="8,0,0,0"
-                                                        materialDesign:ButtonAssist.CornerRadius="10"
-                                                        Background="#FFC33838"
-                                                        BorderBrush="White"
-                                                        BorderThickness="1"
-                                                        Click="btnTraHang_Click"
-                                                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                                                        CommandParameter="{x:Static Dock.Bottom}"
-                                                        ToolTip="Đã nhận">
-                                                        <materialDesign:PackIcon
-                                                            Width="15"
-                                                            Height="15"
-                                                            Foreground="White"
-                                                            Kind="KeyboardReturn" />
-                                                    </Button>
+                                    <!--  Cột "btn Đã nhận hàng"  -->
+                                    <GridViewColumn Width="120" Header="Trả hàng">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    x:Name="btnTraHang"
+                                                    Width="45"
+                                                    Height="45"
+                                                    Margin="8,0,0,0"
+                                                    materialDesign:ButtonAssist.CornerRadius="10"
+                                                    Background="#FFC33838"
+                                                    BorderBrush="White"
+                                                    BorderThickness="1"
+                                                    Click="btnTraHang_Click"
+                                                    Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                                    CommandParameter="{x:Static Dock.Bottom}"
+                                                    ToolTip="Đã nhận">
+                                                    <materialDesign:PackIcon
+                                                        Width="15"
+                                                        Height="15"
+                                                        Foreground="White"
+                                                        Kind="KeyboardReturn" />
+                                                </Button>
 
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </ScrollViewer>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </Expander>
                     <Expander
                         Grid.Row="2"
+                        MaxHeight="630"
                         Margin="10,5,10,5"
                         Background="LightPink"
                         ExpandDirection="Down"
@@ -334,94 +339,93 @@
                                 </materialDesign:Badged>
                             </StackPanel>
                         </Expander.Header>
-                        <ScrollViewer
+                        <ListView
+                            x:Name="lsvDaNhan"
                             HorizontalAlignment="Center"
-                            HorizontalScrollBarVisibility="Auto"
-                            VerticalScrollBarVisibility="Auto">
-                            <ListView x:Name="lsvDaNhan">
-                                <ListView.Resources>
-                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
-                                </ListView.Resources>
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                            ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">12</sys:Double>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
 
 
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.ColumnHeaderContainerStyle>
-                                            <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                <Setter Property="Background" Value="LightBlue" />
-                                                <Setter Property="Foreground" Value="Black" />
-                                                <Setter Property="FontWeight" Value="Bold" />
-                                            </Style>
-                                        </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn
-                                            Width="45"
-                                            DisplayMemberBinding="{Binding IdSP}"
-                                            Header="Id đồ" />
-                                        <GridViewColumn
-                                            Width="130"
-                                            DisplayMemberBinding="{Binding TenSP}"
-                                            Header="Tên đồ" />
-                                        <!--  Ảnh  -->
-                                        <GridViewColumn Width="100" Header="Ảnh">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Image Source="{Binding LinkAnhBia}" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn
-                                            Width="100"
-                                            DisplayMemberBinding="{Binding SoLuongMua}"
-                                            Header="Số lượng mua" />
-                                        <GridViewColumn
-                                            Width="90"
-                                            DisplayMemberBinding="{Binding Gia}"
-                                            Header="Giá" />
-                                        <GridViewColumn
-                                            Width="90"
-                                            DisplayMemberBinding="{Binding PhiShip}"
-                                            Header="Phí ship" />
-                                        <GridViewColumn
-                                            Width="120"
-                                            DisplayMemberBinding="{Binding TongThanhToan}"
-                                            Header="Tổng thanh toán" />
-                                        <GridViewColumn
-                                            Width="145"
-                                            DisplayMemberBinding="{Binding Ngay}"
-                                            Header="Ngày nhận hàng" />
-                                        <!--  Cột "btn Đánh giá người bán"  -->
-                                        <GridViewColumn Width="120" Header="Đánh giá người bán">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button
-                                                        x:Name="btnDanhGia"
-                                                        Width="45"
-                                                        Height="45"
-                                                        Margin="8,0,0,0"
-                                                        materialDesign:ButtonAssist.CornerRadius="10"
-                                                        BorderBrush="White"
-                                                        BorderThickness="1"
-                                                        Click="btnDanhGia_Click"
-                                                        ToolTip="Đã nhận">
-                                                        <materialDesign:PackIcon
-                                                            Width="15"
-                                                            Height="15"
-                                                            Foreground="White"
-                                                            Kind="FileDocumentEditOutline" />
-                                                    </Button>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="LightBlue" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn
+                                        Width="45"
+                                        DisplayMemberBinding="{Binding IdSP}"
+                                        Header="Id đồ" />
+                                    <GridViewColumn
+                                        Width="130"
+                                        DisplayMemberBinding="{Binding TenSP}"
+                                        Header="Tên đồ" />
+                                    <!--  Ảnh  -->
+                                    <GridViewColumn Width="100" Header="Ảnh">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LinkAnhBia}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding SoLuongMua}"
+                                        Header="Số lượng mua" />
+                                    <GridViewColumn
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding Gia}"
+                                        Header="Giá" />
+                                    <GridViewColumn
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding PhiShip}"
+                                        Header="Phí ship" />
+                                    <GridViewColumn
+                                        Width="120"
+                                        DisplayMemberBinding="{Binding TongThanhToan}"
+                                        Header="Tổng thanh toán" />
+                                    <GridViewColumn
+                                        Width="145"
+                                        DisplayMemberBinding="{Binding Ngay}"
+                                        Header="Ngày nhận hàng" />
+                                    <!--  Cột "btn Đánh giá người bán"  -->
+                                    <GridViewColumn Width="120" Header="Đánh giá người bán">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    x:Name="btnDanhGia"
+                                                    Width="45"
+                                                    Height="45"
+                                                    Margin="8,0,0,0"
+                                                    materialDesign:ButtonAssist.CornerRadius="10"
+                                                    BorderBrush="White"
+                                                    BorderThickness="1"
+                                                    Click="btnDanhGia_Click"
+                                                    ToolTip="Đã nhận">
+                                                    <materialDesign:PackIcon
+                                                        Width="15"
+                                                        Height="15"
+                                                        Foreground="White"
+                                                        Kind="FileDocumentEditOutline" />
+                                                </Button>
 
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </ScrollViewer>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
                     </Expander>
                 </Grid>
 

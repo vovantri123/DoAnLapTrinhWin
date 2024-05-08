@@ -76,13 +76,13 @@ namespace TraoDoiDo.Views.DangDo
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
 
                     if (tenLsv == "lsvChoDongGoi")
-                        lsvChoDongGoi.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien });
+                        lsvChoDongGoi.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = Tien.DinhDangTien(dong.Gia), PhiShip = Tien.DinhDangTien(dong.PhiShip), TongTien = Tien.DinhDangTien(dong.TongTien) });
                     else if (tenLsv == "lsvDangGiao")
-                        lsvDangGiao.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien });
+                        lsvDangGiao.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = Tien.DinhDangTien(dong.Gia), PhiShip = Tien.DinhDangTien(dong.PhiShip), TongTien = Tien.DinhDangTien(dong.TongTien) });
                     else if (tenLsv == "lsvDaGiao")
-                        lsvDaGiao.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien });
+                        lsvDaGiao.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = Tien.DinhDangTien(dong.Gia), PhiShip = Tien.DinhDangTien(dong.PhiShip), TongTien = Tien.DinhDangTien(dong.TongTien) });
                     else if (tenLsv == "lsvDonHangBiHoanTra")
-                        lsvDonHangBiHoanTra.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = dong.Gia, PhiShip = dong.PhiShip, TongTien = dong.TongTien, LyDoTraHang = dong.LyDo });
+                        lsvDonHangBiHoanTra.Items.Add(new { IdSP = dong.IdSanPham, IdNguoiMua = dong.IdNguoiMua, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, SoLuongMua = dong.SoLuongMua, Gia = Tien.DinhDangTien(dong.Gia), PhiShip = Tien.DinhDangTien(dong.PhiShip), TongTien = Tien.DinhDangTien(dong.TongTien), LyDoTraHang = dong.LyDo });
                 }
             }
             catch (Exception ex)

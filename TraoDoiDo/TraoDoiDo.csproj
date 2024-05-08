@@ -78,6 +78,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utilities\HoTroTimPhanTu.cs" />
+    <Compile Include="Utilities\Tien.cs" />
     <Compile Include="Views\DangDo\DangDoUC.xaml.cs">
       <DependentUpon>DangDoUC.xaml</DependentUpon>
     </Compile>

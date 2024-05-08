@@ -198,5 +198,15 @@ namespace TraoDoiDo.Database
             ";
             dbConnection.ThucThi(sqlStr);
         }
+
+        public void CongThemVaoSoTienHienTai(string idNguoiMua, string soTienCongThem)
+        {
+            string sqlStr = $@"
+                UPDATE {nguoiDungHeader} 
+                SET {nguoiDungTien} = CONVERT(FLOAT, {nguoiDungTien}) + {soTienCongThem}
+                WHERE {nguoiDungID}='{idNguoiMua}'
+            ";
+            dbConnection.ThucThi(sqlStr);
+        }
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 using TraoDoiDo.Utilities;
+using TraoDoiDo.ViewModels;
 
 namespace TraoDoiDo.Views.QuanLy
 {
@@ -44,8 +45,13 @@ namespace TraoDoiDo.Views.QuanLy
         {
             try
             {
-                List<Voucher> dsVoucher = voucherDao.LoadVoucher();
-                lsvQLVoucher.ItemsSource = dsVoucher;
+                List<Voucher> dsVoucher = voucherDao.LoadVoucher(); 
+
+                //lsvQLVoucher.ItemsSource = dsVoucher;
+
+                lsvQLVoucher.Items.Clear();
+                foreach (var dong in dsVoucher) 
+                    lsvQLVoucher.Items.Add(new { IdVoucher = dong.IdVoucher, TenVoucher = dong.TenVoucher, GiaTri = Tien.DinhDangTien(dong.GiaTri), SoLuotSuDungToiDa  = dong.SoLuotSuDungToiDa , SoLuotDaSuDung = dong.SoLuotDaSuDung, NgayBatDau  = dong.NgayBatDau, NgayKetThuc = dong.NgayKetThuc}); 
             }
             catch (Exception ex)
             {
@@ -64,7 +70,7 @@ namespace TraoDoiDo.Views.QuanLy
                 {
                     txtbIdVoucher.Text = duLieuCuadongDuocChon.IdVoucher;
                     txtbTenVoucher.Text = duLieuCuadongDuocChon.TenVoucher;
-                    txtbGiaTri.Text = duLieuCuadongDuocChon.GiaTri;
+                    txtbGiaTri.Text = (duLieuCuadongDuocChon.GiaTri).Replace(",","");
                     dtpNgayBatDau.SelectedDate = DateTime.Parse(duLieuCuadongDuocChon.NgayBatDau);
                     dtpNgayKetThuc.SelectedDate = DateTime.Parse(duLieuCuadongDuocChon.NgayKetThuc);
                     ucTangGiamSoLuotSuDungToiDa.txtbSoLuong.Text = duLieuCuadongDuocChon.SoLuotSuDungToiDa;

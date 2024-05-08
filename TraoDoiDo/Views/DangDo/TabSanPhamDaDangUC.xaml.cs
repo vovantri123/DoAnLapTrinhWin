@@ -59,7 +59,7 @@ namespace TraoDoiDo.Views.DangDo
             foreach (var sanPham in dsSanPham)
             {
                 string duongDanDayDu = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
-                lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip, NgayDang = sanPham.NgayDang });
+                lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = Tien.DinhDangTien(sanPham.GiaGoc), GiaBan = Tien.DinhDangTien(sanPham.GiaBan), PhiShip = Tien.DinhDangTien(sanPham.PhiShip), NgayDang = sanPham.NgayDang });
             }
         }
 
@@ -161,7 +161,7 @@ namespace TraoDoiDo.Views.DangDo
                 if(sanPham.Ten.ToLower().Contains(txbTimKiem.Text.Trim().ToLower()))
                 {
                     string duongDanDayDu = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
-                    lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip });
+                    lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = Tien.DinhDangTien(sanPham.GiaGoc), GiaBan = Tien.DinhDangTien(sanPham.GiaBan), PhiShip = Tien.DinhDangTien(sanPham.PhiShip) });
                 }    
             } 
         }
@@ -178,7 +178,7 @@ namespace TraoDoiDo.Views.DangDo
                     if (sanPham.Loai.ToLower().Contains(mucDaChon.Trim().ToLower()))
                     {
                         string duongDanDayDu = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(sanPham.LinkAnh);
-                        lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = sanPham.GiaGoc, GiaBan = sanPham.GiaBan, PhiShip = sanPham.PhiShip });
+                        lsvQuanLySanPham.Items.Add(new { Id = sanPham.Id, Ten = sanPham.Ten, LinkAnh = duongDanDayDu, Loai = sanPham.Loai, SoLuong = sanPham.SoLuong, SoLuongDaBan = sanPham.SoLuongDaBan, GiaGoc = Tien.DinhDangTien(sanPham.GiaGoc), GiaBan = Tien.DinhDangTien(sanPham.GiaBan), PhiShip = Tien.DinhDangTien(sanPham.PhiShip) });
                     } 
         }
 
@@ -224,7 +224,7 @@ namespace TraoDoiDo.Views.DangDo
                     {
                         string linkAnh = sp.LinkAnh;
                         string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(linkAnh);
-                        lsvQuanLySanPham.Items.Add(new { Id = sp.Id, Ten = sp.Ten, LinkAnh = tenAnh, Loai = sp.Loai, SoLuong = sp.SoLuong, SoLuongDaBan = sp.SoLuongDaBan, GiaGoc = sp.GiaGoc, GiaBan = sp.GiaBan, PhiShip = sp.PhiShip, NgayDang = sp.NgayDang });
+                        lsvQuanLySanPham.Items.Add(new { Id = sp.Id, Ten = sp.Ten, LinkAnh = tenAnh, Loai = sp.Loai, SoLuong = sp.SoLuong, SoLuongDaBan = sp.SoLuongDaBan, GiaGoc = Tien.DinhDangTien(sp.GiaGoc), GiaBan = Tien.DinhDangTien(sp.GiaBan), PhiShip = Tien.DinhDangTien(sp.PhiShip), NgayDang = sp.NgayDang });
                     }
                 }
                 else
@@ -233,7 +233,7 @@ namespace TraoDoiDo.Views.DangDo
                     {
                         string linkAnh = sp.LinkAnh;
                         string tenAnh = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(linkAnh);
-                        lsvQuanLySanPham.Items.Add(new { Id = sp.Id, Ten = sp.Ten, LinkAnh = tenAnh, Loai = sp.Loai, SoLuong = sp.SoLuong, SoLuongDaBan = sp.SoLuongDaBan, GiaGoc = sp.GiaGoc, GiaBan = sp.GiaBan, PhiShip = sp.PhiShip, NgayDang = sp.NgayDang });
+                        lsvQuanLySanPham.Items.Add(new { Id = sp.Id, Ten = sp.Ten, LinkAnh = tenAnh, Loai = sp.Loai, SoLuong = sp.SoLuong, SoLuongDaBan = sp.SoLuongDaBan, GiaGoc = Tien.DinhDangTien(sp.GiaGoc), GiaBan = Tien.DinhDangTien(sp.GiaBan), PhiShip = Tien.DinhDangTien(sp.PhiShip), NgayDang = sp.NgayDang });
                     }
                 }
 

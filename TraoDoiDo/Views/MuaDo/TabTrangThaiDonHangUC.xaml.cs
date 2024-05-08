@@ -48,12 +48,30 @@ namespace TraoDoiDo.Views.MuaDo
             Loaded += TrangThaiDonHang_Load;
         }
 
+        #region Từ con gọi cha 
+        public class ThamSoThayDoi : EventArgs
+        {
+            public string SoTienMoi { get; set; }
+        }
+
+        public event EventHandler<ThamSoThayDoi> SuKien_TabTrangThaiDonHang_GoiChaKhiTienNguoiDungThayDoi;
+
+        private void txbTienNguoiDung_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SuKien_TabTrangThaiDonHang_GoiChaKhiTienNguoiDungThayDoi?.Invoke(this, new ThamSoThayDoi
+            {
+                SoTienMoi = txbTienNguoiDung.Text
+            });
+        }
+        #endregion
+
         private void TrangThaiDonHang_Load(object sender, RoutedEventArgs e)
         {
             LoadLsvTrongTabTrangThaiDonHang("lsvChoNguoiBanXacNhan", "Chờ xác nhận");
             LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
             LoadLsvTrongTabTrangThaiDonHang("lsvDaNhan", "Đã nhận");
         }
+
         private void LoadLsvTrongTabTrangThaiDonHang(string tenLsv, string trangthai)
         {
             try
@@ -73,11 +91,11 @@ namespace TraoDoiDo.Views.MuaDo
                     string linkAnhBia = XuLyAnh.layDuongDanDayDuToiFileAnhSanPham(tenFileAnh);
 
                     if (tenLsv == "lsvChoNguoiBanXacNhan")
-                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });
+                        lsvChoNguoiBanXacNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = Tien.DinhDangTien(dong.GiaBan), PhiShip = Tien.DinhDangTien(dong.PhiShip), SoLuongMua = dong.SoLuongMua, TongThanhToan = Tien.DinhDangTien(dong.TongThanhToan), Ngay = dong.Ngay });
                     else if (tenLsv == "lsvChoGiaoHang")
-                        lsvChoGiaoHang.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });
+                        lsvChoGiaoHang.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = Tien.DinhDangTien(dong.GiaBan), PhiShip = Tien.DinhDangTien(dong.PhiShip), SoLuongMua = dong.SoLuongMua, TongThanhToan = Tien.DinhDangTien(dong.TongThanhToan), Ngay = dong.Ngay });
                     else if (tenLsv == "lsvDaNhan")
-                        lsvDaNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = dong.GiaBan, PhiShip = dong.PhiShip, SoLuongMua = dong.SoLuongMua, TongThanhToan = dong.TongThanhToan, Ngay = dong.Ngay });
+                        lsvDaNhan.Items.Add(new { IdSP = dong.IdSanPham, TenSP = dong.TenSanPham, LinkAnhBia = linkAnhBia, Gia = Tien.DinhDangTien(dong.GiaBan), PhiShip = Tien.DinhDangTien(dong.PhiShip), SoLuongMua = dong.SoLuongMua, TongThanhToan = Tien.DinhDangTien(dong.TongThanhToan), Ngay = dong.Ngay });
                 }
             }
             catch (Exception ex)
@@ -104,6 +122,8 @@ namespace TraoDoiDo.Views.MuaDo
                         QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, duLieuCuaDongChuaButton.IdSP, null, null);
                         quanLyDonHangDao.Xoa(quanLyDonHang);
                         TrangThaiDonHang_Load(sender, e);
+                        ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, duLieuCuaDongChuaButton.TongThanhToan);
+                        txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id); 
                     }
                     catch (Exception ex)
                     {
@@ -131,6 +151,8 @@ namespace TraoDoiDo.Views.MuaDo
                         QuanLyDonHang quanLyDonHang = new QuanLyDonHang(null, null, ngMua.Id, duLieuCuaDongChuaButton.IdSP, "Đã giao", null);
                         quanLyDonHangDao.CapNhat(quanLyDonHang);
                         TrangThaiDonHang_Load(sender, e);
+                        string idNguoiDang = ngDungDao.timKiemNguoiDangTheoIdSP(duLieuCuaDongChuaButton.Id).Id; 
+                        ngDungDao.CongThemVaoSoTienHienTai(idNguoiDang, duLieuCuaDongChuaButton.TongThanhToan);
                     }
                     catch (Exception ex)
                     {
@@ -175,8 +197,10 @@ namespace TraoDoiDo.Views.MuaDo
                 ucLyDoTraHang.DrawerClosed += (btnSender, args) =>
                 { 
                     LoadLsvTrongTabTrangThaiDonHang("lsvChoGiaoHang", "Chờ giao hàng");
+                    ngDungDao.CongThemVaoSoTienHienTai(ngMua.Id, duLieuCuaDongChuaButton.TongThanhToan);
+                    txbTienNguoiDung.Text = ngDungDao.TimKiemTienBangId(ngMua.Id);
                 };
             } 
-        }
+        } 
     }
 }

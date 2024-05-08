@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using TraoDoiDo.Database;
 using TraoDoiDo.Models;
 using TraoDoiDo.ViewModels;
+using TraoDoiDo.Utilities;
 using static TraoDoiDo.VoucherUC;
 
 namespace TraoDoiDo
@@ -57,9 +58,8 @@ namespace TraoDoiDo
             try
             {
                 HienThi_GiaoDich();
-                string t = nguoiDungDao.TimKiemTienBangId(nguoiDung.Id);
-                decimal tien = Convert.ToDecimal(t);
-                txtbSoDu.Text = DinhDangTien(tien);
+                string tien = nguoiDungDao.TimKiemTienBangId(nguoiDung.Id); 
+                txtbSoDu.Text = Tien.DinhDangTien(tien);
             }
             catch (Exception ex)
             {
@@ -106,7 +106,7 @@ namespace TraoDoiDo
             {
                 List<GiaoDich> dsGiaoDich = gdDao.LoadDSGiaoDichTheoIdNguoiDung(nguoiDung.Id);
                 foreach(var dong in dsGiaoDich)
-                    lsvLichSuGiaoDich.Items.Add(new { Id = dong.Id, Type = dong.LoaiGiaoDich, Money = dong.SoTien, Initial = dong.TuNguonTien, End = dong.DenNguonTien, Date = dong.NgayGiaoDich });
+                    lsvLichSuGiaoDich.Items.Add(new { Id = dong.Id, Type = dong.LoaiGiaoDich, Money = Tien.DinhDangTien(dong.SoTien), Initial = dong.TuNguonTien, End = dong.DenNguonTien, Date = dong.NgayGiaoDich });
             }
             catch (Exception ex)
             {
@@ -114,11 +114,7 @@ namespace TraoDoiDo
             }
             
         }
-
-        private static string DinhDangTien(decimal t)
-        {
-            return t.ToString("#,0");
-        }
+         
         
 
     }

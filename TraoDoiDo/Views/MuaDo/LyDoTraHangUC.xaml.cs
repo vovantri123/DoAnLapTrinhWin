@@ -51,7 +51,6 @@ namespace TraoDoiDo
                 MessageBox.Show("Lỗi xảy ra khi trả sản phẩm:\n" + ex.Message);
             }
              
-            btnXacNhanTraHang.IsEnabled = false; 
             // Tìm DrawerHost gần nhất
             DependencyObject cha = VisualTreeHelper.GetParent(this);
             while (!(cha is DrawerHost))

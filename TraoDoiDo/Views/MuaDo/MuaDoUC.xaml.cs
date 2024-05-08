@@ -47,11 +47,17 @@ namespace TraoDoiDo
             gh.SuKien_TabGioHang_GoiChaKhiTienNguoiDungThayDoi += MuaDoUC_TabGioHangGoi;
             ccTabGioHang.Content = gh;
 
-
-            ccTabTrangThaiDonHang.Content = new TabTrangThaiDonHangUC(nguoi);
+            TabTrangThaiDonHangUC tt = new TabTrangThaiDonHangUC(nguoi);
+            tt.SuKien_TabTrangThaiDonHang_GoiChaKhiTienNguoiDungThayDoi += MuaDoUC_TabTrangThaiGoi;
+            ccTabTrangThaiDonHang.Content = tt;
         }
 
         private void MuaDoUC_TabGioHangGoi(object sender, TabGioHangUC.ThamSoThayDoi e)
+        {
+            txbTienNguoiDung.Text = e.SoTienMoi;
+        }
+
+        private void MuaDoUC_TabTrangThaiGoi(object sender, TabTrangThaiDonHangUC.ThamSoThayDoi e)
         {
             txbTienNguoiDung.Text = e.SoTienMoi;
         }

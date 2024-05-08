@@ -57,15 +57,14 @@ namespace TraoDoiDo.Views.Windows
 
         public event EventHandler<ThamSoThayDoi> SuKien_TabGioHang_GoiChaKhiTienNguoiDungThayDoi;
 
-        #endregion
-
         private void txbTienNguoiDung_TextChanged(object sender, TextChangedEventArgs e)
         {
             SuKien_TabGioHang_GoiChaKhiTienNguoiDungThayDoi?.Invoke(this, new ThamSoThayDoi
             {
                 SoTienMoi = txbTienNguoiDung.Text
             });
-        }
+        } 
+        #endregion
 
         private void GioHang_Load(object sender, RoutedEventArgs e)
         {
