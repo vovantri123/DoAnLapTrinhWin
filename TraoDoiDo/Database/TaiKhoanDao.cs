@@ -12,8 +12,8 @@ namespace TraoDoiDo.Database
         public void Them(TaiKhoan tk)
         {
             string sqlStr = $@"
-                INSERT INTO {taiKhoanHeader} ({taiKhoanTenDangNhap}, {taiKhoanMatKhau}) 
-                VALUES ('{tk.TenDangNhap}','{tk.MatKhau}')
+                INSERT INTO {taiKhoanHeader} ({taiKhoanIdNguoiDung},{taiKhoanTenDangNhap}, {taiKhoanMatKhau}) 
+                VALUES ({tk.IDNguoiDung},'{tk.TenDangNhap}','{tk.MatKhau}')
             ";
             dbConnection.ThucThi(sqlStr);
         }

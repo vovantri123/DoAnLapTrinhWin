@@ -18,8 +18,8 @@ namespace TraoDoiDo.Database
         public void Them(NguoiDung user)
         {
             string sqlStr = $@"
-                INSERT INTO {nguoiDungHeader} ({nguoiDungTen},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungCMND},{nguoiDungDiaChi},{nguoiDungEmail},{nguoiDungAnh},{nguoiDungTien})
-                VALUES (N'{user.HoTen}',N'{user.GioiTinh}','{user.NgaySinh}','{user.Sdt}','{user.Cmnd}',N'{user.DiaChi}','{user.Email}','{user.Anh}','{user.Tien}')
+                INSERT INTO {nguoiDungHeader} ({nguoiDungID},{nguoiDungTen},{nguoiDungGioiTinh},{nguoiDungNgaySinh},{nguoiDungSdt},{nguoiDungCMND},{nguoiDungDiaChi},{nguoiDungEmail},{nguoiDungAnh},{nguoiDungTien})
+                VALUES ({user.Id},N'{user.HoTen}',N'{user.GioiTinh}','{user.NgaySinh}','{user.Sdt}','{user.Cmnd}',N'{user.DiaChi}','{user.Email}','{user.Anh}','{user.Tien}')
             ";
             dbConnection.ThucThi(sqlStr);
         }

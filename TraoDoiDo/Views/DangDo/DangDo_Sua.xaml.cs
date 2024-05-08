@@ -26,7 +26,7 @@ namespace TraoDoiDo
         public ThemAnhKhiDangUC[] DanhSachAnhVaMoTa = new ThemAnhKhiDangUC[100];   
 
         SanPham sanPham;
-        MoTaAnhSanPhamDao moTaAnhSanPhamDao;
+        MoTaAnhSanPhamDao moTaAnhSanPhamDao = new MoTaAnhSanPhamDao();
 
         SanPhamDao sanPhamDao = new SanPhamDao();
 

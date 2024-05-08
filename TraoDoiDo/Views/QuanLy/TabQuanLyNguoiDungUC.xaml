@@ -140,8 +140,8 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button
-                                                Width="45"
-                                                Height="45"
+                                                Width="46"
+                                                Height="46"
                                                 materialDesign:ButtonAssist.CornerRadius="10"
                                                 BorderBrush="White"
                                                 BorderThickness="1"
@@ -151,7 +151,7 @@
                                                     Width="15"
                                                     Height="15"
                                                     Foreground="White"
-                                                    Kind="PencilOutline" />
+                                                    Kind="InformationOutline" />
                                             </Button>
                                             <Button
                                                 Width="45"

@@ -38,7 +38,8 @@ namespace TraoDoiDo
         {
             try
             {
-                NguoiDung nguoiDang = danhGiaNguoiDungDao.LoadThongTinNguoiDang(idNguoiDang);
+                NguoiDungDao ngDao = new NguoiDungDao();
+                NguoiDung nguoiDang = ngDao.TimNguoiBangIdNguoi(idNguoiDang);
                if (nguoiDang != null)
                 {
                     itemsControlDSDanhGia.Items.Clear();
