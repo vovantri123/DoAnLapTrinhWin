@@ -50,6 +50,7 @@ namespace TraoDoiDo
                     MessageBox.Show("Đăng ký thất bại: " + ex.Message);
                 }
                 MessageBox.Show("Đăng kí thành công");
+                this.Close();
             }
         }
 

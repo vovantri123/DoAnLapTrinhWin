@@ -279,8 +279,6 @@
 
                     <!--  Các phần tử bên trong WrapPanel  -->
                 </StackPanel>
-
-
             </ScrollViewer>
         </Grid>
 

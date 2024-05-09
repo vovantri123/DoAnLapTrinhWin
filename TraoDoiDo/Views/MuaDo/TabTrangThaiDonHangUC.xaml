@@ -256,7 +256,7 @@
                                         Header="Ngày dự kiến nhận hàng" />
                                     <!--  Cột "btn Đã nhận hàng"  -->
 
-                                    <GridViewColumn Width="120" Header="Đã nhân hàng">
+                                    <GridViewColumn Width="120" Header="Đã nhận hàng">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button

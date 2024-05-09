@@ -73,7 +73,7 @@ namespace TraoDoiDo.Database
             dsVoucher = new List<Voucher>();
             bangKetQua = dbConnection.LayNhieuDongDuLieu<string>(sqlStr);
             foreach (var dong in bangKetQua) 
-                dsVoucher.Add(new Voucher(dong[0], dong[1], dong[2], dong[3], dong[4], dong[5], dong[6])); 
+                dsVoucher.Add(new Voucher(dong[0], dong[1], dong[2], dong[4], dong[3], dong[5], dong[6])); 
             return dsVoucher;
         }
          

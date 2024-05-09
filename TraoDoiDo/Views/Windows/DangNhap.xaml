@@ -89,7 +89,7 @@
                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                 Foreground="#FF1E1C1C"
                                 Style="{StaticResource MaterialDesignFilledTextBox}"
-                                Text="User01" />
+                                Text="user01" />
                         </Grid>
 
                         <Grid Grid.Row="1">
