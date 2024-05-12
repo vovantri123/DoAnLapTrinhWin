@@ -131,48 +131,35 @@ namespace TraoDoiDo.Views.MuaDo
             sp2 = spTam;
         }
 
-        private void SapXepTheoGiaTangDan()
+        private void SapXepSanPham(Func<SanPhamUC, SanPhamUC, bool> dieuKienSoSanh)
         {
             wpnlHienThi.Children.Clear();
             for (int i = 0; i < soLuongSP - 1; i++)
                 for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text.Replace(".","")) > Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text.Replace(".", "")))
+                    if (dieuKienSoSanh(DanhSachSanPham[i], DanhSachSanPham[j]))
                         HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
-
             LoadToanBoDanhSachSanPhamLenWpnlHienThi();
+        }
+
+        // Sử dụng phương thức SapXepSanPham với các biểu thức lambda để xác định tiêu chí sắp xếp 
+        private void SapXepTheoGiaTangDan()
+        {
+            SapXepSanPham((sp1, sp2) => Convert.ToInt32(sp1.txtbGiaBan.Text.Replace(",", "")) > Convert.ToInt32(sp2.txtbGiaBan.Text.Replace(",", "")));
         }
 
         private void SapXepTheoGiaGiamDan()
-        { 
-            wpnlHienThi.Children.Clear();
-            for (int i = 0; i < soLuongSP - 1; i++)
-                for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbGiaBan.Text.Replace(".", "")) < Convert.ToInt32(DanhSachSanPham[j].txtbGiaBan.Text.Replace(".", "")))
-                        HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
+        {
+            SapXepSanPham((sp1, sp2) => Convert.ToInt32(sp1.txtbGiaBan.Text.Replace(",", "")) < Convert.ToInt32(sp2.txtbGiaBan.Text.Replace(",", "")));
+        }
 
-            LoadToanBoDanhSachSanPhamLenWpnlHienThi();
-        } 
-        
         private void SapXepGiamDanTheoSoLuotXem()
-        { 
-            wpnlHienThi.Children.Clear();
-            for (int i = 0; i < soLuongSP - 1; i++)
-                for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text.Replace(".", "")) < Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text.Replace(".", "")))
-                        HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
-
-            LoadToanBoDanhSachSanPhamLenWpnlHienThi();
+        {
+            SapXepSanPham((sp1, sp2) => Convert.ToInt32(sp1.txtbSoLuotXem.Text) < Convert.ToInt32(sp2.txtbSoLuotXem.Text));
         }
 
         private void SapXepTangDanTheoSoLuotXem()
-        { 
-            wpnlHienThi.Children.Clear();
-            for (int i = 0; i < soLuongSP - 1; i++)
-                for (int j = i + 1; j < soLuongSP; j++)
-                    if (Convert.ToInt32(DanhSachSanPham[i].txtbSoLuotXem.Text.Replace(".", "")) > Convert.ToInt32(DanhSachSanPham[j].txtbSoLuotXem.Text.Replace(".", "")))
-                        HoanDoi(ref DanhSachSanPham[i], ref DanhSachSanPham[j]);
-
-            LoadToanBoDanhSachSanPhamLenWpnlHienThi();
+        {
+            SapXepSanPham((sp1, sp2) => Convert.ToInt32(sp1.txtbSoLuotXem.Text) > Convert.ToInt32(sp2.txtbSoLuotXem.Text));
         }
 
         private void SapXeoTheoYeuThich()

@@ -206,9 +206,7 @@
     <Compile Include="Views\ViDienTu\ViDienTuUC.xaml.cs">
       <DependentUpon>ViDienTuUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\HoTroMatKhau.cs" />
     <Compile Include="Utilities\KiemTraDinhDang.cs" />
-    <Compile Include="Utilities\ThongTinKhachHangViewModel.cs" />
     <Compile Include="Utilities\ThuocTinhViewModel.cs" />
     <Compile Include="Utilities\XuLyTienIch.cs" />
     <Compile Include="Utilities\XuLyAnh.cs" />
