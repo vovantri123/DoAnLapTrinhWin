@@ -1160,3 +1160,211 @@ C:\Users\vovan\OneDrive\Máy tính\test win\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\
 C:\Users\vovan\OneDrive\Máy tính\test win\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CopyComplete
 C:\Users\vovan\OneDrive\Máy tính\test win\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.exe
 C:\Users\vovan\OneDrive\Máy tính\test win\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.dll
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.Wpf.dll
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignColors.dll
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\System.Data.SqlClient.dll
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.xml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.Wpf.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.Wpf.xml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignColors.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\System.Data.SqlClient.xml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.AssemblyReference.cache
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDoUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Dang.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Sua.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_ThongTinSanPhamUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabSanPhamDaDangUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabTrangThaiDonHangUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyNguoiDungUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLySanPhamUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangKy.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangNhap.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DanhGia.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DiaChi.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\LyDoTraHangUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\MainWindow.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\MuaDoUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\MucXepHangNguoiMuaNhieuNhatUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\NapRutTien.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\QuenMatKhau.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\TangGiamUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\ThanhDieuKhienUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\ThemAnhKhiDangUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\Thoat.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ThongTinCaNhan\ThongTinCaNhanUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinChiTietSanPham.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinNguoiDang.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\ViDienTuUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo_MarkupCompile.cache
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo_MarkupCompile.lref
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDoUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Dang.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Sua.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_ThongTinSanPhamUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabSanPhamDaDangUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabTrangThaiDonHangUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyNguoiDungUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLySanPhamUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangKy.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangNhap.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DanhGia.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DiaChi.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\LyDoTraHangUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\MainWindow.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\MuaDoUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\MucXepHangNguoiMuaNhieuNhatUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\NapRutTien.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\QuenMatKhau.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\TangGiamUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\ThanhDieuKhienUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\ThemAnhKhiDangUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\Thoat.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ThongTinCaNhan\ThongTinCaNhanUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinChiTietSanPham.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinNguoiDang.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\ViDienTuUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.baml
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.g.resources
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.Properties.Resources.resources
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.GenerateResource.cache
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CoreCompileInputs.cache
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.exe
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb
+D:\A. Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe.config
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.exe
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\TraoDoiDo.pdb
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.dll
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.Wpf.dll
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignColors.dll
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\System.Data.SqlClient.dll
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.pdb
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.xml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.Wpf.pdb
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\LiveCharts.Wpf.xml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignColors.pdb
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\bin\Debug\System.Data.SqlClient.xml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.AssemblyReference.cache
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDoUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Dang.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Sua.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_ThongTinSanPhamUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabSanPhamDaDangUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabTrangThaiDonHangUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyNguoiDungUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLySanPhamUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangKy.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangNhap.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DanhGia.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DiaChi.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\LyDoTraHangUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\MainWindow.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\MuaDoUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\MucXepHangNguoiMuaNhieuNhatUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\NapRutTien.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\QuenMatKhau.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\TangGiamUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\ThanhDieuKhienUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\ThemAnhKhiDangUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\Thoat.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ThongTinCaNhan\ThongTinCaNhanUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinChiTietSanPham.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinNguoiDang.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\ViDienTuUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo_MarkupCompile.cache
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo_MarkupCompile.lref
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\App.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDoUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Dang.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_Sua.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\DangDo_ThongTinSanPhamUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabQuanLyDonHangUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabSanPhamDaDangUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\TabThongKeUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabMuaSamUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabTrangThaiDonHangUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyDoanhThuNguoiDung.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyNguoiDungUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLySanPhamUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\TabQuanLyVoucherUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangKy.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\DangNhap.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DanhGia.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\DiaChi.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\LyDoTraHangUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\MainWindow.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\MuaDoUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\MucXepHangNguoiMuaNhieuNhatUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\NapRutTien.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\QuanLy\QuanLyUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\QuenMatKhau.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\TangGiamUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Control_Tu_Lam\ThanhDieuKhienUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\DangDo\ThemAnhKhiDangUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\TabGioHangUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\Windows\Thoat.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ThongTinCaNhan\ThongTinCaNhanUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinChiTietSanPham.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\ThongTinNguoiDang.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\TrangChuUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\MuaDo\SanPhamUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\ViDienTu\ViDienTuUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\Views\TrangChu\VoucherUC.baml
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.g.resources
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.Properties.Resources.resources
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.GenerateResource.cache
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.CoreCompileInputs.cache
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.csproj.Up2Date
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.exe
+D:\A.Nam Hai\A.HocKy2.Nam2\Lap_Trinh_Tren_Windows\doAnLTWindow\Final\DoAnLapTrinhWin\TraoDoiDo\obj\Debug\TraoDoiDo.pdb

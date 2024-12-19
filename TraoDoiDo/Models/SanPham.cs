@@ -87,8 +87,8 @@ namespace TraoDoiDo.Models
                 }
             } 
 
-            DateTime ngayMua = DateTime.ParseExact(NgayMua, "d/M/yyyy", null);
-            DateTime ngayDang = DateTime.ParseExact(NgayDang, "d/M/yyyy", null);
+            DateTime ngayMua = DateTime.ParseExact(NgayMua, "M/d/yyyy", null);
+            DateTime ngayDang = DateTime.ParseExact(NgayDang, "M/d/yyyy", null);
             if (!kiemTra.kiemTraNgayMuaSanPham(ngayMua, ngayDang))
             {
                 errorMessage = XuLyTienIch.TinNhanNgayMuaHopLe;

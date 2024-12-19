@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Windows;
 
 namespace TraoDoiDo.Database
-{
+{ 
     public class DbConnection
     {
         SqlConnection conn;

@@ -1,16 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\DoAnLapTrinhWinTDD\\DoAnADOWin\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\A.Nam Hai\\A.HocKy2.Nam2\\Lap_Trinh_Tren_Windows\\doAnLTWindow\\Final\\DoAnLapTrinhWin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|d:\\a.nam hai\\a.hocky2.nam2\\lap_trinh_tren_windows\\doanltwindow\\final\\doanlaptrinhwin\\traodoido\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A330D3B5-9582-4994-B9F1-D01624E80B1D}|TraoDoiDo\\TraoDoiDo.csproj|solutionrelative:traodoido\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 229,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -22,10 +31,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{778b5376-ad77-4751-acdc-f3d18343f8dd}"
             },
             {
               "$type": "Bookmark",
@@ -42,6 +47,22 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\A.Nam Hai\\A.HocKy2.Nam2\\Lap_Trinh_Tren_Windows\\doAnLTWindow\\Final\\DoAnLapTrinhWin\\TraoDoiDo\\App.xaml",
+              "RelativeDocumentMoniker": "TraoDoiDo\\App.xaml",
+              "ToolTip": "D:\\A.Nam Hai\\A.HocKy2.Nam2\\Lap_Trinh_Tren_Windows\\doAnLTWindow\\Final\\DoAnLapTrinhWin\\TraoDoiDo\\App.xaml",
+              "RelativeToolTip": "TraoDoiDo\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-17T02:16:28.253Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -49,6 +70,14 @@
           "DockedWidth": 159,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"

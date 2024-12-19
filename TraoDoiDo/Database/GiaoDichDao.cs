@@ -13,10 +13,10 @@ namespace TraoDoiDo.Database
     {
         List<GiaoDich> dsGiaoDich;
         List<string> dongKetQua;
-        List<List<string>> bangKetQua;
+        List<List<string>> bangKetQua; 
 
         public void Them(GiaoDich gd)
-        {
+        { 
             string sqlStr = $@"
                 INSERT INTO {giaoDichHeader} ({taiKhoanIdNguoiDung}, {giaoDichLoai},{giaoDichSoTien},{giaoDichTuNguon},{giaoDichDenNguon},{giaoDichNgay})
                 VALUES ('{gd.IdNguoiDung}',N'{gd.LoaiGiaoDich}','{gd.SoTien}',N'{gd.TuNguonTien}',N'{gd.DenNguonTien}','{gd.NgayGiaoDich}')
